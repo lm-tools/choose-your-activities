@@ -32,13 +32,6 @@ For example, to mount the application at `/plan-your-activities`, run:
 $ EXPRESS_BASE_PATH=/plan-your-activities npm run start
 ```
 
-## Test user creation
-
-You can create user and then fetch all the users by executing below commands
-
-    $ curl -X POST http://localhost:3000/users -d '{"name":"some name","surname":"some surname123"}' -H "Content-Type: application/json"
-    $ curl http://localhost:3000/users
-
 [build status image]: https://api.travis-ci.org/lm-tools/plan-your-activities.svg
 [ci]: https://travis-ci.org/lm-tools/plan-your-activities
 [express]: http://expressjs.com/
