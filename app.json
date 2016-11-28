@@ -1,6 +1,6 @@
 {
-  "name": "hello-world",
-  "repository": "https://github.com/lm-tools/hello-world",
+  "name": "plan-your-activities",
+  "repository": "https://github.com/lm-tools/plan-your-activities",
   "scripts": {
     "postdeploy": "npm run db-migrate"
   },
