@@ -1,6 +1,6 @@
 {
-  "name": "plan-your-activities",
-  "repository": "https://github.com/lm-tools/plan-your-activities",
+  "name": "choose-your-activities",
+  "repository": "https://github.com/lm-tools/choose-your-activities",
   "scripts": {
     "postdeploy": "npm run db-migrate"
   },

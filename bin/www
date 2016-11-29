@@ -5,7 +5,7 @@
  */
 
 var app = require('../app/app');
-var debug = require('debug')('plan-your-activities:server');
+var debug = require('debug')('choose-your-activities:server');
 var http = require('http');
 
 /**
