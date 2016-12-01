@@ -12,5 +12,14 @@
     "action-2": "Pick an activity and say whether you're interested or not",
     "action-3": "Get more information about all the activities you're interested in at the end.",
     "post-action-overview": "Your choices will all be saved - you can leave and come back any time."
+  },
+  "unsorted-activities": {
+    "pageTitle": "Sort these activities",
+    "heading": "Sort these activities",
+    "unsorted-menu": "unsorted",
+    "sorted-menu": "sorted",
+    "action-overview": "Choose an activity from the list below, then decide whether it's right for you. When you're finished, you'll be able to go over your choices and find out more about the activities.",
+    "action-finish-heading": "When you finish",
+    "action-finish-detail": "You can find out more or rearrange the activities on the next page."
   }
 }

@@ -5,7 +5,8 @@ const logger = require('./../logger');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const introductionController = require('./controllers/introduction-controller');
+const introductionController = require('./controllers/introduction-controller.js');
+const unsortedActivitiesController = require('./controllers/unsorted-activities-controller.js');
 
 const i18n = require('./middleware/i18n');
 const healthCheckController = require('./controllers/health-check-controller');
@@ -64,6 +65,7 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:accountId/introduction`, introductionController);
+app.use(`${basePath}/:accountId/unsorted-activities`, unsortedActivitiesController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
