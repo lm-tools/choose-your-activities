@@ -15,6 +15,13 @@ describe('Introduction page', () => {
       .then(() => expect(introductionPage.browser.text('title'))
         .to.equal('Choose your activities'))
     );
+
+    it('should link to the unsorted activities page', () =>
+      introductionPage.visit(accountId)
+        .then(() => introductionPage.clickContinue())
+        .then(() => expect(introductionPage.browserPath())
+          .to.equal(`/${accountId}/unsorted-activities`))
+    );
   });
 
   describe('entry point', () => {

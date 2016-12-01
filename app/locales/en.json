@@ -11,7 +11,8 @@
     "action-1": "Look through the list",
     "action-2": "Pick an activity and say whether you're interested or not",
     "action-3": "Get more information about all the activities you're interested in at the end.",
-    "post-action-overview": "Your choices will all be saved - you can leave and come back any time."
+    "post-action-overview": "Your choices will all be saved - you can leave and come back any time.",
+    "button-label": "Continue"
   },
   "unsorted-activities": {
     "pageTitle": "Sort these activities",
