@@ -1,5 +1,16 @@
 {
-  "main": {
-    "title": "Welcome from i18n"
+  "layout": {
+    "header": "Choose your activities"
+  },
+  "introduction": {
+    "pageTitle": "Choose your activities",
+    "heading": "Choose your activities",
+    "sub-heading": "Find activities that can help you get work",
+    "action-overview-1": "You'll see a list of activities that you could try out.",
+    "action-overview-2": "There's lots of different things to try. They have all helped people find work - see which ones are right for you.",
+    "action-1": "Look through the list",
+    "action-2": "Pick an activity and say whether you're interested or not",
+    "action-3": "Get more information about all the activities you're interested in at the end.",
+    "post-action-overview": "Your choices will all be saved - you can leave and come back any time."
   }
 }
