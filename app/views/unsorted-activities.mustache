@@ -1,0 +1,53 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}unsorted-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+  <h2 class="heading-xlarge">{{#__}}unsorted-activities.heading{{/__}}</h2>
+
+  <div class="app-menu inner-block gutter-top">
+    <div class="content">
+      <nav>
+        <ul>
+          <li class="active">
+            <span class="option">{{#__}}unsorted-activities.unsorted-menu{{/__}}</span>
+          </li>
+          <li class="inactive">
+            <a href="#" class="option">{{#__}}unsorted-activities.sorted-menu{{/__}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="todo-list">
+
+    <p>{{#__}}unsorted-activities.action-overview{{/__}}</p>
+
+    <!-- PLACE HOLDER FOR LIST OF ACTIVITIES FROM DB -->
+    <form action="sort" method="get">
+      <ul class="incomplete clear-none">
+        <li class="single">
+          <input class="title" value="Try volunteering" name="prompt" type="submit" disabled>
+        </li>
+      </ul>
+
+      <ul class="incomplete clear-none">
+        <li class="single">
+          <input class="title" value="Ask a couple of local firms for work experience" name="prompt" type="submit" disabled>
+        </li>
+      </ul>
+
+      <ul class="incomplete clear-none">
+        <li class="single">
+          <input class="title" value="Find a mentor" name="prompt" type="submit" disabled>
+        </li>
+      </ul>
+    </form>
+    <!-- PLACE HOLDER FOR LIST OF ACTIVITIES FROM DB -->
+
+    <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
+    <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
+  </div>
+
+{{/applicationContent}}
+{{/layout}}

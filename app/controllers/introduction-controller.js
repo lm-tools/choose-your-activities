@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:accountId/introduction', (req, res) => {
-  res.render('introduction');
+  res.render('introduction', { accountId: req.params.accountId });
 });
 
 module.exports = router;
