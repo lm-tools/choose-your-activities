@@ -1,22 +1,22 @@
 @import '_govuk-elements';
 
-#app-menu .option {
+.app-menu .option {
   padding: $gutter-one-third $gutter-half $gutter-one-third $gutter-half;
   display: block;
   font-weight: bold;
 }
 
-#app-menu .inactive .option {
+.app-menu .inactive .option {
   background-color: $grey-4;
 }
 
-#app-menu .active .option {
+.app-menu .active .option {
   background-color: $govuk-blue;
   color: #fff;
   text-decoration: none;
 }
 
-#app-menu li {
+.app-menu li {
   display: table-cell;
   width: 1%;
   list-style-type: none;
@@ -28,7 +28,7 @@
   margin-top: $gutter;
 }
 
-.select-list ul li .title, .todo-list ul li .title {
+.todo-list .title {
   cursor: pointer;
   white-space: normal;
   display: table-cell;
@@ -41,7 +41,7 @@
   text-align: left;
 }
 
-.select-list ul li, .todo-list ul li {
+.todo-list ul li {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $full-width;
   font-weight: 400;
@@ -50,7 +50,7 @@
   background: $grey-4;
   list-style-type: none;
   padding: 0;
-  margin-bottom: 15px;
+  margin-bottom: $gutter-half;
   display: table;
   position: relative;
 }
