@@ -1,6 +1,7 @@
 const Zombie = require('zombie');
 Zombie.site = 'http://localhost:3000';
 const browser = new Zombie();
+const dbHelper = require('./db-helper');
 const screenshots = require('./screenshots');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
 
@@ -18,9 +19,13 @@ afterEach(function () {
   }
 });
 
-module.exports = {
-  browser,
-  googleTagManagerHelper: new GoogleTagManagerHelper(browser),
-  introductionPage: new IntroductionPage(browser),
-  unsortedActivitiesPage: new UnsortedActivitiesPage(browser),
-};
+module.exports = Object.assign(
+  {
+    browser,
+    googleTagManagerHelper: new GoogleTagManagerHelper(browser),
+    introductionPage: new IntroductionPage(browser),
+    unsortedActivitiesPage: new UnsortedActivitiesPage(browser),
+  },
+  dbHelper
+);
+

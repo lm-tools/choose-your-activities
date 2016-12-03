@@ -23,27 +23,15 @@
 
     <p>{{#__}}unsorted-activities.action-overview{{/__}}</p>
 
-    <!-- PLACE HOLDER FOR LIST OF ACTIVITIES FROM DB -->
-    <form action="sort" method="get">
-      <ul class="incomplete clear-none">
-        <li class="single">
-          <input class="title" value="Try volunteering" name="prompt" type="submit" disabled>
+    <form>
+      {{#activities}}
+      <ul>
+        <li>
+          <a class="title" data-test="title" href="{{basePath}}/{{accountId}}/sort/{{name}}">{{title}}</a>
         </li>
       </ul>
-
-      <ul class="incomplete clear-none">
-        <li class="single">
-          <input class="title" value="Ask a couple of local firms for work experience" name="prompt" type="submit" disabled>
-        </li>
-      </ul>
-
-      <ul class="incomplete clear-none">
-        <li class="single">
-          <input class="title" value="Find a mentor" name="prompt" type="submit" disabled>
-        </li>
-      </ul>
+      {{/activities}}
     </form>
-    <!-- PLACE HOLDER FOR LIST OF ACTIVITIES FROM DB -->
 
     <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
     <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
