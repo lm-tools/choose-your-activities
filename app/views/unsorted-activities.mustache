@@ -22,17 +22,13 @@
   <div class="todo-list">
 
     <p>{{#__}}unsorted-activities.action-overview{{/__}}</p>
-
-    <form>
-      <ul>
-      {{#activities}}
-        <li>
-          <a class="title" data-test="title" href="{{basePath}}/{{accountId}}/sort/{{name}}">{{title}}</a>
-        </li>
-      {{/activities}}
-      </ul>
-    </form>
-
+    <ul>
+    {{#activities}}
+      <li>
+        <a class="title" data-test="title" href="{{basePath}}/{{accountId}}/sort/{{name}}">{{title}}</a>
+      </li>
+    {{/activities}}
+    </ul>
     <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
     <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
   </div>
