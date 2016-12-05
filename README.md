@@ -18,6 +18,7 @@ Setup the application:
 $ psql -c "create database choose_your_activities;"
 $ psql -c "create database choose_your_activities_test;"
 $ npm install
+$ npm run db-migrate
 $ npm run watch
 ```
 
