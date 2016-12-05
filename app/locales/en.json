@@ -23,6 +23,9 @@
     "action-finish-heading": "When you finish",
     "action-finish-detail": "You can find out more or rearrange the activities on the next page."
   },
+  "categorise-activity": {
+    "pageTitle": "Sort this activity"
+  },
   "activity": {
     "ACT-1": {
       "title": "Try volunteering"

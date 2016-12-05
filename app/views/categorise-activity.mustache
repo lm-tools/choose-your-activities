@@ -1,0 +1,18 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}categorise-activity.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<h3 class="heading-medium" data-test="heading">{{title}}</h3>
+
+<div class="category-list">
+  <ul>
+    {{#categories}}
+      <li>
+        <a class="menu-item" data-test="menu-item" href="#"></a>
+      </li>
+    {{/categories}}
+  </ul>
+</div>
+
+{{/applicationContent}}
+{{/layout}}
