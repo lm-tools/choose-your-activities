@@ -24,13 +24,13 @@
     <p>{{#__}}unsorted-activities.action-overview{{/__}}</p>
 
     <form>
-      {{#activities}}
       <ul>
+      {{#activities}}
         <li>
           <a class="title" data-test="title" href="{{basePath}}/{{accountId}}/sort/{{name}}">{{title}}</a>
         </li>
-      </ul>
       {{/activities}}
+      </ul>
     </form>
 
     <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
