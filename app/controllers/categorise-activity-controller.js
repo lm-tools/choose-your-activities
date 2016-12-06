@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router({ mergeParams: true });
 
 const categories = require('../models/categories');
-const CategoryListView = require('./category-list-view-model');
+const CategoryView = require('./category-view-model');
 
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
@@ -14,10 +14,10 @@ function getActivityTitle(activityId) {
 router.get('/:activityId', (req, res) => {
   const accountId = req.params.accountId;
   const activityId = req.params.activityId;
-  const categoryListView = new CategoryListView(categories);
+  const categoryView = new CategoryView(categories);
 
   res.render('categorise-activity', Object.assign(
-    { accountId, activityId, title: getActivityTitle(activityId) }, categoryListView));
+    { accountId, activityId, title: getActivityTitle(activityId) }, categoryView));
 });
 
 module.exports = router;

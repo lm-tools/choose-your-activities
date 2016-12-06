@@ -23,16 +23,13 @@
   text-align: center;
 }
 
-.select-list, .todo-list {
+.select-list, .menu {
   margin-bottom: $gutter-half;
   margin-top: $gutter;
 }
 
-.todo-list a {
+.menu .menu-item {
   color: $black;
-}
-
-.todo-list .title {
   cursor: pointer;
   white-space: normal;
   display: table-cell;
@@ -46,7 +43,7 @@
   font-size: 1.2em;
 }
 
-.todo-list ul li {
+.menu .menu-container  {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $full-width;
   font-weight: 400;
@@ -60,23 +57,23 @@
   position: relative;
 }
 
-.todo-list ul li.DOING {
+.menu .DOING {
   border-left-color: $green;
 }
 
-.todo-list ul li.READY {
+.menu .READY {
   border-left-color: $light-blue;
 }
 
-.todo-list ul li.HELP {
+.menu .HELP {
   border-left-color: $yellow;
 }
 
-.todo-list ul li.NOT-WORKED {
+.menu .NOT-WORKED {
   border-left-color: $orange;
 }
 
-.todo-list ul li.NO {
+.menu .NO {
   border-left-color: $black;
 }
 

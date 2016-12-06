@@ -4,11 +4,11 @@
 
 <h3 class="heading-medium" data-test="heading">{{title}}</h3>
 
-<div class="todo-list">
+<div class="menu">
   <ul>
     {{#categories}}
-      <li class="{{name}}">
-        <a class="title menu-item" data-test="title" href="#">{{title}}</a>
+      <li class="menu-container {{name}}">
+        <a class="menu-item" data-test="title" href="#">{{title}}</a>
       </li>
     {{/categories}}
   </ul>

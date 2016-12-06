@@ -2,8 +2,7 @@ const i18n = require('i18n');
 
 module.exports = class ActivityViewModel {
 
-  constructor(accountId, activities) {
-    this.accountId = accountId;
+  constructor(activities) {
     this.activities = this.activityView(activities);
   }
 

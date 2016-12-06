@@ -16,8 +16,8 @@ router.get('/', (req, res, next) => {
   SortedActivities
     .findAllByAccountId(accountId)
     .then((sortedActivities) => {
-      res.render('unsorted-activities',
-        new ActivityView(req.params.accountId, getUnsortedActivityNames(sortedActivities)));
+      res.render('unsorted-activities', Object.assign({ accountId },
+        new ActivityView(getUnsortedActivityNames(sortedActivities))));
     })
     .catch((err) => next(err));
 });

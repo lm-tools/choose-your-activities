@@ -1,12 +1,12 @@
 const i18n = require('i18n');
 
-module.exports = class CategoryListViewModel {
+module.exports = class CategoryViewModel {
 
   constructor(categories) {
-    this.categories = this.categoryListView(categories);
+    this.categories = this.categoryView(categories);
   }
 
-  categoryListView(categories) {
+  categoryView(categories) {
     return categories
       .map((category) => Object.assign(
         {
