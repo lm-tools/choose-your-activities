@@ -33,9 +33,18 @@ For example, to mount the application at `/choose-your-activities`, run:
 $ EXPRESS_BASE_PATH=/choose-your-activities npm run start
 ```
 
+## Google tag manager
+
+To enable [google tag manager] pass `GOOGLE_TAG_MANAGER_ID` environment variable
+
+```sh
+$ GOOGLE_TAG_MANAGER_ID=<GTM-ID> npm run start
+```
+
 [build status image]: https://api.travis-ci.org/lm-tools/choose-your-activities.svg
 [ci]: https://travis-ci.org/lm-tools/choose-your-activities
 [express]: http://expressjs.com/
 [gov.uk]: https://www.gov.uk/
 [heroku deploy image]: https://www.herokucdn.com/deploy/button.svg
 [heroku deploy hook]: https://heroku.com/deploy
+[google tag manager]: https://www.google.co.uk/analytics/tag-manager/
