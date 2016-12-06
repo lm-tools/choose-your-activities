@@ -87,5 +87,22 @@
     "ACT-20": {
       "title": "Visit the job fair next week"
     }
+  },
+  "category": {
+    "DOING": {
+      "title": "I'm already doing this"
+    },
+    "READY": {
+      "title": "I'm ready to try this"
+    },
+    "HELP": {
+      "title": "I'd like help trying this"
+    },
+    "NOT-WORKED": {
+      "title": "This hasn't worked"
+    },
+    "NO": {
+      "title": "Not really for me"
+    }
   }
 }

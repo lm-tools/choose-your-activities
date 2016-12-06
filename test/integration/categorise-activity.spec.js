@@ -13,5 +13,10 @@ describe('Categorise activity page', () => {
       categoriseActivityPage.visit(accountId, activity)
         .then(() => expect(categoriseActivityPage.headingToBe('Try volunteering')))
     );
+
+    it('should have all of the categories to choose from', () =>
+      categoriseActivityPage.visit(accountId, activity)
+        .then(() => expect(categoriseActivityPage.countCategories()).to.equal(5))
+    );
   });
 });

@@ -28,6 +28,10 @@
   margin-top: $gutter;
 }
 
+.todo-list a {
+  color: $black;
+}
+
 .todo-list .title {
   cursor: pointer;
   white-space: normal;
@@ -39,6 +43,7 @@
   background-color: transparent;
   width: $full-width;
   text-align: left;
+  font-size: 1.2em;
 }
 
 .todo-list ul li {
@@ -54,4 +59,28 @@
   display: table;
   position: relative;
 }
+
+.todo-list ul li.DOING {
+  border-left-color: $green;
+}
+
+.todo-list ul li.READY {
+  border-left-color: $light-blue;
+}
+
+.todo-list ul li.HELP {
+  border-left-color: $yellow;
+}
+
+.todo-list ul li.NOT-WORKED {
+  border-left-color: $orange;
+}
+
+.todo-list ul li.NO {
+  border-left-color: $black;
+}
+
+
+
+
 
