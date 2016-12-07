@@ -4,7 +4,9 @@ const CategoriseActivityPage = function CategoriseActivityPage(browser) {
   this.visit = (accountId, activityId) =>
     this.browser.visit(`/${accountId}/categorise-activity/${activityId}`);
   this.headingToBe = (heading) => browser.assert.text('[data-test="heading"]', heading);
-  this.countCategories = () => browser.queryAll('[data-test="title"]').length;
+  this.countCategories = () => browser.queryAll('[data-test="menu-item"]').length;
+  this.browserPath = () => browser.location.pathname;
+  this.selectCategory = (category) => browser.pressButton(category);
 };
 
 module.exports = CategoriseActivityPage;

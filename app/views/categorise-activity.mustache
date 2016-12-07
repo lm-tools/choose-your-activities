@@ -7,9 +7,12 @@
 <div class="menu">
   <ul>
     {{#categories}}
-      <li class="menu-container {{name}}">
-        <a class="menu-item" data-test="title" href="#">{{title}}</a>
-      </li>
+      <form action="{{basePath}}/{{accountId}}/categorise-activity/{{activityId}}" method="POST">
+        <li class="menu-container {{name}}">
+          <input type="hidden" name="category" value="{{name}}">
+          <input class="menu-item" data-test="menu-item" type="submit" value="{{title}}">
+        </li>
+      </form>
     {{/categories}}
   </ul>
 </div>
