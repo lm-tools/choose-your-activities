@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 
+const googleTagManagerHelper = helper.googleTagManagerHelper;
 const categoriseActivityPage = helper.categoriseActivityPage;
 
 const categories = require('../../app/models/categories');
@@ -20,6 +21,11 @@ describe('Categorise activity page', () => {
     it('should have all of the categories to choose from', () =>
       categoriseActivityPage.visit(accountId, activity)
         .then(() => expect(categoriseActivityPage.countCategories()).to.equal(categories.length))
+    );
+
+    it('should contain valid google tag manager data', () =>
+      categoriseActivityPage.visit(accountId, activity)
+        .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
     );
   });
 
