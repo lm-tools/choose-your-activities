@@ -7,6 +7,7 @@ const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-man
 
 const IntroductionPage = require('../../common/page_objects/introduction-page');
 const UnsortedActivitiesPage = require('../../common/page_objects/unsorted-activities-page');
+const SortedActivitiesPage = require('../../common/page_objects/sorted-activities-page');
 const CategoriseActivityPage = require('../../common/page_objects/categorise-activity-page');
 
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
@@ -26,6 +27,7 @@ module.exports = Object.assign(
     googleTagManagerHelper: new GoogleTagManagerHelper(browser),
     introductionPage: new IntroductionPage(browser),
     unsortedActivitiesPage: new UnsortedActivitiesPage(browser),
+    sortedActivitiesPage: new SortedActivitiesPage(browser),
     categoriseActivityPage: new CategoriseActivityPage(browser),
   },
   dbHelper

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const introductionController = require('./controllers/introduction-controller');
 const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
+const sortedActivitiesController = require('./controllers/sorted-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
 
 const i18n = require('./middleware/i18n');
@@ -67,6 +68,7 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:accountId/unsorted-activities`, unsortedActivitiesController);
+app.use(`${basePath}/:accountId/sorted-activities`, sortedActivitiesController);
 app.use(`${basePath}/:accountId/categorise-activity`, categoriseActivityController);
 
 // catch 404 and forward to error handler
