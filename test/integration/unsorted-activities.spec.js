@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const unsortedActivitiesPage = helper.unsortedActivitiesPage;
+const googleTagManagerHelper = helper.googleTagManagerHelper;
 const activities = require('../../app/models/activities');
 
 const expect = require('chai').expect;
@@ -13,6 +14,11 @@ describe('Unsorted activities page', () => {
       unsortedActivitiesPage.visit(accountId)
         .then(() => expect(unsortedActivitiesPage.browser.text('title'))
           .to.equal('Sort these activities'))
+    );
+
+    it('should contain valid google tag manager data', () =>
+      unsortedActivitiesPage.visit(accountId)
+        .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
     );
   });
 
