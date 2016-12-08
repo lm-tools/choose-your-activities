@@ -23,12 +23,13 @@
   text-align: center;
 }
 
-.select-list, .todo-list {
+.select-list, .menu {
   margin-bottom: $gutter-half;
   margin-top: $gutter;
 }
 
-.todo-list .title {
+.menu .menu-item {
+  color: $black;
   cursor: pointer;
   white-space: normal;
   display: table-cell;
@@ -39,9 +40,10 @@
   background-color: transparent;
   width: $full-width;
   text-align: left;
+  font-size: 1.2em;
 }
 
-.todo-list ul li {
+.menu .menu-container  {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $full-width;
   font-weight: 400;
@@ -55,3 +57,10 @@
   position: relative;
 }
 
+.menu {
+  .DOING { border-left-color: $green; }
+  .READY { border-left-color: $light-blue; }
+  .HELP { border-left-color: $yellow; }
+  .NOT-WORKED { border-left-color: $orange; }
+  .NO { border-left-color: $black; }
+}

@@ -19,13 +19,13 @@
     </div>
   </div>
 
-  <div class="todo-list">
+  <div class="menu">
 
     <p>{{#__}}unsorted-activities.action-overview{{/__}}</p>
     <ul>
     {{#activities}}
-      <li>
-        <a class="title" data-test="title" href="{{basePath}}/{{accountId}}/sort/{{name}}">{{title}}</a>
+      <li class="menu-container">
+        <a class="menu-item" data-test="title" href="{{basePath}}/{{accountId}}/categorise-activity/{{name}}">{{title}}</a>
       </li>
     {{/activities}}
     </ul>
