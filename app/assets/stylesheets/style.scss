@@ -57,27 +57,10 @@
   position: relative;
 }
 
-.menu .DOING {
-  border-left-color: $green;
+.menu {
+  .DOING { border-left-color: $green; }
+  .READY { border-left-color: $light-blue; }
+  .HELP { border-left-color: $yellow; }
+  .NOT-WORKED { border-left-color: $orange; }
+  .NO { border-left-color: $black; }
 }
-
-.menu .READY {
-  border-left-color: $light-blue;
-}
-
-.menu .HELP {
-  border-left-color: $yellow;
-}
-
-.menu .NOT-WORKED {
-  border-left-color: $orange;
-}
-
-.menu .NO {
-  border-left-color: $black;
-}
-
-
-
-
-
