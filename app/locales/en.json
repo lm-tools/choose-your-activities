@@ -104,5 +104,17 @@
     "NO": {
       "title": "Not really for me"
     }
+  },
+  "tabs": {
+    "unsorted": "unsorted",
+    "sorted": "sorted"
+  },
+  "sorted-activities": {
+    "pageTitle": "Choose your activities",
+    "heading": "Choose your activities",
+    "activities-heading": "Your activities",
+    "activities-text-1": "Get more details about each of the activities - tips, advice and links to useful websites.",
+    "activities-text-2": "You can get back to your list from the 'Choose your activities' to-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
+    "activities-text-3": "You can still move the activities around if you've changed your mind about where they should go."
   }
 }

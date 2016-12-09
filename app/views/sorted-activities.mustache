@@ -1,0 +1,40 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}sorted-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<h2 class="heading-xlarge">{{#__}}sorted-activities.heading{{/__}}</h2>
+
+<div class="app-menu inner-block gutter-top">
+  <div class="content">
+    <nav>
+      <ul>
+        <li class="inactive">
+          <a href="{{basePath}}/{{accountId}}/unsorted-activities" class="option">{{#__}}tabs.unsorted{{/__}}</a>
+        </li>
+        <li class="active">
+          <span class="option">{{#__}}tabs.sorted{{/__}}</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<h3 class="heading-medium">{{#__}}sorted-activities.activities-heading{{/__}}</h3>
+<p class="text">{{#__}}sorted-activities.activities-text-1{{/__}}</p>
+<p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
+<p class="text">{{#__}}sorted-activities.activities-text-3{{/__}}</p>
+
+<div class="todo-list">
+  <form action="details" method="get">
+
+    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+
+  </form>
+</div>
+
+{{/applicationContent}}
+{{/layout}}
