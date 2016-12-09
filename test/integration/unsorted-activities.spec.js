@@ -25,8 +25,10 @@ describe('Unsorted activities page', () => {
   describe('activities', () => {
     it('should display unsorted activities', () =>
       helper.cleanDb()
-        .then(() => helper.addSortedActivity(accountId, 'ACT-1', 'READY'))
-        .then(() => helper.addSortedActivity(accountId, 'ACT-20', 'NO'))
+        .then(() => helper.addSortedActivities(accountId, [
+          { activity: 'ACT-1', category: 'READY' },
+          { activity: 'ACT-20', category: 'NO' },
+        ]))
         .then(() => unsortedActivitiesPage.visit(accountId))
         .then(() => expect(unsortedActivitiesPage.activityList().length)
           .to.equal(activities.length - 2))

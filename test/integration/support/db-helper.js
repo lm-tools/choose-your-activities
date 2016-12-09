@@ -7,9 +7,16 @@ module.exports = {
   cleanDb() {
     return knexCleaner.clean(knex, { ignoreTables: ['knex_migrations'] });
   },
-  addSortedActivity(accountId, activity, category) {
-    return knex('sorted_activity').insert(
-      { accountId, activity, category, created_at: new Date(), updated_at: new Date() }
+  addSortedActivities(accountId, activities) {
+    return knex('sorted_activity').insert(activities.map(x =>
+        ({
+          accountId,
+          activity: x.activity,
+          category: x.category,
+          created_at: new Date(),
+          updated_at: new Date(),
+        })
+      )
     );
   },
   getSortedActivities(accountId) {
