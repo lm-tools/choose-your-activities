@@ -22,16 +22,29 @@ describe('Unsorted activities page', () => {
     );
   });
 
-  describe('activities', () => {
-    it('should display unsorted activities', () =>
+  describe('activities list', () => {
+    before(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
           { activity: 'ACT-1', category: 'READY' },
           { activity: 'ACT-20', category: 'NO' },
         ]))
         .then(() => unsortedActivitiesPage.visit(accountId))
-        .then(() => expect(unsortedActivitiesPage.activityList().length)
-          .to.equal(activities.length - 2))
+    );
+
+    it('should display correct number of unsorted activities', () =>
+      expect(unsortedActivitiesPage.activityList().length)
+        .to.equal(activities.length - 2)
+    );
+
+    it('should display correct title for activity', () => {
+      expect(unsortedActivitiesPage.activityList()[0].title).to.equal('Get some work experience');
+      expect(unsortedActivitiesPage.activityList()[1].title).to.equal('Find a mentor');
+    });
+
+    it('should have correct url for activity', () =>
+      expect(unsortedActivitiesPage.activityList()[0].url)
+        .to.contain(`${accountId}/categorise-activity/ACT-2`)
     );
   });
 });
