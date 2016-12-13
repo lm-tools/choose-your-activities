@@ -15,11 +15,12 @@
     "button-label": "Continue"
   },
   "unsorted-activities": {
-    "pageTitle": "Sort these activities",
-    "heading": "Sort these activities",
+    "pageTitle": "Choose some activities",
+    "heading": "Choose some activities",
     "unsorted-menu": "unsorted",
     "sorted-menu": "sorted",
-    "action-overview": "Choose an activity from the list below, then decide whether it's right for you. When you're finished, you'll be able to go over your choices and find out more about the activities.",
+    "action-overview-1": "Choose an activity from the list below, and decide whether it's right for you. You can put it into one of 5 categories.",
+    "action-overview-2": "When you've finished sorting the activities into a list, you can find out more about them - they've all helped people get work or earn more.",
     "action-finish-heading": "When you finish",
     "action-finish-detail": "You can find out more or rearrange the activities on the next page."
   },
