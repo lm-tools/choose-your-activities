@@ -1,7 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const unsortedActivitiesPage = helper.unsortedActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
-const activities = require('../../app/models/activities');
 
 const expect = require('chai').expect;
 const uuid = require('uuid');
@@ -22,16 +21,31 @@ describe('Unsorted activities page', () => {
     );
   });
 
-  describe('activities', () => {
-    it('should display unsorted activities', () =>
+  describe('activities list', () => {
+    before(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
-          { activity: 'ACT-1', category: 'READY' },
-          { activity: 'ACT-20', category: 'NO' },
+          { activity: helper.allActivities[0].name, category: 'READY' },
+          { activity: helper.allActivities[19].name, category: 'NO' },
         ]))
         .then(() => unsortedActivitiesPage.visit(accountId))
-        .then(() => expect(unsortedActivitiesPage.activityList().length)
-          .to.equal(activities.length - 2))
+    );
+
+    it('should display correct number of unsorted activities', () =>
+      expect(unsortedActivitiesPage.activityList().length)
+        .to.equal(helper.allActivities.length - 2)
+    );
+
+    it('should display correct title for activity', () => {
+      expect(unsortedActivitiesPage.activityList()[0].title)
+        .to.equal(helper.allActivities[1].title);
+      expect(unsortedActivitiesPage.activityList()[1].title)
+        .to.equal(helper.allActivities[2].title);
+    });
+
+    it('should have correct url for activity', () =>
+      expect(unsortedActivitiesPage.activityList()[0].url)
+        .to.contain(`${accountId}/categorise-activity/${helper.allActivities[1].name}`)
     );
   });
 });

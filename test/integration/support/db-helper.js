@@ -1,7 +1,7 @@
 const knexCleaner = require('knex-cleaner');
 const knex = require('../../../app/db').knex;
 
-const SortedActivities = require('../../../app/models/sorted-activity-model');
+const SortedActivities = require('../../../app/models/activity-model');
 
 module.exports = {
   cleanDb() {
@@ -20,6 +20,6 @@ module.exports = {
     );
   },
   getSortedActivities(accountId) {
-    return SortedActivities.findAllByAccountId(accountId);
+    return SortedActivities.findSortedByAccountId(accountId);
   },
 };
