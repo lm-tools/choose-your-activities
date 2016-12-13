@@ -6,7 +6,7 @@ const SortedActivitiesPage = function SortedActivitiesPage(browser) {
   this.browserPath = () => browser.location.pathname;
   this.activityCategories = () => browser.queryAll('[data-test="category"]').map(x => x.innerHTML);
   this.getActivitiesInCategory = (category) =>
-    browser.queryAll(`[data-test="category-${category}"] li`).map(x => x.innerHTML.trim());
+    browser.queryAll(`[data-test="category-${category}"] li span`).map(x => x.innerHTML.trim());
 };
 
 module.exports = SortedActivitiesPage;
