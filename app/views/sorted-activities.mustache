@@ -24,14 +24,54 @@
 <p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
 <p class="text">{{#__}}sorted-activities.activities-text-3{{/__}}</p>
 
-<div class="todo-list">
+<div class="menu">
   <form action="details" method="get">
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
     <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <ul data-test="category-READY">
+      {{#perCategory.READY}}
+        <li class="menu-container READY">
+          <span class="menu-item ">{{title}}</span>
+        </li>
+      {{/perCategory.READY}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <ul data-test="category-HELP">
+      {{#perCategory.HELP}}
+        <li class="menu-container HELP">
+          <span class="menu-item">{{title}}</span>
+        </li>
+      {{/perCategory.HELP}}
+    </ul>
+
+    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <ul data-test="category-DOING">
+      {{#perCategory.DOING}}
+      <li class="menu-container DOING">
+        <span class="menu-item ">{{title}}</span>
+      </li>
+      {{/perCategory.DOING}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    <ul data-test="category-NOT-WORKED">
+      {{#perCategory.NOTWORKED}}
+        <li class="menu-container NOT-WORKED">
+          <span class="menu-item ">{{title}}</span>
+        </li>
+      {{/perCategory.NOTWORKED}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+    <ul data-test="category-NO">
+      {{#perCategory.NO}}
+        <li class="menu-container NO">
+          <span class="menu-item ">{{title}}</span>
+        </li>
+      {{/perCategory.NO}}
+    </ul>
+
 
   </form>
 </div>
