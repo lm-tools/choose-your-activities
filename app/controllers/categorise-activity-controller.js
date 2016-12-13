@@ -4,7 +4,7 @@ const router = new express.Router({ mergeParams: true });
 const categories = require('../models/categories');
 const CategoryView = require('./category-view-model');
 
-const SortedActivities = require('../models/sorted-activity-model');
+const ActivitiesModel = require('../models/activity-model');
 
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
@@ -28,7 +28,7 @@ router.post('/:activityId', (req, res) => {
   const category = req.body.category;
   const basePath = req.app.locals.basePath;
 
-  new SortedActivities({ accountId, activity, category }).save().then(() => {
+  new ActivitiesModel({ accountId, activity, category }).save().then(() => {
     res.redirect(`${basePath}/${accountId}/unsorted-activities/`);
   });
 });
