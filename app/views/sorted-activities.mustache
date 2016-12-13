@@ -28,10 +28,50 @@
   <form action="details" method="get">
 
     <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <ul data-test="category-DOING">
+      {{#perCategory.DOING}}
+      <li>
+        {{title}}
+      </li>
+      {{/perCategory.DOING}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <ul data-test="category-READY">
+      {{#perCategory.READY}}
+        <li>
+          {{title}}
+        </li>
+      {{/perCategory.READY}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <ul data-test="category-HELP">
+      {{#perCategory.HELP}}
+        <li>
+          {{title}}
+        </li>
+      {{/perCategory.HELP}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    <ul data-test="category-NOT-WORKED">
+      {{#perCategory.NOTWORKED}}
+        <li>
+          {{title}}
+        </li>
+      {{/perCategory.NOTWORKED}}
+    </ul>
+
     <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+    <ul data-test="category-NO">
+      {{#perCategory.NO}}
+        <li>
+          {{title}}
+        </li>
+      {{/perCategory.NO}}
+    </ul>
+
 
   </form>
 </div>

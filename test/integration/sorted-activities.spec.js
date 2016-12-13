@@ -1,4 +1,5 @@
 const helper = require('./support/integrationSpecHelper');
+const allActivites = helper.allActivities;
 const sortedActivitiesPage = helper.sortedActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 const expect = require('chai').expect;
@@ -7,16 +8,19 @@ const uuid = require('uuid');
 describe('Sorted activities page', () => {
   const accountId = uuid.v4();
 
-  describe('page outline', () => {
-    beforeEach(() => sortedActivitiesPage.visit(accountId));
+  beforeEach(() =>
+    helper.cleanDb()
+      .then(() => sortedActivitiesPage.visit(accountId))
+  );
 
+  describe('page outline', () => {
     it('should have correct title', () =>
-        expect(sortedActivitiesPage.browser.text('title'))
-          .to.equal('Choose your activities')
+      expect(sortedActivitiesPage.browser.text('title'))
+        .to.equal('Choose your activities')
     );
 
     it('should contain valid google tag manager data', () =>
-        expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
+      expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
     );
 
     [
@@ -33,13 +37,56 @@ describe('Sorted activities page', () => {
   });
 
   describe('empty state', () => {
-    beforeEach(() =>
-      helper.cleanDb()
-        .then(() => sortedActivitiesPage.visit(accountId))
-    );
-
     it('should not display any activities', () =>
       expect(sortedActivitiesPage.activityList().length).to.equal(0)
     );
+  });
+
+  describe('already sorted activities', () => {
+    beforeEach(() =>
+      helper.addSortedActivities(accountId, [
+          { activity: allActivites[0].name, category: 'READY' },
+          { activity: allActivites[1].name, category: 'READY' },
+          { activity: allActivites[2].name, category: 'DOING' },
+          { activity: allActivites[4].name, category: 'DOING' },
+          { activity: allActivites[3].name, category: 'HELP' },
+          { activity: allActivites[10].name, category: 'HELP' },
+          { activity: allActivites[11].name, category: 'HELP' },
+          { activity: allActivites[7].name, category: 'NOT-WORKED' },
+          { activity: allActivites[15].name, category: 'NO' },
+          { activity: allActivites[19].name, category: 'NO' },
+      ])
+        .then(() => sortedActivitiesPage.visit(accountId))
+    );
+
+    [
+      {
+        category: 'READY',
+        expectedActivitiesTitles: [allActivites[0].title, allActivites[1].title],
+      },
+      {
+        category: 'DOING',
+        expectedActivitiesTitles: [allActivites[2].title, allActivites[4].title],
+      },
+      {
+        category: 'HELP',
+        expectedActivitiesTitles: [
+          allActivites[3].title, allActivites[10].title, allActivites[11].title,
+        ],
+      },
+      {
+        category: 'NOT-WORKED',
+        expectedActivitiesTitles: [allActivites[7].title],
+      },
+      {
+        category: 'NO',
+        expectedActivitiesTitles: [allActivites[15].title, allActivites[19].title],
+      },
+    ].forEach(s => {
+      it(`should display list of activities in "${s.category}" category`, () =>
+        expect(sortedActivitiesPage.getActivitiesInCategory(s.category))
+          .to.eql(s.expectedActivitiesTitles)
+      );
+    });
   });
 });
