@@ -9,7 +9,9 @@
     <nav>
       <ul>
         <li class="inactive">
-          <a href="{{basePath}}/{{accountId}}/unsorted-activities" class="option">{{#__}}tabs.unsorted{{/__}}</a>
+          <a href="{{basePath}}/{{accountId}}/unsorted-activities" class="option">
+            {{#__}}tabs.unsorted{{/__}}
+          </a>
         </li>
         <li class="active">
           <span class="option">{{#__}}tabs.sorted{{/__}}</span>
@@ -27,51 +29,75 @@
 <div class="menu">
   <form action="details" method="get">
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
-    <ul data-test="category-READY">
-      {{#perCategory.READY}}
-        <li class="menu-container READY">
-          <span class="menu-item ">{{title}}</span>
-        </li>
+    <section data-test="category-READY">
+      <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+      {{^perCategory.READY}}
+        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
       {{/perCategory.READY}}
-    </ul>
+      <ul>
+        {{#perCategory.READY}}
+          <li class="menu-container READY">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.READY}}
+      </ul>
+    </section>
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
-    <ul data-test="category-HELP">
-      {{#perCategory.HELP}}
-        <li class="menu-container HELP">
-          <span class="menu-item">{{title}}</span>
-        </li>
+    <section data-test="category-HELP">
+      <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+      {{^perCategory.HELP}}
+        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
       {{/perCategory.HELP}}
-    </ul>
+      <ul>
+        {{#perCategory.HELP}}
+          <li class="menu-container HELP">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.HELP}}
+      </ul>
+    </section>
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
-    <ul data-test="category-DOING">
-      {{#perCategory.DOING}}
-      <li class="menu-container DOING">
-        <span class="menu-item ">{{title}}</span>
-      </li>
+    <section data-test="category-DOING">
+      <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+      {{^perCategory.DOING}}
+        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
       {{/perCategory.DOING}}
-    </ul>
+      <ul>
+        {{#perCategory.DOING}}
+          <li class="menu-container DOING">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.DOING}}
+      </ul>
+    </section>
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
-    <ul data-test="category-NOT-WORKED">
-      {{#perCategory.NOTWORKED}}
-        <li class="menu-container NOT-WORKED">
-          <span class="menu-item ">{{title}}</span>
-        </li>
+    <section data-test="category-NOT-WORKED">
+      <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+      {{^perCategory.NOTWORKED}}
+        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
       {{/perCategory.NOTWORKED}}
-    </ul>
+      <ul>
+        {{#perCategory.NOTWORKED}}
+          <li class="menu-container NOT-WORKED">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.NOTWORKED}}
+      </ul>
+    </section>
 
-    <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
-    <ul data-test="category-NO">
-      {{#perCategory.NO}}
-        <li class="menu-container NO">
-          <span class="menu-item ">{{title}}</span>
-        </li>
+    <section data-test="category-NO">
+      <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+      {{^perCategory.NO}}
+        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
       {{/perCategory.NO}}
-    </ul>
-
+      <ul>
+        {{#perCategory.NO}}
+          <li class="menu-container NO">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.NO}}
+      </ul>
+    </section>
 
   </form>
 </div>
