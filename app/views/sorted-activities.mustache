@@ -27,79 +27,77 @@
 <p class="text">{{#__}}sorted-activities.activities-text-3{{/__}}</p>
 
 <div class="menu">
-  <form action="details" method="get">
 
-    <section data-test="category-READY">
-      <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
-      {{^perCategory.READY}}
-        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+  <section data-test="category-READY">
+    <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    {{^perCategory.READY}}
+      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+    {{/perCategory.READY}}
+    <ul>
+      {{#perCategory.READY}}
+        <li class="menu-container READY">
+          <span class="menu-item">{{title}}</span>
+        </li>
       {{/perCategory.READY}}
-      <ul>
-        {{#perCategory.READY}}
-          <li class="menu-container READY">
-            <span class="menu-item">{{title}}</span>
-          </li>
-        {{/perCategory.READY}}
-      </ul>
-    </section>
+    </ul>
+  </section>
 
-    <section data-test="category-HELP">
-      <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
-      {{^perCategory.HELP}}
-        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+  <section data-test="category-HELP">
+    <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    {{^perCategory.HELP}}
+      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+    {{/perCategory.HELP}}
+    <ul>
+      {{#perCategory.HELP}}
+        <li class="menu-container HELP">
+          <span class="menu-item">{{title}}</span>
+        </li>
       {{/perCategory.HELP}}
-      <ul>
-        {{#perCategory.HELP}}
-          <li class="menu-container HELP">
-            <span class="menu-item">{{title}}</span>
-          </li>
-        {{/perCategory.HELP}}
-      </ul>
-    </section>
+    </ul>
+  </section>
 
-    <section data-test="category-DOING">
-      <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
-      {{^perCategory.DOING}}
-        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+  <section data-test="category-DOING">
+    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    {{^perCategory.DOING}}
+      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+    {{/perCategory.DOING}}
+    <ul>
+      {{#perCategory.DOING}}
+        <li class="menu-container DOING">
+          <span class="menu-item">{{title}}</span>
+        </li>
       {{/perCategory.DOING}}
-      <ul>
-        {{#perCategory.DOING}}
-          <li class="menu-container DOING">
-            <span class="menu-item">{{title}}</span>
-          </li>
-        {{/perCategory.DOING}}
-      </ul>
-    </section>
+    </ul>
+  </section>
 
-    <section data-test="category-NOT-WORKED">
-      <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
-      {{^perCategory.NOTWORKED}}
-        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+  <section data-test="category-NOT-WORKED">
+    <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    {{^perCategory.NOTWORKED}}
+      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+    {{/perCategory.NOTWORKED}}
+    <ul>
+      {{#perCategory.NOTWORKED}}
+        <li class="menu-container NOT-WORKED">
+          <span class="menu-item">{{title}}</span>
+        </li>
       {{/perCategory.NOTWORKED}}
-      <ul>
-        {{#perCategory.NOTWORKED}}
-          <li class="menu-container NOT-WORKED">
-            <span class="menu-item">{{title}}</span>
-          </li>
-        {{/perCategory.NOTWORKED}}
-      </ul>
-    </section>
+    </ul>
+  </section>
 
-    <section data-test="category-NO">
-      <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
-      {{^perCategory.NO}}
-        <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+  <section data-test="category-NO">
+    <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+    {{^perCategory.NO}}
+      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+    {{/perCategory.NO}}
+    <ul>
+      {{#perCategory.NO}}
+        <li class="menu-container NO">
+          <span class="menu-item">{{title}}</span>
+        </li>
       {{/perCategory.NO}}
-      <ul>
-        {{#perCategory.NO}}
-          <li class="menu-container NO">
-            <span class="menu-item">{{title}}</span>
-          </li>
-        {{/perCategory.NO}}
-      </ul>
-    </section>
+    </ul>
+  </section>
 
-  </form>
 </div>
 
 {{/applicationContent}}
