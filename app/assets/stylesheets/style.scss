@@ -65,3 +65,25 @@
   .NOT-WORKED { border-left-color: $orange; }
   .NO { border-left-color: $black; }
 }
+
+button.link-button {
+  @extend .link;
+  display: inline;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: transparent;
+  font: inherit;
+}
+
+
+.panel-indent {
+  border-left: 4px solid $grey-2;
+  padding: $gutter-one-third 0 $gutter-one-third $gutter-half;
+  margin-top: $gutter-one-quarter;
+}
+
+.category-heading {
+  margin-top: 3em;
+}
