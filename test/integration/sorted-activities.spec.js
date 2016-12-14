@@ -34,6 +34,13 @@ describe('Sorted activities page', () => {
     it('should not display any activities', () =>
       expect(sortedActivitiesPage.activityList().length).to.equal(0)
     );
+
+    helper.categories.forEach(category => {
+      it(`should show empty message for "${category.name}" category`, () =>
+        expect(sortedActivitiesPage.getCategoryDescription(category.name))
+          .to.equal("You haven't chosen anything for this.")
+      );
+    });
   });
 
   describe('already sorted activities', () => {
@@ -80,6 +87,10 @@ describe('Sorted activities page', () => {
       it(`should display list of activities in "${s.category}" category`, () =>
         expect(sortedActivitiesPage.getActivitiesInCategory(s.category))
           .to.eql(s.expectedActivitiesTitles)
+      );
+
+      it(`should not display empty message for "${s.category}" category`, () =>
+        expect(sortedActivitiesPage.getCategoryDescription(s.category)).to.be.empty
       );
     });
   });
