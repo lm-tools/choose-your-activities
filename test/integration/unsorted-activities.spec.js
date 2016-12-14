@@ -12,7 +12,7 @@ describe('Unsorted activities page', () => {
     it('should have correct title', () =>
       unsortedActivitiesPage.visit(accountId)
         .then(() => expect(unsortedActivitiesPage.browser.text('title'))
-          .to.equal('Sort these activities'))
+          .to.equal('Choose some activities'))
     );
 
     it('should contain valid google tag manager data', () =>
