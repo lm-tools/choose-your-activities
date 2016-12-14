@@ -23,13 +23,7 @@ describe('Sorted activities page', () => {
       expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
     );
 
-    [
-      "I'm already doing this",
-      "I'm ready to try this",
-      "I'd like help trying this",
-      "This hasn't worked",
-      'Not really for me',
-    ].forEach(s => {
+    helper.categories.map(x => x.title).forEach(s => {
       it(`should display category header "${s}"`, () =>
         expect(sortedActivitiesPage.activityCategories()).to.include(s)
       );
