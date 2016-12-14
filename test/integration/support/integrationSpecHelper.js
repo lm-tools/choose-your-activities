@@ -2,7 +2,7 @@ const Zombie = require('zombie');
 Zombie.site = 'http://localhost:3000';
 const browser = new Zombie();
 const dbHelper = require('./db-helper');
-const testActivitiesModel = require('./test-activites-model');
+const testData = require('./test-data');
 const screenshots = require('./screenshots');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
 
@@ -32,6 +32,6 @@ module.exports = Object.assign(
     categoriseActivityPage: new CategoriseActivityPage(browser),
   },
   dbHelper,
-  { allActivities: testActivitiesModel }
+  testData
 );
 
