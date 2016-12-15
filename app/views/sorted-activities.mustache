@@ -28,74 +28,102 @@
 
 <div class="menu">
 
-  <section data-test="category-READY">
-    <h3 class="heading-small" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+  <section data-test="category-READY" id="category-READY">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <span data-test="details">
     {{^perCategory.READY}}
       <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.READY}}
-    <ul>
-      {{#perCategory.READY}}
-        <li class="menu-container READY">
-          <span class="menu-item">{{title}}</span>
-        </li>
-      {{/perCategory.READY}}
-    </ul>
+      <ul>
+        {{#perCategory.READY}}
+          <li class="menu-container READY">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.READY}}
+      </ul>
+    </span>
   </section>
 
-  <section data-test="category-HELP">
-    <h3 class="heading-small" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+  <section data-test="category-HELP" id="category-HELP">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <span data-test="details">
     {{^perCategory.HELP}}
       <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.HELP}}
-    <ul>
-      {{#perCategory.HELP}}
-        <li class="menu-container HELP">
-          <span class="menu-item">{{title}}</span>
-        </li>
-      {{/perCategory.HELP}}
-    </ul>
+      <ul>
+        {{#perCategory.HELP}}
+          <li class="menu-container HELP">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.HELP}}
+      </ul>
+    </span>
   </section>
 
-  <section data-test="category-DOING">
-    <h3 class="heading-small" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+  <section data-test="category-DOING" id="category-DOING">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <button class="link-button"
+            data-toggle-visibility-for="#category-DOING .details"
+            data-test="details-button">
+      <i class="fa fa-caret-right"></i>
+      {{#__}}sorted-activities.show-activities{{/__}}
+    </button>
+    <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.DOING}}
       <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.DOING}}
-    <ul>
-      {{#perCategory.DOING}}
-        <li class="menu-container DOING">
-          <span class="menu-item">{{title}}</span>
-        </li>
-      {{/perCategory.DOING}}
-    </ul>
+      <ul>
+        {{#perCategory.DOING}}
+          <li class="menu-container DOING">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.DOING}}
+      </ul>
+    </div>
   </section>
 
-  <section data-test="category-NOT-WORKED">
-    <h3 class="heading-small" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+  <section data-test="category-NOT-WORKED" id="category-NOT-WORKED">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    <button class="link-button"
+            data-toggle-visibility-for="#category-NOT-WORKED .details"
+            data-test="details-button">
+      <i class="fa fa-caret-right"></i>
+      {{#__}}sorted-activities.show-activities{{/__}}
+    </button>
+    <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.NOTWORKED}}
       <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.NOTWORKED}}
-    <ul>
-      {{#perCategory.NOTWORKED}}
-        <li class="menu-container NOT-WORKED">
-          <span class="menu-item">{{title}}</span>
-        </li>
-      {{/perCategory.NOTWORKED}}
-    </ul>
+      <ul>
+        {{#perCategory.NOTWORKED}}
+          <li class="menu-container NOT-WORKED">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.NOTWORKED}}
+      </ul>
+    </div>
   </section>
 
-  <section data-test="category-NO">
-    <h3 class="heading-small" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+  <section data-test="category-NO" id="category-NO">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+    <button class="link-button"
+            data-toggle-visibility-for="#category-NO .details"
+            data-test="details-button">
+      <i class="fa fa-caret-right"></i>
+      {{#__}}sorted-activities.show-activities{{/__}}
+    </button>
+    <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.NO}}
       <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.NO}}
-    <ul>
-      {{#perCategory.NO}}
-        <li class="menu-container NO">
-          <span class="menu-item">{{title}}</span>
-        </li>
-      {{/perCategory.NO}}
-    </ul>
+      <ul>
+        {{#perCategory.NO}}
+          <li class="menu-container NO">
+            <span class="menu-item">{{title}}</span>
+          </li>
+        {{/perCategory.NO}}
+      </ul>
+    </div>
   </section>
 
 </div>

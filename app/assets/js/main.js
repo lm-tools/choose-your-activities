@@ -1,3 +1,5 @@
+require('./_hide-show');
+
 $(document).ready(() => {
   // Use GOV.UK selection-buttons.js to set selected
   // and focused states for block labels

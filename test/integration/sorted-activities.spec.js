@@ -35,7 +35,23 @@ describe('Sorted activities page', () => {
       expect(sortedActivitiesPage.activityList().length).to.equal(0)
     );
 
-    helper.categories.forEach(category => {
+    helper.categories.filter(x => x.collapsed).forEach(category => {
+      it(`should collapse empty message for category "${category.title}" by default`, () =>
+        expect(sortedActivitiesPage.isCategoryDescriptionVisible(category.name))
+          .to.equal(false, 'Category description should be hidden')
+      );
+
+      it(`should show empty message for category when "${category.title}" button clicked`, () => {
+        sortedActivitiesPage.expandCategory(category.name);
+
+        expect(sortedActivitiesPage.isCategoryDescriptionVisible(category.name))
+          .to.equal(true, 'Category description should be visible');
+        expect(sortedActivitiesPage.getCategoryDescription(category.name))
+          .to.equal("You haven't chosen anything for this.");
+      });
+    });
+
+    helper.categories.filter(x => !x.collapsed).forEach(category => {
       it(`should show empty message for "${category.name}" category`, () =>
         expect(sortedActivitiesPage.getCategoryDescription(category.name))
           .to.equal("You haven't chosen anything for this.")
