@@ -13,7 +13,7 @@ function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
-router.get('/:activityId', (req, res) => {
+router.get('', (req, res) => {
   const accountId = req.params.accountId;
   const activityId = req.params.activityId;
   const categoryView = new CategoryView(categories);
@@ -22,14 +22,14 @@ router.get('/:activityId', (req, res) => {
     { accountId, activityId, title: getActivityTitle(activityId) }, categoryView));
 });
 
-router.post('/:activityId', (req, res) => {
+router.post('', (req, res) => {
   const accountId = req.params.accountId;
   const activity = req.params.activityId;
   const category = req.body.category;
   const basePath = req.app.locals.basePath;
 
   new ActivitiesModel({ accountId, activity, category }).save().then(() => {
-    res.redirect(`${basePath}/${accountId}/unsorted-activities/`);
+    res.redirect(`${basePath}/${accountId}/activities/unsorted/`);
   });
 });
 

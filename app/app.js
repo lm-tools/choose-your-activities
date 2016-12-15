@@ -67,9 +67,9 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:accountId/introduction`, introductionController);
-app.use(`${basePath}/:accountId/unsorted-activities`, unsortedActivitiesController);
-app.use(`${basePath}/:accountId/sorted-activities`, sortedActivitiesController);
-app.use(`${basePath}/:accountId/categorise-activity`, categoriseActivityController);
+app.use(`${basePath}/:accountId/activities/unsorted`, unsortedActivitiesController);
+app.use(`${basePath}/:accountId/activities/sorted`, sortedActivitiesController);
+app.use(`${basePath}/:accountId/activities/:activityId/categorise`, categoriseActivityController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

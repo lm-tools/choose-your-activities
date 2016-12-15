@@ -45,7 +45,7 @@ describe('Unsorted activities page', () => {
 
     it('should have correct url for activity', () =>
       expect(unsortedActivitiesPage.activityList()[0].url)
-        .to.contain(`${accountId}/categorise-activity/${helper.allActivities[1].name}`)
+        .to.contain(`${accountId}/activities/${helper.allActivities[1].name}/categorise`)
     );
   });
 });

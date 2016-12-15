@@ -12,7 +12,7 @@
             <span class="option">{{#__}}tabs.unsorted{{/__}}</span>
           </li>
           <li class="inactive">
-            <a href="{{basePath}}/{{accountId}}/sorted-activities" class="option">{{#__}}tabs.sorted{{/__}}</a>
+            <a href="{{basePath}}/{{accountId}}/activities/sorted" class="option">{{#__}}tabs.sorted{{/__}}</a>
           </li>
         </ul>
       </nav>
@@ -25,7 +25,7 @@
     <ul>
     {{#activities}}
       <li class="menu-container">
-        <a class="menu-item" data-test="activity" href="{{basePath}}/{{accountId}}/categorise-activity/{{activity}}">{{title}}</a>
+        <a class="menu-item" data-test="activity" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
       </li>
     {{/activities}}
     </ul>
