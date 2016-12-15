@@ -7,7 +7,7 @@ const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser) {
       url: x.href,
     })
   );
-  this.visit = (accountId) => this.browser.visit(`/${accountId}/unsorted-activities`);
+  this.visit = (accountId) => this.browser.visit(`/${accountId}/activities/unsorted`);
   this.browserPath = () => browser.location.pathname;
 };
 

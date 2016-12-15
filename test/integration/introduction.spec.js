@@ -26,7 +26,7 @@ describe('Introduction page', () => {
       introductionPage.visit(accountId)
         .then(() => introductionPage.clickContinue())
         .then(() => expect(introductionPage.browserPath())
-          .to.equal(`/${accountId}/unsorted-activities`))
+          .to.equal(`/${accountId}/activities/unsorted`))
     );
   });
 

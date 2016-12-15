@@ -49,7 +49,7 @@ describe('Categorise activity page', () => {
       categoriseActivityPage.visit(accountId, 'ACT-1')
         .then(() => categoriseActivityPage.selectCategory('Not really for me'))
         .then(() => expect(categoriseActivityPage.browserPath())
-          .to.equal(`/${accountId}/unsorted-activities/`))
+          .to.equal(`/${accountId}/activities/unsorted/`))
     );
   });
 });

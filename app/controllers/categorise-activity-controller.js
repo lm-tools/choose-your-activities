@@ -29,7 +29,7 @@ router.post('/:activityId', (req, res) => {
   const basePath = req.app.locals.basePath;
 
   new ActivitiesModel({ accountId, activity, category }).save().then(() => {
-    res.redirect(`${basePath}/${accountId}/unsorted-activities/`);
+    res.redirect(`${basePath}/${accountId}/activities/unsorted/`);
   });
 });
 
