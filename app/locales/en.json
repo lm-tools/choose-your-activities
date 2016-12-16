@@ -29,64 +29,84 @@
   },
   "activity": {
     "ACT-1": {
-      "title": "Try volunteering"
+      "title": "Try volunteering",
+      "details": "activity.ACT-1.details"
     },
     "ACT-2": {
-      "title": "Get some work experience"
+      "title": "Get some work experience",
+      "details": "activity.ACT-2.details"
     },
     "ACT-3": {
-      "title": "Find a mentor"
+      "title": "Find a mentor",
+      "details": "activity.ACT-3.details"
     },
     "ACT-4": {
-      "title": "List the biggest companies in the field you want to work in"
+      "title": "List the biggest companies in the field you want to work in",
+      "details": "activity.ACT-4.details"
     },
     "ACT-5": {
-      "title": "Register with recruitment agencies"
+      "title": "Register with recruitment agencies",
+      "details": "activity.ACT-5.details"
     },
     "ACT-6": {
-      "title": "Figure out your local public transport options – see how far you can get in an hour or 90 minutes"
+      "title": "Figure out your local public transport options – see how far you can get in an hour or 90 minutes",
+      "details": "activity.ACT-6.details"
     },
     "ACT-7": {
-      "title": "Find out what makes a good job application"
+      "title": "Find out what makes a good job application",
+      "details": "activity.ACT-7.details"
     },
     "ACT-8": {
-      "title": "Write down what you learnt last time you applied for a job"
+      "title": "Write down what you learnt last time you applied for a job",
+      "details": "activity.ACT-8.details"
     },
     "ACT-9": {
-      "title": "Ask for feedback on some jobs you've applied for"
+      "title": "Ask for feedback on some jobs you've applied for",
+      "details": "activity.ACT-9.details"
     },
     "ACT-10": {
-      "title": "Update your CV for jobs you're interested in"
+      "title": "Update your CV for jobs you're interested in",
+      "details": "activity.ACT-10.details"
     },
     "ACT-11": {
-      "title": "Get a friend to look at your CV for you"
+      "title": "Get a friend to look at your CV for you",
+      "details": "activity.ACT-11.details"
     },
     "ACT-12": {
-      "title": "Search online for jobs"
+      "title": "Search online for jobs",
+      "details": "activity.ACT-12.details"
     },
     "ACT-13": {
-      "title": "Find out how social media websites like LinkedIn can help with your search"
+      "title": "Find out how social media websites like LinkedIn can help with your search",
+      "details": "activity.ACT-13.details"
     },
     "ACT-14": {
-      "title": "Sign up for a few more job search websites"
+      "title": "Sign up for a few more job search websites",
+      "details": "activity.ACT-14.details"
     },
     "ACT-15": {
-      "title": "Plan your work search for the week"
+      "title": "Plan your work search for the week",
+      "details": "activity.ACT-15.details"
     },
     "ACT-16": {
-      "title": "Make a list of a few jobs you’d like in a year from now and the skills you need for them"
+      "title": "Make a list of a few jobs you’d like in a year from now and the skills you need for them",
+      "details": "activity.ACT-16.details"
     },
     "ACT-17": {
-      "title": "Find a qualification that could improve your chances of getting jobs you want"
+      "title": "Find a qualification that could improve your chances of getting jobs you want",
+      "details": "activity.ACT-17.details"
     },
     "ACT-18": {
-      "title": "Use a website to check what skills you've got"
+      "title": "Use a website to check what skills you've got",
+      "details": "activity.ACT-18.details"
     },
     "ACT-19": {
-      "title": "Do you need to do anything about the basics - maths or English?"
+      "title": "Do you need to do anything about the basics - maths or English?",
+      "details": "activity.ACT-19.details"
     },
     "ACT-20": {
-      "title": "Visit the job fair next week"
+      "title": "Visit the job fair next week",
+      "details": "activity.ACT-20.details"
     }
   },
   "category": {
@@ -120,7 +140,8 @@
     "category-empty": "You haven't chosen anything for this.",
     "show-activities": "Show activities"
   },
-  "dashboard": {
-    "detailsButton": "dashboard.detailsButton"
+  "activities-details": {
+    "pageTitle": "Choose your activities",
+    "backButton": "Back to your activities"
   }
 }

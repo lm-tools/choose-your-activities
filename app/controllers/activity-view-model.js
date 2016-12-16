@@ -18,6 +18,8 @@ module.exports = class ActivityViewModel {
       {
         // eslint-disable-next-line no-underscore-dangle
         title: i18n.__(`activity.${activity.activity}.title`),
+        // eslint-disable-next-line no-underscore-dangle
+        details: i18n.__(`activity.${activity.activity}.details`),
       }, activity);
   }
 };
