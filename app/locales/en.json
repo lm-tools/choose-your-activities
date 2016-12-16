@@ -138,7 +138,8 @@
     "activities-text-2": "You can get back to your list from the 'Choose your activities' to-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
     "activities-text-3": "You can still move the activities around if you've changed your mind about where they should go.",
     "category-empty": "You haven't chosen anything for this.",
-    "show-activities": "Show activities"
+    "show-activities": "Show activities",
+    "button-details": "Details"
   },
   "activities-details": {
     "pageTitle": "Choose your activities",

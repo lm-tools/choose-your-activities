@@ -8,12 +8,12 @@
   <div class="content">
     <nav>
       <ul>
-        <li class="inactive">
+        <li class="inactive" data-test="activity-{{activity}}">
           <a href="{{basePath}}/{{accountId}}/activities/unsorted" class="option">
             {{#__}}tabs.unsorted{{/__}}
           </a>
         </li>
-        <li class="active">
+        <li class="active" data-test="activity-{{activity}}">
           <span class="option">{{#__}}tabs.sorted{{/__}}</span>
         </li>
       </ul>
@@ -32,12 +32,21 @@
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
     <span data-test="details">
     {{^perCategory.READY}}
-      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.READY}}
       <ul>
         {{#perCategory.READY}}
-          <li class="menu-container READY">
-            <span class="menu-item">{{title}}</span>
+          <li class="menu-container READY" data-test="activity-{{activity}}">
+            <span class="menu-item">
+              <p>
+                {{title}}
+              </p>
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                 class="button-secondary"
+                 data-test="details-button">
+                {{#__}}sorted-activities.button-details{{/__}}
+              </a>
+            </span>
           </li>
         {{/perCategory.READY}}
       </ul>
@@ -48,12 +57,21 @@
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
     <span data-test="details">
     {{^perCategory.HELP}}
-      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.HELP}}
       <ul>
         {{#perCategory.HELP}}
-          <li class="menu-container HELP">
-            <span class="menu-item">{{title}}</span>
+          <li class="menu-container HELP" data-test="activity-{{activity}}">
+            <span class="menu-item">
+              <p>
+                {{title}}
+              </p>
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                 class="button-secondary"
+                 data-test="details-button">
+                {{#__}}sorted-activities.button-details{{/__}}
+              </a>
+            </span>
           </li>
         {{/perCategory.HELP}}
       </ul>
@@ -70,12 +88,21 @@
     </button>
     <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.DOING}}
-      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.DOING}}
       <ul>
         {{#perCategory.DOING}}
-          <li class="menu-container DOING">
-            <span class="menu-item">{{title}}</span>
+          <li class="menu-container DOING" data-test="activity-{{activity}}">
+            <span class="menu-item">
+              <p>
+                {{title}}
+              </p>
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                 class="button-secondary"
+                 data-test="details-button">
+                {{#__}}sorted-activities.button-details{{/__}}
+              </a>
+            </span>
           </li>
         {{/perCategory.DOING}}
       </ul>
@@ -92,12 +119,21 @@
     </button>
     <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.NOTWORKED}}
-      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.NOTWORKED}}
       <ul>
         {{#perCategory.NOTWORKED}}
-          <li class="menu-container NOT-WORKED">
-            <span class="menu-item">{{title}}</span>
+          <li class="menu-container NOT-WORKED" data-test="activity-{{activity}}">
+            <span class="menu-item">
+              <p>
+                {{title}}
+              </p>
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                 class="button-secondary"
+                 data-test="details-button">
+                {{#__}}sorted-activities.button-details{{/__}}
+              </a>
+            </span>
           </li>
         {{/perCategory.NOTWORKED}}
       </ul>
@@ -114,12 +150,21 @@
     </button>
     <div data-test="details" class="js-hidden details panel-indent">
     {{^perCategory.NO}}
-      <p>{{#__}}sorted-activities.category-empty{{/__}}</p>
+      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.NO}}
       <ul>
         {{#perCategory.NO}}
-          <li class="menu-container NO">
-            <span class="menu-item">{{title}}</span>
+          <li class="menu-container NO" data-test="activity-{{activity}}">
+            <span class="menu-item">
+              <p>
+                {{title}}
+              </p>
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                 class="button-secondary"
+                 data-test="details-button">
+                {{#__}}sorted-activities.button-details{{/__}}
+              </a>
+            </span>
           </li>
         {{/perCategory.NO}}
       </ul>

@@ -87,3 +87,7 @@ button.link-button {
 .category-heading {
   margin-top: 3em;
 }
+
+.button-secondary {
+  @include button($grey-1);
+}
