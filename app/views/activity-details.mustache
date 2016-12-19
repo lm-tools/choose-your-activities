@@ -1,0 +1,20 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}activities-details.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+  <h1 class="heading-xlarge" data-test="title">{{activity.title}}</h1>
+
+  <section class="text" data-test="details">
+    {{{activity.details}}}
+  </section>
+
+  <p>
+
+    <a href="{{basePath}}/{{accountId}}/activities/sorted" data-test="backButton">
+      <
+      {{#__}}activities-details.backButton{{/__}}
+    </a>
+  </p>
+
+{{/applicationContent}}
+{{/layout}}

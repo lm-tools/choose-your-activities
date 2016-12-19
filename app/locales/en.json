@@ -29,64 +29,84 @@
   },
   "activity": {
     "ACT-1": {
-      "title": "Try volunteering"
+      "title": "Try volunteering",
+      "details": "<p>Volunteer work might be right for you. You can learn new skills, and it will leave time in your week to look for paid work.</p><h3 class=\"heading-small\">Get started</h3><p>Find out if volunteering can help you, then talk to your work coach about it. They’ll know how it fits in with other things we expect you to do, and can tell you about local opportunities.</p><p>Do-it is an organisation that advertises a range of volunteering opportunities. <a href=\"https://www.do-it.org\">Visit Do-it</a>.</p><p>The National Council for Voluntary Organisations (NCVO) has volunteer centres across the country. <a href=\"https://www.ncvo.org.uk/ncvo-volunteering\">Find out more about the NCVO</a></p><p>Your work coach can also tell you more about them.</p>"
     },
     "ACT-2": {
-      "title": "Get some work experience"
+      "title": "Get some work experience",
+      "details": "<p>Work experience is a good way to improve your skills and make new contacts. The employers may give you paid work later.</p><p>Your CV will also look better if there’s some work experience on there.</p><p>Find out a little about any business that you want to ask for work experience, so you can customise your application.</p><h3 class=\"heading-medium\">Find out more</h3> <p>Talk to your work coach. They can tell you if work experience is right for you and will also know about employers with local opportunities. You can also get advice from <a href=\"https://www.myworldofwork.co.uk/getting-job/work-experience\">My World of Work</a>.</p> <p>Visit <a href=\"https://www.gov.uk/find-internship\">Find an internship</a> for more about work experience and internships if you have a degree.</p><p>Use <a href=\"https://www.prospects.ac.uk/jobs-and-work-experience/work-experience-and-internships\">Prospects</a> to find out about work experience and internships that don't need a degree.</a>"
     },
     "ACT-3": {
-      "title": "Find a mentor"
+      "title": "Find a mentor",
+      "details": "<p>A mentor is someone who'll meet you regularly and can offer you help and advice based on their experience. They'll usually be someone in a job who's doing this in their spare time - they'll have a different point of view from your work coach. </p><h3 class=\"heading-medium\">Get started</h3><p>Your work coach can arrange a mentor. Talk to them about it</p><p>You can also <a href=\"https://www.cipd.co.uk/steps-ahead-mentoring\">read up on the Steps Ahead programme</p> for 18 to 24 year olds if you think it might suit you."
     },
     "ACT-4": {
-      "title": "List the biggest companies in the field you want to work in"
+      "title": "List the biggest companies in the field you want to work in",
+      "details": "<p>Large companies with a lot of offices or shops are often looking for staff.</p><p>Once you've found the big companies, you can look for branches or offices in your area, and see if they're hiring.</p><h3 class=\"heading-medium\">Get started</h3><p>You can search on the internet for lists of the largest companies in some field. For instance, here are <a href=\"http://www.retaileconomics.co.uk/top10-retailers.asp\">the top ten retail companies</a>.</p><p>This is <a href=\"http://www.retaileconomics.co.uk/top10-retailers-clothing-and-footwear\">the top ten in clothing retail</a>.</p><p>This is <a href=\"https://en.wikipedia.org/wiki/List_of_largest_private_companies_in_the_United_Kingdom\">a list of large private companies</a>.</p><p>You can probably find more by searching: for instance, if you were in Croydon, you could use phrases like 'big companies in Croydon'.</p>"
     },
     "ACT-5": {
-      "title": "Register with recruitment agencies"
+      "title": "Register with recruitment agencies",
+      "details": "<p>Recruitment agencies can find different kinds of work for you. They can find full time jobs, or short-term or part-time work. Some of them employ people for specific trades.</p><p><a href=\"https://www.gov.uk/agency-workers-your-rights/when-youre-an-agency-worker\">Find out more</a> about being an agency worker - your rights, and what you have to do.</p><h3 class=\"heading-medium\">Get started</h3><p>Here are some large national agencies:</p> <ul class=\"list list-bullet\"><li><a href=\"http://www.adecco.co.uk\">Adecco</a></li><li><a href=\"http://www.assist.co.uk\">Assist</a></li><li><a href=\"https://www.bluearrow.co.uk\">Blue Arrow</a></li><li><a href=\"http://driversdirect.co.uk\">Drivers Direct</a></li><li><a href=\"http://www.manpowergroup.co.uk\">Manpower</a></li><li><a href=\"http://www.mcginley.co.uk/job-search/28/\">McGinley</a></li><li><a href=\"http://www.office-angels.com\">Office Angels</a></li><li><a href=\"http://www.reed.co.uk\">Reed</a></li><li><a href=\"https://www.smartsr.co.uk\">Smart Solutions</a></li><li><a href=\"http://www.staffline.co.uk\">Staffline</a></li><li><a href=\"http://www.stafforce.co.uk\">Stafforce</a></li></ul><p>Ask your work coach for details of local recruitment agencies.</p>"
     },
     "ACT-6": {
-      "title": "Figure out your local public transport options – see how far you can get in an hour or 90 minutes"
+      "title": "Figure out your local public transport options – see how far you can get in an hour or 90 minutes",
+      "details": "<p>You might not realise there are places you can get to pretty easily. That gives you more choices when you’re trying to find work.</p><p>It’s worth looking at local bus and train schedules to find out how far you can get.</p><h3 class=\"heading-medium\">Get started</h3><p>Online tools can help you work out how far you can get:</p><ul class=\"list list-bullet\"><li><a href=\"https://www.google.co.uk/maps\">Google maps</a> lets you work out how long it will take you to get somewhere. You can switch between car, public transport, bike and walking.</li><li><a href=\"https://maps.google.com/landing/transit/index.html\">Google’s Transit trip planner</a> narrows it down to public transport.</li><li><a href=\"http://www.traveline.info\">Traveline</a> is a similar service, but you might find it easier to use than the maps in Google.</li></ul><p>In some areas there are schemes like <a href=\"http://www.wheelstowork.org\">Wheels to work</a>, helping people overcome travel difficulties. Ask your work coach if there’s a similar scheme near you.</p>"
     },
     "ACT-7": {
-      "title": "Find out what makes a good job application"
+      "title": "Find out what makes a good job application",
+      "details": "<p>Applying for a job is a skill in itself. You have to look your best in your CV, covering letter and interview.</p><p>There’s a lot of information about how to do this online, and some of the other activities will help you with this.</p><h3 class=\"heading-medium\">Get started</h3><p><a href=\"http://dailyjobseeker.tumblr.com/tagged/new-job-search-ideas\">The Daily Jobseeker</a> has lots of tips on making a good application.</p><p><a href=\"https://www.myworldofwork.co.uk\">My World of Work</a> has more structured advice - work through it to improve your application skills.</p><p>There may also be courses in your area - your work coach will know.</p>"
     },
     "ACT-8": {
-      "title": "Write down what you learnt last time you applied for a job"
+      "title": "Write down what you learnt last time you applied for a job",
+      "details": "<p>Writing things down can give you new ideas and get you out of a rut. Keep track of the things that went well and the things that weren’t so great.</p><p>Are there things that you regularly have a problem with?</p><p>Can any of the other activities in this tool help with them?</p> <p>Also, keep track of the people you meet on your search - note down their details and how they helped.</p>"
     },
     "ACT-9": {
-      "title": "Ask for feedback on some jobs you've applied for"
+      "title": "Ask for feedback on some jobs you've applied for",
+      "details": "<p>It's good to figure out how you're coming across. If you’ve applied for a job or had an interview recently, contact the employer and ask them for feedback.</p><p>Find out what you did well and what you can improve.</p><p>Look at some of the other suggestions and activities here - might they help?</p><p>Find more interview tips on <a href=\"http://dailyjobseeker.tumblr.com/tagged/cv-interview-tips\">The Daily Jobseeker</a>.</p>"
     },
     "ACT-10": {
-      "title": "Update your CV for jobs you're interested in"
+      "title": "Update your CV for jobs you're interested in",
+      "details": "<p>Take a look at your CV and customise it when you apply for a job.</p><p>Make more of the skills that the job will need. Look at the advert and see what words it uses, then work those words in to your CV. It will increase your chances.</p><h3 class=\"heading-medium\">Get started</h3><p><a href=\"http://dailyjobseeker.tumblr.com\">The Daily Jobseeker</a> has tips on making your CV better.</p><p><a href=\"https://www.myworldofwork.co.uk\">My World of Work</a> has more structured advice - work through it to improve your CV.</p><p>If you haven’t signed up already, ask your work coach about the <a href=\"https://www.s2sacademy.com/login/\">Skills to Succeed academy</a>. It’s an online course with a “Getting a Job” section that will teach you more about writing a good CV.</p><p>Talk to your work coach about local courses to improve your CV writing skills.</p>"
     },
     "ACT-11": {
-      "title": "Get a friend to look at your CV for you"
+      "title": "Get a friend to look at your CV for you",
+      "details": "<p>Ask a friend, family member or someone else who knows about your skills and experience.</p><p>Ask them to check if what you’ve written sounds right. Ask them:</p><ul class=\"list list-bullet\"><li>Does it show your best side?</li><li>Have you forgotten anything?</li><li>Does it seem right for the job?</li><li>Are there any spelling mistakes or other problems like that? They’re very easy to miss</li></ul><p>You can <a href=\"http://dailyjobseeker.tumblr.com/tagged/cv-interview-tips\">get tips on writing a good CV.</a></p>"
     },
     "ACT-12": {
-      "title": "Search online for jobs"
+      "title": "Search online for jobs",
+      "details": "<p>When you’re searching online, remember to:</p><ul class=\"list list-bullet\"><li>look on more than one site</li><li>check regularly for new jobs</li><li>sign up for emails alerts about jobs that might interest you</li></ul><p>Many of the sites have advice on finding work too.</p><h3 class=\"heading-medium\">Get started</h3><p>Here are a few of the main sites for finding work.</p><ul class=\"list list-bullet\"><li><a href=\"https://www.gov.uk/jobsearch\">Universal Jobmatch</a></li><li><a href=\"http://monster.co.uk/\">Monster</a></li><li><a href=\"http://www.indeed.co.uk/\">Indeed</a></li><li><a href=\"http://www.jobsite.co.uk/\">Jobsite</a></li><li><a href=\"http://www.fish4.co.uk/\">Fish4jobs</a></li><li><a href=\"http://www.reed.co.uk/\">Reed</a></li><li><a href=\"http://www.one2find.com/jobsearchuk/\">One2find</a></li><li><a href=\"http://www.everyjobsite.co.uk/\">Everyjobsite</a></li><li><a href=\"https://jobs.theguardian.com/\">The Guardian</a></li><li><a href=\"https://www.totaljobs.com/\">Totaljobs</a></li></ul>"
     },
     "ACT-13": {
-      "title": "Find out how social media websites like LinkedIn can help with your search"
+      "title": "Find out how social media websites like LinkedIn can help with your search",
+      "details": "<p>Social media is a good way to find job opportunities and make contact with potential employers.</p><p>Having a informative, professional page about yourself on LinkedIn can make a big difference to finding a job.</p><p>You should make sure that any other pages employers might find – like a Twitter profile – won't put them off.<h3 class=\"heading-medium\"></a>Get started</h3><p>Sign up to <a href=\"https://linkedin.com\">LinkedIn</a></p><p>There are websites that can help you build a good LinkedIn profile. Here’s <a href=\"http://www.wikihow.com/Create-a-LinkedIn-Account\">a simple guide on how to start</a>.</p><p>If you're already on social media, <a href=\"http://dailyjobseeker.tumblr.com/post/124281070487/is-your-social-media-profile-putting-employers\">make sure you look professional</a>. </p>"
     },
     "ACT-14": {
-      "title": "Sign up for a few more job search websites"
+      "title": "Sign up for a few more job search websites",
+      "details": "<p>You might get stuck in a rut when you aren't finding jobs on your current job search website. Have a look at this list and sign up for a different site.</p><p>If the old job site you were using was not helpful then unsubscribe from it. It will stop sending you emails.</p><ul class=\"list list-bullet\"><li><a href=\"https://www.gov.uk/jobsearch\">Universal Jobmatch</a></li><li><a href=\"http://monster.co.uk/\">Monster</a></li><li><a href=\"http://www.indeed.co.uk/\">Indeed</a></li><li><a href=\"http://www.jobsite.co.uk/\">Jobsite</a></li><li><a href=\"http://www.fish4.co.uk/\">Fish4jobs</a></li><li><a href=\"http://www.reed.co.uk/\">Reed</a></li><li><a href=\"http://www.one2find.com/jobsearchuk/\">One2find</a></li><li><a href=\"http://www.everyjobsite.co.uk/\">Everyjobsite</a></li><li><a href=\"https://jobs.theguardian.com/\">The Guardian</a></li><li><a href=\"https://www.totaljobs.com/\">Totaljobs</a></li></ul>"
     },
     "ACT-15": {
-      "title": "Plan your work search for the week"
+      "title": "Plan your work search for the week",
+      "details": "<p>Planning is part of finding a job - thinking about what you’re going to do next, and how you’re going to divide up your time.</p><p>Write down your activities for the week. Use this tool to help you come up with new ideas.</p><p>There’s also a new tool in Universal Credit called ‘Record your work search’. It lets you keep track of the jobs you’re applying for and how far you’ve got with them.</p><p>Ask your Work Coach for access to that if you think it might be useful for planning.</p>"
     },
     "ACT-16": {
-      "title": "Make a list of a few jobs you’d like in a year from now and the skills you need for them"
+      "title": "Make a list of a few jobs you’d like in a year from now and the skills you need for them",
+      "details": "<p>It's good to have goals. Think of a few different jobs you might like to do. Think of jobs in different fields.</p><p>Find out a little more about them.</p><p>What would you need to do to get a job like this?</p><p>What are the steps you can take this week to help you move towards an interesting job?</p><h3 class=\"heading-medium\"></a>Get started</h3><p><a href=\"https://nationalcareersservice.direct.gov.uk/job-profiles/home\">Use the job profiles on the National Careers Service website</a> to find out what's needed for particular jobs</p><p>There’s a new tool in Universal Credit called ‘Explore work you could do’. It lets you search for different kinds of work, and the skills or qualifications you need for them. Ask your Work Coach for access to it if you think it might be useful for planning.</p>"
     },
     "ACT-17": {
-      "title": "Find a qualification that could improve your chances of getting jobs you want"
+      "title": "Find a qualification that could improve your chances of getting jobs you want",
+      "details": "<p>If you want a particular job and need a qualification, find out how to get it.</p><p>You can look at websites and job adverts to find the names of the right qualifications for work you want to do. You can then research them yourself.</p><h3 class=\"heading-medium\"></a>Get started</h3><p>Talk to your work coach about qualifications. They can tell you about local opportunities and how study might affect other things we expect you to do</p><p><a href=\"https://nationalcareersservice.direct.gov.uk/course-directory/home\">Use the National Careers Service course directory</a> to find out where you can do courses.</p><p>There’s also a new tool in Universal Credit called ‘Explore work you could do’. It lets you search for different kinds of work, and see the skills or qualifications you need for them. Ask your Work Coach for access to it if you think it might be useful for planning.</p>"
     },
     "ACT-18": {
-      "title": "Use a website to check what skills you've got"
+      "title": "Use a website to check what skills you've got",
+      "details": "<p>You might not realise what skills you have, or how to explain them in a CV or application letter. It’s not always obvious.</p><p>Websites can be useful - they’ll ask you questions then tell you what skills you can say you have.</p><h3 class=\"heading-medium\"></a>Get started</h3><p>The National Careers service has a <a href=\"https://nationalcareersservice.direct.gov.uk/skills-health-check/home\">skills health check</a>.</p><p>The University of Kent also has a <a href=\"https://www.kent.ac.uk/careers/sk/skillsinventory.html\">skills questionnaire</a>.</p><p>If you haven’t signed up already, ask your work coach about the <a href=\"https://www.s2sacademy.com/login/\">Skills to Succeed academy</a>. It’s a series of online courses, and one of them, called ‘Getting a job’, has a section on identifying your skills.</p>"
     },
     "ACT-19": {
-      "title": "Do you need to do anything about the basics - maths or English?"
+      "title": "Do you need to do anything about the basics - maths or English?",
+      "details": "<p>If you think your reading, writing or maths skills aren’t good enough for some jobs, there are courses you can take.</p><p>You will be able to improve them and go for a wider range of jobs.</p><p>People with good basic skills also stay in work longer and earn more.</p><h3 class=\"heading-medium\"></a>Get started</h3><p>Talk to your work coach about going on a course.</p><p>There are also websites that can help:</p><ul class=\"list list-bullet\"><li><a href=\"https://www.nnchallenge.org.uk/home/index.html\">The National Numeracy challenge</a> will help you find your maths level and do a course if you need to improve it</li><li><a href=\"http://www.bbc.co.uk/skillswise/job-skills\">Skillswise</a> from the BBC can help you find out what skills you need for a job</li><li>Go to <a href=\"http://www.learndirect.com/maths-english-and-it\">learndirect</a> for English, maths and IT skills</li></ul>"
     },
     "ACT-20": {
-      "title": "Visit the job fair next week"
+      "title": "Visit the job fair next week",
+      "details": "<p>There's a job fair here next week. Local companies want to find people for a range of positions.</p><p>Talk to your work coach for more information</p>"
     }
   },
   "category": {
@@ -118,9 +138,11 @@
     "activities-text-2": "You can get back to your list from the 'Choose your activities' to-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
     "activities-text-3": "You can still move the activities around if you've changed your mind about where they should go.",
     "category-empty": "You haven't chosen anything for this.",
-    "show-activities": "Show activities"
+    "show-activities": "Show activities",
+    "button-details": "Details"
   },
-  "dashboard": {
-    "detailsButton": "dashboard.detailsButton"
+  "activities-details": {
+    "pageTitle": "Choose your activities",
+    "backButton": "Back to your activities"
   }
 }

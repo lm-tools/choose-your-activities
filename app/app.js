@@ -9,6 +9,7 @@ const introductionController = require('./controllers/introduction-controller');
 const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
 const sortedActivitiesController = require('./controllers/sorted-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
+const activityDetailsController = require('./controllers/activity-details-controller');
 
 const i18n = require('./middleware/i18n');
 const healthCheckController = require('./controllers/health-check-controller');
@@ -70,6 +71,7 @@ app.use(`${basePath}/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:accountId/activities/unsorted`, unsortedActivitiesController);
 app.use(`${basePath}/:accountId/activities/sorted`, sortedActivitiesController);
 app.use(`${basePath}/:accountId/activities/:activityId/categorise`, categoriseActivityController);
+app.use(`${basePath}/:accountId/activities/:activityId`, activityDetailsController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

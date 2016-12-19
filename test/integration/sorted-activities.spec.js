@@ -109,5 +109,12 @@ describe('Sorted activities page', () => {
         expect(sortedActivitiesPage.getCategoryDescription(s.category)).to.be.empty
       );
     });
+
+    it('should link to activity details', () =>
+      sortedActivitiesPage.clickDetailsButton(allActivites[0]).then(() =>
+        expect(helper.activityDetailsPage.browserPath())
+          .to.contain(`${accountId}/activities/${allActivites[0].name}`)
+      )
+    );
   });
 });
