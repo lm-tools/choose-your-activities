@@ -21,5 +21,15 @@ module.exports = db.Model.extend(
         });
     },
 
+    getSortedByName(accountId, activityName) {
+      return this.forge()
+        .query({ where: { accountId, activity: activityName } })
+        .fetch()
+        // eslint-disable-next-line arrow-body-style
+        .then(queryResult => {
+          return queryResult ? queryResult.serialize() : null;
+        });
+    },
+
   }
 );
