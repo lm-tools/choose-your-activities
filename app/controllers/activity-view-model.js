@@ -1,9 +1,10 @@
 const i18n = require('i18n');
+const sortActivities = require('./activity-sorter');
 
 module.exports = class ActivityViewModel {
 
   constructor(activities) {
-    this.activities = activities.map(this.activityModel);
+    this.activities = sortActivities(activities.map(this.activityModel));
     this.perCategory = {
       DOING: this.activities.filter(x => x.category === 'DOING'),
       READY: this.activities.filter(x => x.category === 'READY'),

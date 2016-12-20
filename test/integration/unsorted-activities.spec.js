@@ -67,5 +67,9 @@ describe('Unsorted activities page', () => {
     it('should not slide out unsorted activity', () =>
       expect(unsortedActivitiesPage.isActivityMarkedToSlide(helper.allActivities[4])).to.be.false
     );
+
+    it('sorted activity should keep order', () =>
+      expect(unsortedActivitiesPage.activityList()[0].title).to.equal(activity.title)
+    );
   });
 });
