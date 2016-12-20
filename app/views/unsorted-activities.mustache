@@ -33,5 +33,14 @@
     <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
   </div>
 
+  <noscript>
+    <!-- hide sorted activity when javascript is disabled -->
+    <style>
+      [data-slide] {
+        display: none !important;
+      }
+    </style>
+  </noscript>
+
 {{/applicationContent}}
 {{/layout}}
