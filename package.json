@@ -9,9 +9,8 @@
     "lint": "eslint .",
     "pretest": "eslint . && npm run compile && NODE_ENV=test npm run db-migrate",
     "test-mocha": "mocha",
-    "test": "NODE_ENV=test npm run test-mocha && NODE_ENV=test npm run features",
+    "test": "NODE_ENV=test npm run test-mocha",
     "db-migrate": "knex migrate:latest --knexfile db/knexfile.js",
-    "features": "NODE_ENV=test cucumber.js && NODE_ENV=test EXPRESS_BASE_PATH=/example-base-path cucumber.js",
     "heroku-postbuild": "npm run compile",
     "create-migration": "knex migrate:make --knexfile db/knexfile.js $MIGRATION",
     "snyk-protect": "snyk protect",
@@ -55,7 +54,6 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "cucumber": "^0.10.2",
     "eslint": "^2.9.0",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-plugin-import": "^1.8.0",
