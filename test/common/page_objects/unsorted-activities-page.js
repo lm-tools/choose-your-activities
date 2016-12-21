@@ -1,14 +1,20 @@
 const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser) {
   this.browser = browser;
 
-  this.activityList = () => browser.queryAll('[data-test="activity"]').map(x =>
-    ({
+  function activityModel(x) {
+    return {
       title: x.innerHTML,
       url: x.href,
-    })
-  );
-  this.visit = (accountId) => this.browser.visit(`/${accountId}/activities/unsorted`);
+    };
+  }
+
+  this.activityList = () => browser.queryAll('[data-test-activity] a').map(activityModel);
+  this.visit = (accountId, activity) =>
+    this.browser
+      .visit(`/${accountId}/activities/unsorted${activity ? `?sorted=${activity.name}` : ''}`);
   this.browserPath = () => browser.location.pathname;
+  this.isActivityMarkedToSlide = activity =>
+    browser.query(`[data-test-activity="${activity.name}"]`).attributes['data-slide'] !== undefined;
 };
 
 module.exports = UnsortedActivitiesPage;

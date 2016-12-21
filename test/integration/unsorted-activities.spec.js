@@ -48,4 +48,28 @@ describe('Unsorted activities page', () => {
         .to.contain(`${accountId}/activities/${helper.allActivities[1].name}/categorise`)
     );
   });
+
+  describe('activities list with categorised activity', () => {
+    const activity = helper.allActivities[0];
+
+    before(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          { activity: activity.name, category: 'READY' },
+        ]))
+        .then(() => unsortedActivitiesPage.visit(accountId, activity))
+    );
+
+    it('should slide out sorted activity', () =>
+      expect(unsortedActivitiesPage.isActivityMarkedToSlide(activity)).to.be.true
+    );
+
+    it('should not slide out unsorted activity', () =>
+      expect(unsortedActivitiesPage.isActivityMarkedToSlide(helper.allActivities[4])).to.be.false
+    );
+
+    it('sorted activity should keep order', () =>
+      expect(unsortedActivitiesPage.activityList()[0].title).to.equal(activity.title)
+    );
+  });
 });

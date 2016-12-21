@@ -2,18 +2,21 @@ const express = require('express');
 const router = new express.Router({ mergeParams: true });
 
 const ActivitiesModel = require('../models/activity-model');
-const ActivitiesViewModel = require('./activity-view-model');
+const ActivitiesViewModel = require('./unsorted-activity-view-model');
 
 router.get('/', (req, res, next) => {
   const accountId = req.params.accountId;
+  const lastSortedActivityName = req.query.sorted || '';
 
-  ActivitiesModel
-    .findUnsortedByAccountId(accountId)
-    .then(sortedActivities => {
-      res.render('unsorted-activities', Object.assign({ accountId },
-        new ActivitiesViewModel(sortedActivities)));
-    })
-    .catch((err) => next(err));
+  Promise.all([
+    ActivitiesModel.findUnsortedByAccountId(accountId),
+    ActivitiesModel.getSortedByName(accountId, lastSortedActivityName),
+  ]).then(results => {
+    const unsorted = results[0];
+    const lastSortedActivity = results[1];
+    res.render('unsorted-activities', Object.assign({ accountId },
+      new ActivitiesViewModel(unsorted, lastSortedActivity)));
+  }).catch((err) => next(err));
 });
 
 module.exports = router;
