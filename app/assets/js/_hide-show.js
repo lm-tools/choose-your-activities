@@ -1,4 +1,4 @@
-const $ = require('jquery');
+const $ = require('jquery-with-migrate');
 
 $('[data-toggle-visibility-for]').on('click', function (el) {
   const $currentElement = $(el.target);
