@@ -116,5 +116,12 @@ describe('Sorted activities page', () => {
           .to.contain(`${accountId}/activities/${allActivites[0].name}`)
       )
     );
+
+    it('should link to re-sort activity', () =>
+      sortedActivitiesPage.clickReSortActivitiesLink().then(() =>
+        expect(helper.activityDetailsPage.browserPath())
+          .to.contain(`${accountId}/activities/re-sort`)
+      )
+    );
   });
 });
