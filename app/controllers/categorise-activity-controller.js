@@ -13,6 +13,15 @@ function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
+function upsertActivityCategory(currentActivityModel, category) {
+  return new ActivitiesModel(currentActivityModel).fetch().then((modelFound) => {
+    if (modelFound) {
+      return modelFound.save({ category });
+    }
+    return new ActivitiesModel(Object.assign(currentActivityModel, { category })).save();
+  });
+}
+
 router.get('', (req, res) => {
   const accountId = req.params.accountId;
   const activityId = req.params.activityId;
@@ -28,9 +37,10 @@ router.post('', (req, res) => {
   const category = req.body.category;
   const basePath = req.app.locals.basePath;
 
-  new ActivitiesModel({ accountId, activity, category }).save().then(() => {
-    res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
-  });
+  upsertActivityCategory({ accountId, activity }, category)
+    .then(() => {
+      res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
+    });
 });
 
 module.exports = router;

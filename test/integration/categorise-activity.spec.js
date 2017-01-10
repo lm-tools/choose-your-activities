@@ -29,7 +29,7 @@ describe('Categorise activity page', () => {
     );
   });
 
-  describe('user activity', () => {
+  describe('categorise activity', () => {
     before(() =>
       helper.cleanDb()
         .then(() => categoriseActivityPage.visit(accountId, activity))
@@ -51,6 +51,23 @@ describe('Categorise activity page', () => {
 
     it('should contain "sorted" query parameter', () =>
       expect(categoriseActivityPage.browserQuery()).to.equal(`?sorted=${activity}`)
+    );
+  });
+
+  describe('re-categorise activity', () => {
+    before(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          { activity, category: 'READY' },
+        ]))
+        .then(() => categoriseActivityPage.visit(accountId, activity))
+    );
+
+    it('should maintain the fact an activity has only one category', (done) =>
+      categoriseActivityPage.selectCategory('Not really for me')
+      .then(() => helper.getSortedActivities(accountId))
+      .then((sortedActivities) => expect(sortedActivities.length).to.equal(1))
+      .then(() => done())
     );
   });
 });
