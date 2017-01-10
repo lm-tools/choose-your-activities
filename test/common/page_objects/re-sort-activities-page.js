@@ -14,6 +14,8 @@ const ReSortActivitiesPage = function ReSortActivitiesPage(browser) {
       .className.split(/\s+/).includes('js-hidden');
   this.clickCategoriseButton = (activity) =>
     browser.click(`[data-test="activity-${activity.name}"]`);
+  this.clickContinueButton = () => browser.click('[data-test="continue-button"]');
+  this.clickIntroductionLink = () => browser.click('[data-test="introduction-link"]');
 };
 
 module.exports = ReSortActivitiesPage;

@@ -25,7 +25,7 @@
   <p class="text">
     {{#__}}re-sort-activities.activities-text-1{{/__}}
     {{#__}}re-sort-activities.activities-text-2{{/__}}
-    <a href="">
+    <a href="{{basePath}}/{{accountId}}/activities/sorted" data-test="introduction-link">
       {{#__}}re-sort-activities.activities-text-3{{/__}}
     </a>
   </p>
@@ -109,7 +109,11 @@
       </ul>
     </span>
   </section>
-  
+
+  <h3 class="heading-medium">{{#__}}re-sort-activities.finished-heading{{/__}}</h3>
+  <p class="text">{{#__}}re-sort-activities.finished-text{{/__}}</p>
+  <p class="form-group"><a class="button" href="{{basePath}}/{{accountId}}/activities/sorted" data-test="continue-button">{{#__}}re-sort-activities.button-label{{/__}}</a></p>
+
 </div>
 
 {{/applicationContent}}

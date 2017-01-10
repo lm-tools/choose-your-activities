@@ -153,6 +153,9 @@
     "activities-text-1": "Select an activity if you want to move it from one category to another.",
     "activities-text-2": "When you've sorted them how you want, you can ",
     "activities-text-3": "go back to your list and get more details about any activity.",
-    "category-empty": "Nothing here yet"
+    "category-empty": "Nothing here yet",
+    "finished-heading": "When you finish",
+    "finished-text": "You can get more details for each of the activities.",
+    "button-label": "Continue"
   }
 }

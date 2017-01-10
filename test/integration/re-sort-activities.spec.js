@@ -13,7 +13,7 @@ describe('Re-Sort activities page', () => {
       .then(() => reSortActivitiesPage.visit(accountId))
   );
 
-  describe('page outline', () => {
+  describe('Re-Sort page outline', () => {
     it('should have correct title', () =>
       expect(reSortActivitiesPage.browser.text('title'))
         .to.equal('Rearrange your list')
@@ -28,9 +28,21 @@ describe('Re-Sort activities page', () => {
         expect(reSortActivitiesPage.activityCategories()).to.include(s)
       );
     });
+
+    it('should link back to the sorted page from introduction text link', () =>
+      reSortActivitiesPage.clickIntroductionLink()
+        .then(() => expect(reSortActivitiesPage.browserPath())
+          .to.contain(`${accountId}/activities/sorted`))
+    );
+
+    it('should link back to the sorted page from continue button', () =>
+      reSortActivitiesPage.clickContinueButton()
+        .then(() => expect(reSortActivitiesPage.browserPath())
+          .to.contain(`${accountId}/activities/sorted`))
+    );
   });
 
-  describe('empty state', () => {
+  describe('Re-Sort empty state', () => {
     it('should not display any activities', () =>
       expect(reSortActivitiesPage.activityList().length).to.equal(0)
     );
@@ -43,7 +55,7 @@ describe('Re-Sort activities page', () => {
     });
   });
 
-  describe('already sorted activities', () => {
+  describe('Re-Sort already sorted activities', () => {
     beforeEach(() =>
       helper.addSortedActivities(accountId, [
         { activity: allActivites[0].name, category: 'READY' },
