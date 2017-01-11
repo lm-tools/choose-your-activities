@@ -30,7 +30,7 @@ router.post('', (req, res) => {
 
   ActivitiesModel.updateCategorisation(accountId, activity, category)
     .then((result) => {
-      if (result === 'UPDATE') {
+      if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/re-sort`);
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
