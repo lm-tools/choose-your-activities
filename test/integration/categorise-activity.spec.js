@@ -55,7 +55,7 @@ describe('Categorise activity page', () => {
   });
 
   describe('re-categorise activity', () => {
-    before(() =>
+    beforeEach(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
           { activity, category: 'READY' },
@@ -63,11 +63,16 @@ describe('Categorise activity page', () => {
         .then(() => categoriseActivityPage.visit(accountId, activity))
     );
 
-    it('should maintain the fact an activity has only one category', (done) =>
+    it('should maintain the fact an activity has only one category', () =>
       categoriseActivityPage.selectCategory('Not really for me')
       .then(() => helper.getSortedActivities(accountId))
       .then((sortedActivities) => expect(sortedActivities.length).to.equal(1))
-      .then(() => done())
+    );
+
+    it('should redirect to re-sort activities after re-categorisation', () =>
+      categoriseActivityPage.selectCategory('Not really for me')
+        .then(() => expect(categoriseActivityPage.browserPath())
+          .to.equal(`/${accountId}/activities/re-sort`))
     );
   });
 });
