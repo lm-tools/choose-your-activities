@@ -44,6 +44,10 @@
   font-size: 1.2em;
 }
 
+.menu .menu-item.not-selectable {
+  cursor: auto;
+}
+
 .menu .menu-container  {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $full-width;
