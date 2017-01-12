@@ -31,5 +31,17 @@ module.exports = db.Model.extend(
         });
     },
 
+    updateCategorisation(accountId, activity, category) {
+      return this.forge()
+        .query({ where: { accountId, activity } }).fetch()
+        .then((modelFound) => {
+          if (modelFound) {
+            return modelFound.save({ category })
+              .then(() => ({ status: 'UPDATED' }));
+          }
+          return this.forge().save({ accountId, activity, category })
+            .then(() => ({ status: 'CREATED' }));
+        });
+    },
   }
 );

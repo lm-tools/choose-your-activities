@@ -1,0 +1,120 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}re-sort-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<h2 class="heading-xlarge">{{#__}}re-sort-activities.heading{{/__}}</h2>
+
+<div class="app-menu inner-block gutter-top">
+  <div class="content">
+    <nav>
+      <ul>
+        <li class="inactive" data-test="activity-{{activity}}">
+          <a href="{{basePath}}/{{accountId}}/activities/unsorted" class="option">
+            {{#__}}tabs.unsorted{{/__}}
+          </a>
+        </li>
+        <li class="active" data-test="activity-{{activity}}">
+          <span class="option">{{#__}}tabs.sorted{{/__}}</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="menu">
+  <p class="text">
+    {{#__}}re-sort-activities.activities-text-1{{/__}}
+    {{#__}}re-sort-activities.activities-text-2{{/__}}
+    <a href="{{basePath}}/{{accountId}}/activities/sorted" data-test="introduction-link">
+      {{#__}}re-sort-activities.activities-text-3{{/__}}
+    </a>
+  </p>
+
+  <section data-test="category-READY" id="category-READY">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.READY}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.READY}}
+      <ul>
+        {{#perCategory.READY}}
+          <li class="menu-container READY">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.READY}}
+      </ul>
+    </span>
+  </section>
+
+  <section data-test="category-DOING" id="category-DOING">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.DOING}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.DOING}}
+      <ul>
+        {{#perCategory.DOING}}
+          <li class="menu-container DOING">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.DOING}}
+      </ul>
+    </span>
+  </section>
+
+  <section data-test="category-HELP" id="category-HELP">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.HELP}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.HELP}}
+      <ul>
+        {{#perCategory.HELP}}
+          <li class="menu-container HELP">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.HELP}}
+      </ul>
+    </span>
+  </section>
+
+  <section data-test="category-NOT-WORKED" id="category-NOT-WORKED">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.NOTWORKED}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.NOTWORKED}}
+      <ul>
+        {{#perCategory.NOTWORKED}}
+          <li class="menu-container NOT-WORKED">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.NOTWORKED}}
+      </ul>
+    </span>
+  </section>
+  
+  <section data-test="category-NO" id="category-NO">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.NO}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.NO}}
+      <ul>
+        {{#perCategory.NO}}
+          <li class="menu-container NO" data-test="activity-{{activity}}">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.NO}}
+      </ul>
+    </span>
+  </section>
+
+  <h3 class="heading-medium">{{#__}}re-sort-activities.finished-heading{{/__}}</h3>
+  <p class="text">{{#__}}re-sort-activities.finished-text{{/__}}</p>
+  <p class="form-group"><a class="button" href="{{basePath}}/{{accountId}}/activities/sorted" data-test="continue-button">{{#__}}re-sort-activities.button-label{{/__}}</a></p>
+
+</div>
+
+{{/applicationContent}}
+{{/layout}}

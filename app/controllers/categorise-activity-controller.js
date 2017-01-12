@@ -28,9 +28,14 @@ router.post('', (req, res) => {
   const category = req.body.category;
   const basePath = req.app.locals.basePath;
 
-  new ActivitiesModel({ accountId, activity, category }).save().then(() => {
-    res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
-  });
+  ActivitiesModel.updateCategorisation(accountId, activity, category)
+    .then((result) => {
+      if (result.status === 'UPDATED') {
+        res.redirect(`${basePath}/${accountId}/activities/re-sort`);
+      } else {
+        res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
+      }
+    });
 });
 
 module.exports = router;
