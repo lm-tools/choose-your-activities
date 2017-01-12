@@ -24,7 +24,7 @@
     <p class="text">{{#__}}unsorted-activities.action-overview-2{{/__}}</p>
     <ul>
     {{#activities}}
-      <li class="menu-container" {{#sorted}}data-slide{{/sorted}} data-test-activity="{{activity}}">
+      <li class="menu-container {{#sorted}}{{category}}{{/sorted}}" {{#sorted}}data-slide{{/sorted}} data-test-activity="{{activity}}">
         <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
       </li>
     {{/activities}}
