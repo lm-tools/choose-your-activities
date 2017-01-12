@@ -22,9 +22,16 @@
   <div class="menu">
     <p class="text">{{#__}}unsorted-activities.action-overview-1{{/__}}</p>
     <p class="text">{{#__}}unsorted-activities.action-overview-2{{/__}}</p>
+    {{#categorisedActivity}}
+      <ul data-slide>
+        <li class="menu-container DISABLED" data-slide data-test-activity="{{activity}}">
+          <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
+        </li>
+      </ul>
+    {{/categorisedActivity}}
     <ul>
     {{#activities}}
-      <li class="menu-container" {{#sorted}}data-slide{{/sorted}} data-test-activity="{{activity}}">
+      <li class="menu-container" data-test-activity="{{activity}}">
         <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
       </li>
     {{/activities}}
