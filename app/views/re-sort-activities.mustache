@@ -46,22 +46,6 @@
     </span>
   </section>
 
-  <section data-test="category-DOING" id="category-DOING">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
-    <span data-test="details">
-    {{^perCategory.DOING}}
-      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.DOING}}
-      <ul>
-        {{#perCategory.DOING}}
-          <li class="menu-container DOING">
-            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
-          </li>
-        {{/perCategory.DOING}}
-      </ul>
-    </span>
-  </section>
-
   <section data-test="category-HELP" id="category-HELP">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
     <span data-test="details">
@@ -74,6 +58,22 @@
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
         {{/perCategory.HELP}}
+      </ul>
+    </span>
+  </section>
+
+  <section data-test="category-DOING" id="category-DOING">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <span data-test="details">
+    {{^perCategory.DOING}}
+      <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
+    {{/perCategory.DOING}}
+      <ul>
+        {{#perCategory.DOING}}
+          <li class="menu-container DOING">
+            <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
+          </li>
+        {{/perCategory.DOING}}
       </ul>
     </span>
   </section>
