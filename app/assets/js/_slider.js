@@ -5,7 +5,7 @@ module.exports = class Slider {
   }
 
   slide() {
-    this.$el.animate({ left: '200%' }, 1000);
+    this.$el.animate({ left: $(window).width() }, 1000);
     this.$el.slideUp();
   }
 };
