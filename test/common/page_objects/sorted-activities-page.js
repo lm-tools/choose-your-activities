@@ -9,11 +9,6 @@ const SortedActivitiesPage = function SortedActivitiesPage(browser) {
     browser.queryAll(`[data-test="category-${category}"] li p`).map(x => x.innerHTML.trim());
   this.getCategoryDescription = category =>
     browser.text(`[data-test="category-${category}"] [data-test="empty-message"]`);
-  this.isCategoryDescriptionVisible = category =>
-    !browser.query(`[data-test="category-${category}"] [data-test="details"]`)
-    .className.split(/\s+/).includes('js-hidden');
-  this.expandCategory = category =>
-    browser.click(`[data-test="category-${category}"] [data-test="details-button"]`);
   this.clickDetailsButton = activity =>
     browser.click(`[data-test="activity-${activity.name}"] [data-test="details-button"]`);
   this.clickReSortActivitiesLink = () => browser.click('[data-test="re-sort-link"]');
