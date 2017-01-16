@@ -14,6 +14,7 @@ const activityDetailsController = require('./controllers/activity-details-contro
 
 const i18n = require('./middleware/i18n');
 const healthCheckController = require('./controllers/health-check-controller');
+const contentCheckController = require('./controllers/content-check-controller');
 
 const app = express();
 i18n(app);
@@ -31,6 +32,8 @@ const googleTagManagerId = process.env.GOOGLE_TAG_MANAGER_ID;
 
 app.use('/health_check', healthCheckController);
 app.use(`${basePath}/health_check`, healthCheckController);
+
+app.use(`${basePath}/content_check`, contentCheckController);
 
 // Middleware to set default layouts.
 // This must be done per request (and not via app.locals) as the Consolidate.js
