@@ -97,7 +97,7 @@ describe('Sorted activities page', () => {
     ['DOING', 'NO', 'NOT-WORKED'].forEach((category) => {
       it(`should hide less relevant activities for category ${category}`, () =>
         expect(sortedActivitiesPage.getOpenCategory()).not.to.exist
-      )
+      );
     });
 
     it('should link to activity details', () =>
