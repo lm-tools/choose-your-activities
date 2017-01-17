@@ -1,4 +1,4 @@
-const i18n = require('i18n');
+const activityCopy = require('../locales/activity-copy');
 const sortActivities = require('./activity-sorter');
 
 module.exports = class ActivityViewModel {
@@ -15,13 +15,7 @@ module.exports = class ActivityViewModel {
   }
 
   activityModel(activity) {
-    return Object.assign(
-      {
-        // eslint-disable-next-line no-underscore-dangle
-        title: i18n.__(`activity.${activity.activity}.title`),
-        // eslint-disable-next-line no-underscore-dangle
-        details: i18n.__(`activity.${activity.activity}.details`),
-      }, activity);
+    return Object.assign(activityCopy(activity), activity);
   }
 
   activityStats(activites) {
