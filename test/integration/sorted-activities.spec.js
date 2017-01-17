@@ -36,22 +36,6 @@ describe('Sorted activities page', () => {
     );
 
     helper.categories.filter(x => x.collapsed).forEach(category => {
-      it(`should collapse empty message for category "${category.title}" by default`, () =>
-        expect(sortedActivitiesPage.isCategoryDescriptionVisible(category.name))
-          .to.equal(false, 'Category description should be hidden')
-      );
-
-      it(`should show empty message for category when "${category.title}" button clicked`, () => {
-        sortedActivitiesPage.expandCategory(category.name);
-
-        expect(sortedActivitiesPage.isCategoryDescriptionVisible(category.name))
-          .to.equal(true, 'Category description should be visible');
-        expect(sortedActivitiesPage.getCategoryDescription(category.name))
-          .to.equal("You haven't chosen anything for this.");
-      });
-    });
-
-    helper.categories.filter(x => !x.collapsed).forEach(category => {
       it(`should show empty message for "${category.name}" category`, () =>
         expect(sortedActivitiesPage.getCategoryDescription(category.name))
           .to.equal("You haven't chosen anything for this.")
@@ -62,16 +46,16 @@ describe('Sorted activities page', () => {
   describe('already sorted activities', () => {
     beforeEach(() =>
       helper.addSortedActivities(accountId, [
-          { activity: allActivites[0].name, category: 'READY' },
-          { activity: allActivites[1].name, category: 'READY' },
-          { activity: allActivites[2].name, category: 'DOING' },
-          { activity: allActivites[4].name, category: 'DOING' },
-          { activity: allActivites[3].name, category: 'HELP' },
-          { activity: allActivites[10].name, category: 'HELP' },
-          { activity: allActivites[11].name, category: 'HELP' },
-          { activity: allActivites[7].name, category: 'NOT-WORKED' },
-          { activity: allActivites[15].name, category: 'NO' },
-          { activity: allActivites[19].name, category: 'NO' },
+        { activity: allActivites[0].name, category: 'READY' },
+        { activity: allActivites[1].name, category: 'READY' },
+        { activity: allActivites[2].name, category: 'DOING' },
+        { activity: allActivites[4].name, category: 'DOING' },
+        { activity: allActivites[3].name, category: 'HELP' },
+        { activity: allActivites[10].name, category: 'HELP' },
+        { activity: allActivites[11].name, category: 'HELP' },
+        { activity: allActivites[7].name, category: 'NOT-WORKED' },
+        { activity: allActivites[15].name, category: 'NO' },
+        { activity: allActivites[19].name, category: 'NO' },
       ])
         .then(() => sortedActivitiesPage.visit(accountId))
     );
@@ -107,6 +91,12 @@ describe('Sorted activities page', () => {
 
       it(`should not display empty message for "${s.category}" category`, () =>
         expect(sortedActivitiesPage.getCategoryDescription(s.category)).to.be.empty
+      );
+    });
+
+    ['DOING', 'NO', 'NOT-WORKED'].forEach((category) => {
+      it(`should hide less relevant activities for category ${category}`, () =>
+        expect(sortedActivitiesPage.getOpenCategory(category)).not.to.exist
       );
     });
 
