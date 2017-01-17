@@ -33,15 +33,15 @@
   <section data-test="category-READY" id="category-READY">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
     <span data-test="details">
-    {{^perCategory.READY}}
+    {{^perCategory.READY.hasActivities}}
       <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.READY}}
+    {{/perCategory.READY.hasActivities}}
       <ul>
-        {{#perCategory.READY}}
+        {{#perCategory.READY.activities}}
           <li class="menu-container READY">
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
-        {{/perCategory.READY}}
+        {{/perCategory.READY.activities}}
       </ul>
     </span>
   </section>
@@ -49,15 +49,15 @@
   <section data-test="category-HELP" id="category-HELP">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
     <span data-test="details">
-    {{^perCategory.HELP}}
+    {{^perCategory.HELP.hasActivities}}
       <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.HELP}}
+    {{/perCategory.HELP.hasActivities}}
       <ul>
-        {{#perCategory.HELP}}
+        {{#perCategory.HELP.activities}}
           <li class="menu-container HELP">
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
-        {{/perCategory.HELP}}
+        {{/perCategory.HELP.activities}}
       </ul>
     </span>
   </section>
@@ -65,15 +65,15 @@
   <section data-test="category-DOING" id="category-DOING">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
     <span data-test="details">
-    {{^perCategory.DOING}}
+    {{^perCategory.DOING.hasActivities}}
       <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.DOING}}
+    {{/perCategory.DOING.hasActivities}}
       <ul>
-        {{#perCategory.DOING}}
+        {{#perCategory.DOING.activities}}
           <li class="menu-container DOING">
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
-        {{/perCategory.DOING}}
+        {{/perCategory.DOING.activities}}
       </ul>
     </span>
   </section>
@@ -81,31 +81,31 @@
   <section data-test="category-NOT-WORKED" id="category-NOT-WORKED">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
     <span data-test="details">
-    {{^perCategory.NOTWORKED}}
+    {{^perCategory.NOTWORKED.hasActivities}}
       <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.NOTWORKED}}
+    {{/perCategory.NOTWORKED.hasActivities}}
       <ul>
-        {{#perCategory.NOTWORKED}}
-          <li class="menu-container NOT-WORKED">
+        {{#perCategory.NOTWORKED.activities}}
+          <li class="menu-container NOTWORKED">
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
-        {{/perCategory.NOTWORKED}}
+        {{/perCategory.NOTWORKED.activities}}
       </ul>
     </span>
   </section>
-  
+
   <section data-test="category-NO" id="category-NO">
     <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
     <span data-test="details">
-    {{^perCategory.NO}}
+    {{^perCategory.NO.hasActivities}}
       <p data-test="empty-message">{{#__}}re-sort-activities.category-empty{{/__}}</p>
-    {{/perCategory.NO}}
+    {{/perCategory.NO.hasActivities}}
       <ul>
-        {{#perCategory.NO}}
-          <li class="menu-container NO" data-test="activity-{{activity}}">
+        {{#perCategory.NO.activities}}
+          <li class="menu-container NO">
             <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}">{{title}}</a>
           </li>
-        {{/perCategory.NO}}
+        {{/perCategory.NO.activities}}
       </ul>
     </span>
   </section>
