@@ -41,6 +41,12 @@ To enable [google tag manager] pass `GOOGLE_TAG_MANAGER_ID` environment variable
 $ GOOGLE_TAG_MANAGER_ID=<GTM-ID> npm run start
 ```
 
+## Check for dead links
+
+```
+$ npm run check-content
+```
+
 [build status image]: https://api.travis-ci.org/lm-tools/choose-your-activities.svg
 [ci]: https://travis-ci.org/lm-tools/choose-your-activities
 [express]: http://expressjs.com/
