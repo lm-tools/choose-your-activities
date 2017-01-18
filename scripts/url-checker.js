@@ -14,28 +14,35 @@ i18n.configure({
   indent: '  ',
 });
 
-function checkForDeadLinks() {
+function scanHtmlContent(activity) {
   return new Promise(resolve => {
     const brokenLinks = [];
-    const queuePromises = [];
-
-    activities.map(activity => activityCopy({ activity })).forEach(activity => {
-      queuePromises.push(new Promise(internalResolve => {
-        const htmlChecker = new blc.HtmlChecker({}, {
-          link(result) {
-            if (result.broken) {
-              brokenLinks.push({ activity: activity.title, link: result.url.original });
-            }
-          },
-          complete() {
-            internalResolve();
-          },
-        });
-        htmlChecker.scan(activity.details);
-      }));
+    const htmlChecker = new blc.HtmlChecker({}, {
+      link(result) {
+        if (result.broken) {
+          brokenLinks.push(result.url.original);
+        }
+      },
+      complete() {
+        resolve({ activity: activity.title, brokenLinks });
+      },
     });
+    htmlChecker.scan(activity.details);
+  });
+}
 
-    Promise.all(queuePromises).then(() => resolve(brokenLinks));
+function checkForDeadLinks() {
+  const queuePromises = [];
+  activities.map(activity => activityCopy({ activity })).forEach(activity => {
+    queuePromises.push(scanHtmlContent(activity));
+  });
+
+  return Promise.all(queuePromises).then(results => {
+    let brokenLinksCount = 0;
+    results.forEach(result => {
+      brokenLinksCount += result.brokenLinks.length;
+    });
+    return Object.assign({ brokenLinksCount, activities: results });
   });
 }
 

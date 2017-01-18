@@ -73,10 +73,10 @@ gulp.task('watch', ['js', 'css', 'server'], () => {
 });
 
 gulp.task('check-content', () =>
-  checkForDeadLinks().then(brokenLinks => {
-    if (brokenLinks.length > 0) {
+  checkForDeadLinks().then(result => {
+    if (result.brokenLinksCount > 0) {
       gutil.log(gutil.colors.red('Found broken links:'));
-      gutil.log(JSON.stringify(brokenLinks, null, '  '));
+      gutil.log(JSON.stringify(result, null, '  '));
       process.exit(1);
     }
   })
