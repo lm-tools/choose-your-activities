@@ -78,6 +78,8 @@ gulp.task('check-content', () =>
       gutil.log(gutil.colors.red('Found broken links:'));
       gutil.log(JSON.stringify(result, null, '  '));
       process.exit(1);
+    } else {
+      gutil.log('All links checked and are OK.');
     }
   })
 );
