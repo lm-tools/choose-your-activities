@@ -1,3 +1,4 @@
+const i18n = require('i18n');
 const activityCopy = require('../locales/activity-copy');
 const sortActivities = require('./activity-sorter');
 
@@ -18,10 +19,21 @@ module.exports = class ActivityViewModel {
     return Object.assign(activityCopy(activity), activity);
   }
 
-  activityStats(activites) {
+  activityStats(activities) {
     return ({
-      activities: activites,
-      hasActivities: activites.length > 0,
+      activities,
+      hasActivities: activities.length > 0,
+      categoryIntroduction: this.getCategoryIntroText(activities),
     });
+  }
+
+  getCategoryIntroText(activities) {
+    if (activities.length === 1) {
+      // eslint-disable-next-line no-underscore-dangle
+      return i18n.__('sorted-activities.show-single-activity');
+    }
+    // eslint-disable-next-line no-underscore-dangle
+    return i18n.__('sorted-activities.show-multiple-activities',
+      { totalActivities: activities.length });
   }
 };

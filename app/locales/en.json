@@ -140,7 +140,8 @@
     "activities-text-4": "move the activities around",
     "activities-text-5": " if you've changed your mind about where they should go.",
     "category-empty": "You haven't chosen anything for this.",
-    "show-activities": "Show activities",
+    "show-single-activity": "Show 1 activity",
+    "show-multiple-activities": "Show {{totalActivities}} activities",
     "button-details": "Details"
   },
   "activities-details": {

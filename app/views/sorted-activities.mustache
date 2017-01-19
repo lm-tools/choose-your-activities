@@ -93,7 +93,7 @@
     {{#perCategory.DOING}}
       {{#hasActivities}}
       <details>
-        <summary data-test="open-category-arrow"><span class="summary">{{#__}}sorted-activities.show-activities{{/__}}</span></summary>
+        <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
         <div class="panel panel-border-narrow">
           <ul>
             {{#activities}}
@@ -123,7 +123,7 @@
     {{#perCategory.NOTWORKED}}
       {{#hasActivities}}
         <details>
-          <summary data-test="open-category-arrow"><span class="summary">{{#__}}sorted-activities.show-activities{{/__}}</span></summary>
+          <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
               {{#activities}}
@@ -153,7 +153,7 @@
     {{#perCategory.NO}}
       {{#hasActivities}}
         <details>
-        <summary data-test="open-category-arrow"><span class="summary">{{#__}}sorted-activities.show-activities{{/__}}</span></summary>
+          <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
               {{#activities}}
