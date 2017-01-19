@@ -113,5 +113,13 @@ describe('Sorted activities page', () => {
           .to.contain(`${accountId}/activities/re-sort`)
       )
     );
+
+    it('should display the number of hidden activities when only one is hidden', () => {
+      expect(sortedActivitiesPage.getCategorySummary('NOT-WORKED')).to.equal('Show 1 activity');
+    });
+
+    it('should display the number of hidden activities when there are many hidden', () => {
+      expect(sortedActivitiesPage.getCategorySummary('NO')).to.equal('Show 2 activities');
+    });
   });
 });
