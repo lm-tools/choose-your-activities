@@ -18,5 +18,4 @@ module.exports = [
   'ACT-17',
   'ACT-18',
   'ACT-19',
-  'ACT-20',
 ];
