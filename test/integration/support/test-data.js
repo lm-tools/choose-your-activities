@@ -33,7 +33,6 @@ module.exports = {
     },
     { name: 'ACT-18', title: "Use a website to check what skills you've got" },
     { name: 'ACT-19', title: 'Do you need to do anything about the basics - maths or English?' },
-    { name: 'ACT-20', title: 'Visit the job fair next week' },
   ],
 
   categories: [

@@ -67,7 +67,7 @@ describe('Re-Sort activities page', () => {
         { activity: allActivites[11].name, category: 'HELP' },
         { activity: allActivites[7].name, category: 'NOT-WORKED' },
         { activity: allActivites[15].name, category: 'NO' },
-        { activity: allActivites[19].name, category: 'NO' },
+        { activity: allActivites[17].name, category: 'NO' },
       ])
         .then(() => reSortActivitiesPage.visit(accountId))
     );
@@ -93,7 +93,7 @@ describe('Re-Sort activities page', () => {
       },
       {
         category: 'NO',
-        expectedActivitiesTitles: [allActivites[15].title, allActivites[19].title],
+        expectedActivitiesTitles: [allActivites[15].title, allActivites[17].title],
       },
     ].forEach(s => {
       it(`should display list of activities in "${s.category}" category`, () =>
