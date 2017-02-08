@@ -1,7 +1,7 @@
 module.exports = {
   allActivities: [
-    { name: 'ACT-1', title: 'Try volunteering' },
-    { name: 'ACT-2', title: 'Get some work experience' },
+    { name: 'ACT-1', title: 'Find out about volunteering' },
+    { name: 'ACT-2', title: 'Ask about work experience' },
     { name: 'ACT-3', title: 'Find a mentor' },
     { name: 'ACT-4', title: 'List the biggest companies in the field you want to work in' },
     { name: 'ACT-5', title: 'Register with recruitment agencies' },
@@ -30,7 +30,8 @@ module.exports = {
     },
     {
       name: 'ACT-18',
-      title: 'Find a qualification that could improve your chances of getting jobs you want',
+      title: 'Find out about qualifications that could improve your ' +
+      'chances of getting jobs you want',
     },
     { name: 'ACT-19', title: "Use a website to check what skills you've got" },
   ],
