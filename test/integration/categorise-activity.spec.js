@@ -15,7 +15,7 @@ describe('Categorise activity page', () => {
   describe('page outline', () => {
     it('should have correct heading', () =>
       categoriseActivityPage.visit(accountId, activity)
-        .then(() => expect(categoriseActivityPage.headingToBe('Try volunteering')))
+        .then(() => expect(categoriseActivityPage.headingToBe('Find out about volunteering')))
     );
 
     it('should have all of the categories to choose from', () =>
