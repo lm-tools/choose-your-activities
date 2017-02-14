@@ -4,7 +4,7 @@ const sortActivities = require('./activity-sorter');
 
 module.exports = class ActivityViewModel {
 
-  constructor(activities) {
+  constructor(activities, options) {
     this.activities = sortActivities(activities.map(this.activityModel));
     this.perCategory = {
       DOING: this.activityStats(this.activities.filter(x => x.category === 'DOING')),
@@ -13,6 +13,7 @@ module.exports = class ActivityViewModel {
       NOTWORKED: this.activityStats(this.activities.filter(x => x.category === 'NOT-WORKED')),
       NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
     };
+    this.isResortMode = options && options.action && options.action === 'resort';
   }
 
   activityModel(activity) {
