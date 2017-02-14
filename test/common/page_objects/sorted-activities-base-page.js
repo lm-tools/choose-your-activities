@@ -50,6 +50,10 @@ class SortedActivitiesBasePage {
     return this.browser.query(`[data-test="category-${category}"] details`).hasAttribute('open');
   }
 
+  isNavigationDisplayed() {
+    return !!this.browser.query('[data-test="navigation"]');
+  }
+
 }
 
 module.exports = SortedActivitiesBasePage;

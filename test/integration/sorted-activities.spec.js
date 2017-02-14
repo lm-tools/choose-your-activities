@@ -35,6 +35,10 @@ describe('Sorted activities page', () => {
       expect(sortedActivitiesPage.activityList().length).to.equal(0)
     );
 
+    it('should show navigation', () => {
+      expect(sortedActivitiesPage.isNavigationDisplayed()).to.equal(true);
+    });
+
     helper.categories.filter(x => x.collapsed).forEach(category => {
       it(`should show empty message for "${category.name}" category`, () =>
         expect(sortedActivitiesPage.getCategoryDescription(category.name))
@@ -155,6 +159,22 @@ describe('Sorted activities page', () => {
       it(`should expand category "${s}" by default`, () =>
         expect(sortedActivitiesPage.isCategoryExpanded(s)).to.equal(false)
       );
+    });
+
+    it('should show navigation', () => {
+      expect(sortedActivitiesPage.isNavigationDisplayed()).to.equal(true);
+    });
+  });
+
+  describe('all activities sorted', () => {
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => sortedActivitiesPage.visit(accountId))
+    );
+
+    it('should hide navigation', () => {
+      expect(sortedActivitiesPage.isNavigationDisplayed()).to.equal(false);
     });
   });
 });

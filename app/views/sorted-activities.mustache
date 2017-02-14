@@ -4,22 +4,24 @@
 
 <h2 class="heading-xlarge">{{#__}}sorted-activities.heading{{/__}}</h2>
 
-<div class="app-menu inner-block gutter-top">
-  <div class="content">
-    <nav>
-      <ul>
-        <li class="inactive" data-test="activity-{{activity}}">
-          <a href="{{basePath}}/{{accountId}}/activities/unsorted" class="option">
-            {{#__}}tabs.unsorted{{/__}}
-          </a>
-        </li>
-        <li class="active" data-test="activity-{{activity}}">
-          <span class="option">{{#__}}tabs.sorted{{/__}}</span>
-        </li>
-      </ul>
-    </nav>
+{{#showNavigation}}
+  <div class="app-menu inner-block gutter-top" data-test="navigation">
+    <div class="content">
+      <nav>
+        <ul>
+          <li class="inactive" data-test="activity-{{activity}}">
+            <a href="{{basePath}}/{{accountId}}/activities/unsorted" class="option">
+              {{#__}}tabs.unsorted{{/__}}
+            </a>
+          </li>
+          <li class="active" data-test="activity-{{activity}}">
+            <span class="option">{{#__}}tabs.sorted{{/__}}</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
-</div>
+{{/showNavigation}}
 
 <h3 class="heading-medium">{{#__}}sorted-activities.activities-heading{{/__}}</h3>
 <p class="text">{{#__}}sorted-activities.activities-text-1{{/__}}</p>

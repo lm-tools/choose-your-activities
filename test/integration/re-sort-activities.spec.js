@@ -35,6 +35,10 @@ describe('Re-Sort activities page', () => {
         .then(() => expect(reSortActivitiesPage.browserPath())
           .to.contain(`${accountId}/activities/sorted`))
     );
+
+    it('should show navigation', () => {
+      expect(reSortActivitiesPage.isNavigationDisplayed()).to.equal(true);
+    });
   });
 
   describe('Re-Sort already sorted activities', () => {
@@ -127,6 +131,18 @@ describe('Re-Sort activities page', () => {
       it(`should expand category "${s}" by default`, () =>
         expect(reSortActivitiesPage.isCategoryExpanded(s)).to.equal(true)
       );
+    });
+  });
+
+  describe('all activities sorted', () => {
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => reSortActivitiesPage.visit(accountId))
+    );
+
+    it('should hide navigation', () => {
+      expect(reSortActivitiesPage.isNavigationDisplayed()).to.equal(false);
     });
   });
 });

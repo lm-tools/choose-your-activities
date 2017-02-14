@@ -15,6 +15,9 @@ const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser) {
   this.browserPath = () => browser.location.pathname;
   this.isActivityMarkedToSlide = activity =>
     browser.query(`[data-test-activity="${activity.name}"]`).attributes['data-slide'] !== undefined;
+
+  this.isContinueButtonDisplayed = () => !!browser.query('[data-test="continue-button"]');
+  this.clickContinue = () => browser.click('[data-test="continue-button"]');
 };
 
 module.exports = UnsortedActivitiesPage;
