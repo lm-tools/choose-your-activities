@@ -132,25 +132,16 @@
     "activities-heading": "Your activities",
     "activities-text-1": "Get more details about each of the activities - tips, advice and links to useful websites.",
     "activities-text-2": "You can get back to your list from the 'Choose your activities' To-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
-    "activities-text-3": "Re-sort your activities",
+    "resort-button": "Re-sort your activities",
     "category-empty": "You haven't chosen anything for this.",
     "show-single-activity": "Show 1 activity",
     "show-multiple-activities": "Show {{totalActivities}} activities",
-    "button-details": "Details"
+    "button-details": "Details",
+    "finish-sorting-button": "Finish sorting",
+    "button-move": "Move"
   },
   "activities-details": {
     "pageTitle": "Choose your activities",
     "backButton": "Back to your activities"
-  },
-  "re-sort-activities": {
-    "pageTitle": "Rearrange your list",
-    "heading": "Rearrange your list",
-    "activities-text-1": "Select an activity if you want to move it from one category to another.",
-    "activities-text-2": "When you've sorted them how you want, you can ",
-    "activities-text-3": "go back to your list and get more details about any activity.",
-    "category-empty": "Nothing here yet",
-    "finished-heading": "When you finish",
-    "finished-text": "You can get more details for each of the activities.",
-    "button-label": "Continue"
   }
 }

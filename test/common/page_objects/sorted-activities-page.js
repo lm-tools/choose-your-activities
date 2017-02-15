@@ -16,6 +16,8 @@ const SortedActivitiesPage = function SortedActivitiesPage(browser) {
   this.clickReSortActivitiesLink = () => browser.click('[data-test="re-sort-link"]');
   this.getCategorySummary = (category) =>
     browser.text(`[data-test="category-${category}"] [data-test="show-hide-text"]`);
+  this.isMoveButtonDisplayed = (activity) =>
+    !!browser.query(`[data-test="activity-${activity.name}-move"]`);
 };
 
 module.exports = SortedActivitiesPage;

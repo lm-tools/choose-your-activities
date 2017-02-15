@@ -96,3 +96,7 @@ button.link-button {
 .button-secondary {
   @include button($grey-1);
 }
+
+.resort-button {
+  margin-left: $gutter-half;
+}
