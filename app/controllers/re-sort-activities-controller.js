@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
   ActivitiesModel
     .findSortedByAccountId(accountId)
     .then(sortedActivities => {
-      res.render('sorted-activities', Object.assign({ accountId },
+      res.render('re-sort-activities', Object.assign({ accountId },
         new ActivitiesViewModel(sortedActivities)));
     })
     .catch((err) => next(err));

@@ -16,7 +16,7 @@ describe('Re-Sort activities page', () => {
   describe('Re-Sort page outline', () => {
     it('should have correct title', () =>
       expect(reSortActivitiesPage.browser.text('title'))
-        .to.equal('Choose your activities')
+        .to.equal('Rearrange your list')
     );
 
     it('should contain valid google tag manager data', () =>
@@ -29,12 +29,30 @@ describe('Re-Sort activities page', () => {
       );
     });
 
-
-    it('should link back to the sorted page from "Finish sorting" button', () =>
-      reSortActivitiesPage.clickFinishSortingButton()
+    it('should link back to the sorted page from introduction text link', () =>
+      reSortActivitiesPage.clickIntroductionLink()
         .then(() => expect(reSortActivitiesPage.browserPath())
           .to.contain(`${accountId}/activities/sorted`))
     );
+
+    it('should link back to the sorted page from continue button', () =>
+      reSortActivitiesPage.clickContinueButton()
+        .then(() => expect(reSortActivitiesPage.browserPath())
+          .to.contain(`${accountId}/activities/sorted`))
+    );
+  });
+
+  describe('Re-Sort empty state', () => {
+    it('should not display any activities', () =>
+      expect(reSortActivitiesPage.activityList().length).to.equal(0)
+    );
+
+    helper.categories.filter(x => !x.collapsed).forEach(category => {
+      it(`should show empty message for "${category.name}" category`, () =>
+        expect(reSortActivitiesPage.getCategoryDescription(category.name))
+          .to.equal('Nothing here yet')
+      );
+    });
   });
 
   describe('Re-Sort already sorted activities', () => {
@@ -88,33 +106,11 @@ describe('Re-Sort activities page', () => {
       );
     });
 
-    [
-      {
-        category: 'READY', activity: allActivites[0],
-      },
-      {
-        category: 'DOING', activity: allActivites[2],
-      },
-      {
-        category: 'HELP', activity: allActivites[10],
-      },
-      {
-        category: 'NOT-WORKED', activity: allActivites[7],
-      },
-      {
-        category: 'NO', activity: allActivites[15],
-      },
-    ].forEach(s => {
-      it(`should link to categorise activity page for activity in "${s.category}"`, () =>
-        reSortActivitiesPage.clickMoveButton(s.activity).then(() =>
-          expect(helper.categoriseActivityPage.browserPath())
-            .to.contain(`${accountId}/activities/${s.activity.name}/categorise`)
-        )
-      );
-
-      it(`should display "Move" link for activity in category "${s.category}"`, () =>
-        expect(reSortActivitiesPage.isMoveButtonDisplayed(s.activity)).to.equal(true)
-      );
-    });
+    it('should link to categorise activity page for activity', () =>
+      reSortActivitiesPage.clickCategoriseButton(allActivites[0]).then(() =>
+        expect(helper.categoriseActivityPage.browserPath())
+          .to.contain(`${accountId}/activities/${allActivites[0].name}/categorise`)
+      )
+    );
   });
 });

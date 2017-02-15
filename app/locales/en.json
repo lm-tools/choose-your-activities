@@ -132,13 +132,11 @@
     "activities-heading": "Your activities",
     "activities-text-1": "Get more details about each of the activities - tips, advice and links to useful websites.",
     "activities-text-2": "You can get back to your list from the 'Choose your activities' To-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
-    "resortButton": "Re-sort your activities",
+    "activities-text-3": "Re-sort your activities",
     "category-empty": "You haven't chosen anything for this.",
     "show-single-activity": "Show 1 activity",
     "show-multiple-activities": "Show {{totalActivities}} activities",
-    "button-details": "Details",
-    "finishSortingButton": "Finish sorting",
-    "button-move": "Move"
+    "button-details": "Details"
   },
   "activities-details": {
     "pageTitle": "Choose your activities",

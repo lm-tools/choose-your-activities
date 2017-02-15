@@ -72,7 +72,7 @@ describe('Categorise activity page', () => {
     it('should redirect to re-sort activities after re-categorisation', () =>
       categoriseActivityPage.selectCategory('Not really for me')
         .then(() => expect(categoriseActivityPage.browserPath())
-          .to.equal(`/${accountId}/activities/sorted/resort`))
+          .to.equal(`/${accountId}/activities/re-sort`))
     );
   });
 });

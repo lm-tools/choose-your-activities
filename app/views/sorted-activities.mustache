@@ -25,17 +25,10 @@
 <p class="text">{{#__}}sorted-activities.activities-text-1{{/__}}</p>
 <p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
 <p class="text">
-
-  {{#isResortMode}}
-  <a href="{{basePath}}/{{accountId}}/activities/sorted" data-test="finish-sorting-button">
-    {{#__}}sorted-activities.finishSortingButton{{/__}}
+  <a href="{{basePath}}/{{accountId}}/activities/re-sort"
+     data-test="re-sort-link">
+    {{#__}}sorted-activities.activities-text-3{{/__}}
   </a>
-  {{/isResortMode}}
-  {{^isResortMode}}
-  <a href="{{basePath}}/{{accountId}}/activities/sorted/resort" data-test="re-sort-link">
-    {{#__}}sorted-activities.resortButton{{/__}}
-  </a>
-  {{/isResortMode}}
 </p>
 
 <div class="menu">
@@ -58,11 +51,6 @@
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
               </a>
-              {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}-move">
-                  Move
-                </a>
-              {{/isResortMode}}
             </span>
           </li>
         {{/perCategory.READY.activities}}
@@ -88,11 +76,6 @@
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
               </a>
-              {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}-move">
-                  {{#__}}sorted-activities.button-move{{/__}}
-                </a>
-              {{/isResortMode}}
             </span>
           </li>
         {{/perCategory.HELP.activities}}
@@ -120,11 +103,6 @@
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
-                {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}-move">
-                    Move
-                  </a>
-                {{/isResortMode}}
               </span>
               </li>
             {{/activities}}
@@ -155,11 +133,6 @@
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
-                {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}-move">
-                    Move
-                  </a>
-                {{/isResortMode}}
               </span>
                 </li>
               {{/activities}}
@@ -190,11 +163,6 @@
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
-                {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" data-test="activity-{{activity}}-move">
-                    Move
-                  </a>
-                {{/isResortMode}}
               </span>
                 </li>
               {{/activities}}
