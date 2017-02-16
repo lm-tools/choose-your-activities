@@ -110,7 +110,7 @@ describe('Sorted activities page', () => {
     it('should link to re-sort activity', () =>
       sortedActivitiesPage.clickReSortActivitiesLink().then(() =>
         expect(helper.activityDetailsPage.browserPath())
-          .to.contain(`${accountId}/activities/re-sort`)
+          .to.contain(`${accountId}/activities/sorted/resort`)
       )
     );
 
@@ -120,6 +120,41 @@ describe('Sorted activities page', () => {
 
     it('should display the number of hidden activities when there are many hidden', () => {
       expect(sortedActivitiesPage.getCategorySummary('NO')).to.equal('Show 2 activities');
+    });
+
+
+    [
+      {
+        category: 'READY', activity: allActivites[0],
+      },
+      {
+        category: 'DOING', activity: allActivites[2],
+      },
+      {
+        category: 'HELP', activity: allActivites[10],
+      },
+      {
+        category: 'NOT-WORKED', activity: allActivites[7],
+      },
+      {
+        category: 'NO', activity: allActivites[17],
+      },
+    ].forEach(s => {
+      it(`should not display "Move" link for activity in category "${s.category}"`, () =>
+        expect(sortedActivitiesPage.isMoveButtonDisplayed(s.activity)).to.equal(false)
+      );
+
+      it(`should link to resort page from details page for activity in ${s.category}`, () =>
+        sortedActivitiesPage.clickDetailsButton(s.activity)
+          .then(() => helper.activityDetailsPage.clickBackButton())
+          .then(() => sortedActivitiesPage.expectAt(accountId))
+      );
+    });
+
+    ['DOING', 'NOT-WORKED', 'NO'].forEach(s => {
+      it(`should expand category "${s}" by default`, () =>
+        expect(sortedActivitiesPage.isCategoryExpanded(s)).to.equal(false)
+      );
     });
   });
 });

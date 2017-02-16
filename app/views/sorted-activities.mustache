@@ -25,9 +25,9 @@
 <p class="text">{{#__}}sorted-activities.activities-text-1{{/__}}</p>
 <p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
 <p class="text">
-  <a href="{{basePath}}/{{accountId}}/activities/re-sort"
-     data-test="re-sort-link">
-    {{#__}}sorted-activities.activities-text-3{{/__}}
+
+  <a href="{{basePath}}/{{accountId}}{{action.link}}" data-test="action-on-{{action.mode}}">
+    {{action.label}}
   </a>
 </p>
 
@@ -46,11 +46,17 @@
               <p>
                 {{title}}
               </p>
-              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
               </a>
+              {{#isResortMode}}
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                   data-test="activity-{{activity}}-move">
+                  Move
+                </a>
+              {{/isResortMode}}
             </span>
           </li>
         {{/perCategory.READY.activities}}
@@ -71,11 +77,17 @@
               <p>
                 {{title}}
               </p>
-              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
               </a>
+              {{#isResortMode}}
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                   data-test="activity-{{activity}}-move">
+                  {{#__}}sorted-activities.button-move{{/__}}
+                </a>
+              {{/isResortMode}}
             </span>
           </li>
         {{/perCategory.HELP.activities}}
@@ -90,7 +102,7 @@
     {{/perCategory.DOING.hasActivities}}
     {{#perCategory.DOING}}
       {{#hasActivities}}
-      <details>
+      <details {{#isExpanded}}open{{/isExpanded}}>
         <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
         <div class="panel panel-border-narrow">
           <ul>
@@ -98,11 +110,17 @@
               <li class="menu-container DOING" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
+                {{#isResortMode}}
+                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                     data-test="activity-{{activity}}-move">
+                    Move
+                  </a>
+                {{/isResortMode}}
               </span>
               </li>
             {{/activities}}
@@ -120,7 +138,7 @@
     {{/perCategory.NOTWORKED.hasActivities}}
     {{#perCategory.NOTWORKED}}
       {{#hasActivities}}
-        <details>
+        <details {{#isExpanded}}open{{/isExpanded}}>
           <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
@@ -128,11 +146,17 @@
                 <li class="menu-container NOTWORKED" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
+                {{#isResortMode}}
+                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                     data-test="activity-{{activity}}-move">
+                    Move
+                  </a>
+                {{/isResortMode}}
               </span>
                 </li>
               {{/activities}}
@@ -150,7 +174,7 @@
     {{/perCategory.NO.hasActivities}}
     {{#perCategory.NO}}
       {{#hasActivities}}
-        <details>
+        <details {{#isExpanded}}open{{/isExpanded}}>
           <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
@@ -158,11 +182,17 @@
                 <li class="menu-container NO" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
                 </a>
+                {{#isResortMode}}
+                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                     data-test="activity-{{activity}}-move">
+                    Move
+                  </a>
+                {{/isResortMode}}
               </span>
                 </li>
               {{/activities}}

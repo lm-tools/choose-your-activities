@@ -10,7 +10,19 @@ router.get('/', (req, res, next) => {
     .findSortedByAccountId(accountId)
     .then(sortedActivities => {
       res.render('sorted-activities', Object.assign({ accountId },
-        new ActivitiesViewModel(sortedActivities)));
+        new ActivitiesViewModel(sortedActivities, { action: 'view' })));
+    })
+    .catch((err) => next(err));
+});
+
+router.get('/resort', (req, res, next) => {
+  const accountId = req.params.accountId;
+
+  ActivitiesModel
+    .findSortedByAccountId(accountId)
+    .then(sortedActivities => {
+      res.render('sorted-activities', Object.assign({ accountId },
+        new ActivitiesViewModel(sortedActivities, { action: 'resort' })));
     })
     .catch((err) => next(err));
 });

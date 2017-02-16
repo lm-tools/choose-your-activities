@@ -1,11 +1,14 @@
 const i18n = require('i18n');
 const activityCopy = require('../locales/activity-copy');
 const sortActivities = require('./activity-sorter');
+/* eslint-disable no-underscore-dangle */
 
 module.exports = class ActivityViewModel {
 
-  constructor(activities) {
+  constructor(activities, options) {
     this.activities = sortActivities(activities.map(this.activityModel));
+    this.action = this.getAction(options);
+    this.isResortMode = this.action.mode === 'resort';
     this.perCategory = {
       DOING: this.activityStats(this.activities.filter(x => x.category === 'DOING')),
       READY: this.activityStats(this.activities.filter(x => x.category === 'READY')),
@@ -24,16 +27,31 @@ module.exports = class ActivityViewModel {
       activities,
       hasActivities: activities.length > 0,
       categoryIntroduction: this.getCategoryIntroText(activities),
+      isExpanded: this.isResortMode,
     });
   }
 
   getCategoryIntroText(activities) {
     if (activities.length === 1) {
-      // eslint-disable-next-line no-underscore-dangle
       return i18n.__('sorted-activities.show-single-activity');
     }
-    // eslint-disable-next-line no-underscore-dangle
     return i18n.__('sorted-activities.show-multiple-activities',
       { totalActivities: activities.length });
+  }
+
+  getAction(options) {
+    const mode = options ? options.action : null;
+    if (mode === 'resort') {
+      return {
+        mode,
+        label: i18n.__('sorted-activities.finish-sorting-button'),
+        link: '/activities/sorted',
+      };
+    }
+    return {
+      mode,
+      label: i18n.__('sorted-activities.resort-button'),
+      link: '/activities/sorted/resort',
+    };
   }
 };

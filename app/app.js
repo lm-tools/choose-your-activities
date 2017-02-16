@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const introductionController = require('./controllers/introduction-controller');
 const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
 const sortedActivitiesController = require('./controllers/sorted-activities-controller');
-const reSortActivitiesController = require('./controllers/re-sort-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
 const activityDetailsController = require('./controllers/activity-details-controller');
 
@@ -71,7 +70,6 @@ app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:accountId/activities/unsorted`, unsortedActivitiesController);
 app.use(`${basePath}/:accountId/activities/sorted`, sortedActivitiesController);
-app.use(`${basePath}/:accountId/activities/re-sort`, reSortActivitiesController);
 app.use(`${basePath}/:accountId/activities/:activityId/categorise`, categoriseActivityController);
 app.use(`${basePath}/:accountId/activities/:activityId`, activityDetailsController);
 

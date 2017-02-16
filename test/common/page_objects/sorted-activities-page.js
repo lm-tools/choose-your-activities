@@ -1,21 +1,20 @@
-const SortedActivitiesPage = function SortedActivitiesPage(browser) {
-  this.browser = browser;
+const SortedActivitiesBasePage = require('./sorted-activities-base-page');
+const expect = require('chai').expect;
 
-  this.activityList = () => browser.queryAll('[data-test="title"]');
-  this.visit = (accountId) => this.browser.visit(`/${accountId}/activities/sorted`);
-  this.browserPath = () => browser.location.pathname;
-  this.activityCategories = () => browser.queryAll('[data-test="category"]').map(x => x.innerHTML);
-  this.getActivitiesInCategory = (category) =>
-    browser.queryAll(`[data-test="category-${category}"] li p`).map(x => x.innerHTML.trim());
-  this.getOpenCategory = (category) =>
-    browser.query(`[data-test="category-${category}"] details[open]`);
-  this.getCategoryDescription = category =>
-    browser.text(`[data-test="category-${category}"] [data-test="empty-message"]`);
-  this.clickDetailsButton = activity =>
-    browser.click(`[data-test="activity-${activity.name}"] [data-test="details-button"]`);
-  this.clickReSortActivitiesLink = () => browser.click('[data-test="re-sort-link"]');
-  this.getCategorySummary = (category) =>
-    browser.text(`[data-test="category-${category}"] [data-test="show-hide-text"]`);
-};
+class SortedActivitiesPage extends SortedActivitiesBasePage {
+
+  visit(accountId) {
+    return this.browser.visit(`/${accountId}/activities/sorted`);
+  }
+
+  clickReSortActivitiesLink() {
+    return this.browser.click('[data-test="action-on-view"]');
+  }
+
+  expectAt(accountId) {
+    expect(this.browserPath()).to.equal(`/${accountId}/activities/sorted`);
+  }
+
+}
 
 module.exports = SortedActivitiesPage;
