@@ -72,4 +72,22 @@ describe('Unsorted activities page', () => {
       expect(unsortedActivitiesPage.activityList()[0].title).to.equal(activity.title)
     );
   });
+
+
+  describe('all activities sorted', () => {
+    before(() =>
+      helper.cleanDb()
+        .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => unsortedActivitiesPage.visit(accountId))
+    );
+
+    it('should display continue button', () =>
+      expect(unsortedActivitiesPage.isContinueButtonDisplayed()).to.equal(true)
+    );
+
+    it('continue button should link to sorted page', () =>
+      unsortedActivitiesPage.clickContinue()
+        .then(() => helper.sortedActivitiesPage.expectAt(accountId))
+    );
+  });
 });

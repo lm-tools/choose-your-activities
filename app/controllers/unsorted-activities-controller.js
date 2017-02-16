@@ -14,8 +14,12 @@ router.get('/', (req, res, next) => {
   ]).then(results => {
     const unsorted = results[0];
     const lastSortedActivity = results[1];
-    res.render('unsorted-activities', Object.assign({ accountId },
-      new ActivitiesViewModel(unsorted, lastSortedActivity)));
+    if (unsorted.length > 0) {
+      res.render('unsorted-activities', Object.assign({ accountId },
+        new ActivitiesViewModel(unsorted, lastSortedActivity)));
+    } else {
+      res.render('unsorted-activities-all-sorted', { accountId });
+    }
   }).catch((err) => next(err));
 });
 

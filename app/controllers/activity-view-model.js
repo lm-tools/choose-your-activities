@@ -1,6 +1,7 @@
 const i18n = require('i18n');
 const activityCopy = require('../locales/activity-copy');
 const sortActivities = require('./activity-sorter');
+const allActivitiesLength = require('../models/activities').length;
 /* eslint-disable no-underscore-dangle */
 
 module.exports = class ActivityViewModel {
@@ -16,6 +17,7 @@ module.exports = class ActivityViewModel {
       NOTWORKED: this.activityStats(this.activities.filter(x => x.category === 'NOT-WORKED')),
       NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
     };
+    this.showNavigation = activities.length !== allActivitiesLength;
   }
 
   activityModel(activity) {
