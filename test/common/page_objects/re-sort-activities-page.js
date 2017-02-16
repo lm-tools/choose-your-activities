@@ -12,7 +12,7 @@ class ReSortActivitiesPage extends SortedActivitiesBasePage {
   }
 
   clickFinishSortingButton() {
-    return this.browser.click('[data-test="finish-sorting-button"]');
+    return this.browser.click('[data-test="action-on-resort"]');
   }
 
   expectAt(accountId) {

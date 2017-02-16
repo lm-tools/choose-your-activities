@@ -26,16 +26,9 @@
 <p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
 <p class="text">
 
-  {{#isResortMode}}
-  <a href="{{basePath}}/{{accountId}}/activities/sorted" data-test="finish-sorting-button">
-    {{#__}}sorted-activities.finish-sorting-button{{/__}}
+  <a href="{{basePath}}/{{accountId}}{{action.link}}" data-test="action-on-{{action.mode}}">
+    {{action.label}}
   </a>
-  {{/isResortMode}}
-  {{^isResortMode}}
-  <a href="{{basePath}}/{{accountId}}/activities/sorted/resort" data-test="re-sort-link">
-    {{#__}}sorted-activities.resort-button{{/__}}
-  </a>
-  {{/isResortMode}}
 </p>
 
 <div class="menu">
@@ -53,7 +46,7 @@
               <p>
                 {{title}}
               </p>
-              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action}}"
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
@@ -84,7 +77,7 @@
               <p>
                 {{title}}
               </p>
-              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action}}"
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
                 {{#__}}sorted-activities.button-details{{/__}}
@@ -117,7 +110,7 @@
               <li class="menu-container DOING" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
@@ -153,7 +146,7 @@
                 <li class="menu-container NOTWORKED" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}
@@ -189,7 +182,7 @@
                 <li class="menu-container NO" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action}}"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
                   {{#__}}sorted-activities.button-details{{/__}}

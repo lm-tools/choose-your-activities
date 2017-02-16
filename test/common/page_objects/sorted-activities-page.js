@@ -8,7 +8,7 @@ class SortedActivitiesPage extends SortedActivitiesBasePage {
   }
 
   clickReSortActivitiesLink() {
-    return this.browser.click('[data-test="re-sort-link"]');
+    return this.browser.click('[data-test="action-on-view"]');
   }
 
   expectAt(accountId) {
