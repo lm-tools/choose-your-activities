@@ -3,7 +3,13 @@ const router = new express.Router({ mergeParams: true });
 const uuid = require('uuid');
 
 router.get('/', (req, res) => {
-  res.redirect(`${req.app.locals.basePath}/${uuid.v4()}/introduction`);
+  const accountId = req.query.id;
+
+  if (accountId) {
+    res.redirect(`${req.app.locals.basePath}/${accountId}/introduction`);
+  } else {
+    res.redirect(`${req.app.locals.basePath}/${uuid.v4()}/introduction`);
+  }
 });
 
 router.get('/:accountId/introduction', (req, res) => {
