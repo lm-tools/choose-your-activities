@@ -109,7 +109,7 @@
     {{/perCategory.DOING.hasActivities}}
     {{#perCategory.DOING}}
       {{#hasActivities}}
-      <details>
+      <details {{#isExpanded}}open{{/isExpanded}}>
         <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
         <div class="panel panel-border-narrow">
           <ul>
@@ -145,7 +145,7 @@
     {{/perCategory.NOTWORKED.hasActivities}}
     {{#perCategory.NOTWORKED}}
       {{#hasActivities}}
-        <details>
+        <details {{#isExpanded}}open{{/isExpanded}}>
           <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
@@ -181,7 +181,7 @@
     {{/perCategory.NO.hasActivities}}
     {{#perCategory.NO}}
       {{#hasActivities}}
-        <details>
+        <details {{#isExpanded}}open{{/isExpanded}}>
           <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>

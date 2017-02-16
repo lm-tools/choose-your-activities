@@ -46,6 +46,10 @@ class SortedActivitiesBasePage {
     return this.browser.text(`[data-test="category-${category}"] [data-test="show-hide-text"]`);
   }
 
+  isCategoryExpanded(category) {
+    return this.browser.query(`[data-test="category-${category}"] details`).hasAttribute('open');
+  }
+
 }
 
 module.exports = SortedActivitiesBasePage;

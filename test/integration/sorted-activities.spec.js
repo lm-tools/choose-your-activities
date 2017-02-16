@@ -150,5 +150,11 @@ describe('Sorted activities page', () => {
           .then(() => sortedActivitiesPage.expectAt(accountId))
       );
     });
+
+    ['DOING', 'NOT-WORKED', 'NO'].forEach(s => {
+      it(`should expand category "${s}" by default`, () =>
+        expect(sortedActivitiesPage.isCategoryExpanded(s)).to.equal(false)
+      );
+    });
   });
 });

@@ -6,6 +6,8 @@ module.exports = class ActivityViewModel {
 
   constructor(activities, options) {
     this.activities = sortActivities(activities.map(this.activityModel));
+    this.action = options ? options.action : null;
+    this.isResortMode = this.action === 'resort';
     this.perCategory = {
       DOING: this.activityStats(this.activities.filter(x => x.category === 'DOING')),
       READY: this.activityStats(this.activities.filter(x => x.category === 'READY')),
@@ -13,8 +15,6 @@ module.exports = class ActivityViewModel {
       NOTWORKED: this.activityStats(this.activities.filter(x => x.category === 'NOT-WORKED')),
       NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
     };
-    this.action = options ? options.action : null;
-    this.isResortMode = this.action === 'resort';
   }
 
   activityModel(activity) {
@@ -26,6 +26,7 @@ module.exports = class ActivityViewModel {
       activities,
       hasActivities: activities.length > 0,
       categoryIntroduction: this.getCategoryIntroText(activities),
+      isExpanded: this.isResortMode,
     });
   }
 

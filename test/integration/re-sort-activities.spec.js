@@ -122,5 +122,11 @@ describe('Re-Sort activities page', () => {
           .then(() => reSortActivitiesPage.expectAt(accountId))
       );
     });
+
+    ['DOING', 'NOT-WORKED', 'NO'].forEach(s => {
+      it(`should expand category "${s}" by default`, () =>
+        expect(reSortActivitiesPage.isCategoryExpanded(s)).to.equal(true)
+      );
+    });
   });
 });
