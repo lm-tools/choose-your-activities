@@ -13,7 +13,8 @@ module.exports = class ActivityViewModel {
       NOTWORKED: this.activityStats(this.activities.filter(x => x.category === 'NOT-WORKED')),
       NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
     };
-    this.isResortMode = options && options.action && options.action === 'resort';
+    this.action = options ? options.action : null;
+    this.isResortMode = this.action === 'resort';
   }
 
   activityModel(activity) {

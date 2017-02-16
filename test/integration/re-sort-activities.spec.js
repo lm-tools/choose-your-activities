@@ -115,6 +115,12 @@ describe('Re-Sort activities page', () => {
       it(`should display "Move" link for activity in category "${s.category}"`, () =>
         expect(reSortActivitiesPage.isMoveButtonDisplayed(s.activity)).to.equal(true)
       );
+
+      it(`should link to resort page from details page for activity in ${s.category}`, () =>
+        reSortActivitiesPage.clickDetailsButton(s.activity)
+          .then(() => helper.activityDetailsPage.clickBackButton())
+          .then(() => reSortActivitiesPage.expectAt(accountId))
+      );
     });
   });
 });

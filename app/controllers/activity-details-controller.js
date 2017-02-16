@@ -8,6 +8,7 @@ router.get('', (req, res) => {
     {
       accountId,
       activity: new ActivityViewModel([]).activityModel({ activity: req.params.activityId }),
+      backPath: req.query.from === 'resort' ? '/activities/sorted/resort' : '/activities/sorted',
     }
   );
 });

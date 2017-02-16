@@ -143,6 +143,12 @@ describe('Sorted activities page', () => {
       it(`should not display "Move" link for activity in category "${s.category}"`, () =>
         expect(sortedActivitiesPage.isMoveButtonDisplayed(s.activity)).to.equal(false)
       );
+
+      it(`should link to resort page from details page for activity in ${s.category}`, () =>
+        sortedActivitiesPage.clickDetailsButton(s.activity)
+          .then(() => helper.activityDetailsPage.clickBackButton())
+          .then(() => sortedActivitiesPage.expectAt(accountId))
+      );
     });
   });
 });
