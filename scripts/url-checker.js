@@ -20,7 +20,7 @@ function scanHtmlContent(activity) {
     const htmlChecker = new blc.HtmlChecker({}, {
       link(result) {
         if (result.broken) {
-          brokenLinks.push(result.url.original);
+          brokenLinks.push({ url: result.url.original, reason: result.brokenReason });
         }
       },
       complete() {
