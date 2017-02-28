@@ -1,7 +1,7 @@
 const knex = require('../app/db').knex;
 
 module.exports = {
-  getTotalSortedJobs: function getTotalSortedJobs() {
+  getTotalSortedActivities: function getTotalSortedActivities() {
     let output = 'interventionRef,totalSorted\n';
 
     return knex('sorted_activity')

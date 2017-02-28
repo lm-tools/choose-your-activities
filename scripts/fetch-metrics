@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var report = require('../db/reports.js')
+
+report.getTotalSortedActivities().then((result) => {
+  console.log(result)
+  process.exit();
+  });
