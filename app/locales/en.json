@@ -149,5 +149,9 @@
   "activities-details": {
     "pageTitle": "Choose your activities",
     "backButton": "Back to your activities"
+  },
+  "error": {
+    "404": "Page not found",
+    "500": "We're experiencing technical problems."
   }
 }
