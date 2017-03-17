@@ -12,6 +12,7 @@ const SortedActivitiesPage = require('../../common/page_objects/sorted-activitie
 const ReSortActivitiesPage = require('../../common/page_objects/re-sort-activities-page');
 const CategoriseActivityPage = require('../../common/page_objects/categorise-activity-page');
 const ActivityDetailsPage = require('../../common/page_objects/activity-details-page');
+const ErrorPage = require('../../common/page_objects/error-page');
 
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
 require('../../../bin/www'); // This starts the web server, and ensures it is only
@@ -34,6 +35,7 @@ module.exports = Object.assign(
     reSortActivitiesPage: new ReSortActivitiesPage(browser),
     categoriseActivityPage: new CategoriseActivityPage(browser),
     activityDetailsPage: new ActivityDetailsPage(browser),
+    errorPage: new ErrorPage(browser),
   },
   dbHelper,
   testData
