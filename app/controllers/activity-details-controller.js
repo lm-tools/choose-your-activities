@@ -1,8 +1,9 @@
 const express = require('express');
 const router = new express.Router({ mergeParams: true });
 const ActivityViewModel = require('./activity-view-model');
+const validator = require('../validators/activity-details-validator');
 
-router.get('', (req, res) => {
+router.get('', validator.get, (req, res) => {
   const accountId = req.params.accountId;
   res.render('activity-details',
     {

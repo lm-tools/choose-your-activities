@@ -9,7 +9,7 @@ describe('Activity details', () => {
   const accountId = uuid.v4();
 
   describe('page outline', () => {
-    beforeEach(() => pageUnderTest.visit(accountId, helper.allActivities[10]));
+    before(() => pageUnderTest.visit(accountId, helper.allActivities[10]));
 
     it('should have correct title', () =>
       expect(pageUnderTest.browser.text('title'))
@@ -25,12 +25,27 @@ describe('Activity details', () => {
         expect(helper.sortedActivitiesPage.browserPath())
           .to.contain(`${accountId}/activities/sorted`))
     );
+
+    describe('activityId validation', () => {
+      before(() =>
+        pageUnderTest.visit(accountId, 'ACT-')
+          .catch(() => {})
+      );
+
+      it('shows 400 message ', () => {
+        expect(helper.errorPage.getMessage()).to.equal('Bad request');
+      });
+
+      it('returns 400 code', () =>
+        expect(helper.browser.response.status).to.equal(400)
+      );
+    });
   });
 
 
   helper.allActivities.forEach(activity => {
     describe(`for "${activity.title}"`, () => {
-      beforeEach(() => pageUnderTest.visit(accountId, activity));
+      before(() => pageUnderTest.visit(accountId, activity));
 
       it('should display correct header', () =>
         expect(pageUnderTest.getTitle()).to.equal(activity.title)
