@@ -6,6 +6,8 @@ const CategoryView = require('./category-view-model');
 
 const ActivitiesModel = require('../models/activity-model');
 
+const validator = require('../validators/categorise-activity-validator');
+
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
 
@@ -13,7 +15,7 @@ function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
-router.get('', (req, res) => {
+router.get('', validator.get, (req, res) => {
   const accountId = req.params.accountId;
   const activityId = req.params.activityId;
   const categoryView = new CategoryView(categories);
@@ -22,7 +24,7 @@ router.get('', (req, res) => {
     { accountId, activityId, title: getActivityTitle(activityId) }, categoryView));
 });
 
-router.post('', (req, res) => {
+router.post('', validator.post, (req, res) => {
   const accountId = req.params.accountId;
   const activity = req.params.activityId;
   const category = req.body.category;

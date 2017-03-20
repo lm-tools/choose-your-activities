@@ -7,26 +7,41 @@ const categories = require('../../app/models/categories');
 
 const uuid = require('uuid');
 const expect = require('chai').expect;
+const request = require('supertest');
 
 describe('Categorise activity page', () => {
   const accountId = uuid.v4();
   const activity = 'ACT-1';
 
   describe('page outline', () => {
+    before(() => categoriseActivityPage.visit(accountId, activity));
+
     it('should have correct heading', () =>
-      categoriseActivityPage.visit(accountId, activity)
-        .then(() => expect(categoriseActivityPage.headingToBe('Find out about volunteering')))
+      expect(categoriseActivityPage.headingToBe('Find out about volunteering'))
     );
 
     it('should have all of the categories to choose from', () =>
-      categoriseActivityPage.visit(accountId, activity)
-        .then(() => expect(categoriseActivityPage.countCategories()).to.equal(categories.length))
+      expect(categoriseActivityPage.countCategories()).to.equal(categories.length)
     );
 
     it('should contain valid google tag manager data', () =>
-      categoriseActivityPage.visit(accountId, activity)
-        .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
+      expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
     );
+
+    describe('activityId validation', () => {
+      before(() =>
+        categoriseActivityPage.visit(accountId, 'ACT-00')
+          .catch(() => {})
+      );
+
+      it('shows 400 message ', () => {
+        expect(helper.errorPage.getMessage()).to.equal('Bad request');
+      });
+
+      it('returns 400 code', () =>
+        expect(helper.browser.response.status).to.equal(400)
+      );
+    });
   });
 
   describe('categorise activity', () => {
@@ -52,6 +67,24 @@ describe('Categorise activity page', () => {
     it('should contain "sorted" query parameter', () =>
       expect(categoriseActivityPage.browserQuery()).to.equal(`?sorted=${activity}`)
     );
+
+    describe('activityId validation on POST', () => {
+      before(() =>
+        request(helper.app)
+          .post(`/${accountId}/activities/ACT-99/categorise`)
+          .then(response => {
+            this.response = response;
+          })
+      );
+
+      it('shows 400 message ', () => {
+        expect(this.response.text).to.include('Bad request');
+      });
+
+      it('returns 400 code', () =>
+        expect(this.response.status).to.equal(400)
+      );
+    });
   });
 
   describe('re-categorise activity', () => {
@@ -65,8 +98,8 @@ describe('Categorise activity page', () => {
 
     it('should maintain the fact an activity has only one category', () =>
       categoriseActivityPage.selectCategory('Not really for me')
-      .then(() => helper.getSortedActivities(accountId))
-      .then((sortedActivities) => expect(sortedActivities.length).to.equal(1))
+        .then(() => helper.getSortedActivities(accountId))
+        .then((sortedActivities) => expect(sortedActivities.length).to.equal(1))
     );
 
     it('should redirect to re-sort activities after re-categorisation', () =>

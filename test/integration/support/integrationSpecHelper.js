@@ -15,10 +15,9 @@ const ActivityDetailsPage = require('../../common/page_objects/activity-details-
 const ErrorPage = require('../../common/page_objects/error-page');
 
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
-require('../../../bin/www'); // This starts the web server, and ensures it is only
+const app = require('../../../bin/www'); // This starts the web server, and ensures it is only
                           // started once. It is a misuse of "require", and
                           // should be improved.
-
 afterEach(function () {
   if (this.currentTest.state === 'failed') {
     screenshots.takeScreenshot(this.currentTest, browser);
@@ -36,6 +35,7 @@ module.exports = Object.assign(
     categoriseActivityPage: new CategoriseActivityPage(browser),
     activityDetailsPage: new ActivityDetailsPage(browser),
     errorPage: new ErrorPage(browser),
+    app,
   },
   dbHelper,
   testData
