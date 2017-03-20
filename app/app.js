@@ -14,9 +14,12 @@ const activityDetailsController = require('./controllers/activity-details-contro
 const i18n = require('./middleware/i18n');
 const errorHandler = require('./middleware/error-handler');
 const healthCheckController = require('./controllers/health-check-controller');
+const helmet = require('helmet');
 
 const app = express();
 i18n(app);
+app.use(helmet());
+app.use(helmet.referrerPolicy());
 
 // view engine setup
 const cons = require('consolidate');
