@@ -5,8 +5,8 @@ const activities = require('../models/activities');
 module.exports = {
   get: celebrate({
     params: Joi.object().keys({
-      activityId: Joi.any().valid(activities),
-      accountId: Joi.string(),
+      activityId: Joi.any().valid(activities).required(),
+      accountId: Joi.string().required(),
     }),
   }),
 };
