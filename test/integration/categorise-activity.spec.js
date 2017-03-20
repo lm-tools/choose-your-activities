@@ -72,6 +72,7 @@ describe('Categorise activity page', () => {
       before(() =>
         request(helper.app)
           .post(`/${accountId}/activities/ACT-99/categorise`)
+          .send({ category: categories[1] })
           .then(response => {
             this.response = response;
           })
@@ -84,6 +85,30 @@ describe('Categorise activity page', () => {
       it('returns 400 code', () =>
         expect(this.response.status).to.equal(400)
       );
+    });
+
+    [
+      { body: {}, title: 'empty category validation on POST' },
+      { body: { category: 'bad-category' }, title: 'wrong category validation on POST' },
+    ].forEach(s => {
+      describe(s.title, () => {
+        before(() =>
+          request(helper.app)
+            .post(`/${accountId}/activities/ACT-1/categorise`)
+            .send(s.body)
+            .then(response => {
+              this.response = response;
+            })
+        );
+
+        it('shows 400 message ', () => {
+          expect(this.response.text).to.include('Bad request');
+        });
+
+        it('returns 400 code', () =>
+          expect(this.response.status).to.equal(400)
+        );
+      });
     });
   });
 
