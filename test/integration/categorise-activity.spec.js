@@ -35,7 +35,7 @@ describe('Categorise activity page', () => {
       );
 
       it('shows 400 message ', () => {
-        expect(helper.errorPage.getMessage()).to.equal('Bad request');
+        expect(helper.errorPage.getMessage()).to.equal('We\'re experiencing technical problems.');
       });
 
       it('returns 400 code', () =>
@@ -79,7 +79,7 @@ describe('Categorise activity page', () => {
       );
 
       it('shows 400 message ', () => {
-        expect(this.response.text).to.include('Bad request');
+        expect(this.response.text).to.include('We&#39;re experiencing technical problems.');
       });
 
       it('returns 400 code', () =>
@@ -102,7 +102,7 @@ describe('Categorise activity page', () => {
         );
 
         it('shows 400 message ', () => {
-          expect(this.response.text).to.include('Bad request');
+          expect(this.response.text).to.include('We&#39;re experiencing technical problems.');
         });
 
         it('returns 400 code', () =>

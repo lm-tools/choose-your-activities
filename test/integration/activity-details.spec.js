@@ -33,7 +33,7 @@ describe('Activity details', () => {
       );
 
       it('shows 400 message ', () => {
-        expect(helper.errorPage.getMessage()).to.equal('Bad request');
+        expect(helper.errorPage.getMessage()).to.equal('We\'re experiencing technical problems.');
       });
 
       it('returns 400 code', () =>
