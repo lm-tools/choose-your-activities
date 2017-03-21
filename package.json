@@ -13,9 +13,7 @@
     "db-migrate": "knex migrate:latest --knexfile db/knexfile.js",
     "heroku-postbuild": "npm run compile",
     "create-migration": "knex migrate:make --knexfile db/knexfile.js $MIGRATION",
-    "snyk-protect": "snyk protect",
-    "check-content": "gulp check-content",
-    "prepublish": "npm run snyk-protect"
+    "check-content": "gulp check-content"
   },
   "// NOTE": [
     "^Pinned dependencies are actually devDependencies, which are only",
@@ -52,7 +50,6 @@
     "node-uuid": "~1.4",
     "pg": "^4.5.5",
     "serve-favicon": "~2.3",
-    "snyk": "^1.21.2",
     "uuid": "^3.0.1",
     "vinyl-source-stream": "^1.1.0",
     "winston": "^2.2.0"
@@ -71,6 +68,5 @@
   },
   "engines": {
     "node": "6.1.0"
-  },
-  "snyk": true
+  }
 }
