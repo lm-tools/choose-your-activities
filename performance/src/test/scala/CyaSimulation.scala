@@ -32,10 +32,13 @@ class CyaSimulation extends Simulation {
     .pause(2)
     .exec(http("dashboard unsorted")
       .get(s"$appPath/$${refId}/activities/unsorted")
-      .check(css("ul > li").count.transform(c => c+1).saveAs("numberOfActivities")))
+      .check(css("li[data-test-activity]").count.saveAs("numberOfActivities")))
     .pause(2)
-    .repeat("${numberOfActivities}", "activityIndex") {
-      exec(http("show activity")
+    .repeat("${numberOfActivities}", "index") {
+      exec { session =>
+        val index = session("index").as[Int] + 1
+        session.set("activityIndex", index)
+      }.exec(http("show activity")
         .get(activityUrl))
         .pause(1)
         .exec(http("complete activity")

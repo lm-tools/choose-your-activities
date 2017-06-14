@@ -55,6 +55,10 @@ If you behind proxy run this instead:
 NODE_TLS_REJECT_UNAUTHORIZED=0 npm run check-content
 ```
 
+## Performance tests
+
+Performance tests are described [here](./performance/README.md)
+
 [build status image]: https://api.travis-ci.org/lm-tools/choose-your-activities.svg
 [ci]: https://travis-ci.org/lm-tools/choose-your-activities
 [express]: http://expressjs.com/
