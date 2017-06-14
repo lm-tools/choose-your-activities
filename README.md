@@ -47,6 +47,14 @@ $ GOOGLE_TAG_MANAGER_ID=<GTM-ID> npm run start
 $ npm run check-content
 ```
 
+*Note:*
+
+If you behind proxy run this instead:
+
+```
+NODE_TLS_REJECT_UNAUTHORIZED=0 npm run check-content
+```
+
 [build status image]: https://api.travis-ci.org/lm-tools/choose-your-activities.svg
 [ci]: https://travis-ci.org/lm-tools/choose-your-activities
 [express]: http://expressjs.com/

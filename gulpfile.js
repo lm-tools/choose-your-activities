@@ -9,6 +9,8 @@ const source = require('vinyl-source-stream');
 const streamify = require('gulp-streamify');
 const uglify = require('gulp-uglify');
 const checkForDeadLinks = require('./scripts/url-checker');
+const labels = require('./app/locales/en.json');
+const activities = require('./app/models/activities');
 
 let node;
 
@@ -72,8 +74,9 @@ gulp.task('watch', ['js', 'css', 'server'], () => {
   gulp.watch('app/assets/js/**/*.js', ['browserify']);
 });
 
-gulp.task('check-content', () =>
-  checkForDeadLinks().then(result => {
+gulp.task('check-content', () => {
+  const activitiesWithBody = activities.map(a => ({ name: a, body: labels.activity[a].details }));
+  return checkForDeadLinks(activitiesWithBody).then(result => {
     if (result.brokenLinksCount > 0) {
       gutil.log(gutil.colors.red('Found broken links:'));
       gutil.log(JSON.stringify(result, null, '  '));
@@ -81,7 +84,8 @@ gulp.task('check-content', () =>
     } else {
       gutil.log('All links checked and are OK.');
     }
-  })
+  });
+}
 );
 
 

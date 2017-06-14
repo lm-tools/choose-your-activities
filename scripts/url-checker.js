@@ -1,70 +1,45 @@
-const blc = require('broken-link-checker');
-const activities = require('../app/models/activities');
-const i18n = require('i18n');
-const path = require('path');
-const activityCopy = require('../app/locales/activity-copy');
-const bhttp = require('bhttp');
-const knownErrorUrl = 'https://nationalcareersservice.direct.gov.uk/job-profiles/home';
+const cheerio = require('cheerio');
+const request = require('request-promise');
 
-i18n.configure({
-  locales: ['en'],
-  directory: path.join(__dirname, '..', 'app', 'locales'),
-  defaultLocale: 'en',
-  autoReload: false,
-  objectNotation: true,
-  useCookie: false,
-  updateFiles: false,
-  indent: '  ',
-});
+function findAllLinks(body) {
+  const $ = cheerio.load(`<div>${body}</div>`);
+  return $('a').map((i, el) => $(el).attr('href')).get();
+}
 
-function scanHtmlContent(activity) {
-  return new Promise(resolve => {
-    const brokenLinks = [];
-    const options = {
-      excludedKeywords: [knownErrorUrl],
-    };
-    const htmlChecker = new blc.HtmlChecker(options, {
-      link(result) {
-        if (result.broken) {
-          brokenLinks.push({ url: result.url.original, reason: result.brokenReason });
-        }
-      },
-      complete() {
-        resolve({ activity: activity.title, brokenLinks });
+function makeGetRequest(url) {
+  return request(
+    {
+      uri: url, method: 'GET', resolveWithFullResponse: true, simple: false,
+      headers: {
+        'User-Agent': 'request',
       },
     });
-    htmlChecker.scan(activity.details);
+}
+
+function checkSingleUrl(url) {
+  return makeGetRequest(url)
+    .then(result => ((result.statusCode !== 200) ? { url, reason: `${result.statusCode}` } : null))
+    .catch(result => ({ url, reason: result.message }));
+}
+
+function checkLinks(document) {
+  const links = findAllLinks(document.body);
+  const pLinks = links.map(link => checkSingleUrl(link));
+  return Promise.all(pLinks).then(result => ({
+    name: document.name,
+    brokenLinks: result.filter(i => !!i),
+  }));
+}
+
+function check(htmlDocuments) {
+  const pDocumentLinks = htmlDocuments.map(checkLinks);
+  return Promise.all(pDocumentLinks).then(result => {
+    const brokenLinksCount = result
+      .map(it => it.brokenLinks.length)
+      .reduce((acc, cur) => acc + cur);
+    return { brokenLinksCount, result };
   });
 }
 
-function checkSingleUrl(url, name) {
-  return bhttp.get(url)
-    .then(result => {
-      const brokenLinks = (result.statusCode !== 200) ? [{
-        url,
-        reason: 'NOT_200',
-      }] : [];
-      return { activity: name, brokenLinks };
-    }).catch(result => ({
-      activity: name,
-      brokenLinks: [{ url, reason: result.code }],
-    }));
-}
 
-function checkForDeadLinks() {
-  const queuePromises = [];
-  activities.map(activity => activityCopy({ activity })).forEach(activity => {
-    queuePromises.push(scanHtmlContent(activity));
-  });
-  queuePromises.push(checkSingleUrl(knownErrorUrl, 'Known error url'));
-
-  return Promise.all(queuePromises).then(results => {
-    let brokenLinksCount = 0;
-    results.forEach(result => {
-      brokenLinksCount += result.brokenLinks.length;
-    });
-    return Object.assign({ brokenLinksCount, activities: results });
-  });
-}
-
-module.exports = checkForDeadLinks;
+module.exports = check;
