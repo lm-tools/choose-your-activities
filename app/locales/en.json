@@ -142,7 +142,7 @@
     "category-empty": "You haven't chosen anything for this.",
     "show-single-activity": "Show 1 activity",
     "show-multiple-activities": "Show {{totalActivities}} activities",
-    "button-details": "Details",
+    "button-details": "More",
     "finish-sorting-button": "Finish sorting",
     "button-move": "Move"
   },
