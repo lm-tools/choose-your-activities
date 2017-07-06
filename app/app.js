@@ -10,6 +10,7 @@ const unsortedActivitiesController = require('./controllers/unsorted-activities-
 const sortedActivitiesController = require('./controllers/sorted-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
 const activityDetailsController = require('./controllers/activity-details-controller');
+const cookieController = require('./controllers/cookie-controller');
 
 const i18n = require('./middleware/i18n');
 const errorHandler = require('./middleware/error-handler');
@@ -71,6 +72,7 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 
 app.use(helmet.noCache());
 
+app.use(`${basePath}/`, cookieController);
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:accountId/activities/unsorted`, unsortedActivitiesController);
