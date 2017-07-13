@@ -73,7 +73,7 @@
     "zombie": "^4.2.1"
   },
   "engines": {
-    "node": "6.1.0"
+    "node": "6.11.1"
   },
   "snyk": true
 }
