@@ -129,12 +129,12 @@
     }
   },
   "tabs": {
-    "unsorted": "Unsorted",
-    "sorted": "Sorted"
+    "unsorted": "Unsorted activities",
+    "sorted": "Your activity list"
   },
   "sorted-activities": {
     "pageTitle": "Choose your activities",
-    "heading": "Choose your activities",
+    "heading": "Your activity list",
     "activities-heading": "Your activities",
     "activities-text-1": "Get more details about each of the activities - tips, advice and links to useful websites.",
     "activities-text-2": "You can get back to your list from the 'Choose your activities' To-do. Once you've marked that as 'done', there will be a link in your journal that you can use instead.",
