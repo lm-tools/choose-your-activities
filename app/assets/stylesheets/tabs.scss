@@ -132,7 +132,6 @@
 @media (max-width: 640px) {
   .tab-content .tab-pane {
     border-top: none;
-    padding: 0;
   }
 }
 
@@ -251,9 +250,6 @@
 @media (max-width: 640px) {
   .js-tab-content .js-tab-container {
     min-height: 0;
-  }
-  .js-tab-content .js-tab-pane {
-    border-bottom: solid 1px #bfc1c3;
   }
   .js-tab-content .js-tab-container:first-child {
     border-top: solid 1px #bfc1c3;
