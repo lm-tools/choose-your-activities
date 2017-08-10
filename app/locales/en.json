@@ -129,8 +129,8 @@
     }
   },
   "tabs": {
-    "unsorted": "Unsorted",
-    "sorted": "Sorted"
+    "unsorted": "Unsorted activities",
+    "sorted": "Your activity list"
   },
   "sorted-activities": {
     "pageTitle": "Choose your activities",
