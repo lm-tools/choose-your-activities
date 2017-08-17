@@ -1,4 +1,5 @@
 const morgan = require('morgan');
+const morganJson = require('morgan-json');
 const fs = require('fs');
 
 function colorForStatus(status) {
@@ -49,7 +50,14 @@ module.exports.init = (env) => {
       stream: fs.createWriteStream(`${__dirname}/logs/test.log`, { flags: 'w' }),
     });
   } else if (env === 'production') {
-    return morgan('combined');
+    const format = morganJson({
+      method: ':method',
+      path: ':url',
+      status: ':status',
+      bytes: ':res[content-length]',
+      duration: ':response-time',
+    });
+    return morgan(format);
   }
   return morgan('dev+');
 };
