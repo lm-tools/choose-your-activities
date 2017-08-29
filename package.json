@@ -53,6 +53,7 @@
     "morgan-json": "^1.1.0",
     "node-uuid": "~1.4",
     "pg": "^4.5.5",
+    "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "request-promise-core": "^1.1.1",
     "serve-favicon": "~2.3",
