@@ -3,7 +3,7 @@ module.exports = {
     { name: 'ACT-1', title: 'Find out about volunteering' },
     { name: 'ACT-2', title: 'Ask about work experience' },
     { name: 'ACT-3', title: 'Find a mentor' },
-    { name: 'ACT-4', title: 'List the biggest companies in the field you want to work in' },
+    { name: 'ACT-4', title: 'Build a list of companies you want to work for' },
     { name: 'ACT-5', title: 'Register with recruitment agencies' },
     {
       name: 'ACT-6',
