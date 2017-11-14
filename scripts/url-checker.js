@@ -10,6 +10,7 @@ function makeGetRequest(url) {
   return request(
     {
       uri: url, method: 'GET', resolveWithFullResponse: true, simple: false,
+      timeout: 30 * 1000,
       headers: {
         'User-Agent': 'request',
       },
