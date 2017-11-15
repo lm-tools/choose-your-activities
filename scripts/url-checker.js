@@ -1,6 +1,12 @@
 const cheerio = require('cheerio');
 const request = require('request-promise');
 
+// borrowed from https://hackernoon.com/functional-javascript-resolving-promises-sequentially-7aac18c4431e
+const promiseSerial = funcs =>
+  funcs.reduce((promise, func) =>
+      promise.then(result => func.then(Array.prototype.concat.bind(result))),
+    Promise.resolve([]));
+
 function findAllLinks(body) {
   const $ = cheerio.load(`<div>${body}</div>`);
   return $('a').map((i, el) => $(el).attr('href')).get();
@@ -34,7 +40,7 @@ function checkLinks(document) {
 
 function check(htmlDocuments) {
   const pDocumentLinks = htmlDocuments.map(checkLinks);
-  return Promise.all(pDocumentLinks).then(result => {
+  return promiseSerial(pDocumentLinks).then(result => {
     const brokenLinksCount = result
       .map(it => it.brokenLinks.length)
       .reduce((acc, cur) => acc + cur);
