@@ -18,7 +18,8 @@ function makeGetRequest(url) {
       uri: url, method: 'GET', resolveWithFullResponse: true, simple: false,
       timeout: 30 * 1000,
       headers: {
-        'User-Agent': 'request',
+        'User-Agent': 'curl/7.52.1',
+        Accept: '*/*',
       },
     });
 }
