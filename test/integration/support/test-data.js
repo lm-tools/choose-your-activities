@@ -2,9 +2,9 @@ module.exports = {
   allActivities: [
     { name: 'ACT-1', title: 'Find out about volunteering' },
     { name: 'ACT-2', title: 'Ask about work experience' },
-    { name: 'ACT-3', title: 'Find a mentor' },
+    { name: 'ACT-3', title: 'Get advice from an expert in your industry' },
     { name: 'ACT-4', title: 'Build a list of companies you want to work for' },
-    { name: 'ACT-5', title: 'Register with recruitment agencies' },
+    { name: 'ACT-5', title: 'Find the right recruitment agency for you' },
     {
       name: 'ACT-6',
       title: 'Figure out your local public transport options – ' +
@@ -16,7 +16,7 @@ module.exports = {
     { name: 'ACT-10', title: 'Do you need to do anything about the basics - maths or English?' },
     { name: 'ACT-11', title: "Update your CV for jobs you're interested in" },
     { name: 'ACT-12', title: 'Get a friend to look at your CV for you' },
-    { name: 'ACT-13', title: 'Search online for jobs' },
+    { name: 'ACT-13', title: 'Improve your online search' },
     {
       name: 'ACT-14',
       title: 'Find out how social media websites like LinkedIn can help with your search',
