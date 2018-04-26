@@ -1,0 +1,62 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}unsorted-activities-a.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+  <h2 class="heading-xlarge">{{#__}}unsorted-activities.heading{{/__}}</h2>
+
+  <p class="text">{{#__}}unsorted-activities.action-overview-1{{/__}}</p>
+  <p class="text">{{#__}}unsorted-activities.action-overview-2{{/__}}</p>
+
+  <section class="more" data-test="navigation">
+    <div class="nav-tabs">
+      <ul class="tabs-nav" role="tablist">
+        <li class="active">
+          <a href="#" class="option">
+            {{#__}}tabs.unsorted{{/__}}
+          </a>
+        </li>
+        <li class="inactive">
+          <a href="{{basePath}}/{{accountId}}/activities/sorted" class="option">
+            {{#__}}tabs.sorted{{/__}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="js-tab-content tab-content tabs-body" aria-live="polite">
+      <div class="js-tab-pane tab-pane tabs-panel tabs-panel-selected" ></div>
+      <!--<div class="js-tab-pane tab-pane tabs-panel"></div>-->
+    </div>
+
+  </section>
+
+  <div class="menu">
+    {{#categorisedActivity}}
+      <ul data-slide>
+        <li class="menu-container DISABLED" data-slide data-test-activity="{{activity}}">
+          <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
+        </li>
+      </ul>
+    {{/categorisedActivity}}
+    <ul>
+    {{#activities}}
+      <li class="menu-container" data-test-activity="{{activity}}">
+        <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
+      </li>
+    {{/activities}}
+    </ul>
+    <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
+    <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
+  </div>
+
+  <noscript>
+    <!-- hide sorted activity when javascript is disabled -->
+    <style>
+      [data-slide] {
+        display: none !important;
+      }
+    </style>
+  </noscript>
+
+{{/applicationContent}}
+{{/layout}}

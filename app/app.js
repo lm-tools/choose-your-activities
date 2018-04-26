@@ -19,6 +19,9 @@ const helmet = require('helmet');
 const layoutAssets = require('./models/assets');
 const cacheHeaders = require('./middleware/cacheHeaders');
 
+const config = require('../config/du-ver-mapping');
+const prototypeMapper = config[process.env.NODE_ENV || 'test'];
+
 const app = express();
 i18n(app);
 app.use(helmet());
@@ -38,6 +41,20 @@ const googleTagManagerId = process.env.GOOGLE_TAG_MANAGER_ID;
 app.use('/health_check', healthCheckController);
 app.use(`${basePath}/health_check`, healthCheckController);
 
+const setVersionInBasePath = (version) => {
+  if (prototypeMapper.liveVersions.indexOf(version) !== -1) {
+    return `${basePath}/${version}`;
+  }
+  return `${basePath}/${prototypeMapper.default}`;
+};
+
+const setVersion = (version) => {
+  if (prototypeMapper.liveVersions.indexOf(version) !== -1) {
+    return version;
+  }
+  return prototypeMapper.default;
+};
+
 // Middleware to set default layouts.
 // This must be done per request (and not via app.locals) as the Consolidate.js
 // renderer mutates locals.partials :(
@@ -46,7 +63,8 @@ app.use((req, res, next) => {
   Object.assign(res.locals, {
     assetPath,
     layoutAssets: layoutAssets({ assetPath }),
-    basePath,
+    basePath: setVersionInBasePath(req.url.replace(basePath, '').split('/')[1]),
+    version: setVersion(req.url.replace(basePath, '').split('/')[1]),
     googleTagManagerId,
     partials: {
       layout: 'layouts/main',
@@ -80,11 +98,12 @@ app.use(helmet.noCache());
 
 app.use(`${basePath}/`, cookieController);
 app.use(`${basePath}/`, introductionController);
-app.use(`${basePath}/:accountId/introduction`, introductionController);
-app.use(`${basePath}/:accountId/activities/unsorted`, unsortedActivitiesController);
-app.use(`${basePath}/:accountId/activities/sorted`, sortedActivitiesController);
-app.use(`${basePath}/:accountId/activities/:activityId/categorise`, categoriseActivityController);
-app.use(`${basePath}/:accountId/activities/:activityId`, activityDetailsController);
+app.use(`${basePath}/:version?/:accountId/introduction`, introductionController);
+app.use(`${basePath}/:version?/:accountId/activities/unsorted`, unsortedActivitiesController);
+app.use(`${basePath}/:version?/:accountId/activities/sorted`, sortedActivitiesController);
+app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
+  categoriseActivityController);
+app.use(`${basePath}/:version?/:accountId/activities/:activityId`, activityDetailsController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

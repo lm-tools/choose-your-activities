@@ -1,5 +1,6 @@
-const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser) {
+const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser, basePath) {
   this.browser = browser;
+  this.basePath = basePath;
 
   function activityModel(x) {
     return {
@@ -9,9 +10,16 @@ const UnsortedActivitiesPage = function UnsortedActivitiesPage(browser) {
   }
 
   this.activityList = () => browser.queryAll('[data-test-activity] a').map(activityModel);
-  this.visit = (accountId, activity) =>
+  this.visit = (version, accountId, activity) =>
     this.browser
-      .visit(`/${accountId}/activities/unsorted${activity ? `?sorted=${activity.name}` : ''}`);
+      .visit(`${basePath}/${version}/${accountId}/activities/unsorted${activity
+        ? `?sorted=${activity.name}`
+        : ''}`);
+  this.visitWithoutVersion = (accountId, activity) =>
+    this.browser
+      .visit(`${basePath}/${accountId}/activities/unsorted${activity
+        ? `?sorted=${activity.name}`
+        : ''}`);
   this.browserPath = () => browser.location.pathname;
   this.isActivityMarkedToSlide = activity =>
     browser.query(`[data-test-activity="${activity.name}"]`).attributes['data-slide'] !== undefined;

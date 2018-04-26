@@ -33,7 +33,7 @@ describe('Re-Sort activities page', () => {
     it('should link back to the sorted page from "Finish sorting" button', () =>
       reSortActivitiesPage.clickFinishSortingButton()
         .then(() => expect(reSortActivitiesPage.browserPath())
-          .to.contain(`${accountId}/activities/sorted`))
+          .to.contain(`c/${accountId}/activities/sorted`))
     );
 
     it('should show navigation', () => {

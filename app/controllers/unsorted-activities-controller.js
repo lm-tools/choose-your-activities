@@ -6,6 +6,7 @@ const ActivitiesViewModel = require('./unsorted-activity-view-model');
 
 router.get('/', (req, res, next) => {
   const accountId = req.params.accountId;
+  const version = res.locals.version;
   const lastSortedActivityName = req.query.sorted || '';
 
   Promise.all([
@@ -15,10 +16,10 @@ router.get('/', (req, res, next) => {
     const unsorted = results[0];
     const lastSortedActivity = results[1];
     if (unsorted.length > 0) {
-      res.render('unsorted-activities', Object.assign({ accountId },
+      res.render(`unsorted-activities-${version}`, Object.assign({ accountId },
         new ActivitiesViewModel(unsorted, lastSortedActivity)));
     } else {
-      res.render('unsorted-activities-all-sorted', { accountId });
+      res.render(`unsorted-activities-all-sorted-${version}`, { accountId });
     }
   }).catch((err) => next(err));
 });

@@ -9,7 +9,7 @@ describe('Activity details', () => {
   const accountId = uuid.v4();
 
   describe('page outline', () => {
-    before(() => pageUnderTest.visit(accountId, helper.allActivities[10]));
+    before(() => pageUnderTest.visit('c', accountId, helper.allActivities[10]));
 
     it('should have correct title', () =>
       expect(pageUnderTest.browser.text('title'))
@@ -28,8 +28,9 @@ describe('Activity details', () => {
 
     describe('activityId validation', () => {
       before(() =>
-        pageUnderTest.visit(accountId, 'ACT-')
-          .catch(() => {})
+        pageUnderTest.visit('c', accountId, 'ACT-')
+          .catch(() => {
+          })
       );
 
       it('shows 400 message ', () => {
@@ -45,7 +46,7 @@ describe('Activity details', () => {
 
   helper.allActivities.forEach(activity => {
     describe(`for "${activity.title}"`, () => {
-      before(() => pageUnderTest.visit(accountId, activity));
+      before(() => pageUnderTest.visit('c', accountId, activity));
 
       it('should display correct header', () =>
         expect(pageUnderTest.getTitle()).to.equal(activity.title)

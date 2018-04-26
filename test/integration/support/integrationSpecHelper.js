@@ -1,4 +1,5 @@
 const Zombie = require('zombie');
+const basePath = process.env.EXPRESS_BASE_PATH || '';
 Zombie.site = 'http://localhost:3000';
 const browser = new Zombie();
 const dbHelper = require('./db-helper');
@@ -28,14 +29,15 @@ afterEach(function () {
 module.exports = Object.assign(
   {
     browser,
+    basePath,
     googleTagManagerHelper: new GoogleTagManagerHelper(browser),
-    introductionPage: new IntroductionPage(browser),
-    unsortedActivitiesPage: new UnsortedActivitiesPage(browser),
-    sortedActivitiesPage: new SortedActivitiesPage(browser),
-    reSortActivitiesPage: new ReSortActivitiesPage(browser),
-    categoriseActivityPage: new CategoriseActivityPage(browser),
-    activityDetailsPage: new ActivityDetailsPage(browser),
-    cookiePage: new CookiePage(browser),
+    introductionPage: new IntroductionPage(browser, basePath),
+    unsortedActivitiesPage: new UnsortedActivitiesPage(browser, basePath),
+    sortedActivitiesPage: new SortedActivitiesPage(browser, basePath),
+    reSortActivitiesPage: new ReSortActivitiesPage(browser, basePath),
+    categoriseActivityPage: new CategoriseActivityPage(browser, basePath),
+    activityDetailsPage: new ActivityDetailsPage(browser, basePath),
+    cookiePage: new CookiePage(browser, basePath),
     errorPage: new ErrorPage(browser),
     app,
   },

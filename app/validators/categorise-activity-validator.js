@@ -8,12 +8,14 @@ module.exports = {
     params: Joi.object().keys({
       activityId: Joi.any().valid(activities).required(),
       accountId: Joi.string().required(),
+      version: Joi.string().required(),
     }),
   }),
   post: celebrate({
     params: Joi.object().keys({
       activityId: Joi.any().valid(activities).required(),
       accountId: Joi.string().required(),
+      version: Joi.string().required(),
     }),
     body: Joi.object().keys({
       category: Joi.any().valid(categories).required(),

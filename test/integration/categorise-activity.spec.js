@@ -14,7 +14,7 @@ describe('Categorise activity page', () => {
   const activity = 'ACT-1';
 
   describe('page outline', () => {
-    before(() => categoriseActivityPage.visit(accountId, activity));
+    before(() => categoriseActivityPage.visit('c', accountId, activity));
 
     it('should have correct heading', () =>
       expect(categoriseActivityPage.headingToBe('Find out about volunteering'))
@@ -30,8 +30,9 @@ describe('Categorise activity page', () => {
 
     describe('activityId validation', () => {
       before(() =>
-        categoriseActivityPage.visit(accountId, 'ACT-00')
-          .catch(() => {})
+        categoriseActivityPage.visit('c', accountId, 'ACT-00')
+          .catch(() => {
+          })
       );
 
       it('shows 400 message ', () => {
@@ -47,7 +48,7 @@ describe('Categorise activity page', () => {
   describe('categorise activity', () => {
     before(() =>
       helper.cleanDb()
-        .then(() => categoriseActivityPage.visit(accountId, activity))
+        .then(() => categoriseActivityPage.visit('c', accountId, activity))
         .then(() => categoriseActivityPage.selectCategory('Not really for me'))
     );
 
@@ -61,7 +62,8 @@ describe('Categorise activity page', () => {
     );
 
     it('should redirect to unsorted activities after categorisation', () =>
-      expect(categoriseActivityPage.browserPath()).to.equal(`/${accountId}/activities/unsorted`)
+      expect(categoriseActivityPage.browserPath()).to
+        .equal(`${categoriseActivityPage.basePath}/c/${accountId}/activities/unsorted`)
     );
 
     it('should contain "sorted" query parameter', () =>
@@ -71,7 +73,7 @@ describe('Categorise activity page', () => {
     describe('activityId validation on POST', () => {
       before(() =>
         request(helper.app)
-          .post(`/${accountId}/activities/ACT-99/categorise`)
+          .post(`${categoriseActivityPage.basePath}/c/${accountId}/activities/ACT-99/categorise`)
           .send({ category: categories[1] })
           .then(response => {
             this.response = response;
@@ -94,7 +96,7 @@ describe('Categorise activity page', () => {
       describe(s.title, () => {
         before(() =>
           request(helper.app)
-            .post(`/${accountId}/activities/ACT-1/categorise`)
+            .post(`${categoriseActivityPage.basePath}/c/${accountId}/activities/ACT-1/categorise`)
             .send(s.body)
             .then(response => {
               this.response = response;
@@ -118,7 +120,7 @@ describe('Categorise activity page', () => {
         .then(() => helper.addSortedActivities(accountId, [
           { activity, category: 'READY' },
         ]))
-        .then(() => categoriseActivityPage.visit(accountId, activity))
+        .then(() => categoriseActivityPage.visit('a', accountId, activity))
     );
 
     it('should maintain the fact an activity has only one category', () =>
@@ -130,7 +132,7 @@ describe('Categorise activity page', () => {
     it('should redirect to re-sort activities after re-categorisation', () =>
       categoriseActivityPage.selectCategory('Not really for me')
         .then(() => expect(categoriseActivityPage.browserPath())
-          .to.equal(`/${accountId}/activities/sorted/resort`))
+          .to.equal(`${categoriseActivityPage.basePath}/a/${accountId}/activities/sorted/resort`))
     );
   });
 });

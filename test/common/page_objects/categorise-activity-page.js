@@ -1,8 +1,9 @@
-const CategoriseActivityPage = function CategoriseActivityPage(browser) {
+const CategoriseActivityPage = function CategoriseActivityPage(browser, basePath) {
   this.browser = browser;
+  this.basePath = basePath;
 
-  this.visit = (accountId, activityId) =>
-    this.browser.visit(`/${accountId}/activities/${activityId}/categorise`);
+  this.visit = (version, accountId, activityId) =>
+    this.browser.visit(`${basePath}/${version}/${accountId}/activities/${activityId}/categorise`);
   this.headingToBe = (heading) => browser.assert.text('[data-test="heading"]', heading);
   this.countCategories = () => browser.queryAll('[data-test="menu-item"]').length;
   this.browserPath = () => browser.location.pathname;
