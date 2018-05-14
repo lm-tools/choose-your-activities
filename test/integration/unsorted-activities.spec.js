@@ -10,13 +10,13 @@ describe('Unsorted activities page', () => {
 
   describe('page outline', () => {
     it('should have correct title', () =>
-      unsortedActivitiesPage.visit(accountId)
+      unsortedActivitiesPage.visit('c', accountId)
         .then(() => expect(unsortedActivitiesPage.browser.text('title'))
           .to.equal('Choose your activities'))
     );
 
     it('should contain valid google tag manager data', () =>
-      unsortedActivitiesPage.visit(accountId)
+      unsortedActivitiesPage.visit('c', accountId)
         .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
     );
   });
@@ -28,7 +28,7 @@ describe('Unsorted activities page', () => {
           { activity: helper.allActivities[0].name, category: 'READY' },
           { activity: helper.allActivities[17].name, category: 'NO' },
         ]))
-        .then(() => unsortedActivitiesPage.visit(accountId))
+        .then(() => unsortedActivitiesPage.visit('c', accountId))
     );
 
     it('should display correct number of unsorted activities', () =>
@@ -45,7 +45,7 @@ describe('Unsorted activities page', () => {
 
     it('should have correct url for activity', () =>
       expect(unsortedActivitiesPage.activityList()[0].url)
-        .to.contain(`${accountId}/activities/${helper.allActivities[1].name}/categorise`)
+        .to.contain(`/c/${accountId}/activities/${helper.allActivities[1].name}/categorise`)
     );
   });
 
@@ -57,7 +57,7 @@ describe('Unsorted activities page', () => {
         .then(() => helper.addSortedActivities(accountId, [
           { activity: activity.name, category: 'READY' },
         ]))
-        .then(() => unsortedActivitiesPage.visit(accountId, activity))
+        .then(() => unsortedActivitiesPage.visit('c', accountId, activity))
     );
 
     it('should slide out sorted activity', () =>
@@ -78,7 +78,7 @@ describe('Unsorted activities page', () => {
     before(() =>
       helper.cleanDb()
         .then(() => helper.saveAllActivitiesAsSorted(accountId))
-        .then(() => unsortedActivitiesPage.visit(accountId))
+        .then(() => unsortedActivitiesPage.visit('c', accountId))
     );
 
     it('should display continue button', () =>
@@ -87,7 +87,47 @@ describe('Unsorted activities page', () => {
 
     it('continue button should link to sorted page', () =>
       unsortedActivitiesPage.clickContinue()
-        .then(() => helper.sortedActivitiesPage.expectAt(accountId))
+        .then(() => helper.sortedActivitiesPage.expectAt('c', accountId))
+    );
+  });
+
+  describe('cya-category-proto', () => {
+    before(() =>
+      helper.cleanDb()
+    );
+
+    it('Choose your activities - A', () =>
+      unsortedActivitiesPage.visit('a', accountId, '')
+        .then(() => {
+          expect(unsortedActivitiesPage.browserPath())
+            .to.contains(`/a/${accountId}/activities/unsorted`);
+          expect(unsortedActivitiesPage.browser.text('title')).to
+            .equal('Choose your activities - A');
+        })
+    );
+
+    it('should redirect the user to the default version if an invalid version is specified', () =>
+      unsortedActivitiesPage.visit('d', accountId, '')
+        .then(() => {
+          const activityList = unsortedActivitiesPage.activityList();
+          for (let i = 0; i < activityList.length; ++i) {
+            const activity = activityList[i];
+            expect(activity.url).to
+              .contains(`/c/${accountId}/activities/${helper.allActivities[i].name}/categorise`);
+          }
+        })
+    );
+
+    it('should redirect the user to the default version if no version is specified', () =>
+      unsortedActivitiesPage.visitWithoutVersion(accountId, '')
+        .then(() => {
+          const activityList = unsortedActivitiesPage.activityList();
+          for (let i = 0; i < activityList.length; ++i) {
+            const activity = activityList[i];
+            expect(activity.url).to
+              .contains(`/c/${accountId}/activities/${helper.allActivities[i].name}/categorise`);
+          }
+        })
     );
   });
 });

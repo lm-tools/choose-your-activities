@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 class ReSortActivitiesPage extends SortedActivitiesBasePage {
 
   visit(accountId) {
-    return this.browser.visit(`/${accountId}/activities/sorted/resort`);
+    return this.browser.visit(`${this.basePath}/c/${accountId}/activities/sorted/resort`);
   }
 
   clickMoveButton(activity) {
@@ -16,7 +16,8 @@ class ReSortActivitiesPage extends SortedActivitiesBasePage {
   }
 
   expectAt(accountId) {
-    expect(this.browserPath()).to.equal(`/${accountId}/activities/sorted/resort`);
+    expect(this.browserPath()).to
+      .equal(`${this.basePath}/c/${accountId}/activities/sorted/resort`);
   }
 }
 

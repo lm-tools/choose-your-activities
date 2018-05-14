@@ -7,6 +7,7 @@ module.exports = {
     params: Joi.object().keys({
       activityId: Joi.any().valid(activities).required(),
       accountId: Joi.string().required(),
+      version: Joi.string().required(),
     }),
   }),
 };

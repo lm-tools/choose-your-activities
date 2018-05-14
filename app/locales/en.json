@@ -30,6 +30,18 @@
       "continueButton": "Continue"
     }
   },
+  "unsorted-activities-a": {
+    "pageTitle": "Choose your activities - A",
+    "all-sorted": {
+      "title": "You've sorted all of the activities - A"
+    }
+  },
+  "unsorted-activities-b": {
+    "pageTitle": "Choose your activities - B",
+    "all-sorted": {
+      "title": "You've sorted all of the activities - B"
+    }
+  },
   "categorise-activity": {
     "pageTitle": "Sort this activity"
   },

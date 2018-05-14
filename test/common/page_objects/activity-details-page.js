@@ -1,8 +1,9 @@
-const SortedActivitiesPage = function SortedActivitiesPage(browser) {
+const SortedActivitiesPage = function SortedActivitiesPage(browser, basePath) {
   this.browser = browser;
+  this.basePath = basePath;
 
-  this.visit = (accountId, activity) =>
-    this.browser.visit(`/${accountId}/activities/${activity.name}`);
+  this.visit = (version, accountId, activity) =>
+    this.browser.visit(`${basePath}/${version}/${accountId}/activities/${activity.name}`);
   this.browserPath = () => browser.location.pathname;
   this.getTitle = () => browser.text('[data-test="title"]');
   this.getDetails = () => browser.text('[data-test="details"]');

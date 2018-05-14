@@ -10,7 +10,7 @@ describe('Sorted activities page', () => {
 
   beforeEach(() =>
     helper.cleanDb()
-      .then(() => sortedActivitiesPage.visit(accountId))
+      .then(() => sortedActivitiesPage.visit('c', accountId))
   );
 
   describe('page outline', () => {
@@ -61,7 +61,7 @@ describe('Sorted activities page', () => {
         { activity: allActivites[15].name, category: 'NO' },
         { activity: allActivites[17].name, category: 'NO' },
       ])
-        .then(() => sortedActivitiesPage.visit(accountId))
+        .then(() => sortedActivitiesPage.visit('c', accountId))
     );
 
     [
@@ -107,14 +107,14 @@ describe('Sorted activities page', () => {
     it('should link to activity details', () =>
       sortedActivitiesPage.clickDetailsButton(allActivites[0]).then(() =>
         expect(helper.activityDetailsPage.browserPath())
-          .to.contain(`${accountId}/activities/${allActivites[0].name}`)
+          .to.contain(`c/${accountId}/activities/${allActivites[0].name}`)
       )
     );
 
     it('should link to re-sort activity', () =>
       sortedActivitiesPage.clickReSortActivitiesLink().then(() =>
         expect(helper.activityDetailsPage.browserPath())
-          .to.contain(`${accountId}/activities/sorted/resort`)
+          .to.contain(`c/${accountId}/activities/sorted/resort`)
       )
     );
 
@@ -151,7 +151,7 @@ describe('Sorted activities page', () => {
       it(`should link to resort page from details page for activity in ${s.category}`, () =>
         sortedActivitiesPage.clickDetailsButton(s.activity)
           .then(() => helper.activityDetailsPage.clickBackButton())
-          .then(() => sortedActivitiesPage.expectAt(accountId))
+          .then(() => sortedActivitiesPage.expectAt('c', accountId))
       );
     });
 
@@ -170,7 +170,7 @@ describe('Sorted activities page', () => {
     beforeEach(() =>
       helper.cleanDb()
         .then(() => helper.saveAllActivitiesAsSorted(accountId))
-        .then(() => sortedActivitiesPage.visit(accountId))
+        .then(() => sortedActivitiesPage.visit('c', accountId))
     );
 
     it('should hide navigation', () => {

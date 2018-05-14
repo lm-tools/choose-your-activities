@@ -1,6 +1,7 @@
 class SortedActivitiesBasePage {
-  constructor(browser) {
+  constructor(browser, basePath) {
     this.browser = browser;
+    this.basePath = basePath;
   }
 
   activityList() {

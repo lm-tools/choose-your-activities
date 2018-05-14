@@ -1,5 +1,6 @@
 const request = require('supertest');
 const helper = require('./support/integrationSpecHelper');
+const basePath = helper.basePath;
 const expect = require('chai').expect;
 const layoutAssets = require('../../app/models/assets')({ assetPath: '/' });
 
@@ -37,10 +38,13 @@ describe('Response headers', () => {
 
 
   [
-    { title: 'for images', path: '/vendor/v1/images/gov.uk_logotype_crown_invert_trans.png' },
-    { title: 'for stylesheets', path: '/vendor/v1/stylesheets/govuk-template.css' },
-    { title: 'for govuk javascript', path: '/vendor/v1/javascripts/govuk-template.js' },
-    { title: 'for app javascript', path: layoutAssets.js[0] },
+    {
+      title: 'for images',
+      path: `${basePath}/vendor/v1/images/gov.uk_logotype_crown_invert_trans.png`,
+    },
+    { title: 'for stylesheets', path: `${basePath}/vendor/v1/stylesheets/govuk-template.css` },
+    { title: 'for govuk javascript', path: `${basePath}/vendor/v1/javascripts/govuk-template.js` },
+    { title: 'for app javascript', path: `${basePath}/${layoutAssets.js[0]}` },
   ].forEach(d => {
     describe(d.title, () => {
       before(() =>

@@ -28,7 +28,7 @@ router.post('', validator.post, (req, res) => {
   const accountId = req.params.accountId;
   const activity = req.params.activityId;
   const category = req.body.category;
-  const basePath = req.app.locals.basePath;
+  const basePath = res.locals.basePath;
 
   ActivitiesModel.updateCategorisation(accountId, activity, category)
     .then((result) => {

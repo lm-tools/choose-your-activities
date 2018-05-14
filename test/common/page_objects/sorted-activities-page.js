@@ -3,16 +3,17 @@ const expect = require('chai').expect;
 
 class SortedActivitiesPage extends SortedActivitiesBasePage {
 
-  visit(accountId) {
-    return this.browser.visit(`/${accountId}/activities/sorted`);
+  visit(version, accountId) {
+    return this.browser.visit(`${this.basePath}/${version}/${accountId}/activities/sorted`);
   }
 
   clickReSortActivitiesLink() {
     return this.browser.click('[data-test="action-on-view"]');
   }
 
-  expectAt(accountId) {
-    expect(this.browserPath()).to.equal(`/${accountId}/activities/sorted`);
+  expectAt(version, accountId) {
+    expect(this.browserPath()).to
+      .equal(`${this.basePath}/${version}/${accountId}/activities/sorted`);
   }
 
 }
