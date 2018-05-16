@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
   const accountId = req.query.id;
   const version = prototypeMapper[req.query.du] ? prototypeMapper[req.query.du]
     : prototypeMapper.default;
-  if (accountId) {
-    res.redirect(`${req.app.locals.basePath}/${version}/${accountId}/introduction`);
-  } else {
-    res.redirect(`${req.app.locals.basePath}/${version}/${uuid.v4()}/introduction`);
+  let url = `${req.app.locals.basePath}/${version}/${accountId}/introduction`;
+  if (!accountId) {
+    url = `${req.app.locals.basePath}/${version}/${uuid.v4()}/introduction`;
   }
+  res.redirect(url);
 });
 
 router.get('/:version?/:accountId/introduction', (req, res) => {
