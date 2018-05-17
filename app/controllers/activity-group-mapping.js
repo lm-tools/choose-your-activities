@@ -84,7 +84,7 @@ const config = {
 };
 
 function getActivitiesForGroup(version, group) {
-  return version === 'c' ? defaultMapping : config[`${version}`][`${group}`];
+  return (['a', 'b'].indexOf(version) !== -1) ? config[version][group] : defaultMapping;
 }
 
 function getCountOfActivitiesForGroup(version, group) {

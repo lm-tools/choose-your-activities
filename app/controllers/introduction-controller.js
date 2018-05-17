@@ -9,8 +9,10 @@ router.get('/', (req, res) => {
   const accountId = req.query.id;
   const version = prototypeMapper[req.query.du] ? prototypeMapper[req.query.du]
     : prototypeMapper.default;
-  let url = `${req.app.locals.basePath}/${version}/${accountId}/introduction`;
-  if (!accountId) {
+  let url;
+  if (accountId) {
+    url = `${req.app.locals.basePath}/${version}/${accountId}/introduction`;
+  } else {
     url = `${req.app.locals.basePath}/${version}/${uuid.v4()}/introduction`;
   }
   res.redirect(url);
