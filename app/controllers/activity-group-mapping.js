@@ -64,7 +64,7 @@ const config = {
   b: commonMapping,
 };
 
-function getActivitiesForGroup(version, group, excludeActivities=[]) {
+function getActivitiesForGroup(version, group, excludeActivities = []) {
   const versionMapping = config[version];
   return (versionMapping && versionMapping[group] || defaultMapping)
     .filter(val => !excludeActivities.includes(val));
