@@ -3,6 +3,7 @@ $category-list-gutter: 30px;
 .category-list {
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: -$category-list-gutter;
 }
@@ -12,7 +13,6 @@ $category-list-gutter: 30px;
   flex: 0 0 33.3333%;
   box-sizing: border-box;
   margin-bottom: $category-list-gutter;
-  padding-right: $category-list-gutter;
 
   @media (max-width: 768px) {
     -ms-flex: 0 0 100%;
@@ -22,6 +22,7 @@ $category-list-gutter: 30px;
 
 .category-list__link {
   display: block;
+  margin-right: $category-list-gutter;
   border: 2px solid $link-colour;
   text-decoration: none;
 
