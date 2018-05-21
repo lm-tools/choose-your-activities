@@ -1,6 +1,7 @@
 @import '_govuk-elements';
 @import 'font-awesome';
 @import 'tabs';
+@import 'components/index';
 
 .app-menu .option {
   padding: $gutter-one-third $gutter-half $gutter-one-third $gutter-half;

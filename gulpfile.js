@@ -105,7 +105,7 @@ gulp.task('server', () => {
 
 gulp.task('watch', ['compile', 'server'], () => {
   gulp.watch(['app/**/*.js', 'bin/www'], ['server']);
-  gulp.watch('app/assets/stylesheets/*.scss', ['css']);
+  gulp.watch('app/assets/stylesheets/**/*.scss', ['css']);
   gulp.watch('app/assets/js/**/*.js', ['browserify']);
 });
 
