@@ -16,7 +16,8 @@
   },
   "activities-group": {
     "subheading": "Choose your activities",
-    "heading": "What do you want to do?"
+    "heading": "What do you want to do?",
+    "backButton": "Back"
   },
   "unsorted-activities": {
     "pageTitle": "Choose your activities",
