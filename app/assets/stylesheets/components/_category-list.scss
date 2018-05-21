@@ -1,8 +1,23 @@
+$category-list-gutter: 30px;
+
 .category-list {
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$category-list-gutter;
 }
 
 .category-list__item {
-  margin-bottom: 30px;
+  -ms-flex: 0 0 33.3333%;
+  flex: 0 0 33.3333%;
+  box-sizing: border-box;
+  margin-bottom: $category-list-gutter;
+  padding-right: $category-list-gutter;
+
+  @media (max-width: 768px) {
+    -ms-flex: 0 0 100%;
+    flex-basis: 100%;
+  }
 }
 
 .category-list__link {
