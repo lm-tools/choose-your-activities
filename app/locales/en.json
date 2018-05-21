@@ -14,6 +14,10 @@
     "post-action-overview": "It'll take about 10 minutes to sort through the list. Your choices will all be saved - you can leave and come back any time.",
     "button-label": "Continue"
   },
+  "activities-group": {
+    "subheading": "Choose your activities",
+    "heading": "What do you want to do?"
+  },
   "unsorted-activities": {
     "pageTitle": "Choose your activities",
     "heading": "Choose your activities",
