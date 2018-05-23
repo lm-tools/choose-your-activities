@@ -9,12 +9,11 @@ module.exports = class ActivityGroupViewModel {
 
   activityGroupView(activityGroups) {
     return activityGroups
-      .map((activityGroup) => Object.assign(
-        {
-          // eslint-disable-next-line no-underscore-dangle
-          title: i18n.__(`activity-group.${activityGroup}.title`),
-          name: activityGroup,
-          count: activityGroupMapping.getCountOfActivitiesForGroup('b', activityGroup),
-        }));
+      .map((activityGroup) => ({
+        // eslint-disable-next-line no-underscore-dangle
+        title: i18n.__(`activity-group.${activityGroup}.title`),
+        name: activityGroup,
+        count: activityGroupMapping.getCountOfActivitiesForGroup('b', activityGroup),
+      }));
   }
 };
