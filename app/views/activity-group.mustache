@@ -1,0 +1,30 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}unsorted-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<a href="" class="link-back">
+  {{#__}}activities-group.backButton{{/__}}
+</a>
+
+<h1 class="heading-xlarge">
+  <span class="category heading-secondary">{{#__}}activity-group.subheading{{/__}}</span>
+  {{#__}}activity-group.heading{{/__}}
+</h1>
+
+<ul class="category-list">
+  {{#activityGroups}}
+    <li class="category-list__item" data-test-group="{{name}}">
+      <a class="category-list__link" href="{{basePath}}/{{accountId}}/groups/{{name}}/activities">
+        <p class="category-list__description">{{title}}</p>
+
+        <div class="category-list__bottom">
+          <span class="category-list__activities-count">{{count}}</span>
+          <span class="category-list__label">Choose</span>
+        </div>
+      </a>
+    </li>
+  {{/activityGroups}}
+</ul>
+
+{{/applicationContent}}
+{{/layout}}

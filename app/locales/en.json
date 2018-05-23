@@ -128,6 +128,28 @@
       "details": "<p>You might not realise what skills you have, or how to explain them in a CV or application letter. It’s not always obvious.</p><p>Websites can be useful - they’ll ask you questions then tell you what skills you can say you have.</p><h3 class=\"heading-medium\"></a>Get started</h3><p>The National Careers service has a <a href=\"https://nationalcareersservice.direct.gov.uk/skills-health-check/home\">skills health check</a>.</p><p>You may want to work on the basic skills - for example, if you have trouble with maths, take a look at <a href=\"https://www.nnchallenge.org.uk/home/index.html\">the National Numeracy Challenge</a>.</p><p>The <a href=\"http://s2sacademy.com/no-access-code/\">Skills to Succeed academy</a> has a series of online courses, and one of them, called ‘Getting a job’, has a section on identifying your skills.</p>"
     }
   },
+  "activity-group": {
+    "subheading": "Choose your activities",
+    "heading": "What do you want to do?",
+    "GRP-1": {
+      "title": "Get better at my applications and interviews"
+    },
+    "GRP-2": {
+      "title": "Improve my skills and qualifications"
+    },
+    "GRP-3": {
+      "title": "Improve how I search online for work"
+    },
+    "GRP-4": {
+      "title": "Find the right kind of job for me"
+    },
+    "GRP-5": {
+      "title": "Give myself some confidence"
+    },
+    "GRP-6": {
+      "title": "I don't know where to start"
+    }
+  },
   "category": {
     "DOING": {
       "title": "I'm already doing this"

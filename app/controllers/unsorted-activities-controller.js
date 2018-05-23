@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
   const accountId = req.params.accountId;
   const version = res.locals.version;
   const lastSortedActivityName = req.query.sorted || '';
+  const basePath = res.locals.basePath;
 
   Promise.all([
     ActivitiesModel.findUnsortedByAccountId(accountId),
@@ -15,7 +16,9 @@ router.get('/', (req, res, next) => {
   ]).then(results => {
     const unsorted = results[0];
     const lastSortedActivity = results[1];
-    if (unsorted.length > 0) {
+    if (version === 'a') {
+      res.redirect(`${basePath}/${accountId}/groups`);
+    } else if (unsorted.length > 0) {
       res.render(`unsorted-activities-${version}`, Object.assign({ accountId },
         new ActivitiesViewModel(unsorted, lastSortedActivity)));
     } else {
