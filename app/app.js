@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const introductionController = require('./controllers/introduction-controller');
 const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
+const activityGroupController = require('./controllers/activity-group-controller');
 const sortedActivitiesController = require('./controllers/sorted-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
 const activityDetailsController = require('./controllers/activity-details-controller');
@@ -100,6 +101,7 @@ app.use(`${basePath}/`, cookieController);
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:version?/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:version?/:accountId/activities/unsorted`, unsortedActivitiesController);
+app.use(`${basePath}/:version?/:accountId/groups`, activityGroupController);
 app.use(`${basePath}/:version?/:accountId/activities/sorted`, sortedActivitiesController);
 app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
   categoriseActivityController);

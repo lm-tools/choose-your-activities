@@ -100,9 +100,9 @@ describe('Unsorted activities page', () => {
       unsortedActivitiesPage.visit('a', accountId, '')
         .then(() => {
           expect(unsortedActivitiesPage.browserPath())
-            .to.contains(`/a/${accountId}/activities/unsorted`);
+            .to.contains(`/a/${accountId}/groups`);
           expect(unsortedActivitiesPage.browser.text('title')).to
-            .equal('Choose your activities - A');
+            .equal('Choose your activities');
         })
     );
 
