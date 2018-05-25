@@ -7,27 +7,27 @@ const uuid = require('uuid');
 
 const expectedResult = [
   {
-    count: '5',
+    count: '5 activities',
     title: 'Get better at my applications and interviews',
   },
   {
-    count: '6',
+    count: '6 activities',
     title: 'Improve my skills and qualifications',
   },
   {
-    count: '4',
+    count: '4 activities',
     title: 'Improve how I search online for work',
   },
   {
-    count: '7',
+    count: '7 activities',
     title: 'Find the right kind of job for me',
   },
   {
-    count: '6',
+    count: '6 activities',
     title: 'Give myself some confidence',
   },
   {
-    count: '17',
+    count: '17 activities',
     title: 'I don\'t know where to start',
   },
 ];
