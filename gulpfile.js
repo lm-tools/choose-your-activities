@@ -1,68 +1,77 @@
 const gulp = require('gulp');
-const gutil = require('gulp-util');
+const color = require('ansi-colors');
+const log = require('fancy-log');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
-const spawn = require('child_process').spawn;
+const { spawn } = require('child_process');
 const babel = require('gulp-babel');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const streamify = require('gulp-streamify');
 const uglify = require('gulp-uglify');
-const { lintHtml } = require('lmt-utils');
+const revDelOriginal = require('gulp-rev-delete-original');
+const rev = require('gulp-rev');
+const debug = require('gulp-debug');
 const http = require('http');
+const app = require('./app/app');
+const { lintHtml } = require('lmt-utils');
 const checkForDeadLinks = require('./scripts/url-checker');
 const labels = require('./app/locales/en.json');
 const activities = require('./app/models/activities');
-const rev = require('gulp-rev');
-const revDelOriginal = require('gulp-rev-delete-original');
-const debug = require('gulp-debug');
+
 let node;
 
+const dir = { assets: 'app/assets', output: 'dist/public' };
+const exitCodes = { success: 0, error: 1, uncaughtException: 8 };
+const exitProcess = (code) => process.exit(code);
+const killServer = () => {
+  if (node) node.kill();
+};
+
+// npm run html-lint
 gulp.task('lint-all-html', () => {
   process.env = process.env || 'TEST';
   const port = 3001;
-  const serverStartPromise = new Promise(accept =>
-    // eslint-disable-next-line global-require
-    http.createServer(require('./app/app'))
-      .listen(port, () => accept())
-  );
-  return serverStartPromise.then(() => lintHtml({
-    url: `http://localhost:${port}`,
-  }))
-    .then(() => process.exit(0))
-    .catch(e => gutil.log(gutil.colors.red(e)) && process.exit(1));
+  const url = `http://localhost:${port}`;
+
+  return new Promise(accept =>
+    http.createServer(app).listen(port, () => accept())
+  ).then(lintHtml({ url }))
+    .then(exitProcess(exitCodes.success))
+    .catch(err => log(color.red(err)) && exitProcess(exitCodes.error));
 });
 
 gulp.task('browserify', () =>
-  browserify('app/assets/js/main.js')
+  browserify(`${dir.assets}/js/main.js`)
     .bundle()
     .on('error', function (err) {
-      gutil.log(gutil.colors.red('Browserify compilation error:'));
-      gutil.log(err);
+      log(color.red('Browserify compilation error:'));
+      log(err);
       this.emit('end');
     })
     .pipe(plumber())
     .pipe(source('main.js'))
     .pipe(streamify(babel({ presets: ['es2015'] }))) // babel doesn't support streaming
     .pipe(streamify(uglify())) // uglify doesn't support streaming
-    .pipe(gulp.dest('dist/public/js'))
+    .pipe(gulp.dest(`${dir.output}/js`))
 );
 
 gulp.task('js-vendor', () =>
   gulp.src([
     'node_modules/govuk_frontend_toolkit/javascripts/govuk/selection-buttons.js',
     'node_modules/jquery/dist/jquery.min.js',
-  ]).pipe(gulp.dest('dist/public/js'))
+  ]).pipe(gulp.dest(`${dir.output}/js`))
 );
 
 gulp.task('js', ['browserify', 'js-vendor']);
 
 gulp.task('fonts', () => {
-  gulp.src('node_modules/font-awesome/fonts/*').pipe(gulp.dest('dist/public/fonts'));
+  gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest(`${dir.output}/fonts`));
 });
 
 gulp.task('css', ['fonts'], () =>
-  gulp.src('app/assets/stylesheets/*.scss')
+  gulp.src(`${dir.assets}/stylesheets/*.scss`)
     .pipe(plumber())
     .pipe(
       sass({
@@ -73,59 +82,63 @@ gulp.task('css', ['fonts'], () =>
           'node_modules/font-awesome/scss/',
         ],
       }))
-    .pipe(gulp.dest('dist/public/stylesheets/'))
+    .pipe(gulp.dest(`${dir.output}/stylesheets/`))
 );
 
 gulp.task('revision:rename', ['js', 'css'], () =>
   gulp.src([
-    'dist/public/**/*.html',
-    'dist/public/**/*.css',
-    'dist/public/**/*.js',
-    'dist/public/**/*.{jpg,png,jpeg,gif,svg}'])
+    `${dir.output}/**/*.html`,
+    `${dir.output}/**/*.css`,
+    `${dir.output}/**/*.js`,
+    `${dir.output}/**/*.{jpg,png,jpeg,gif,svg}`])
     .pipe(debug())
     .pipe(rev())
     .pipe(revDelOriginal())
-    .pipe(gulp.dest('./dist/public'))
+    .pipe(gulp.dest(dir.output))
     .pipe(rev.manifest())
-    .pipe(gulp.dest('./dist/public'))
+    .pipe(gulp.dest(dir.output))
 );
 
+// npm run compile
 gulp.task('compile', ['revision:rename']);
 
-
 gulp.task('server', () => {
-  if (node) node.kill();
+  killServer();
   node = spawn('node', ['bin/www'], { stdio: 'inherit' });
   node.on('close', (code) => {
-    if (code === 8) {
+    if (code === exitCodes.uncaughtException) {
       gulp.log('Error detected, waiting for changes...');
     }
   });
 });
 
+// npm run watch
 gulp.task('watch', ['compile', 'server'], () => {
   gulp.watch(['app/**/*.js', 'bin/www'], ['server']);
-  gulp.watch('app/assets/stylesheets/**/*.scss', ['css']);
-  gulp.watch('app/assets/js/**/*.js', ['browserify']);
+  gulp.watch(`${dir.assets}/stylesheets/**/*.scss`, ['css']);
+  gulp.watch(`${dir.assets}/js/**/*.js`, ['browserify']);
 });
 
+// npm run check-content
 gulp.task('check-content', () => {
-  const activitiesWithBody = activities.map(a => ({ name: a, body: labels.activity[a].details }));
+  const activitiesWithBody = activities.map(name => ({
+    name,
+    body: labels.activity[name].details,
+  }));
+
   return checkForDeadLinks(activitiesWithBody).then(result => {
     if (result.brokenLinksCount > 0) {
-      gutil.log(gutil.colors.red('Found broken links:'));
-      gutil.log(JSON.stringify(result, null, '  '));
-      process.exit(1);
-    } else {
-      gutil.log('All links checked and are OK.');
+      log(color.red('Found broken links:'));
+      log(JSON.stringify(result, null, '  '));
+      exitProcess(exitCodes.error);
     }
-  });
-}
-);
 
+    log(color.green('All links checked and are OK.'));
+  });
+});
 
 // clean up if an error goes unhandled.
 process.on('exit', () => {
-  if (node) node.kill();
+  killServer();
 });
 
