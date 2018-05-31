@@ -1,5 +1,5 @@
 const i18n = require('i18n');
-const activityCopy = require('../locales/activity-copy');
+const decorateActivity = require('../locales/activity-decorator');
 const sortActivities = require('./activity-sorter');
 const allActivitiesLength = require('../models/activities').length;
 /* eslint-disable no-underscore-dangle */
@@ -7,7 +7,7 @@ const allActivitiesLength = require('../models/activities').length;
 module.exports = class ActivityViewModel {
 
   constructor(activities, options) {
-    this.activities = sortActivities(activities.map(activityCopy));
+    this.activities = sortActivities(activities.map(decorateActivity));
     this.action = this.getAction(options);
     this.isResortMode = this.action.mode === 'resort';
     this.perCategory = {
@@ -21,7 +21,7 @@ module.exports = class ActivityViewModel {
   }
 
   activityModel(activity) {
-    return Object.assign(activityCopy(activity), activity);
+    return Object.assign(decorateActivity(activity), activity);
   }
 
   activityStats(activities) {
