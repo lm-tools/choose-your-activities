@@ -17,8 +17,13 @@ const { lintHtml } = require('lmt-utils');
 const checkForDeadLinks = require('./scripts/url-checker');
 const labels = require('./app/locales/en.json');
 const activities = require('./app/models/activities');
-// eslint-disable-next-line global-require
-const app = () => { require('./app/app'); };
+
+// This is wrapped into a function so it is only executed and resolved in the lint-html task,
+// otherwise the npm clean task will removed a file that is required in an app import.
+const app = () => {
+  // eslint-disable-next-line global-require
+  require('./app/app');
+};
 
 let node;
 
