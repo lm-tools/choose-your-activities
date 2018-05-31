@@ -18,8 +18,7 @@ const config = {
 };
 
 function getCategoriesForVersion(version) {
-  const versionMapping = config[version];
-  return versionMapping || config.c;
+  return config[version] || config.c;
 }
 
 module.exports = getCategoriesForVersion;

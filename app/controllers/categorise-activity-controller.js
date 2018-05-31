@@ -24,6 +24,10 @@ router.get('', validator.get, (req, res) => {
     { accountId, activityId, group, version, title: getActivityTitle(activityId) }, categoryView));
 });
 
+function prototypeVersion(version) {
+  return ['a', 'b'].includes(version);
+}
+
 router.post('', validator.post, (req, res) => {
   const accountId = req.params.accountId;
   const activity = req.params.activityId;
@@ -36,7 +40,7 @@ router.post('', validator.post, (req, res) => {
     .then((result) => {
       if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
-      } else if (['a', 'b'].includes(version)) {
+      } else if (prototypeVersion(version)) {
         res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);

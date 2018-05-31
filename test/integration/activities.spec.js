@@ -44,6 +44,7 @@ describe('Activities page', () => {
       const actvitiesList = activitiesPage.actvitiesList();
       expect(actvitiesList[0].title).to.equal(helper.allActivities[8].title);
       expect(actvitiesList[1].title).to.equal(helper.allActivities[7].title);
+      expect(actvitiesList[2].title).to.equal(helper.allActivities[2].title);
     });
 
     it('should have correct url for activity', () =>
