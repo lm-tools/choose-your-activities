@@ -12,17 +12,18 @@
 </h1>
 
 <section class="text" data-test="remaining">
-    {{{canDo}}}
+    {{canDo}}
 </section>
 <section class="text" data-test="details">
-    {{#__}}activities.overview{{/__}}
+    <p>{{#__}}activities.overview{{/__}}</p>
 </section>
 
 <div class="menu">
     <ul>
         {{#activities}}
             <li class="menu-container" data-test-activity="{{activity}}">
-                <a class="menu-item" href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
+                <a class="menu-item"
+                   href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
             </li>
         {{/activities}}
     </ul>

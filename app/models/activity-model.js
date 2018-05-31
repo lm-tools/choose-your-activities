@@ -17,7 +17,7 @@ module.exports = db.Model.extend(
         .then(sortedActivities => {
           const sortedActivityNames = sortedActivities.map((x) => x.activity);
           return activities
-            .filter(x => sortedActivityNames.indexOf(x) === -1)
+            .filter(x => !sortedActivityNames.includes(x))
             .map(x => ({ activity: x }));
         });
     },
@@ -26,7 +26,7 @@ module.exports = db.Model.extend(
         .then(sortedActivities => {
           const sortedActivityNames = sortedActivities.map((x) => x.activity);
           return ActivityGroupMapper.getActivitiesForGroup(version, group)
-            .filter(x => sortedActivityNames.indexOf(x) === -1)
+            .filter(x => !sortedActivityNames.includes(x))
             .map(x => ({ activity: x }));
         });
     },

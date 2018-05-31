@@ -27,12 +27,6 @@ describe('Categorise activity page', () => {
             .to.equal(categories(version).length)))
     );
 
-  it('should have all of the categories for version a', () =>
-    categoriseActivityPage.visit('a', accountId, activity)
-      .then(() => expect(categoriseActivityPage.countCategories())
-        .to.equal(categories('a').length))
-  );
-
   it('should contain valid google tag manager data', () =>
     categoriseActivityPage.visit('c', accountId, activity)
       .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))

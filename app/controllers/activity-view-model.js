@@ -7,7 +7,7 @@ const allActivitiesLength = require('../models/activities').length;
 module.exports = class ActivityViewModel {
 
   constructor(activities, options) {
-    this.activities = sortActivities(activities.map(x => activityCopy(x)));
+    this.activities = sortActivities(activities.map(activityCopy));
     this.action = this.getAction(options);
     this.isResortMode = this.action.mode === 'resort';
     this.perCategory = {

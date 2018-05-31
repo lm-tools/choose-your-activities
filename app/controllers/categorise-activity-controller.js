@@ -36,7 +36,7 @@ router.post('', validator.post, (req, res) => {
     .then((result) => {
       if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
-      } else if (['a', 'b'].indexOf(version) !== -1) {
+      } else if (['a', 'b'].includes(version)) {
         res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
