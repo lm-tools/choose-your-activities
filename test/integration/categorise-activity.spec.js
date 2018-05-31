@@ -52,7 +52,8 @@ describe('Categorise activity page', () => {
               })
           );
           it('shows 400 message ', () => {
-            expect(helper.errorPage.getMessage()).to.equal('We\'re experiencing technical problems.');
+            expect(helper.errorPage.getMessage())
+              .to.equal('We\'re experiencing technical problems.');
           });
           it('returns 400 code', () =>
             expect(helper.browser.response.status).to.equal(400)
@@ -76,8 +77,9 @@ describe('Categorise activity page', () => {
           );
 
           it('should redirect to unsorted activities after categorisation', () =>
-            expect(categoriseActivityPage.browserPath()).to
-              .equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
+            expect(categoriseActivityPage.browserPath())
+            // eslint-disable-next-line max-len
+              .to.equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
           );
 
           it('should contain "sorted" query parameter', () =>
@@ -87,7 +89,8 @@ describe('Categorise activity page', () => {
           describe('activityId validation on POST', () => {
             before(() =>
               request(helper.app)
-                .post(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/activities/ACT-99/categorise`)
+                .post(`${categoriseActivityPage.basePath}/${scenario.version}/
+                ${accountId}/activities/ACT-99/categorise`)
                 .send({ category: categories[1] })
                 .then(response => {
                   this.response = response;
@@ -110,7 +113,8 @@ describe('Categorise activity page', () => {
             describe(s.title, () => {
               before(() =>
                 request(helper.app)
-                  .post(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/activities/ACT-1/categorise`)
+                  .post(`${categoriseActivityPage.basePath}/${scenario.version}/
+                  ${accountId}/activities/ACT-1/categorise`)
                   .send(s.body)
                   .then(response => {
                     this.response = response;
@@ -145,8 +149,9 @@ describe('Categorise activity page', () => {
 
           it('should redirect to re-sort activities after re-categorisation', () =>
             categoriseActivityPage.selectCategory('I\'m ready to try this')
-              .then(() => expect(categoriseActivityPage.browserPath())
-                .to.equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/activities/sorted/resort`))
+              .then(() => expect(categoriseActivityPage.browserPath()).to.equal(
+                // eslint-disable-next-line max-len
+                `${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/activities/sorted/resort`))
           );
         });
       }));
