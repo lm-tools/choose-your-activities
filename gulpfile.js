@@ -9,15 +9,16 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const streamify = require('gulp-streamify');
 const uglify = require('gulp-uglify');
-const revDelOriginal = require('gulp-rev-delete-original');
 const rev = require('gulp-rev');
+const revDelOriginal = require('gulp-rev-delete-original');
 const debug = require('gulp-debug');
 const http = require('http');
-const app = require('./app/app');
 const { lintHtml } = require('lmt-utils');
 const checkForDeadLinks = require('./scripts/url-checker');
 const labels = require('./app/locales/en.json');
 const activities = require('./app/models/activities');
+// eslint-disable-next-line global-require
+const app = () => { require('./app/app'); };
 
 let node;
 
@@ -35,8 +36,9 @@ gulp.task('lint-all-html', () => {
   const url = `http://localhost:${port}`;
 
   return new Promise(accept =>
-    http.createServer(app).listen(port, () => accept())
+    http.createServer(app()).listen(port, () => accept())
   ).then(lintHtml({ url }))
+    .then(log(color.green('HTML linting passed')))
     .then(exitProcess(exitCodes.success))
     .catch(err => log(color.red(err)) && exitProcess(exitCodes.error));
 });
