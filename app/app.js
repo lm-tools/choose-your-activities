@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const introductionController = require('./controllers/introduction-controller');
 const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
+const activitiesController = require('./controllers/activities-controller');
 const activityGroupController = require('./controllers/activity-group-controller');
 const sortedActivitiesController = require('./controllers/sorted-activities-controller');
 const categoriseActivityController = require('./controllers/categorise-activity-controller');
@@ -101,11 +102,14 @@ app.use(`${basePath}/`, cookieController);
 app.use(`${basePath}/`, introductionController);
 app.use(`${basePath}/:version?/:accountId/introduction`, introductionController);
 app.use(`${basePath}/:version?/:accountId/activities/unsorted`, unsortedActivitiesController);
-app.use(`${basePath}/:version?/:accountId/groups`, activityGroupController);
 app.use(`${basePath}/:version?/:accountId/activities/sorted`, sortedActivitiesController);
 app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
   categoriseActivityController);
 app.use(`${basePath}/:version?/:accountId/activities/:activityId`, activityDetailsController);
+app.use(`${basePath}/:version?/:accountId/groups`, activityGroupController);
+app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, activitiesController);
+app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/categorise`,
+  categoriseActivityController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

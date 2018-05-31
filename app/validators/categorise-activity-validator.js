@@ -9,6 +9,7 @@ module.exports = {
       activityId: Joi.any().valid(activities).required(),
       accountId: Joi.string().required(),
       version: Joi.string().required(),
+      group: Joi.string().optional(),
     }),
   }),
   post: celebrate({
@@ -19,6 +20,7 @@ module.exports = {
     }),
     body: Joi.object().keys({
       category: Joi.any().valid(categories).required(),
+      group: Joi.string().optional(),
     }),
   }),
 };

@@ -148,6 +148,12 @@
     },
     "GRP-6": {
       "title": "I don't know where to start"
+    },
+    "[object Object]": {
+      "title": "activity-group.[object Object].title"
+    },
+    "undefined": {
+      "title": "activity-group.undefined.title"
     }
   },
   "category": {
@@ -165,6 +171,9 @@
     },
     "NO": {
       "title": "Not really for me"
+    },
+    "NOT-SUITABLE": {
+      "title": "It doesn't suit me"
     }
   },
   "tabs": {
@@ -198,5 +207,12 @@
     "400": "We're experiencing technical problems.",
     "404": "Page not found",
     "500": "We're experiencing technical problems."
+  },
+  "activities": {
+    "overview": "<p>Pick any activity from the list - you can then decide if you're interested in it or not.</p>",
+    "can-do": {
+      "one": "%d activity remaining",
+      "other": "%d activities remaining"
+    }
   }
 }

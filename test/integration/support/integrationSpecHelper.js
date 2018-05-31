@@ -16,6 +16,7 @@ const ActivityDetailsPage = require('../../common/page_objects/activity-details-
 const ErrorPage = require('../../common/page_objects/error-page');
 const CookiePage = require('../../common/page_objects/cookie-page');
 const ActivityGroupPage = require('../../common/page_objects/activity-group-page');
+const ActivitiesPage = require('../../common/page_objects/activities-page');
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
 const app = require('../../../bin/www'); // This starts the web server, and ensures it is only
                           // started once. It is a misuse of "require", and
@@ -39,6 +40,7 @@ module.exports = Object.assign(
     activityDetailsPage: new ActivityDetailsPage(browser, basePath),
     cookiePage: new CookiePage(browser, basePath),
     activityGroupPage: new ActivityGroupPage(browser, basePath),
+    activitiesPage: new ActivitiesPage(browser, basePath),
     errorPage: new ErrorPage(browser),
     app,
   },

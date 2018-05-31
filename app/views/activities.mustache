@@ -1,0 +1,32 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}unsorted-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+    {{#__}}activities-group.backButton{{/__}}
+</a>
+
+<h1 class="heading-xlarge">
+    <span class="category heading-secondary">{{title}}</span>
+    {{#__}}layout.header{{/__}}
+</h1>
+
+<section class="text" data-test="remaining">
+    {{{canDo}}}
+</section>
+<section class="text" data-test="details">
+    {{#__}}activities.overview{{/__}}
+</section>
+
+<div class="menu">
+    <ul>
+        {{#activities}}
+            <li class="menu-container" data-test-activity="{{activity}}">
+                <a class="menu-item" href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
+            </li>
+        {{/activities}}
+    </ul>
+</div>
+
+{{/applicationContent}}
+{{/layout}}

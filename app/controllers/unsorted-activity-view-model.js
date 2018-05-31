@@ -3,15 +3,11 @@ const sortActivities = require('./activity-sorter');
 
 module.exports = class ActivityViewModel {
 
-  constructor(unsorted, lastSortedActivity) {
-    this.activities = [].concat(unsorted.map(x => this.activityModel(x, false)));
-    this.activities = sortActivities(this.activities);
+  constructor(unsorted, toSort, lastSortedActivity = '') {
+    this.activities = [].concat(unsorted.map(x => activityCopy(x)));
+    this.activities = toSort ? sortActivities(this.activities) : this.activities;
     if (lastSortedActivity) {
-      this.categorisedActivity = this.activityModel(lastSortedActivity);
+      this.categorisedActivity = activityCopy(lastSortedActivity);
     }
-  }
-
-  activityModel(activity) {
-    return Object.assign(activityCopy(activity), activity);
   }
 };

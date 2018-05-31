@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
       res.redirect(`${basePath}/${accountId}/groups`);
     } else if (unsorted.length > 0) {
       res.render(`unsorted-activities-${version}`, Object.assign({ accountId },
-        new ActivitiesViewModel(unsorted, lastSortedActivity)));
+        new ActivitiesViewModel(unsorted, true, lastSortedActivity)));
     } else {
       res.render(`unsorted-activities-all-sorted-${version}`, { accountId });
     }
