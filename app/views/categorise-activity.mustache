@@ -5,7 +5,7 @@
 <h3 class="heading-medium" data-test="heading">{{title}}</h3>
 
 <div class="menu">
-    <ul>
+    <ul class="{{version}}">
         {{#categories}}
             <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
                 <li class="menu-container {{name}}">

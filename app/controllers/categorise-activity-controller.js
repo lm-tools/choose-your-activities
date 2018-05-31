@@ -21,7 +21,7 @@ router.get('', validator.get, (req, res) => {
   const categoryView = new CategoryView(categoriesForVersion(version));
 
   res.render('categorise-activity', Object.assign(
-    { accountId, activityId, group, title: getActivityTitle(activityId) }, categoryView));
+    { accountId, activityId, group, version, title: getActivityTitle(activityId) }, categoryView));
 });
 
 router.post('', validator.post, (req, res) => {
