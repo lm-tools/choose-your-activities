@@ -18,30 +18,42 @@ describe('Categorise activity page', () => {
       version: 'a',
       redirectUri: 'groups/GRP-1/activities',
       queryParam: '',
+      shouldHaveBackButton: true,
     },
     {
       version: 'b',
       redirectUri: 'groups/GRP-1/activities',
       queryParam: '',
+      shouldHaveBackButton: true,
     },
     {
       version: 'c',
       redirectUri: 'activities/unsorted',
       queryParam: `?sorted=${activity}`,
+      shouldHaveBackButton: false,
     }]
     .forEach(scenario =>
       describe(`version: ${scenario.version}`, () => {
+
         it('should have all of the categories to choose from', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(categoriseActivityPage.countCategories())
               .to.equal(categories(scenario.version).length)));
+
         it('should have correct heading', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
-            .then(() => expect(categoriseActivityPage.headingToBe('Find out about volunteering')))
+            .then(() => expect(categoriseActivityPage.heading()).to
+              .contain('Find out about volunteering'))
         );
+
         it('should contain valid google tag manager data', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
+        );
+
+        it('should have back button', () =>
+          expect(categoriseActivityPage.backButtonDisplayed())
+            .to.equal(scenario.shouldHaveBackButton)
         );
 
         describe('activityId validation', () => {
@@ -78,7 +90,8 @@ describe('Categorise activity page', () => {
           it('should redirect to unsorted activities after categorisation', () =>
             expect(categoriseActivityPage.browserPath())
             // eslint-disable-next-line max-len
-              .to.equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
+              .to
+              .equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
           );
 
           it('should contain "sorted" query parameter', () =>
