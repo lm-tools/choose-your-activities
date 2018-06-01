@@ -3,30 +3,30 @@
 {{$applicationContent}}
 
 <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
-    {{#__}}activities-group.backButton{{/__}}
+  {{#__}}activities-group.backButton{{/__}}
 </a>
 
 <h1 class="heading-xlarge">
-    <span class="category heading-secondary">{{title}}</span>
-    {{#__}}layout.header{{/__}}
+  <span class="category heading-secondary">{{title}}</span>
+  {{#__}}layout.header{{/__}}
 </h1>
 
 <section class="text" data-test="remaining">
-    {{canDo}}
+  {{canDo}}
 </section>
 <section class="text" data-test="details">
-    <p>{{#__}}activities.overview{{/__}}</p>
+  <p>{{#__}}activities.overview{{/__}}</p>
 </section>
 
 <div class="menu">
-    <ul>
-        {{#activities}}
-            <li class="menu-container" data-test-activity="{{activity}}">
-                <a class="menu-item"
-                   href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
-            </li>
-        {{/activities}}
-    </ul>
+  <ul>
+    {{#activities}}
+      <li class="menu-container" data-test-activity="{{activity}}">
+        <a class="menu-item"
+           href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
+      </li>
+    {{/activities}}
+  </ul>
 </div>
 
 {{/applicationContent}}

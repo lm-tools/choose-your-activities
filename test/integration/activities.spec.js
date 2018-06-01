@@ -40,7 +40,7 @@ describe('Activities page', () => {
       expect(activitiesPage.actvitiesList().length).to.equal(3)
     );
 
-    it('should display correct title for activity', () => {
+    it('should display correct title for unsorted activities', () => {
       const actvitiesList = activitiesPage.actvitiesList();
       expect(actvitiesList[0].title).to.equal(helper.allActivities[8].title);
       expect(actvitiesList[1].title).to.equal(helper.allActivities[7].title);

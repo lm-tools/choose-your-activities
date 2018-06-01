@@ -34,8 +34,7 @@ describe('Categorise activity page', () => {
         it('should have all of the categories to choose from', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(categoriseActivityPage.countCategories())
-              .to
-              .equal(categories(scenario.version).length)));
+              .to.equal(categories(scenario.version).length)));
         it('should have correct heading', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(categoriseActivityPage.headingToBe('Find out about volunteering')))

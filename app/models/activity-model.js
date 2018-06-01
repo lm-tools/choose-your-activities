@@ -18,7 +18,7 @@ module.exports = db.Model.extend(
           const sortedActivityNames = sortedActivities.map((x) => x.activity);
           return activities
             .filter(x => !sortedActivityNames.includes(x))
-            .map(x => ({ activity: x }));
+            .map(activity => ({ activity }));
         });
     },
     findUnsortedByVersionAccountIdAndGroup(version, accountId, group) {
@@ -27,7 +27,7 @@ module.exports = db.Model.extend(
           const sortedActivityNames = sortedActivities.map((x) => x.activity);
           return ActivityGroupMapper.getActivitiesForGroup(version, group)
             .filter(x => !sortedActivityNames.includes(x))
-            .map(x => ({ activity: x }));
+            .map(activity => ({ activity }));
         });
     },
 

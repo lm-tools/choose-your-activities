@@ -5,6 +5,7 @@ const CategoryView = require('./category-view-model');
 const ActivitiesModel = require('../models/activity-model');
 const validator = require('../validators/categorise-activity-validator');
 const categoriesForVersion = require('./category-mapping');
+const prototypeVersion = require('./version-utils');
 
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
@@ -23,10 +24,6 @@ router.get('', validator.get, (req, res) => {
   res.render('categorise-activity', Object.assign(
     { accountId, activityId, group, version, title: getActivityTitle(activityId) }, categoryView));
 });
-
-function prototypeVersion(version) {
-  return ['a', 'b'].includes(version);
-}
 
 router.post('', validator.post, (req, res) => {
   const accountId = req.params.accountId;
