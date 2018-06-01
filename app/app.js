@@ -22,6 +22,9 @@ const cacheHeaders = require('./middleware/cacheHeaders');
 
 const config = require('../config/du-ver-mapping');
 const prototypeMapper = config[process.env.NODE_ENV || 'test'];
+const nodeVersionValidator = require('./validators/node-version-validator');
+
+nodeVersionValidator();
 
 const app = express();
 i18n(app);
