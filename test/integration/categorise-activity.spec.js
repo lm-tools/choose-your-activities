@@ -34,7 +34,6 @@ describe('Categorise activity page', () => {
     }]
     .forEach(scenario =>
       describe(`version: ${scenario.version}`, () => {
-
         it('should have all of the categories to choose from', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(categoriseActivityPage.countCategories())
@@ -90,8 +89,7 @@ describe('Categorise activity page', () => {
           it('should redirect to unsorted activities after categorisation', () =>
             expect(categoriseActivityPage.browserPath())
             // eslint-disable-next-line max-len
-              .to
-              .equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
+              .to.equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
           );
 
           it('should contain "sorted" query parameter', () =>
