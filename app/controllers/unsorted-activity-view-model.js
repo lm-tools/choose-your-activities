@@ -14,7 +14,7 @@ module.exports = class ActivityViewModel {
     if (group) {
       this.title = i18n.__(`activity-group.${group}.title`);
       this.canDo = i18n.__(this.activities.length > 1 ? 'activities.can-do.other'
-        : 'activities.can-do.one', this.activities.length);
+        : 'activities.can-do.one');
     }
   }
 };

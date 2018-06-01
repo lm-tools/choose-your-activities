@@ -10,7 +10,7 @@ const ActivityPage = function ActivityPage(browser, basePath) {
     };
   }
 
-  this.actvitiesCount = () => browser.query('[data-test="remaining"]').innerHTML;
+  this.actvitiesCount = () => browser.text('[data-test="remaining"]');
   this.actvitiesList = () => browser.queryAll('[data-test-activity]').map(activityModel);
   this.visit = (version, accountId, group) =>
     this.browser.visit(`${basePath}/${version}/${accountId}/groups/${group}/activities`);

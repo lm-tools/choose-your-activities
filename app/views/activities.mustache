@@ -11,7 +11,11 @@
   {{#__}}layout.header{{/__}}
 </h1>
 
-<p class="lede bold-medium" data-test="remaining">{{canDo}}</p>
+<p class="heading-medium" data-test="remaining">
+  {{activities.length}}
+  <span class="lede">{{canDo}}</span>
+</p>
+
 <p data-test="details">{{#__}}activities.overview{{/__}}</p>
 
 <div class="menu">

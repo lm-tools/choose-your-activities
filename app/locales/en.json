@@ -207,8 +207,8 @@
   "activities": {
     "overview": "Pick any activity from the list - you can then decide if you're interested in it or not.",
     "can-do": {
-      "one": "%d activity you can do",
-      "other": "%d activities you can do"
+      "one": " activity you can do",
+      "other": " activities you can do"
     }
   }
 }
