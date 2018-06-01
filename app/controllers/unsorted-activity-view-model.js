@@ -1,5 +1,6 @@
 const decorateActivity = require('../locales/activity-decorator');
 const sortActivities = require('./activity-sorter');
+/* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
 
 module.exports = class ActivityViewModel {
@@ -11,9 +12,7 @@ module.exports = class ActivityViewModel {
       this.categorisedActivity = decorateActivity(lastSortedActivity);
     }
     if (group) {
-      // eslint-disable-next-line no-underscore-dangle
       this.title = i18n.__(`activity-group.${group}.title`);
-      // eslint-disable-next-line no-underscore-dangle
       this.canDo = i18n.__(this.activities.length > 1 ? 'activities.can-do.other'
         : 'activities.can-do.one', this.activities.length);
     }

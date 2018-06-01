@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const helper = require('./support/integrationSpecHelper');
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 const cookiePage = helper.cookiePage;

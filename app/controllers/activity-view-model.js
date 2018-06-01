@@ -1,8 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
 const decorateActivity = require('../locales/activity-decorator');
 const sortActivities = require('./activity-sorter');
 const allActivitiesLength = require('../models/activities').length;
-/* eslint-disable no-underscore-dangle */
 
 module.exports = class ActivityViewModel {
 
@@ -18,10 +18,6 @@ module.exports = class ActivityViewModel {
       NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
     };
     this.showNavigation = activities.length !== allActivitiesLength;
-  }
-
-  activityModel(activity) {
-    return Object.assign(decorateActivity(activity), activity);
   }
 
   activityStats(activities) {
