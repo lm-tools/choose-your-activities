@@ -54,7 +54,7 @@ describe('Activities page', () => {
     );
 
     it('should display the correct number of activities remaining', () =>
-      expect(activitiesPage.actvitiesCount()).to.contain('3 activities remaining')
+      expect(activitiesPage.actvitiesCount()).to.contain('3 activities you can do')
     );
   });
 });
