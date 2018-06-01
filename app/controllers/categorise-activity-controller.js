@@ -5,7 +5,7 @@ const CategoryView = require('./category-view-model');
 const ActivitiesModel = require('../models/activity-model');
 const validator = require('../validators/categorise-activity-validator');
 const categoriesForVersion = require('./category-mapping');
-const prototypeVersion = require('./version-utils');
+const groupsPrototypeVersion = require('./version-utils');
 
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
@@ -43,7 +43,7 @@ router.post('', validator.post, (req, res) => {
     .then((result) => {
       if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
-      } else if (prototypeVersion(version)) {
+      } else if (groupsPrototypeVersion(version)) {
         res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
