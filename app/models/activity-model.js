@@ -1,5 +1,6 @@
 const db = require('../db');
 const activities = require('./activities');
+const ActivityGroupMapper = require('../controllers/activity-group-mapping');
 
 module.exports = db.Model.extend(
   {
@@ -16,8 +17,17 @@ module.exports = db.Model.extend(
         .then(sortedActivities => {
           const sortedActivityNames = sortedActivities.map((x) => x.activity);
           return activities
-            .filter(x => sortedActivityNames.indexOf(x) === -1)
-            .map(x => ({ activity: x }));
+            .filter(x => !sortedActivityNames.includes(x))
+            .map(activity => ({ activity }));
+        });
+    },
+    findUnsortedByVersionAccountIdAndGroup(version, accountId, group) {
+      return this.findSortedByAccountId(accountId)
+        .then(sortedActivities => {
+          const sortedActivityNames = sortedActivities.map((x) => x.activity);
+          return ActivityGroupMapper.getActivitiesForGroup(version, group)
+            .filter(x => !sortedActivityNames.includes(x))
+            .map(activity => ({ activity }));
         });
     },
 

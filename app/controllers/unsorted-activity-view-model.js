@@ -1,17 +1,20 @@
-const activityCopy = require('../locales/activity-copy');
+const decorateActivity = require('../locales/activity-decorator');
 const sortActivities = require('./activity-sorter');
+/* eslint-disable no-underscore-dangle */
+const i18n = require('i18n');
 
 module.exports = class ActivityViewModel {
 
-  constructor(unsorted, lastSortedActivity) {
-    this.activities = [].concat(unsorted.map(x => this.activityModel(x, false)));
-    this.activities = sortActivities(this.activities);
+  constructor(unsorted, toSort, lastSortedActivity, group = '') {
+    this.activities = unsorted.map(decorateActivity);
+    this.activities = toSort ? sortActivities(this.activities) : this.activities;
     if (lastSortedActivity) {
-      this.categorisedActivity = this.activityModel(lastSortedActivity);
+      this.categorisedActivity = decorateActivity(lastSortedActivity);
     }
-  }
-
-  activityModel(activity) {
-    return Object.assign(activityCopy(activity), activity);
+    if (group) {
+      this.title = i18n.__(`activity-group.${group}.title`);
+      this.canDo = i18n.__(this.activities.length > 1 ? 'activities.can-do.other'
+        : 'activities.can-do.one');
+    }
   }
 };

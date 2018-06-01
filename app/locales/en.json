@@ -48,7 +48,9 @@
     }
   },
   "categorise-activity": {
-    "pageTitle": "Sort this activity"
+    "pageTitle": "Sort this activity",
+    "overview": "How interested are you in this activity?",
+    "backButton": "Back"
   },
   "activity": {
     "ACT-1": {
@@ -165,6 +167,9 @@
     },
     "NO": {
       "title": "Not really for me"
+    },
+    "NOT-SUITABLE": {
+      "title": "It doesn't suit me"
     }
   },
   "tabs": {
@@ -198,5 +203,12 @@
     "400": "We're experiencing technical problems.",
     "404": "Page not found",
     "500": "We're experiencing technical problems."
+  },
+  "activities": {
+    "overview": "Pick any activity from the list - you can then decide if you're interested in it or not.",
+    "can-do": {
+      "one": " activity you can do",
+      "other": " activities you can do"
+    }
   }
 }

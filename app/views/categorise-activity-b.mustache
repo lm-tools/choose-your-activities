@@ -1,0 +1,33 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}categorise-activity.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+<a href="{{basePath}}/{{accountId}}/groups/{{group}}/activities" class="link-back">
+  {{#__}}categorise-activity.backButton{{/__}}
+</a>
+
+<h1 class="heading-xlarge" data-test="heading">
+  <span class="category heading-secondary">{{groupTitle}}</span>
+  {{title}}
+</h1>
+
+<section class="text" data-test="details">
+  <p>{{#__}}categorise-activity.overview{{/__}}</p>
+</section>
+
+<div class="menu">
+  <ul class="b">
+    {{#categories}}
+      <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
+        <li class="menu-container {{name}}">
+          <input type="hidden" name="category" value="{{name}}">
+          <input type="hidden" name="group" value="{{group}}">
+          <input class="menu-item" data-test="menu-item" type="submit" value="{{title}}">
+        </li>
+      </form>
+    {{/categories}}
+  </ul>
+</div>
+
+{{/applicationContent}}
+{{/layout}}

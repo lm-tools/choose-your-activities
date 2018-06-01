@@ -63,13 +63,20 @@
   position: relative;
 }
 
-.menu {
+.menu .c {
   .DOING { border-left-color: $green; }
   .READY { border-left-color: $light-blue; }
   .HELP { border-left-color: $yellow; }
   .NOT-WORKED { border-left-color: $mellow-red; }
   .NO { border-left-color: $black; }
   .DISABLED { border-left-color: $grey-2; }
+}
+
+.menu .b, .menu .a {
+  .READY { border-left-color: $turquoise; }
+  .HELP { border-left-color: $turquoise; }
+  .DOING { border-left-color: $fuschia; }
+  .NOT-SUITABLE { border-left-color: $fuschia; }
 }
 
 button.link-button {
