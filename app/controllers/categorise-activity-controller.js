@@ -14,6 +14,10 @@ function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
+function getGroupTitle(group) {
+  return i18n.__(`activity-group.${group}.title`);
+}
+
 router.get('', validator.get, (req, res) => {
   const accountId = req.params.accountId;
   const activityId = req.params.activityId;
@@ -21,8 +25,10 @@ router.get('', validator.get, (req, res) => {
   const version = res.locals.version;
   const categoryView = new CategoryView(categoriesForVersion(version));
 
-  res.render('categorise-activity', Object.assign(
-    { accountId, activityId, group, version, title: getActivityTitle(activityId) }, categoryView));
+  const title = getActivityTitle(activityId);
+  const groupTitle = getGroupTitle(group);
+  res.render(`categorise-activity-${version}`, Object.assign(
+    { accountId, activityId, group, title, groupTitle }, categoryView));
 });
 
 router.post('', validator.post, (req, res) => {

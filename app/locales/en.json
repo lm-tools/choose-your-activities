@@ -48,7 +48,9 @@
     }
   },
   "categorise-activity": {
-    "pageTitle": "Sort this activity"
+    "pageTitle": "Sort this activity",
+    "overview": "How interested are you in this activity?",
+    "backButton": "Back"
   },
   "activity": {
     "ACT-1": {
