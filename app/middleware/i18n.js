@@ -12,18 +12,13 @@ i18n.configure({
   indent: '  ',
 });
 
-
-module.exports = app => {
-  app.use((req, res, next) => {
-    /* eslint-disable prefer-arrow-callback, no-underscore-dangle, no-param-reassign */
-    // mustache helper
-    res.locals.__ = () =>
-      function (...args) {
-        return i18n.__.apply(req, args);
-      };
-    next();
-    /* eslint-enable */
-  });
-  // i18n.init seems not to work properly with hogan
-  // app.use(i18n.init);
+module.exports = (req, res, next) => {
+  /* eslint-disable prefer-arrow-callback, no-underscore-dangle, no-param-reassign */
+  // mustache helper
+  res.locals.__ = () =>
+    function (...args) {
+      return i18n.__.apply(req, args);
+    };
+  next();
+  /* eslint-enable */
 };

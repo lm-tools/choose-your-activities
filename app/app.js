@@ -13,7 +13,7 @@ const config = require('../config/du-ver-mapping');
 const prototypeMapper = config[process.env.NODE_ENV || 'test'];
 
 const app = express();
-middleware.i18n(app);
+app.use(middleware.i18n);
 app.use(helmet());
 app.use(helmet.referrerPolicy());
 
