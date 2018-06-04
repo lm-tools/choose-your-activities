@@ -102,6 +102,10 @@ app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/c
 // catch 404 and forward to error handler
 app.use(middleware.notFound);
 
+if (app.get('env') !== 'test') {
+  app.use(middleware.stackLogger);
+}
+
 middleware.errorHandler(app);
 
 module.exports = app;
