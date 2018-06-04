@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       res.render('activities', Object.assign({
         accountId,
         group,
-      }, new ActivitiesViewModel(activities, false, '', group)));
+      }, new ActivitiesViewModel(activities, false, '', version, group)));
     });
 });
 

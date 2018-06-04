@@ -3,6 +3,7 @@ const router = new express.Router({ mergeParams: true });
 
 const ActivitiesModel = require('../models/activity-model');
 const ActivitiesViewModel = require('./unsorted-activity-view-model');
+const groupsPrototypeVersion = require('./version-utils');
 
 router.get('/', (req, res, next) => {
   const accountId = req.params.accountId;
@@ -16,7 +17,7 @@ router.get('/', (req, res, next) => {
   ]).then(results => {
     const unsorted = results[0];
     const lastSortedActivity = results[1];
-    if (version === 'a') {
+    if (groupsPrototypeVersion(version)) {
       res.redirect(`${basePath}/${accountId}/groups`);
     } else if (unsorted.length > 0) {
       res.render(`unsorted-activities-${version}`, Object.assign({ accountId },

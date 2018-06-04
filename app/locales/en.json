@@ -133,23 +133,45 @@
   "activity-group": {
     "subheading": "Choose your activities",
     "heading": "What do you want to do?",
-    "GRP-1": {
-      "title": "Get better at my applications and interviews"
+    "a": {
+      "GRP-1": {
+        "title": "Get better at my applications and interviews"
+      },
+      "GRP-2": {
+        "title": "Improve my skills and qualifications"
+      },
+      "GRP-3": {
+        "title": "Improve how I search online for work"
+      },
+      "GRP-4": {
+        "title": "Find the right kind of job for me"
+      },
+      "GRP-5": {
+        "title": "Give myself some confidence"
+      },
+      "GRP-6": {
+        "title": "I don't know where to start"
+      }
     },
-    "GRP-2": {
-      "title": "Improve my skills and qualifications"
-    },
-    "GRP-3": {
-      "title": "Improve how I search online for work"
-    },
-    "GRP-4": {
-      "title": "Find the right kind of job for me"
-    },
-    "GRP-5": {
-      "title": "Give myself some confidence"
-    },
-    "GRP-6": {
-      "title": "I don't know where to start"
+    "b": {
+      "GRP-1": {
+        "title": "Improve applications"
+      },
+      "GRP-2": {
+        "title": "Gain skills"
+      },
+      "GRP-3": {
+        "title": "Use the web better"
+      },
+      "GRP-4": {
+        "title": "Find the right job"
+      },
+      "GRP-5": {
+        "title": "Get quick ideas"
+      },
+      "GRP-6": {
+        "title": "Everything"
+      }
     }
   },
   "category": {

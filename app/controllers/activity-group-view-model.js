@@ -3,17 +3,17 @@ const activityGroupMapping = require('./activity-group-mapping');
 
 module.exports = class ActivityGroupViewModel {
 
-  constructor(activityGroups) {
-    this.activityGroups = this.activityGroupView(activityGroups);
+  constructor(activityGroups, version) {
+    this.activityGroups = this.activityGroupView(activityGroups, version);
   }
 
-  activityGroupView(activityGroups) {
+  activityGroupView(activityGroups, version) {
     return activityGroups
       .map((activityGroup) => ({
         // eslint-disable-next-line no-underscore-dangle
-        title: i18n.__(`activity-group.${activityGroup}.title`),
+        title: i18n.__(`activity-group.${version}.${activityGroup}.title`),
         name: activityGroup,
-        count: activityGroupMapping.getCountOfActivitiesForGroup('b', activityGroup),
+        count: activityGroupMapping.getCountOfActivitiesForGroup(version, activityGroup),
       }));
   }
 };
