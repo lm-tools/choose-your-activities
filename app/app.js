@@ -100,11 +100,7 @@ app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/c
   controllers.categoriseActivity);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+app.use(middleware.notFound);
 
 middleware.errorHandler(app);
 
