@@ -106,6 +106,7 @@ if (app.get('env') !== 'test') {
   app.use(middleware.stackLogger);
 }
 
-middleware.errorHandler(app);
+const displayRawError = app.get('env') === 'development';
+app.use(middleware.errorHandler(displayRawError));
 
 module.exports = app;
