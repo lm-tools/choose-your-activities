@@ -20,10 +20,8 @@ const activities = require('./app/models/activities');
 
 // This is wrapped into a function so it is only executed and resolved in the lint-html task,
 // otherwise the npm clean task will removed a file that is required in an app import.
-const app = () => {
-  // eslint-disable-next-line global-require
-  require('./app/app');
-};
+// eslint-disable-next-line global-require
+const app = () => require('./app/app');
 
 let node;
 
@@ -34,7 +32,6 @@ const killServer = () => {
   if (node) node.kill();
 };
 
-// npm run html-lint
 gulp.task('lint-all-html', () => {
   process.env = process.env || 'TEST';
   const port = 3001;
@@ -42,10 +39,12 @@ gulp.task('lint-all-html', () => {
 
   return new Promise(accept =>
     http.createServer(app()).listen(port, () => accept())
-  ).then(lintHtml({ url }))
-    .then(log(color.green('HTML linting passed')))
-    .then(exitProcess(exitCodes.success))
-    .catch(err => log(color.red(err)) && exitProcess(exitCodes.error));
+  ).then(() => lintHtml({ url }))
+    .then(() => exitProcess(exitCodes.success))
+    .catch(err => {
+      log(color.red(err));
+      exitProcess(exitCodes.error);
+    });
 });
 
 gulp.task('browserify', () =>
