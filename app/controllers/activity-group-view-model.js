@@ -1,5 +1,5 @@
-const i18n = require('i18n');
 const activityGroupMapping = require('./activity-group-mapping');
+const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
 module.exports = class ActivityGroupViewModel {
 
@@ -10,8 +10,7 @@ module.exports = class ActivityGroupViewModel {
   activityGroupView(activityGroups, version) {
     return activityGroups
       .map((activityGroup) => ({
-        // eslint-disable-next-line no-underscore-dangle
-        title: i18n.__(`activity-group.${version}.${activityGroup}.title`),
+        title: resolveGroupTitle(version, activityGroup),
         name: activityGroup,
         count: activityGroupMapping.getCountOfActivitiesForGroup(version, activityGroup),
       }));

@@ -6,16 +6,13 @@ const ActivitiesModel = require('../models/activity-model');
 const validator = require('../validators/categorise-activity-validator');
 const categoriesForVersion = require('./category-mapping');
 const groupsPrototypeVersion = require('./version-utils');
+const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
 
 function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
-}
-
-function getGroupTitle(group, version) {
-  return groupsPrototypeVersion(version) ? i18n.__(`activity-group.${version}.${group}.title`) : '';
 }
 
 router.get('', validator.get, (req, res) => {
@@ -26,7 +23,7 @@ router.get('', validator.get, (req, res) => {
   const categoryView = new CategoryView(categoriesForVersion(version));
 
   const title = getActivityTitle(activityId);
-  const groupTitle = getGroupTitle(group, version);
+  const groupTitle = resolveGroupTitle(version, group);
   res.render(`categorise-activity-${version}`, Object.assign(
     { accountId, activityId, group, title, groupTitle }, categoryView));
 });
@@ -49,7 +46,7 @@ router.post('', validator.post, (req, res) => {
             if (unsortedActivities.length > 0) {
               res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
             } else {
-              const title = getGroupTitle(group, version);
+              const title = resolveGroupTitle(version, group);
               res.render('go-to-activities', { accountId, group, title });
             }
           });
