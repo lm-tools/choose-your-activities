@@ -2,6 +2,7 @@ const helper = require('./support/integrationSpecHelper');
 
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 const categoriseActivityPage = helper.categoriseActivityPage;
+const activitiesPage = helper.activitiesPage;
 
 const categories = require('../../app/controllers/category-mapping');
 
@@ -87,9 +88,9 @@ describe('Categorise activity page', () => {
           );
 
           it('should redirect to unsorted activities after categorisation', () =>
-            expect(categoriseActivityPage.browserPath())
+            expect(categoriseActivityPage.browserPath()).to
             // eslint-disable-next-line max-len
-              .to.equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
+              .equal(`${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUri}`)
           );
 
           it('should contain "sorted" query parameter', () =>
@@ -165,4 +166,29 @@ describe('Categorise activity page', () => {
           );
         });
       }));
+  describe('go to my activities page', () => {
+    before(() => {
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          { activity: helper.allActivities[12].name, category: 'READY' },
+          { activity: helper.allActivities[13].name, category: 'READY' },
+          { activity: helper.allActivities[18].name, category: 'READY' },
+        ]));
+    });
+    it('when all activities in the group are sorted', () =>
+      categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
+        helper.allActivities[5].name)
+        .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
+        .then(() => expect(!!categoriseActivityPage.browser
+          .query('[data-test="go-to-my-activities"]')).to.be.true)
+    );
+
+    it('when the user comes back second time after sorting all activities', () =>
+      helper.addSortedActivities(accountId, [
+        { activity: helper.allActivities[5].name, category: 'READY' }])
+        .then(() => activitiesPage.visit('a', accountId, 'GRP-3'))
+        .then(() => expect(!!categoriseActivityPage.browser
+          .query('[data-test="go-to-my-activities"]')).to.be.false)
+    );
+  });
 });

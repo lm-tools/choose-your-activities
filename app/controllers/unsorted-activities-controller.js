@@ -20,10 +20,10 @@ router.get('/', (req, res, next) => {
     if (groupsPrototypeVersion(version)) {
       res.redirect(`${basePath}/${accountId}/groups`);
     } else if (unsorted.length > 0) {
-      res.render(`unsorted-activities-${version}`, Object.assign({ accountId },
+      res.render('unsorted-activities', Object.assign({ accountId },
         new ActivitiesViewModel(unsorted, true, lastSortedActivity)));
     } else {
-      res.render(`unsorted-activities-all-sorted-${version}`, { accountId });
+      res.render('unsorted-activities-all-sorted', { accountId });
     }
   }).catch((err) => next(err));
 });

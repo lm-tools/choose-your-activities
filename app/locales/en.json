@@ -35,18 +35,6 @@
       "continueButton": "Continue"
     }
   },
-  "unsorted-activities-a": {
-    "pageTitle": "Choose your activities - A",
-    "all-sorted": {
-      "title": "You've sorted all of the activities - A"
-    }
-  },
-  "unsorted-activities-b": {
-    "pageTitle": "Choose your activities - B",
-    "all-sorted": {
-      "title": "You've sorted all of the activities - B"
-    }
-  },
   "categorise-activity": {
     "pageTitle": "Sort this activity",
     "overview": "How interested are you in this activity?",
@@ -232,5 +220,13 @@
       "one": " activity you can do",
       "other": " activities you can do"
     }
+  },
+  "go-to-activities": {
+    "backButton": "Back",
+    "header": "You've chosen activities that can help you find work",
+    "overview": "You can now:",
+    "action-1": "read information about each activity",
+    "action-2": "try them out",
+    "button-label": "Go to my activities"
   }
 }
