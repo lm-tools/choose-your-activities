@@ -5,7 +5,8 @@ const ActivityGroupView = require('./activity-group-view-model');
 
 router.get('/', (req, res) => {
   const accountId = req.params.accountId;
-  const activityGroupView = new ActivityGroupView(activityGroups);
+  const version = res.locals.version;
+  const activityGroupView = new ActivityGroupView(activityGroups, version);
   res.render('activity-group', Object.assign({ accountId }, activityGroupView));
 });
 

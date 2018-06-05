@@ -14,8 +14,8 @@ function getActivityTitle(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
-function getGroupTitle(group) {
-  return i18n.__(`activity-group.${group}.title`);
+function getGroupTitle(group, version) {
+  return groupsPrototypeVersion(version) ? i18n.__(`activity-group.${version}.${group}.title`) : '';
 }
 
 router.get('', validator.get, (req, res) => {
@@ -26,7 +26,7 @@ router.get('', validator.get, (req, res) => {
   const categoryView = new CategoryView(categoriesForVersion(version));
 
   const title = getActivityTitle(activityId);
-  const groupTitle = getGroupTitle(group);
+  const groupTitle = getGroupTitle(group, version);
   res.render(`categorise-activity-${version}`, Object.assign(
     { accountId, activityId, group, title, groupTitle }, categoryView));
 });
