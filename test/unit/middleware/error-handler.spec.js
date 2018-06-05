@@ -1,9 +1,21 @@
 const underTest = require('../../../app/middleware/error-handler');
 const i18n = require('i18n');
 const enLocale = require('../../../app/locales/en');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('error handling', () => {
+  let err;
+  let req;
+  let res;
+  let next;
+
+  beforeEach(() => {
+    err = {};
+    req = {};
+    res = {};
+    next = {};
+  });
+
   before(() =>
     i18n.configure({
       locales: ['en'],
@@ -18,15 +30,13 @@ describe('error handling', () => {
   );
 
   it('if validation error then status is set to 400', () => {
-    let actualCode;
-    const err = { isJoi: true };
-    const req = {};
-    const res = {
+    let actualCode = {};
+    err = { isJoi: true };
+    res = {
       status: code => (actualCode = code),
       render: () => {
       },
     };
-    const next = {};
 
     underTest(false)(err, req, res, next);
 
@@ -34,15 +44,12 @@ describe('error handling', () => {
   });
 
   it('if not validation error then status code is set to 500', () => {
-    let actualCode;
-    const err = {};
-    const req = {};
-    const res = {
+    let actualCode = {};
+    res = {
       status: code => (actualCode = code),
       render: () => {
       },
     };
-    const next = {};
 
     underTest(false)(err, req, res, next);
 
@@ -51,11 +58,9 @@ describe('error handling', () => {
 
   describe('creates the response', () => {
     it('renders the page on the response', () => {
-      let actualView;
-      let actualModel;
-      const err = {};
-      const req = {};
-      const res = {
+      let actualView = {};
+      let actualModel = {};
+      res = {
         status: () => {
         },
         render: (view, model) => {
@@ -63,7 +68,6 @@ describe('error handling', () => {
           actualModel = model;
         },
       };
-      const next = {};
 
       underTest(false)(err, req, res, next);
 
@@ -73,17 +77,15 @@ describe('error handling', () => {
 
     [400, 404, 500].forEach(statusCode => {
       it(`sets the message for ${statusCode} status code`, () => {
-        let actualModel;
-        const err = { status: statusCode };
-        const req = {};
-        const res = {
+        let actualModel = {};
+        err = { status: statusCode };
+        res = {
           status: () => {
           },
           render: (view, model) => {
             actualModel = model;
           },
         };
-        const next = {};
 
         underTest(false)(err, req, res, next);
 
@@ -92,17 +94,15 @@ describe('error handling', () => {
     });
 
     it('if display raw error then sets the error details on the model', () => {
-      let actualModel;
-      const err = { status: 404, message: 'some message', stack: 'some stack' };
-      const req = {};
-      const res = {
+      let actualModel = {};
+      err = { status: 404, message: 'some message', stack: 'some stack' };
+      res = {
         status: () => {
         },
         render: (view, model) => {
           actualModel = model;
         },
       };
-      const next = {};
 
       underTest(true)(err, req, res, next);
 
