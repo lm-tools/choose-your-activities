@@ -232,5 +232,13 @@
       "one": " activity you can do",
       "other": " activities you can do"
     }
+  },
+  "go-to-activities": {
+    "backButton": "Back",
+    "header": "You've chosen activities that can help you find work",
+    "overview": "You can now:",
+    "action-1": "read information about each activity",
+    "action-2": "try them out",
+    "button-label": "Go to my activities"
   }
 }

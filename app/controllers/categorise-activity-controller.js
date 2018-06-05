@@ -44,7 +44,15 @@ router.post('', validator.post, (req, res) => {
       if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
       } else if (groupsPrototypeVersion(version)) {
-        res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
+        ActivitiesModel.findUnsortedByVersionAccountIdAndGroup(version, accountId, group)
+          .then(unsortedActivities => {
+            if (unsortedActivities.length > 0) {
+              res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
+            } else {
+              const title = getGroupTitle(group, version);
+              res.render('go-to-activities', { accountId, group, title });
+            }
+          });
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
       }

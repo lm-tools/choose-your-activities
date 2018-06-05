@@ -1,0 +1,24 @@
+{{<layout}}
+  {{$pageTitle}}{{#__}}layout.header{{/__}}{{/pageTitle}}
+  {{$applicationContent}}
+  <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+    {{#__}}go-to-activities.backButton{{/__}}
+  </a>
+
+  <h1 class="heading-xlarge">
+    <span class="category heading-secondary">{{title}}</span>
+    {{#__}}go-to-activities.header{{/__}}
+  </h1>
+
+    <p>{{#__}}go-to-activities.overview{{/__}}</p>
+
+    <ol class="list list-bullet">
+      <li>{{#__}}go-to-activities.action-1{{/__}}</li>
+      <li>{{#__}}go-to-activities.action-2{{/__}}</li>
+    </ol>
+
+    <p class="form-group">
+      <a class="button" href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/details" data-test="go-to-my-activities">{{#__}}go-to-activities.button-label{{/__}}</a>
+    </p>
+  {{/applicationContent}}
+{{/layout}}
