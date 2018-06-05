@@ -4,28 +4,16 @@ const favicon = require('serve-favicon');
 const logger = require('./../logger');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
-const introductionController = require('./controllers/introduction-controller');
-const unsortedActivitiesController = require('./controllers/unsorted-activities-controller');
-const activitiesController = require('./controllers/activities-controller');
-const activityGroupController = require('./controllers/activity-group-controller');
-const sortedActivitiesController = require('./controllers/sorted-activities-controller');
-const categoriseActivityController = require('./controllers/categorise-activity-controller');
-const activityDetailsController = require('./controllers/activity-details-controller');
-const cookieController = require('./controllers/cookie-controller');
-
-const i18n = require('./middleware/i18n');
-const errorHandler = require('./middleware/error-handler');
-const healthCheckController = require('./controllers/health-check-controller');
+const controllers = require('./controllers/index');
+const middleware = require('./middleware/index');
 const helmet = require('helmet');
 const layoutAssets = require('./models/assets');
-const cacheHeaders = require('./middleware/cacheHeaders');
 
 const config = require('../config/du-ver-mapping');
 const prototypeMapper = config[process.env.NODE_ENV || 'test'];
 
 const app = express();
-i18n(app);
+app.use(middleware.i18n);
 app.use(helmet());
 app.use(helmet.referrerPolicy());
 
@@ -40,8 +28,8 @@ const basePath = app.locals.basePath = process.env.EXPRESS_BASE_PATH || '';
 const assetPath = `${basePath}/`;
 const googleTagManagerId = process.env.GOOGLE_TAG_MANAGER_ID;
 
-app.use('/health_check', healthCheckController);
-app.use(`${basePath}/health_check`, healthCheckController);
+app.use('/health_check', controllers.healthCheck);
+app.use(`${basePath}/health_check`, controllers.healthCheck);
 
 const setVersionInBasePath = (version) => {
   if (prototypeMapper.liveVersions.indexOf(version) !== -1) {
@@ -89,7 +77,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(assetPath, cacheHeaders);
+app.use(assetPath, middleware.cacheHeaders);
 
 app.use(`${assetPath}vendor/v1`, express.static(path.join(__dirname, '..',
   'vendor', 'govuk_template_mustache_inheritance', 'assets')));
@@ -98,26 +86,27 @@ app.use(assetPath, express.static(path.join(__dirname, '..', 'dist', 'public')))
 
 app.use(helmet.noCache());
 
-app.use(`${basePath}/`, cookieController);
-app.use(`${basePath}/`, introductionController);
-app.use(`${basePath}/:version?/:accountId/introduction`, introductionController);
-app.use(`${basePath}/:version?/:accountId/activities/unsorted`, unsortedActivitiesController);
-app.use(`${basePath}/:version?/:accountId/activities/sorted`, sortedActivitiesController);
+app.use(`${basePath}/`, controllers.cookie);
+app.use(`${basePath}/`, controllers.introduction);
+app.use(`${basePath}/:version?/:accountId/introduction`, controllers.introduction);
+app.use(`${basePath}/:version?/:accountId/activities/unsorted`, controllers.unsortedActivities);
+app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
 app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
-  categoriseActivityController);
-app.use(`${basePath}/:version?/:accountId/activities/:activityId`, activityDetailsController);
-app.use(`${basePath}/:version?/:accountId/groups`, activityGroupController);
-app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, activitiesController);
+  controllers.categoriseActivity);
+app.use(`${basePath}/:version?/:accountId/activities/:activityId`, controllers.activityDetails);
+app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);
+app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, controllers.activities);
 app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/categorise`,
-  categoriseActivityController);
+  controllers.categoriseActivity);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+app.use(middleware.notFound);
 
-errorHandler(app);
+if (app.get('env') !== 'test') {
+  app.use(middleware.stackLogger);
+}
+
+const displayRawError = app.get('env') === 'development';
+app.use(middleware.errorHandler(displayRawError));
 
 module.exports = app;
