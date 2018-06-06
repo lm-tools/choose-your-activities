@@ -17,8 +17,8 @@ class ActivityGroupDetailsPage {
 
 
   getHeading() {
-    const headingText = this.browser.text('h2');
-    const subHeadingText = this.browser.text('h2 .heading-secondary');
+    const headingText = this.browser.text('h1.heading-xlarge');
+    const subHeadingText = this.browser.text('h1 .heading-secondary');
     return { headingText: headingText.replace(subHeadingText, '').trim(), subHeadingText };
   }
 
