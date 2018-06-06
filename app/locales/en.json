@@ -40,6 +40,12 @@
     "overview": "How interested are you in this activity?",
     "backButton": "Back"
   },
+  "activity-group-details": {
+    "pageTitle": "Choose your activities",
+    "backButton": "Back",
+    "heading": "Your chosen activities",
+    "subheading": "Get better at my applications and interviews"
+  },
   "activity": {
     "ACT-1": {
       "title": "Find out about volunteering",
