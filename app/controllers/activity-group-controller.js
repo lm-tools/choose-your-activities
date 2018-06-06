@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   const accountId = req.params.accountId;
   const version = res.locals.version;
   const activityGroupView = new ActivityGroupView(activityGroups, version);
-  res.render('activity-group', Object.assign({ accountId }, activityGroupView));
+  res.render(`activity-group-${version}`, Object.assign({ accountId }, activityGroupView));
 });
 
 module.exports = router;

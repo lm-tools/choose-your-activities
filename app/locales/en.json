@@ -119,9 +119,12 @@
     }
   },
   "activity-group": {
+    "backButton": "Back",
     "subheading": "Choose your activities",
-    "heading": "What do you want to do?",
+    "choose": "Choose",
     "a": {
+      "heading": "What do you want to do?",
+      "activities": " activities",
       "GRP-1": {
         "title": "Get better at my applications and interviews"
       },
@@ -142,6 +145,8 @@
       }
     },
     "b": {
+      "heading": "Choose a goal",
+      "activities": " things to do",
       "GRP-1": {
         "title": "Improve applications"
       },

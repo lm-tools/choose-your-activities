@@ -3,12 +3,12 @@
 {{$applicationContent}}
 
 <a href="{{basePath}}/{{accountId}}/introduction" class="link-back">
-  {{#__}}activities-group.backButton{{/__}}
+  {{#__}}activity-group.backButton{{/__}}
 </a>
 
 <h1 class="heading-xlarge">
   <span class="category heading-secondary">{{#__}}activity-group.subheading{{/__}}</span>
-  {{#__}}activity-group.heading{{/__}}
+  {{#__}}activity-group.a.heading{{/__}}
 </h1>
 
 <ul class="category-list">
@@ -18,8 +18,8 @@
         <p class="category-list__description">{{title}}</p>
 
         <div class="category-list__bottom">
-          <span class="category-list__activities-count">{{count}} activities</span>
-          <span class="category-list__label">Choose</span>
+          <span class="category-list__activities-count">{{count}}{{#__}}activity-group.a.activities{{/__}}</span>
+          <span class="category-list__label">{{#__}}activity-group.choose{{/__}}</span>
         </div>
       </a>
     </li>
