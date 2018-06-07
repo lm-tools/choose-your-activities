@@ -99,8 +99,8 @@ app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);
 app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, controllers.activities);
 app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/categorise`,
   controllers.categoriseActivity);
-app.use(`${basePath}/:version?/:accountId/groups/:group/activities/details`,
-  controllers.activityGroupDetails);
+app.use(`${basePath}/:version?/:accountId/groups/:group/activities/chosen`,
+  controllers.chosenActivities);
 
 // catch 404 and forward to error handler
 app.use(middleware.notFound);

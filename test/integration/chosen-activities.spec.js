@@ -1,5 +1,5 @@
 const helper = require('./support/integrationSpecHelper');
-const pageUnderTest = helper.activityGroupDetailsPage;
+const pageUnderTest = helper.chosenActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 
 const { expect } = require('chai');
@@ -7,7 +7,7 @@ const uuid = require('uuid');
 
 const accountId = uuid.v4();
 
-describe('activity group details', () => {
+describe('chosen activities page', () => {
   ['a', 'b'].forEach((version) => {
     it(`should have correct title for version ${version}`, () =>
       pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>

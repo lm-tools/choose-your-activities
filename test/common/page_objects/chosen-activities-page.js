@@ -1,4 +1,4 @@
-class ActivityGroupDetailsPage {
+class ChosenActivitiesPage {
 
   constructor(browser, basePath) {
     this.browser = browser;
@@ -7,7 +7,7 @@ class ActivityGroupDetailsPage {
 
   visit(version, accountId, groupId) {
     return this.browser.visit(
-      `${this.basePath}/${version}/${accountId}/groups/${groupId}/activities/details`
+      `${this.basePath}/${version}/${accountId}/groups/${groupId}/activities/chosen`
     );
   }
 
@@ -24,4 +24,4 @@ class ActivityGroupDetailsPage {
 
 }
 
-module.exports = ActivityGroupDetailsPage;
+module.exports = ChosenActivitiesPage;
