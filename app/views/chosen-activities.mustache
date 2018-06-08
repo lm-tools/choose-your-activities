@@ -16,10 +16,20 @@
           <div class="grid-row">
             <div class="column-two-thirds">
               <ol class="list list-contents app-c-contents-list__list">
-                <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">I'm ready to get started (2 activities)</li>
-                <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed"><a class="app-c-contents-list__link" href="#typography-headings">I'd like help trying this (1 activity)</a></li>
-                <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed"><a class="app-c-contents-list__link" href="#typography-lead-paragraph">I'm already doing this (1 activity)</a></li>
-                <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed"><a class="app-c-contents-list__link" href="#typography-body-copy">It doesn't suit me (1 activity)</a></li>
+                {{#categories}}
+                  {{#isSelectedCategory}}
+                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
+                     {{title}} (2 activities)
+                    </li>
+                  {{/isSelectedCategory}}
+                  {{^isSelectedCategory}}
+                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+                      <a class="app-c-contents-list__link" href="#typography-headings">
+                        {{title}} (1 activity)
+                      </a>
+                    </li>
+                  {{/isSelectedCategory}}
+                 {{/categories}}
               </ol>
             </div>
           </div>
