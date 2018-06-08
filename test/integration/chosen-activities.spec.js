@@ -8,31 +8,38 @@ const uuid = require('uuid');
 const accountId = uuid.v4();
 
 describe('chosen activities page', () => {
-  ['a', 'b'].forEach((version) => {
-    it(`should have correct title for version ${version}`, () =>
-      pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>
-        expect(pageUnderTest.getTitle()).to.equal('Choose your activities')
-      )
-    );
+  describe('page outline', () => {
+    ['a', 'b'].forEach((version) => {
+      before(() =>
+        helper.cleanDb()
+          .then(() => helper.saveAllActivitiesAsSorted(accountId))
+          .then(() => pageUnderTest.visit('c', accountId))
+      );
 
-    it(`should have correct heading for version ${version}`, () =>
-      pageUnderTest.visit(version, accountId, 'GRP-3').then(() => {
-        const heading = pageUnderTest.getHeading();
-        expect(heading.headingText).to.equal('Your chosen activities');
-        expect(heading.subHeadingText).to.equal('Get better at my applications and interviews');
-      })
-    );
+      it(`should have correct title for version ${version}`, () =>
+        pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>
+          expect(pageUnderTest.getTitle()).to.equal('Choose your activities')
+        )
+      );
 
-    it(`should contain valid google tag manager data for version ${version}`, () =>
-      pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>
-        expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
-      )
-    );
+      it(`should have correct heading for version ${version}`, () =>
+        pageUnderTest.visit(version, accountId, 'GRP-3').then(() => {
+          const heading = pageUnderTest.getHeading();
+          expect(heading.headingText).to.equal('Your chosen activities');
+          expect(heading.subHeadingText).to.equal('Get better at my applications and interviews');
+        })
+      );
+
+      it(`should contain valid google tag manager data for version ${version}`, () =>
+        pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>
+          expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
+        )
+      );
+    });
 
     // it(`should have back button for version ${version}`, () =>
     //   pageUnderTest.visit(version, accountId).then(() =>
     //     expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
     //   ));
   });
-})
-;
+});
