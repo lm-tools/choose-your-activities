@@ -42,14 +42,13 @@ router.get('', (req, res) => {
   const version = req.params.version;
   const category = req.query.cat;
 
-  const chosenActivitiesPromise = ActivitiesModel.findSortedByAccountIdAndGroupByCategory(
+  const chosenActivities = ActivitiesModel.findSortedByAccountIdAndGroupByCategory(
     accountId, version, group);
-  const categoryView = new CategoryView(categoryMapping(this.version));
-  const currentCategory = getCurrentCategory(categoryView, chosenActivitiesPromise, category);
+  const categoryView = new CategoryView(categoryMapping(version));
+  const currentCategory = getCurrentCategory(categoryView, chosenActivities, category);
   const mappedCategories = mapCategories(categoryView, currentCategory);
 
   mappedCategories.then(result => {
-    console.log(result);
     res.render('chosen-activities', Object.assign({ accountId },
       new ChosenActivitiesViewModel(result)));
   });
