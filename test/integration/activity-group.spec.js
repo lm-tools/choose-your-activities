@@ -42,27 +42,27 @@ describe('activity group', () => {
       version: 'b',
       expectedResult: [
         {
-          count: '5 activities',
+          count: '5 things to do',
           title: 'Improve applications',
         },
         {
-          count: '6 activities',
+          count: '6 things to do',
           title: 'Gain skills',
         },
         {
-          count: '4 activities',
+          count: '4 things to do',
           title: 'Use the web better',
         },
         {
-          count: '7 activities',
+          count: '7 things to do',
           title: 'Find the right job',
         },
         {
-          count: '6 activities',
+          count: '6 things to do',
           title: 'Get quick ideas',
         },
         {
-          count: '17 activities',
+          count: '17 things to do',
           title: 'Everything',
         },
       ],
