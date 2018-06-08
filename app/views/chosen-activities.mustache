@@ -15,20 +15,20 @@
           <h2 class="font-xsmall">Contents:</h2>
           <div class="grid-row">
             <div class="column-two-thirds">
-              <ol class="list list-contents app-c-contents-list__list">
+              <ol class="list list-contents app-c-contents-list__list" id="contents">
                 {{#categories}}
-                  {{#isSelectedCategory}}
-                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
-                     {{title}} (2 activities)
-                    </li>
-                  {{/isSelectedCategory}}
-                  {{^isSelectedCategory}}
-                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
-                      <a class="app-c-contents-list__link" href="#typography-headings">
-                        {{title}} (1 activity)
-                      </a>
-                    </li>
-                  {{/isSelectedCategory}}
+                  {{#numActivities}}
+                    {{#isSelectedCategory}}
+                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
+                       {{title}} ({{numActivities}} activities)
+                      </li>
+                    {{/isSelectedCategory}}
+                    {{^isSelectedCategory}}
+                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+                        <a class="app-c-contents-list__link" href="#typography-headings">{{title}} ({{numActivities}} activity)</a>
+                      </li>
+                    {{/isSelectedCategory}}
+                  {{/numActivities}}
                  {{/categories}}
               </ol>
             </div>

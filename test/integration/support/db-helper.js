@@ -26,6 +26,7 @@ module.exports = {
       )
     );
   },
+
   getSortedActivities(accountId) {
     return SortedActivities.findSortedByAccountId(accountId);
   },

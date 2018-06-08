@@ -1,6 +1,7 @@
 const helper = require('./support/integrationSpecHelper');
 const pageUnderTest = helper.chosenActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
+const allActivites = helper.allActivities;
 
 const { expect } = require('chai');
 const uuid = require('uuid');
@@ -41,5 +42,49 @@ describe('chosen activities page', () => {
     //   pageUnderTest.visit(version, accountId).then(() =>
     //     expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
     //   ));
+  });
+
+  describe('categories contents', () => {
+    ['a', 'b'].forEach((version) => {
+      it(`should include all categories in contents ${version}`, () =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            { activity: allActivites[0].name, category: 'READY' },
+            { activity: allActivites[1].name, category: 'HELP' },
+            { activity: allActivites[2].name, category: 'DOING' },
+            { activity: allActivites[3].name, category: 'NOT-SUITABLE' },
+          ])).then(() =>
+          pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+            expect(pageUnderTest.getCategoryContents()).to.length(4)
+          ))
+      );
+
+      it('should not display category with no activities in contents', () =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            { activity: allActivites[0].name, category: 'READY' },
+            { activity: allActivites[1].name, category: 'HELP' },
+            { activity: allActivites[2].name, category: 'DOING' },
+          ])).then(() =>
+          pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+            expect(pageUnderTest.getCategoryContents()).to.length(3)
+          ))
+      );
+
+      it('currently selected category should not be a link', () =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            { activity: allActivites[0].name, category: 'READY' },
+            { activity: allActivites[1].name, category: 'HELP' },
+            { activity: allActivites[2].name, category: 'DOING' },
+            { activity: allActivites[3].name, category: 'NOT-SUITABLE' },
+          ])).then(() =>
+          pageUnderTest.visitWithCategory(version, accountId, 'GRP-6', 'HELP').then(() => {
+            expect(pageUnderTest.getCategoryContents()).to.length(4);
+            const trimedText = pageUnderTest.getTextForListItemNumber(1);
+            expect(trimedText).to.equal('I\'d like help trying this (1 activities)');
+          }))
+      );
+    });
   });
 });
