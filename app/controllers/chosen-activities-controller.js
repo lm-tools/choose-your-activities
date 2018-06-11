@@ -35,6 +35,7 @@ function mapCategories(categoryView, currentCategoryPromise, chosenActivities) {
           Object.assign(category, { hasActivities: true });
           Object.assign(category, { numActivities: activitiesForCategory.length });
           Object.assign(category, { moreThanOneActivity: activitiesForCategory.length > 1 });
+          Object.assign(category, { activities: activitiesForCategory });
         }
       });
       return category;

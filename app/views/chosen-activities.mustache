@@ -36,7 +36,17 @@
         </nav>
       </div>
 
-      <h2 class="heading-large">I'm ready to get started</h2>
+    {{#currentCategory}}
+      <h2 class="heading-large">{{title}}</h2>
+
+      {{#activities}}
+        <div class="a chosen-activities-heading DOING">
+          <h3 class="heading-medium">{{#__}}activity.{{activity}}.title{{/__}}</h3>
+          <p class="font-xsmall"><a href="">Change</a></p>
+        </div>
+      {{/activities}}
+    {{/currentCategory}}
+
 
       {{!-- TODO: the [a|b] here is the version --}}
       <div class="a chosen-activities-heading DOING">
