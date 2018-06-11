@@ -55,7 +55,7 @@ describe('chosen activities page', () => {
             { activity: allActivites[3].name, category: 'NOT-SUITABLE' },
           ])).then(() =>
           pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
-            expect(pageUnderTest.getCategoryContents()).to.length(4)
+            expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(4)
           ))
       );
 
@@ -67,11 +67,11 @@ describe('chosen activities page', () => {
             { activity: allActivites[2].name, category: 'DOING' },
           ])).then(() =>
           pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
-            expect(pageUnderTest.getCategoryContents()).to.length(3)
+            expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(3)
           ))
       );
 
-      it('currently selected category should not be a link', () =>
+      it('currently selected category should not be a link while all others should be', () =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
             { activity: allActivites[0].name, category: 'READY' },
@@ -80,9 +80,19 @@ describe('chosen activities page', () => {
             { activity: allActivites[3].name, category: 'NOT-SUITABLE' },
           ])).then(() =>
           pageUnderTest.visitWithCategory(version, accountId, 'GRP-6', 'HELP').then(() => {
-            expect(pageUnderTest.getCategoryContents()).to.length(4);
-            const trimedText = pageUnderTest.getTextForListItemNumber(1);
-            expect(trimedText).to.equal('I\'d like help trying this (1 activities)');
+            const categories = pageUnderTest.getCategoryContentsTextAsList();
+            expect(categories).to.length(4);
+            const helpCategoryContentsText = categories[1];
+            expect(helpCategoryContentsText).to.equal('I\'d like help trying this (1 activities)');
+            const readyCategoryContentsText = categories[0];
+            expect(readyCategoryContentsText).to
+              .equal('<a>I\'m ready to try this (1 activity)</a>');
+            const doingCategoryContentsText = categories[2];
+            expect(doingCategoryContentsText).to
+              .equal('<a>I\'m already doing this (1 activity)</a>');
+            const notSuitableCategoryContentsText = categories[3];
+            expect(notSuitableCategoryContentsText).to
+              .equal('<a>It doesn\'t suit me (1 activity)</a>');
           }))
       );
     });

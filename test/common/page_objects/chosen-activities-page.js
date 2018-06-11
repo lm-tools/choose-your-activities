@@ -27,10 +27,6 @@ class ChosenActivitiesPage {
     return { headingText: headingText.replace(subHeadingText, '').trim(), subHeadingText };
   }
 
-  getCategoryContents() {
-    return Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
-  }
-
   getTextForListItemNumber(number) {
     const categoryContentsArray =
       Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
@@ -40,6 +36,27 @@ class ChosenActivitiesPage {
     return text.replace(' ', '').trim();
   }
 
+  getCategoryContentsTextAsList() {
+    const categoryContentsArray =
+      Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
+
+    const contentsAsList = categoryContentsArray.map(contents => {
+      const childNodes = contents.childNodes;
+      let textToReturn;
+      if (childNodes.length === 3) {
+        const linkNodes = childNodes[1].childNodes;
+        const textOfLink = linkNodes[0];
+        // add fake link for asserting
+        textToReturn = '<a>'.concat(textOfLink.textContent.trim(), '</a>');
+      } else {
+        const text = childNodes[0].textContent;
+        textToReturn = text.trim();
+      }
+      return textToReturn;
+    });
+
+    return contentsAsList;
+  }
 }
 
 module.exports = ChosenActivitiesPage;
