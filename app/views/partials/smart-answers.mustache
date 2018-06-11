@@ -1,0 +1,19 @@
+<div class="column-one-third">
+  <p class="heading-medium {{hidden}}">Your choices</p>
+  <div class="menu">
+    <ul class="{{version}}">
+      {{#categoryGroups}}
+        <p data-test="{{categoryName}}">{{categoryTitle}}</p>
+        {{#sortedActivities}}
+          <li class="menu-container-small">
+            <input type="hidden" name="category" value="{{name}}">
+            <input type="hidden" name="group" value="{{group}}">
+            <a class="menu-item-small" data-test="{{activityName}}"
+               href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activityName}}/categorise"
+            >{{activityTitle}}</a>
+          </li>
+        {{/sortedActivities}}
+      {{/categoryGroups}}
+    </ul>
+  </div>
+</div>

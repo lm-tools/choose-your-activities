@@ -45,7 +45,60 @@
   font-size: 1.2em;
 }
 
-.menu .menu-item.not-selectable {
+.menu .menu-item-medium {
+  cursor: pointer;
+  white-space: normal;
+  display: table-cell;
+  padding: 20px 30px;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  width: $full-width;
+  text-align: left;
+}
+
+.menu .menu-container-medium  {
+  border-left: $gutter-one-quarter solid $govuk-blue;
+  width: $three-quarters;
+  font-weight: 400;
+  text-transform: none;
+  border-bottom: 1px solid $grey-2;
+  background: $grey-4;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: $gutter-half;
+  display: table;
+  position: relative;
+}
+
+.menu .menu-item-small {
+  cursor: pointer;
+  white-space: normal;
+  display: table-cell;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  width: $full-width;
+  text-align: left;
+  font-size: 14px;
+}
+
+.menu .menu-container-small  {
+  border-left: $gutter-one-quarter solid $govuk-blue;
+  width: $full-width;
+  font-weight: 400;
+  text-transform: none;
+  border-bottom: 1px solid $grey-2;
+  background: $grey-4;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: $gutter-half;
+  display: table;
+  position: relative;
+}
+
+.menu .menu-item.not-selectable, .menu .menu-item-medium.not-selectable, .menu .menu-item-small.not-selectable {
   cursor: auto;
 }
 

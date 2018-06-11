@@ -1,4 +1,4 @@
-const activityGroupMapping = require('./activity-group-mapping');
+const activityGroupMapping = require('../controllers/activity-group-mapping');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
 module.exports = class ActivityGroupViewModel {

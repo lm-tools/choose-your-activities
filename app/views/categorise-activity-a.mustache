@@ -19,10 +19,10 @@
   <ul class="a">
     {{#categories}}
       <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
-        <li class="menu-container {{name}}">
+        <li class="menu-container-medium {{name}}">
           <input type="hidden" name="category" value="{{name}}">
           <input type="hidden" name="group" value="{{group}}">
-          <input class="menu-item" data-test="menu-item" type="submit" value="{{title}}">
+          <input class="menu-item-medium" data-test="menu-item" type="submit" value="{{title}}">
         </li>
       </form>
     {{/categories}}

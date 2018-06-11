@@ -1,5 +1,5 @@
 const decorateActivity = require('../locales/activity-decorator');
-const sortActivities = require('./activity-sorter');
+const sortActivities = require('../controllers/activity-sorter');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');

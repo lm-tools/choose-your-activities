@@ -11,23 +11,26 @@
   {{#__}}layout.header{{/__}}
 </h1>
 
-<p class="heading-medium" data-test="remaining">
-  {{activities.length}}
-  <span class="lede">{{canDo}}</span>
-</p>
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <p class="heading-medium core-16" data-test="remaining">{{activities.length}}
+      <span class="lede">{{canDo}}</span>
+    </p>
 
-<p data-test="details">{{#__}}activities.overview{{/__}}</p>
+    <p data-test="details font-xsmall">{{#__}}activities.overview{{/__}}</p>
 
-<div class="menu">
-  <ul>
-    {{#activities}}
-      <li class="menu-container" data-test-activity="{{activity}}">
-        <a class="menu-item"
-           href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
-      </li>
-    {{/activities}}
-  </ul>
+    <div class="menu">
+      <ul>
+        {{#activities}}
+          <li class="menu-container-medium" data-test-activity="{{activity}}">
+            <a class="menu-item-medium"
+               href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activity}}/categorise">{{title}}</a>
+          </li>
+        {{/activities}}
+      </ul>
+    </div>
+  </div>
+{{<smartAnswers}}{{/smartAnswers}}
 </div>
-
 {{/applicationContent}}
 {{/layout}}

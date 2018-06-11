@@ -12,6 +12,24 @@ module.exports = db.Model.extend(
       const query = this.forge().query({ where: { accountId } });
       return query.fetchAll().then((queryResult) => queryResult.serialize());
     },
+    findSortedByAccountIdAndGroupByCategory(accountId, version, group) {
+      return this.findSortedByAccountId(accountId)
+        .then(sortedActivities => {
+          const activitiesForGroup = ActivityGroupMapper.getActivitiesForGroup(version, group);
+          return sortedActivities.filter(x => activitiesForGroup.includes(x.activity));
+        })
+        .then(sortedActivitiesForGroup =>
+          sortedActivitiesForGroup.reduce((categoryToActivitiesMap, sortedActivity) => {
+            const key = sortedActivity.category;
+            const result = categoryToActivitiesMap;
+            if (!result[key]) {
+              result[key] = [];
+            }
+            result[key].push(sortedActivity);
+            return result;
+          }, {})
+        );
+    },
     findUnsortedByAccountId(accountId) {
       return this.findSortedByAccountId(accountId)
         .then(sortedActivities => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const i18n = require('i18n');
 const decorateActivity = require('../locales/activity-decorator');
-const sortActivities = require('./activity-sorter');
+const sortActivities = require('../controllers/activity-sorter');
 const allActivitiesLength = require('../models/activities').length;
 
 module.exports = class ActivityViewModel {

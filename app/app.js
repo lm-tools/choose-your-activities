@@ -58,6 +58,7 @@ app.use((req, res, next) => {
     googleTagManagerId,
     partials: {
       layout: 'layouts/main',
+      smartAnswers: 'partials/smart-answers',
       govukTemplate:
         '../../vendor/govuk_template_mustache_inheritance/views/layouts/govuk_template',
       googleTagManager: 'partials/google-tag-manager',
