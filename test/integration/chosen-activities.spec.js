@@ -83,13 +83,41 @@ describe('chosen activities page', () => {
             const categories = pageUnderTest.getCategoryContentsTextAsList();
             expect(categories).to.length(4);
             const helpCategoryContentsText = categories[1];
-            expect(helpCategoryContentsText).to.equal('I\'d like help trying this (1 activities)');
+            expect(helpCategoryContentsText).to.equal('I\'d like help trying this (1 activity)');
             const readyCategoryContentsText = categories[0];
             expect(readyCategoryContentsText).to
               .equal('<a>I\'m ready to try this (1 activity)</a>');
             const doingCategoryContentsText = categories[2];
             expect(doingCategoryContentsText).to
               .equal('<a>I\'m already doing this (1 activity)</a>');
+            const notSuitableCategoryContentsText = categories[3];
+            expect(notSuitableCategoryContentsText).to
+              .equal('<a>It doesn\'t suit me (1 activity)</a>');
+          }))
+      );
+
+      it('number of activites should be correctly reported', () =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            { activity: allActivites[0].name, category: 'READY' },
+            { activity: allActivites[1].name, category: 'HELP' },
+            { activity: allActivites[2].name, category: 'HELP' },
+            { activity: allActivites[3].name, category: 'DOING' },
+            { activity: allActivites[4].name, category: 'DOING' },
+            { activity: allActivites[5].name, category: 'DOING' },
+            { activity: allActivites[6].name, category: 'NOT-SUITABLE' },
+          ])).then(() =>
+          pageUnderTest.visitWithCategory(version, accountId, 'GRP-6', 'HELP').then(() => {
+            const categories = pageUnderTest.getCategoryContentsTextAsList();
+            expect(categories).to.length(4);
+            const helpCategoryContentsText = categories[1];
+            expect(helpCategoryContentsText).to.equal('I\'d like help trying this (2 activities)');
+            const readyCategoryContentsText = categories[0];
+            expect(readyCategoryContentsText).to
+              .equal('<a>I\'m ready to try this (1 activity)</a>');
+            const doingCategoryContentsText = categories[2];
+            expect(doingCategoryContentsText).to
+              .equal('<a>I\'m already doing this (3 activities)</a>');
             const notSuitableCategoryContentsText = categories[3];
             expect(notSuitableCategoryContentsText).to
               .equal('<a>It doesn\'t suit me (1 activity)</a>');
