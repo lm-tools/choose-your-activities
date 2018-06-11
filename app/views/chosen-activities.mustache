@@ -40,10 +40,12 @@
       <h2 class="heading-large">{{title}}</h2>
 
       {{#activities}}
-        <div class="a chosen-activities-heading DOING">
+        <div class="{{version}} chosen-activities-heading {{name}}">
           <h3 class="heading-medium">{{#__}}activity.{{activity}}.title{{/__}}</h3>
           <p class="font-xsmall"><a href="">Change</a></p>
         </div>
+
+        {{#__}}activity.{{activity}}.details{{/__}}
       {{/activities}}
     {{/currentCategory}}
 

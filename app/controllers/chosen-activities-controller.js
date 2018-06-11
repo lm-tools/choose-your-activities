@@ -23,24 +23,31 @@ function getCurrentCategory(categoryView, chosenActivities, selectedCategory) {
   return currentCategory;
 }
 
-function mapCategories(categoryView, currentCategoryPromise, chosenActivities) {
+function assignActivities(categoryView, chosenActivities, version) {
+  return chosenActivities.then(function (categories) {
+    return categoryView.categories.map(category => {
+      const activitiesForCategory = categories[category.name];
+      if (activitiesForCategory) {
+        Object.assign(category, { hasActivities: true });
+        Object.assign(category, { numActivities: activitiesForCategory.length });
+        Object.assign(category, { moreThanOneActivity: activitiesForCategory.length > 1 });
+        Object.assign(category, { activities: activitiesForCategory });
+        Object.assign(category, { version });
+      }
+      return category;
+    });
+  });
+}
+
+function mapCategories(categoryView, currentCategoryPromise, chosenActivities, appVersion) {
   return Promise.resolve(currentCategoryPromise).then(function (currentCategory) {
     return categoryView.categories.map(category => {
       if (category.name === currentCategory) {
         Object.assign(category, { isSelectedCategory: true });
       }
-      chosenActivities.then(categories => {
-        const activitiesForCategory = categories[category.name];
-        if (activitiesForCategory) {
-          Object.assign(category, { hasActivities: true });
-          Object.assign(category, { numActivities: activitiesForCategory.length });
-          Object.assign(category, { moreThanOneActivity: activitiesForCategory.length > 1 });
-          Object.assign(category, { activities: activitiesForCategory });
-        }
-      });
       return category;
     });
-  });
+  }).then(assignActivities(categoryView, chosenActivities, appVersion));
 }
 
 router.get('', (req, res) => {
@@ -53,7 +60,7 @@ router.get('', (req, res) => {
     accountId, version, group);
   const categoryView = new CategoryView(categoryMapping(version));
   const currentCategory = getCurrentCategory(categoryView, chosenActivities, selectedCategory);
-  const mappedCategories = mapCategories(categoryView, currentCategory, chosenActivities);
+  const mappedCategories = mapCategories(categoryView, currentCategory, chosenActivities, version);
 
   Promise.resolve(mappedCategories).then(function (categories) {
     res.render('chosen-activities', Object.assign({ accountId },
