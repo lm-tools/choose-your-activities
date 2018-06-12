@@ -27,6 +27,10 @@ class ChosenActivitiesPage {
     return { headingText: headingText.replace(subHeadingText, '').trim(), subHeadingText };
   }
 
+  getCategoryHeading() {
+    return this.browser.text('[data-test=category-heading]');
+  }
+
   getTextForListItemNumber(number) {
     const categoryContentsArray =
       Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
@@ -40,7 +44,7 @@ class ChosenActivitiesPage {
     const categoryContentsArray =
       Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
 
-    const contentsAsList = categoryContentsArray.map(contents => {
+    return categoryContentsArray.map(contents => {
       const childNodes = contents.childNodes;
       let textToReturn;
       if (childNodes.length === 3) {
@@ -54,8 +58,10 @@ class ChosenActivitiesPage {
       }
       return textToReturn;
     });
+  }
 
-    return contentsAsList;
+  clickContentsLinkForCategory(category) {
+    return this.browser.clickLink(`a.app-c-contents-list__link[href="?cat=${category}"]`);
   }
 }
 

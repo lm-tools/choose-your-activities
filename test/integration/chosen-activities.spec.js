@@ -59,6 +59,21 @@ describe('chosen activities page', () => {
           ))
       );
 
+      it(`should link to other category in contents ${version}`, () =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            { activity: allActivites[0].name, category: 'READY' },
+            { activity: allActivites[1].name, category: 'HELP' },
+            { activity: allActivites[2].name, category: 'DOING' },
+            { activity: allActivites[3].name, category: 'NOT-SUITABLE' },
+          ])).then(() =>
+          pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+            pageUnderTest.clickContentsLinkForCategory('NOT-SUITABLE').then(() =>
+              expect(pageUnderTest.getCategoryHeading()).to.eql('It doesn\'t suit me')
+            )
+          ))
+      );
+
       it('should not display category with no activities in contents', () =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [

@@ -25,7 +25,7 @@
                     {{/isSelectedCategory}}
                     {{^isSelectedCategory}}
                       <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
-                        <a class="app-c-contents-list__link" href="#typography-headings">{{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})</a>
+                        <a class="app-c-contents-list__link" href="?cat={{name}}">{{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})</a>
                       </li>
                     {{/isSelectedCategory}}
                   {{/hasActivities}}
@@ -37,7 +37,7 @@
       </div>
 
     {{#currentCategory}}
-      <h2 class="heading-large">{{title}}</h2>
+      <h2 class="heading-large" data-test="category-heading">{{title}}</h2>
 
       {{#activities}}
         <div class="{{version}} chosen-activities-heading {{name}}">
