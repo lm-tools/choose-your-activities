@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router({ mergeParams: true });
+const i18n = require('i18n');
 const ActivitiesModel = require('../models/activity-model');
 const ChosenActivitiesViewModel = require('./chosen-activities-view-model');
 const CategoryView = require('./category-view-model');
@@ -27,7 +28,18 @@ function assignActivities(categoryView, chosenActivities, version) {
   return chosenActivities.then(function (categories) {
     return categoryView.categories.map(category => {
       const activitiesForCategory = categories[category.name];
+
       if (activitiesForCategory) {
+        activitiesForCategory.map(activity =>
+          Object.assign(activity, {
+            /* eslint-disable no-underscore-dangle */
+            title: i18n.__(`activity.${activity.activity}.title`),
+            details: i18n.__(`activity.${activity.activity}.details`),
+          })
+        );
+
+        activitiesForCategory[activitiesForCategory.length - 1].last = true;
+
         Object.assign(category, { hasActivities: true });
         Object.assign(category, { numActivities: activitiesForCategory.length });
         Object.assign(category, { moreThanOneActivity: activitiesForCategory.length > 1 });

@@ -41,60 +41,15 @@
 
       {{#activities}}
         <div class="{{version}} chosen-activities-heading {{name}}">
-          <h3 class="heading-medium">{{#__}}activity.{{activity}}.title{{/__}}</h3>
-          <p class="font-xsmall"><a href="">Change</a></p>
+          <h3 class="heading-medium">{{ title }}</h3>
+          {{!--<p class="font-xsmall"><a href="">Change</a></p>--}}
         </div>
 
-        {{#__}}activity.{{activity}}.details{{/__}}
+        {{& details }}
+
+        {{^last}}<hr class="rule-bold"/>{{/last}}
       {{/activities}}
     {{/currentCategory}}
-
-
-      {{!-- TODO: the [a|b] here is the version --}}
-      <div class="a chosen-activities-heading DOING">
-        <h3 class="heading-medium">Find out what makes a good job application</h3>
-        <p class="font-xsmall"><a href="">Change</a></p>
-      </div>
-
-      <p>It's always worth spending some time improving and checking you CV and cover letters.</p>
-
-      <ul class="list list-bullet">
-        <li>customise your CV and cover letter when you apply for a particular job &dash; make more of the skills the job asks for</li>
-        <li>see what words are used in job adverts that interest you. then work those words into your CV. Many companies will reject CVs that don't use the words they are looking for</li>
-        <li>ask friends, family and other people who know your skills and experience to look through them &dash they can tell if everything is covered, and might spot mistakes</li>
-      </ul>
-
-      <h4 class="heading-small heading-medium-spacing">Get started</h4>
-
-      <p>Here are some websites that can help you improve your CV:</p>
-
-      <ul class="list list-bullet">
-        <li>there's <a href="">advice on CVs and cover letters</a> at My World of Work</li>
-        <li>My World of Work also has a <a href="">tool for building a CV</a></li>
-        <li>When you customise your CV, use the job advert, and <a href="">use a site like Glassdoor to research the company</a></li>
-        <li>You can also use a new Universal Credit tool called '<a href="">Explore work you can do</a> to see the skills a job needs.</li>
-      </ul>
-
-      <p>Ask your work coach too. They can point you at local, face-to-face support &dash; for instance, job clubs or short courses.</p>
-
-      <hr class="rule-bold"/>
-
-      <div class="a chosen-activities-heading HELP">
-        <h3 class="heading-medium">Get advice from an expert in your industry</h3>
-        <p class="font-xsmall"><a href="">Change</a></p>
-      </div>
-
-      <p>Finding someone to act as an advisor or mentor can be useful. They can meet you regularly and offer you help and advise based on their experience.</p>
-
-      <p>It's good to find someone in a job who's doing this in their spare time &dash; they'll have a different point of view from your work coach.</p>
-
-      <p>Mentors can be very useful if you're self-employed and trying to build a business.</p>
-
-      <h4 class="heading-small heading-medium-spacing">Get started</h4>
-
-      <p><a href="">Read some advice on finding a mentor</a> if you'd like look for one yourself.</p>
-
-      <p>If you're between 18 and 24, find out more about the Steps Ahead programme &dash; ask your work coach if you think it might be right for you.</p>
 
     </div><!-- end: .column-two-thirds -->
   </div><!-- end: .grid-row -->
