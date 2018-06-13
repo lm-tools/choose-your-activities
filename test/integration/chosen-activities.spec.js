@@ -35,12 +35,13 @@ describe('chosen activities page', () => {
           expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
         )
       );
-    });
 
-    // it(`should have back button for version ${version}`, () =>
-    //   pageUnderTest.visit(version, accountId).then(() =>
-    //     expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
-    //   ));
+      it(`should have back button for version ${version}`, () =>
+        pageUnderTest.visit(version, accountId).then(() =>
+          expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
+        )
+      );
+    });
   });
 
   describe('page sub heading', () => {

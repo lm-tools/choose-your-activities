@@ -5,13 +5,17 @@
   <div class="grid-row">
     <div class="column-two-thirds">
 
+      <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+        {{#__}}chosen-activities.backButton{{/__}}
+      </a>
+
       <h1 class="heading-xlarge">
         <span class="category heading-secondary">{{activityGroupTitle}}</span>
         {{#__}}chosen-activities.heading{{/__}}
       </h1>
 
       <div class="part-navigation-container">
-        <nav role="navigation" class="app-c-contents-list" aria-label="Categories for this group">
+        <nav role="navigation" class="app-c-contents-list" aria-label="{{#__}}chosen-activities.aria.contentsLabel{{/__}}">
           <h2 class="font-xsmall">Contents:</h2>
           <div class="grid-row">
             <div class="column-two-thirds">

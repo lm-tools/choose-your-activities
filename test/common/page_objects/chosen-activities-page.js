@@ -63,6 +63,10 @@ class ChosenActivitiesPage {
   clickContentsLinkForCategory(category) {
     return this.browser.clickLink(`a.app-c-contents-list__link[href="?cat=${category}"]`);
   }
+
+  backButtonDisplayed() {
+    return !!this.browser.query('[class="link-back"]');
+  }
 }
 
 module.exports = ChosenActivitiesPage;
