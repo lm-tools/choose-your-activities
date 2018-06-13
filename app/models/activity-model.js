@@ -39,7 +39,7 @@ module.exports = db.Model.extend(
             .map(activity => ({ activity }));
         });
     },
-    findUnsortedByVersionAccountIdAndGroup(version, accountId, group) {
+    findUnsortedByAccountIdVersionAndGroup(accountId, version, group) {
       return this.findSortedByAccountId(accountId)
         .then(sortedActivities => {
           const sortedActivityNames = sortedActivities.map((x) => x.activity);

@@ -89,13 +89,13 @@ describe('smart answers view model', () => {
             ],
           },
         ],
-        hidden: '',
+        hasCategorisedActivities: true,
       },
     },
     {
       text: 'should set hidden flag set if input is empty',
       entity: {},
-      expectResult: { categoryGroups: [], hidden: 'hidden' },
+      expectResult: { categoryGroups: [], hasCategorisedActivities: false },
     },
   ].forEach((scenario) => {
     it(scenario.text, () => {

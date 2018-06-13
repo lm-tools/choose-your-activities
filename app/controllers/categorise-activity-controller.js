@@ -49,9 +49,9 @@ router.post('', validator.post, (req, res) => {
   const version = res.locals.version;
 
   ActivitiesModel.updateCategorisation(accountId, activity, category)
-    .then((result) => {
+    .then(result => {
       if (groupsPrototypeVersion(version)) {
-        ActivitiesModel.findUnsortedByVersionAccountIdAndGroup(version, accountId, group)
+        ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group)
           .then(unsortedActivities => {
             if (unsortedActivities.length > 0) {
               res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);

@@ -14,9 +14,7 @@ router.get('/', (req, res, next) => {
   Promise.all([
     ActivitiesModel.findUnsortedByAccountId(accountId),
     ActivitiesModel.getSortedByName(accountId, lastSortedActivityName),
-  ]).then(results => {
-    const unsorted = results[0];
-    const lastSortedActivity = results[1];
+  ]).then(([unsorted, lastSortedActivity]) => {
     if (groupsPrototypeVersion(version)) {
       res.redirect(`${basePath}/${accountId}/groups`);
     } else if (unsorted.length > 0) {

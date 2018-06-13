@@ -12,11 +12,9 @@ router.get('/', (req, res, next) => {
   const version = res.locals.version;
 
   Promise.all([
-    ActivitiesModel.findUnsortedByVersionAccountIdAndGroup(version, accountId, group),
+    ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group),
     ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group),
-  ]).then(results => {
-    const unsortedActivities = results[0];
-    const sortedActivities = results[1];
+  ]).then(([unsortedActivities, sortedActivities]) => {
     res.render('activities', Object.assign(
       { accountId, group, version },
       new SmartAnswersViewModel(sortedActivities, version),
