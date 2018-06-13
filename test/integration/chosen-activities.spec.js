@@ -23,13 +23,12 @@ describe('chosen activities page', () => {
         )
       );
 
-      it(`should have correct heading for version ${version}`, () =>
+
+      it(`should have correct heading for version ${version}`, () => {
         pageUnderTest.visit(version, accountId, 'GRP-3').then(() => {
-          const heading = pageUnderTest.getHeading();
-          expect(heading.headingText).to.equal('Your chosen activities');
-          expect(heading.subHeadingText).to.equal('Get better at my applications and interviews');
-        })
-      );
+          expect(pageUnderTest.getHeading().headingText).to.equal('Your chosen activities');
+        });
+      });
 
       it(`should contain valid google tag manager data for version ${version}`, () =>
         pageUnderTest.visit(version, accountId, 'GRP-3').then(() =>
@@ -42,6 +41,36 @@ describe('chosen activities page', () => {
     //   pageUnderTest.visit(version, accountId).then(() =>
     //     expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
     //   ));
+  });
+
+  describe('page sub heading', () => {
+    before(() =>
+      helper.cleanDb()
+        .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => pageUnderTest.visit('c', accountId))
+    );
+
+    [
+      { group: 'GRP-3', subheading: 'Improve how I search online for work' },
+      { group: 'GRP-4', subheading: 'Find the right kind of job for me' },
+    ].forEach(({ group, subheading }) => {
+      it(`should have correct subheading for group ${group} for version a`, () => {
+        pageUnderTest.visit('a', accountId, group).then(() =>
+          expect(pageUnderTest.getHeading().subHeadingText).to.equal(subheading)
+        );
+      });
+    });
+
+    [
+      { group: 'GRP-3', subheading: 'Use the web better' },
+      { group: 'GRP-4', subheading: 'Find the right job' },
+    ].forEach(({ group, subheading }) => {
+      it(`should have correct subheading for group ${group} for version b`, () =>
+        pageUnderTest.visit('b', accountId, group).then(() =>
+          expect(pageUnderTest.getHeading().subHeadingText).to.equal(subheading)
+        )
+      );
+    });
   });
 
   describe('categories contents', () => {
@@ -126,7 +155,8 @@ describe('chosen activities page', () => {
             const categories = pageUnderTest.getCategoryContentsTextAsList();
             expect(categories).to.length(4);
             const helpCategoryContentsText = categories[1];
-            expect(helpCategoryContentsText).to.equal('I\'d like help trying this (2 activities)');
+            expect(helpCategoryContentsText).to
+              .equal('I\'d like help trying this (2 activities)');
             const readyCategoryContentsText = categories[0];
             expect(readyCategoryContentsText).to
               .equal('<a>I\'m ready to try this (1 activity)</a>');

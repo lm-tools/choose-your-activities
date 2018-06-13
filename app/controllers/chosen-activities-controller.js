@@ -5,6 +5,7 @@ const ActivitiesModel = require('../models/activity-model');
 const ChosenActivitiesViewModel = require('./chosen-activities-view-model');
 const CategoryView = require('../view-models/category-view-model');
 const categoryMapping = require('./category-mapping');
+const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
 function getCurrentCategory(categoryView, chosenActivities, selectedCategory) {
   let currentCategory;
@@ -68,6 +69,7 @@ router.get('', (req, res) => {
   const version = req.params.version;
   const selectedCategory = req.query.cat;
 
+  const activityGroupTitle = resolveGroupTitle(version, group);
   const chosenActivities = ActivitiesModel.findSortedByAccountIdAndGroupByCategory(
     accountId, version, group);
   const categoryView = new CategoryView(categoryMapping(version));
@@ -75,8 +77,9 @@ router.get('', (req, res) => {
   const mappedCategories = mapCategories(categoryView, currentCategory, chosenActivities, version);
 
   Promise.resolve(mappedCategories).then(function (categories) {
-    res.render('chosen-activities', Object.assign({ accountId },
-      new ChosenActivitiesViewModel(categories)));
+    res.render('chosen-activities',
+      Object.assign({ accountId, activityGroupTitle }, new ChosenActivitiesViewModel(categories))
+    );
   });
 });
 

@@ -43,8 +43,7 @@
   "chosen-activities": {
     "pageTitle": "Choose your activities",
     "backButton": "Back",
-    "heading": "Your chosen activities",
-    "subheading": "Get better at my applications and interviews"
+    "heading": "Your chosen activities"
   },
   "activity": {
     "ACT-1": {
