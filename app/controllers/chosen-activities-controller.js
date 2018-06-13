@@ -3,7 +3,7 @@ const router = new express.Router({ mergeParams: true });
 const i18n = require('i18n');
 const ActivitiesModel = require('../models/activity-model');
 const ChosenActivitiesViewModel = require('./chosen-activities-view-model');
-const CategoryView = require('./category-view-model');
+const CategoryView = require('../view-models/category-view-model');
 const categoryMapping = require('./category-mapping');
 
 function getCurrentCategory(categoryView, chosenActivities, selectedCategory) {
