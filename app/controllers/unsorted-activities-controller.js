@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router({ mergeParams: true });
 
 const ActivitiesModel = require('../models/activity-model');
-const ActivitiesViewModel = require('./unsorted-activity-view-model');
+const ActivitiesViewModel = require('../view-models/unsorted-activity-view-model');
 const groupsPrototypeVersion = require('./version-utils');
 
 router.get('/', (req, res, next) => {

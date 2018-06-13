@@ -18,18 +18,21 @@ describe('Categorise activity page', () => {
     {
       version: 'a',
       redirectUri: 'groups/GRP-1/activities',
+      redirectUriAfterReCategorisation: 'groups/GRP-1/activities',
       queryParam: '',
       shouldHaveBackButton: true,
     },
     {
       version: 'b',
       redirectUri: 'groups/GRP-1/activities',
+      redirectUriAfterReCategorisation: 'groups/GRP-1/activities',
       queryParam: '',
       shouldHaveBackButton: true,
     },
     {
       version: 'c',
       redirectUri: 'activities/unsorted',
+      redirectUriAfterReCategorisation: 'activities/sorted/resort',
       queryParam: `?sorted=${activity}`,
       shouldHaveBackButton: false,
     }]
@@ -162,12 +165,12 @@ describe('Categorise activity page', () => {
             categoriseActivityPage.selectCategory('I\'m ready to try this')
               .then(() => expect(categoriseActivityPage.browserPath()).to.equal(
                 // eslint-disable-next-line max-len
-                `${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/activities/sorted/resort`))
+                `${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUriAfterReCategorisation}`))
           );
         });
       }));
   describe('go to my activities page', () => {
-    before(() => {
+    beforeEach(() => {
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
           { activity: helper.allActivities[12].name, category: 'READY' },
@@ -189,6 +192,15 @@ describe('Categorise activity page', () => {
         .then(() => activitiesPage.visit('a', accountId, 'GRP-3'))
         .then(() => expect(!!categoriseActivityPage.browser
           .query('[data-test="go-to-my-activities"]')).to.be.false)
+    );
+
+    it('should show smart answers', () =>
+      categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
+        helper.allActivities[5].name)
+        .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
+        .then(() => expect(activitiesPage.browser
+          .query('[class="heading-medium "]').innerHTML).to.equal('Your choices'))
+        .then(() => expect(activitiesPage.categorisedActivitiesList().length).to.equal(4))
     );
   });
 });

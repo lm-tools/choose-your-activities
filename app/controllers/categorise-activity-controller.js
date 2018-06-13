@@ -1,8 +1,10 @@
 const express = require('express');
 const router = new express.Router({ mergeParams: true });
 
-const CategoryView = require('./category-view-model');
+const CategoryView = require('../view-models/category-view-model');
 const ActivitiesModel = require('../models/activity-model');
+const SmartAnswersViewModel = require('../view-models/smart-answers-view-model');
+
 const validator = require('../validators/categorise-activity-validator');
 const categoriesForVersion = require('./category-mapping');
 const groupsPrototypeVersion = require('./version-utils');
@@ -28,6 +30,16 @@ router.get('', validator.get, (req, res) => {
     { accountId, activityId, group, title, groupTitle }, categoryView));
 });
 
+function renderGotoActivitiesPage(accountId, version, group, res) {
+  ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group)
+    .then((sortedActivities) => {
+      const title = resolveGroupTitle(version, group);
+      res.render('go-to-activities', Object.assign({ accountId, group, title, version },
+        new SmartAnswersViewModel(sortedActivities, version)
+      ));
+    });
+}
+
 router.post('', validator.post, (req, res) => {
   const accountId = req.params.accountId;
   const activity = req.params.activityId;
@@ -38,18 +50,17 @@ router.post('', validator.post, (req, res) => {
 
   ActivitiesModel.updateCategorisation(accountId, activity, category)
     .then((result) => {
-      if (result.status === 'UPDATED') {
-        res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
-      } else if (groupsPrototypeVersion(version)) {
+      if (groupsPrototypeVersion(version)) {
         ActivitiesModel.findUnsortedByVersionAccountIdAndGroup(version, accountId, group)
           .then(unsortedActivities => {
             if (unsortedActivities.length > 0) {
               res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
             } else {
-              const title = resolveGroupTitle(version, group);
-              res.render('go-to-activities', { accountId, group, title });
+              renderGotoActivitiesPage(accountId, version, group, res);
             }
           });
+      } else if (result.status === 'UPDATED') {
+        res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
       } else {
         res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
       }

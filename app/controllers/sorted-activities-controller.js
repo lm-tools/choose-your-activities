@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router({ mergeParams: true });
 const ActivitiesModel = require('../models/activity-model');
-const ActivitiesViewModel = require('./activity-view-model');
+const ActivitiesViewModel = require('../view-models/sorted-activity-view-model');
 
 router.get('/', (req, res, next) => {
   const accountId = req.params.accountId;

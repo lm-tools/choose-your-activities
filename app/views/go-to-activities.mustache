@@ -1,15 +1,17 @@
 {{<layout}}
-  {{$pageTitle}}{{#__}}layout.header{{/__}}{{/pageTitle}}
-  {{$applicationContent}}
-  <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
-    {{#__}}go-to-activities.backButton{{/__}}
-  </a>
+{{$pageTitle}}{{#__}}layout.header{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+<a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+  {{#__}}go-to-activities.backButton{{/__}}
+</a>
 
-  <h1 class="heading-xlarge">
-    <span class="category heading-secondary">{{title}}</span>
-    {{#__}}go-to-activities.header{{/__}}
-  </h1>
+<h1 class="heading-xlarge">
+  <span class="category heading-secondary">{{title}}</span>
+  {{#__}}go-to-activities.header{{/__}}
+</h1>
 
+<div class="grid-row">
+  <div class="column-two-thirds">
     <p>{{#__}}go-to-activities.overview{{/__}}</p>
 
     <ol class="list list-bullet">
@@ -18,7 +20,11 @@
     </ol>
 
     <p class="form-group">
-      <a class="button" href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/details" data-test="go-to-my-activities">{{#__}}go-to-activities.button-label{{/__}}</a>
+      <a class="button" href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/details"
+         data-test="go-to-my-activities">{{#__}}go-to-activities.button-label{{/__}}</a>
     </p>
-  {{/applicationContent}}
+  </div>
+{{<smartAnswers}}{{/smartAnswers}}
+</div>
+{{/applicationContent}}
 {{/layout}}
