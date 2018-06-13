@@ -54,24 +54,24 @@ describe('chosen activities page', () => {
     [
       { group: 'GRP-3', subheading: 'Improve how I search online for work' },
       { group: 'GRP-4', subheading: 'Find the right kind of job for me' },
-    ].forEach(({ group, subheading }) => {
-      it(`should have correct subheading for group ${group} for version a`, () => {
+    ].forEach(({ group, subheading }) =>
+      it(`should have correct subheading for group ${group} for version a`, () =>
         pageUnderTest.visit('a', accountId, group).then(() =>
           expect(pageUnderTest.getHeading().subHeadingText).to.equal(subheading)
-        );
-      });
-    });
+        )
+      )
+    );
 
     [
       { group: 'GRP-3', subheading: 'Use the web better' },
       { group: 'GRP-4', subheading: 'Find the right job' },
-    ].forEach(({ group, subheading }) => {
+    ].forEach(({ group, subheading }) =>
       it(`should have correct subheading for group ${group} for version b`, () =>
         pageUnderTest.visit('b', accountId, group).then(() =>
           expect(pageUnderTest.getHeading().subHeadingText).to.equal(subheading)
         )
-      );
-    });
+      )
+    );
   });
 
   describe('categories contents', () => {
