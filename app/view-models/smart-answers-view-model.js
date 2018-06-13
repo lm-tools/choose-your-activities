@@ -17,6 +17,6 @@ module.exports = class SmartAnswersViewModel {
               activityTitle: activity.title, activityName: activity.activity,
             })),
         }));
-    this.hidden = this.categoryGroups.length > 0 ? '' : 'hidden';
+    this.hasCategorisedActivities = this.categoryGroups.length > 0;
   }
 };

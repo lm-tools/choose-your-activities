@@ -13,7 +13,7 @@ const ActivityPage = function ActivityPage(browser, basePath) {
   this.unCategorisedActivitiesCount = () => browser.text('[data-test="remaining"]');
   this.unCategorisedActivitiesList = () => browser.queryAll('[data-test-activity]')
     .map(x => activityModel(x, '[class="menu-item-medium"]'));
-  this.categorisedActivitiesList = () => browser.queryAll('[class="menu-container-small"]')
+  this.categorisedActivitiesList = () => browser.queryAll('[class~="menu-container-small"]')
     .map(x => activityModel(x, '[class="menu-item-small"]'));
   this.isActivityUnderCategoryDisplayed = (category, activity) =>
     !!this.browser.query(`[data-test="${category}"] + li > [data-test="${activity}"]`);
