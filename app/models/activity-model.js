@@ -13,13 +13,11 @@ module.exports = db.Model.extend(
       return query.fetchAll().then((queryResult) => queryResult.serialize());
     },
     findSortedByAccountIdAndGroupByCategory(accountId, version, group) {
+      const activitiesForGroup = ActivityGroupMapper.getActivitiesForGroup(version, group);
       return this.findSortedByAccountId(accountId)
-        .then(sortedActivities => {
-          const activitiesForGroup = ActivityGroupMapper.getActivitiesForGroup(version, group);
-          return sortedActivities.filter(x => activitiesForGroup.includes(x.activity));
-        })
-        .then(sortedActivitiesForGroup =>
-          sortedActivitiesForGroup.reduce((categoryToActivitiesMap, sortedActivity) => {
+        .then(sortedActivities => sortedActivities
+          .filter(x => activitiesForGroup.includes(x.activity))
+          .reduce((categoryToActivitiesMap, sortedActivity) => {
             const key = sortedActivity.category;
             const result = categoryToActivitiesMap;
             if (!result[key]) {
