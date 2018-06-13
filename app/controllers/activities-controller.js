@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
       return res.redirect(`${basePath}/${accountId}/groups/${group}/activities/chosen`);
     }
 
-    res.render('activities', Object.assign(
+    return res.render('activities', Object.assign(
       { accountId, group, version },
       new SmartAnswersViewModel(sortedActivities, version),
       new ActivitiesViewModel(unsortedActivities, false, '', version, group)
