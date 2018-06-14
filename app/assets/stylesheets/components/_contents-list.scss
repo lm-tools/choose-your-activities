@@ -1,9 +1,11 @@
 // Navigation container
+$grey-line-border: 1px solid #bfc1c3;
+
 .part-navigation-container {
   margin-top: 30px;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #bfc1c3;
+  border-bottom: $grey-line-border;
 }
 
 @media (min-width: 641px) {
@@ -46,4 +48,9 @@
   content: "\2014 ";
   margin-left: -25px;
   padding-right: 5px
+}
+
+.more-links-container {
+  padding-top: 20px;
+  border-top: $grey-line-border;
 }

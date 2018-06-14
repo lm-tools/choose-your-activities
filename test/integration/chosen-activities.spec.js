@@ -149,4 +149,55 @@ describe('chosen activities page', () => {
       );
     });
   });
+
+  describe('more types of activities section', () => {
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          sortActivityAtIndex(12, 'READY'),
+          sortActivityAtIndex(13, 'HELP'),
+          sortActivityAtIndex(18, 'DOING'),
+          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+        ])));
+    it('should list all groups except one for which chosen activities is being displayed', () =>
+      pageUnderTest.visit('a', accountId, 'GRP-3').then(() => {
+        const moreActivities = pageUnderTest.getMoreActivities();
+        expect(moreActivities).to.length(5);
+        expect(moreActivities.map(x => x.title)).to.be.eql([
+          'Get better at my applications and interviews',
+          'Improve my skills and qualifications',
+          'Find the right kind of job for me',
+          'Give myself some confidence',
+          'I don\'t know where to start',
+        ]);
+      })
+    );
+    it('link should redirect to the chosen activities page if all activities sorted', () =>
+      helper.addSortedActivities(accountId, [
+        sortActivityAtIndex(6, 'READY'),
+        sortActivityAtIndex(10, 'HELP'),
+        sortActivityAtIndex(8, 'DOING'),
+        sortActivityAtIndex(7, 'NOT-SUITABLE'),
+        sortActivityAtIndex(2, 'NOT-SUITABLE'),
+      ]).then(() =>
+        pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
+          pageUnderTest.clickLinkForGroup('GRP-1').then(() =>
+            expect(pageUnderTest.browserPath()).to
+              .contain(`/a/${accountId}/groups/GRP-1/activities/chosen`))
+        ))
+    );
+    it('link should redirect to the list of activities page if all activities are not sorted', () =>
+      helper.addSortedActivities(accountId, [
+        sortActivityAtIndex(6, 'READY'),
+        sortActivityAtIndex(10, 'HELP'),
+        sortActivityAtIndex(8, 'DOING'),
+        sortActivityAtIndex(7, 'NOT-SUITABLE'),
+      ]).then(() =>
+        pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
+          pageUnderTest.clickLinkForGroup('GRP-1').then(() =>
+            expect(pageUnderTest.browserPath()).to
+              .contain(`/a/${accountId}/groups/GRP-1/activities`))
+        ))
+    );
+  });
 });
