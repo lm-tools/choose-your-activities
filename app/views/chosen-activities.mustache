@@ -1,0 +1,62 @@
+{{<layout}}
+{{$pageTitle}}{{#__}}chosen-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$applicationContent}}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+        {{#__}}chosen-activities.backButton{{/__}}
+      </a>
+
+      <h1 class="heading-xlarge">
+        <span class="category heading-secondary">{{activityGroupTitle}}</span>
+        {{#__}}chosen-activities.heading{{/__}}
+      </h1>
+
+      <div class="part-navigation-container">
+        <nav role="navigation" class="app-c-contents-list" aria-label="{{#__}}chosen-activities.aria.contentsLabel{{/__}}">
+          <h2 class="font-xsmall">Contents:</h2>
+          <div class="grid-row">
+            <div class="column-two-thirds">
+              <ol class="list list-contents app-c-contents-list__list" id="contents">
+                {{#categories}}
+                  {{#hasActivities}}
+                    {{#isSelectedCategory}}
+                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
+                       {{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})
+                      </li>
+                    {{/isSelectedCategory}}
+                    {{^isSelectedCategory}}
+                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+                        <a class="app-c-contents-list__link" href="?cat={{name}}">{{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})</a>
+                      </li>
+                    {{/isSelectedCategory}}
+                  {{/hasActivities}}
+                 {{/categories}}
+              </ol>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+    {{#currentCategory}}
+      <h2 class="heading-large" data-test="category-heading">{{title}}</h2>
+
+      {{#activities}}
+        <div class="{{version}} chosen-activities-heading {{name}}">
+          <h3 class="heading-medium">{{ title }}</h3>
+          {{!--<p class="font-xsmall"><a href="">Change</a></p>--}}
+        </div>
+
+        {{& details }}
+
+        {{^last}}<hr class="rule-bold"/>{{/last}}
+      {{/activities}}
+    {{/currentCategory}}
+
+    </div><!-- end: .column-two-thirds -->
+  </div><!-- end: .grid-row -->
+
+{{/applicationContent}}
+{{/layout}}

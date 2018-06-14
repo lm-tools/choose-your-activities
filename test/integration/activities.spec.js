@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const activitiesPage = helper.activitiesPage;
+const chosenActivitiesPage = helper.chosenActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 
 const expect = require('chai').expect;
@@ -11,6 +12,11 @@ describe('Activities page', () => {
   ['a', 'b']
     .forEach(version => {
       describe(`page outline for version ${version}`, () => {
+        before(() =>
+          helper.cleanDb()
+            .then(() => activitiesPage.visit(version, accountId, group))
+        );
+
         it('should have correct title', () =>
           activitiesPage.visit(version, accountId, group)
             .then(() => expect(activitiesPage.browser.text('title')).to
@@ -39,6 +45,24 @@ describe('Activities page', () => {
         it('should display correct number of unsorted activities', () =>
           expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(3)
         );
+
+        describe('all activities are sorted', () => {
+          before(() =>
+            helper.cleanDb()
+              .then(() => helper.addSortedActivities(accountId, [
+                { activity: helper.allActivities[2].name, category: 'HELP' },
+                { activity: helper.allActivities[6].name, category: 'READY' },
+                { activity: helper.allActivities[7].name, category: 'HELP' },
+                { activity: helper.allActivities[8].name, category: 'READY' },
+                { activity: helper.allActivities[10].name, category: 'HELP' },
+              ]))
+              .then(() => activitiesPage.visit(version, accountId, group))
+          );
+
+          it('should redirect to the chosen activities page if all activities are sorted', () =>
+            expect(chosenActivitiesPage.getHeading().headingText).to.eql('Your chosen activities')
+          );
+        });
 
         it('should display correct title for unsorted activities', () => {
           const actvitiesList = activitiesPage.unCategorisedActivitiesList();

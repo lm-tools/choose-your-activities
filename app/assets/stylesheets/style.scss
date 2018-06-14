@@ -3,6 +3,20 @@
 @import 'tabs';
 @import 'components/index';
 
+hr.rule-bold {
+  height: 2px;
+}
+
+.heading-medium-spacing {
+  margin-top: em(25, 20);
+  margin-bottom: em(10, 20);
+
+  @include media(tablet) {
+    margin-top: em(45, 24);
+    margin-bottom: em(20, 24);
+  }
+}
+
 .app-menu .option {
   padding: $gutter-one-third $gutter-half $gutter-one-third $gutter-half;
   display: block;
@@ -125,11 +139,21 @@
   .DISABLED { border-left-color: $grey-2; }
 }
 
-.menu .b, .menu .a {
+.menu .b, .menu .a, .chosen-activities-heading .a, .chosen-activities-heading .b {
   .READY { border-left-color: $turquoise; }
   .HELP { border-left-color: $turquoise; }
   .DOING { border-left-color: $fuschia; }
   .NOT-SUITABLE { border-left-color: $fuschia; }
+}
+
+.chosen-activities-heading {
+  border-left: $gutter-one-quarter solid $govuk-blue;
+  padding-left: 30px;
+
+  // This needs to be added back in when the change link work is done.
+  //h3 {
+  //  margin-bottom: 0.2em;
+  //}
 }
 
 button.link-button {

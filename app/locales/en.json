@@ -40,6 +40,14 @@
     "overview": "How interested are you in this activity?",
     "backButton": "Back"
   },
+  "chosen-activities": {
+    "pageTitle": "Choose your activities",
+    "backButton": "Back",
+    "heading": "Your chosen activities",
+    "aria": {
+      "contentsLabel": "Categories for this group"
+    }
+  },
   "activity": {
     "ACT-1": {
       "title": "Find out about volunteering",
@@ -142,6 +150,9 @@
       },
       "GRP-6": {
         "title": "I don't know where to start"
+      },
+      "undefined": {
+        "title": "activity-group.a.undefined.title"
       }
     },
     "b": {
@@ -164,6 +175,9 @@
       },
       "GRP-6": {
         "title": "Everything"
+      },
+      "undefined": {
+        "title": "activity-group.b.undefined.title"
       }
     }
   },
