@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-const helper = require('./support/integrationSpecHelper');
+const helper = require('../integration/support/integrationSpecHelper');
 const SmartAnswersViewModel = require('../../app/view-models/smart-answers-view-model');
 
 const expect = require('chai').expect;

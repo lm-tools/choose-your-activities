@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-const helper = require('./support/integrationSpecHelper');
+const helper = require('../integration/support/integrationSpecHelper');
 const UnderTest = require('../../app/view-models/activity-group-view-model');
 const activityGroup = require('../../app/models/activity-group');
 

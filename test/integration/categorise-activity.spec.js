@@ -178,6 +178,7 @@ describe('Categorise activity page', () => {
           { activity: helper.allActivities[18].name, category: 'READY' },
         ]));
     });
+
     it('when all activities in the group are sorted', () =>
       categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
         helper.allActivities[5].name)
