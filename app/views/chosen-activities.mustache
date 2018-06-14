@@ -2,44 +2,54 @@
 {{$pageTitle}}{{#__}}chosen-activities.pageTitle{{/__}}{{/pageTitle}}
 {{$applicationContent}}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+<div class="grid-row">
+  <div class="column-two-thirds">
 
-      <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
-        {{#__}}chosen-activities.backButton{{/__}}
-      </a>
+    <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
+      {{#__}}chosen-activities.backButton{{/__}}
+    </a>
 
-      <h1 class="heading-xlarge">
-        <span class="category heading-secondary">{{activityGroupTitle}}</span>
-        {{#__}}chosen-activities.heading{{/__}}
-      </h1>
+    <h1 class="heading-xlarge">
+      <span class="category heading-secondary">{{activityGroupTitle}}</span>
+      {{#__}}chosen-activities.heading{{/__}}
+    </h1>
 
-      <div class="part-navigation-container">
-        <nav role="navigation" class="app-c-contents-list" aria-label="{{#__}}chosen-activities.aria.contentsLabel{{/__}}">
-          <h2 class="font-xsmall">Contents:</h2>
-          <div class="grid-row">
-            <div class="column-two-thirds">
-              <ol class="list list-contents app-c-contents-list__list" id="contents">
-                {{#categories}}
-                  {{#hasActivities}}
-                    {{#isSelectedCategory}}
-                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active" aria-current="true">
-                       {{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})
-                      </li>
-                    {{/isSelectedCategory}}
-                    {{^isSelectedCategory}}
-                      <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
-                        <a class="app-c-contents-list__link" href="?cat={{name}}">{{title}} ({{numActivities}} {{#moreThanOneActivity}}activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}activity{{/moreThanOneActivity}})</a>
-                      </li>
-                    {{/isSelectedCategory}}
-                  {{/hasActivities}}
-                 {{/categories}}
-              </ol>
-            </div>
+    <div class="part-navigation-container">
+      <nav role="navigation" class="app-c-contents-list"
+           aria-label="{{#__}}chosen-activities.aria.contentsLabel{{/__}}">
+        <h2 class="font-xsmall">Contents:</h2>
+        <div class="grid-row">
+          <div class="column-two-thirds">
+            <ol class="list list-contents app-c-contents-list__list" id="contents">
+              {{#categories}}
+                {{#hasActivities}}
+                  {{#isSelectedCategory}}
+                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed app-c-contents-list__list-item--active"
+                        aria-current="true">
+                      {{title}} ({{numActivities}} {{#moreThanOneActivity}}
+                      activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}
+                      activity{{/moreThanOneActivity}})
+                    </li>
+                  {{/isSelectedCategory}}
+                  {{^isSelectedCategory}}
+                    <li class="font-xsmall app-c-contents-list__list-item app-c-contents-list__list-item--dashed">
+                      <a class="app-c-contents-list__link" href="?cat={{name}}">{{title}}
+                        ({{numActivities}} {{#moreThanOneActivity}}
+                          activities{{/moreThanOneActivity}}{{^moreThanOneActivity}}
+                          activity{{/moreThanOneActivity}})</a>
+                    </li>
+                  {{/isSelectedCategory}}
+                {{/hasActivities}}
+              {{/categories}}
+            </ol>
           </div>
-        </nav>
-      </div>
-
+        </div>
+      </nav>
+    </div>
+  </div><!-- end: .column-two-thirds -->
+</div><!-- end: .grid-row -->
+<div class="grid-row">
+  <div class="column-two-thirds">
     {{#currentCategory}}
       <h2 class="heading-large" data-test="category-heading">{{title}}</h2>
 
@@ -51,12 +61,23 @@
 
         {{& details }}
 
-        {{^last}}<hr class="rule-bold"/>{{/last}}
+        {{^last}}
+          <hr class="rule-bold"/>{{/last}}
       {{/activities}}
     {{/currentCategory}}
-
-    </div><!-- end: .column-two-thirds -->
-  </div><!-- end: .grid-row -->
+  </div>
+  <div class="column-one-third">
+    <div class="more-links-container">
+      <h3 class="heading-small">More types of activities</h3>
+      {{#activityGroups}}
+        <div>
+        <a data-test="group-link-{{name}}" class="font-xsmall"
+           href="{{basePath}}/{{accountId}}/groups/{{name}}/activities">{{title}}</a>
+        </div>
+      {{/activityGroups}}
+    </div>
+  </div>
+</div>
 
 {{/applicationContent}}
 {{/layout}}

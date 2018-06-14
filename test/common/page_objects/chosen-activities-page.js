@@ -83,6 +83,19 @@ class ChosenActivitiesPage {
   backButtonDisplayed() {
     return !!this.browser.query('[class="link-back"]');
   }
+
+  getMoreActivities() {
+    return this.browser.queryAll('[data-test|="group-link"]')
+      .map(x => ({ title: x.innerHTML, href: x.href }));
+  }
+
+  clickLinkForGroup(group) {
+    return this.browser.click(`[data-test="group-link-${group}"]`);
+  }
+
+  browserPath() {
+    return this.browser.location.pathname;
+  }
 }
 
 module.exports = ChosenActivitiesPage;

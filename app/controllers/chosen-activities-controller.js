@@ -4,6 +4,8 @@ const i18n = require('i18n');
 const ActivitiesModel = require('../models/activity-model');
 const ChosenActivitiesViewModel = require('./chosen-activities-view-model');
 const CategoryView = require('../view-models/category-view-model');
+const ActivityGroupView = require('../view-models/activity-group-view-model');
+
 const categoryMapping = require('./category-mapping');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
@@ -76,7 +78,8 @@ router.get('', (req, res) => {
       assignActivities(categoryView, activitiesSortedByAccountId, version);
       res.render('chosen-activities',
         Object.assign({ accountId, activityGroupTitle },
-          new ChosenActivitiesViewModel(mappedCategories))
+          new ChosenActivitiesViewModel(mappedCategories),
+          new ActivityGroupView(version, group))
       );
     });
 });

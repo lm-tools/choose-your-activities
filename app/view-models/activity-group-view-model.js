@@ -1,14 +1,16 @@
 const activityGroupMapping = require('../controllers/activity-group-mapping');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
+const groups = require('../models/activity-group');
 
 module.exports = class ActivityGroupViewModel {
 
-  constructor(activityGroups, version) {
-    this.activityGroups = this.activityGroupView(activityGroups, version);
+  constructor(version, excludeGroup = '') {
+    this.activityGroups = this.activityGroupView(version, excludeGroup);
   }
 
-  activityGroupView(activityGroups, version) {
-    return activityGroups
+  activityGroupView(version, excludeGroup) {
+    return groups
+      .filter(group => group !== excludeGroup)
       .map((activityGroup) => ({
         title: resolveGroupTitle(version, activityGroup),
         name: activityGroup,
