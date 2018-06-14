@@ -1,3 +1,11 @@
+const extractActivityCountFromContents = (contentsText) => {
+  const capture = /^.*\(([0-9]) activit.*\)$/.exec(contentsText);
+
+  if (!capture) throw new Error('Failed to regex capture activity count');
+
+  return Number(capture[1]);
+};
+
 class ChosenActivitiesPage {
 
   constructor(browser, basePath) {
@@ -40,24 +48,32 @@ class ChosenActivitiesPage {
     return text.replace(' ', '').trim();
   }
 
-  getCategoryContentsTextAsList() {
-    const categoryContentsArray =
-      Array.from(this.browser.querySelectorAll('li.app-c-contents-list__list-item'));
+  getNumberOfCategoryContentsThatAreLinks() {
+    return this.browser.querySelectorAll('a.app-c-contents-list__link').length;
+  }
 
-    return categoryContentsArray.map(contents => {
-      const childNodes = contents.childNodes;
-      let textToReturn;
-      if (childNodes.length === 3) {
-        const linkNodes = childNodes[1].childNodes;
-        const textOfLink = linkNodes[0];
-        // add fake link for asserting
-        textToReturn = '<a>'.concat(textOfLink.textContent.trim(), '</a>');
-      } else {
-        const text = childNodes[0].textContent;
-        textToReturn = text.trim();
-      }
-      return textToReturn;
+  getCategoryContentsTextAsList() {
+    const contents = [];
+
+    const currentCategoryText = this.browser.text('li.app-c-contents-list__list-item--active');
+    contents.push({
+      text: currentCategoryText,
+      isLink: false,
+      activityCount: extractActivityCountFromContents(currentCategoryText),
     });
+
+    const otherCategories = this.browser.querySelectorAll('a.app-c-contents-list__link');
+
+    Array.from(otherCategories).forEach(category => {
+      const text = this.browser.text(category);
+      contents.push({
+        text,
+        isLink: true,
+        activityCount: extractActivityCountFromContents(text),
+      });
+    });
+
+    return contents;
   }
 
   clickContentsLinkForCategory(category) {
