@@ -48,11 +48,12 @@ class ChosenActivitiesPage {
     return text.replace(' ', '').trim();
   }
 
-  getNumberOfCategoryContentsThatAreLinks() {
-    return this.browser.querySelectorAll('a.app-c-contents-list__link').length;
+  getChangeLinks() {
+    return Array.from(this.browser.querySelectorAll('.chosen-activities-heading a'))
+      .filter(link => this.browser.text(link) === 'Change');
   }
 
-  getCategoryContentsTextAsList() {
+  getCategoryContents() {
     const contents = [];
 
     const currentCategoryText = this.browser.text('li.app-c-contents-list__list-item--active');

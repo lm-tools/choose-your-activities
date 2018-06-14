@@ -16,7 +16,7 @@ describe('chosen activities page', () => {
       before((done) =>
         helper.cleanDb()
           .then(() => helper.saveAllActivitiesAsSorted(accountId))
-          .then(() => pageUnderTest.visit(version, accountId, 'GRP-3'))
+          .then(() => pageUnderTest.visit(version, accountId, 'GRP-6'))
           .then(() => done())
       );
 
@@ -93,7 +93,7 @@ describe('chosen activities page', () => {
 
       it(`should include all categories in contents ${version}`, () =>
         pageUnderTest.visit(version, accountId, group).then(() =>
-          expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(4)
+          expect(pageUnderTest.getCategoryContents()).to.length(4)
         )
       );
 
@@ -106,14 +106,14 @@ describe('chosen activities page', () => {
           ])
         ).then(() =>
           pageUnderTest.visit(version, accountId, group).then(() =>
-            expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(3)
+            expect(pageUnderTest.getCategoryContents()).to.length(3)
           )
         )
       );
 
       it('currently selected category should not be a link while all others should be', () =>
         pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
-          const categories = pageUnderTest.getCategoryContentsTextAsList();
+          const categories = pageUnderTest.getCategoryContents();
           const selectedCategory = categories.filter(x => !x.isLink);
           const linkedCategories = categories.filter(x => x.isLink);
 
@@ -136,7 +136,7 @@ describe('chosen activities page', () => {
           ])
         ).then(() =>
           pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
-            const categories = pageUnderTest.getCategoryContentsTextAsList();
+            const categories = pageUnderTest.getCategoryContents();
             const [help, ready, doing, notSuitable] = categories;
 
             expect(categories).to.length(4);
@@ -158,7 +158,9 @@ describe('chosen activities page', () => {
           sortActivityAtIndex(13, 'HELP'),
           sortActivityAtIndex(18, 'DOING'),
           sortActivityAtIndex(5, 'NOT-SUITABLE'),
-        ])));
+        ]))
+    );
+
     it('should list all groups except one for which chosen activities is being displayed', () =>
       pageUnderTest.visit('a', accountId, 'GRP-3').then(() => {
         const moreActivities = pageUnderTest.getMoreActivities();
@@ -172,6 +174,7 @@ describe('chosen activities page', () => {
         ]);
       })
     );
+
     it('link should redirect to the chosen activities page if all activities sorted', () =>
       helper.addSortedActivities(accountId, [
         sortActivityAtIndex(6, 'READY'),
@@ -186,6 +189,7 @@ describe('chosen activities page', () => {
               .contain(`/a/${accountId}/groups/GRP-1/activities/chosen`))
         ))
     );
+
     it('link should redirect to the list of activities page if all activities are not sorted', () =>
       helper.addSortedActivities(accountId, [
         sortActivityAtIndex(6, 'READY'),
@@ -199,6 +203,35 @@ describe('chosen activities page', () => {
               .contain(`/a/${accountId}/groups/GRP-1/activities`))
         ))
     );
+  });
+
+  describe('change button', () => {
+    ['a', 'b'].forEach((version) => {
+      before((done) =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            sortActivityAtIndex(2, 'READY'),
+            sortActivityAtIndex(6, 'READY'),
+            sortActivityAtIndex(7, 'READY'),
+            sortActivityAtIndex(8, 'READY'),
+            sortActivityAtIndex(10, 'READY'),
+          ]))
+          .then(() => pageUnderTest.visit(version, accountId, 'GRP-1'))
+          .then(() => done())
+      );
+
+      it('should be present for each activity', () => {
+        const changeLinks = pageUnderTest.getChangeLinks();
+        expect(changeLinks).to.have.length(5);
+      });
+
+      it('on click should go to the categorisation page for activity', () => {});
+
+      it('categorisation page should redirect back to same category', () => {});
+
+      it('categorisation page should redirect to default category if previous category is now ' +
+        'empty', () => {});
+    });
   });
 
   describe('previous and next links', () => {
