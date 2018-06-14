@@ -69,6 +69,8 @@ describe('chosen activities page', () => {
   });
 
   describe('categories contents', () => {
+    const group = 'GRP-6';
+
     beforeEach(() =>
       helper.cleanDb().then(() =>
         helper.addSortedActivities(accountId, [
@@ -82,7 +84,7 @@ describe('chosen activities page', () => {
 
     ['a', 'b'].forEach((version) => {
       it(`should link to other category in contents ${version}`, () =>
-        pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+        pageUnderTest.visit(version, accountId, group).then(() =>
           pageUnderTest.clickContentsLinkForCategory('NOT-SUITABLE').then(() =>
             expect(pageUnderTest.getCategoryHeading()).to.eql('It doesn\'t suit me')
           )
@@ -90,7 +92,7 @@ describe('chosen activities page', () => {
       );
 
       it(`should include all categories in contents ${version}`, () =>
-        pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+        pageUnderTest.visit(version, accountId, group).then(() =>
           expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(4)
         )
       );
@@ -103,14 +105,14 @@ describe('chosen activities page', () => {
             sortActivityAtIndex(2, 'DOING'),
           ])
         ).then(() =>
-          pageUnderTest.visit(version, accountId, 'GRP-6').then(() =>
+          pageUnderTest.visit(version, accountId, group).then(() =>
             expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(3)
           )
         )
       );
 
       it('currently selected category should not be a link while all others should be', () =>
-        pageUnderTest.visitWithCategory(version, accountId, 'GRP-6', 'HELP').then(() => {
+        pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
           const categories = pageUnderTest.getCategoryContentsTextAsList();
           const selectedCategory = categories.filter(x => !x.isLink);
           const linkedCategories = categories.filter(x => x.isLink);
@@ -133,7 +135,7 @@ describe('chosen activities page', () => {
             sortActivityAtIndex(6, 'NOT-SUITABLE'),
           ])
         ).then(() =>
-          pageUnderTest.visitWithCategory(version, accountId, 'GRP-6', 'HELP').then(() => {
+          pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
             const categories = pageUnderTest.getCategoryContentsTextAsList();
             const [help, ready, doing, notSuitable] = categories;
 
