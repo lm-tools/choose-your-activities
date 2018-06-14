@@ -139,11 +139,18 @@ hr.rule-bold {
   .DISABLED { border-left-color: $grey-2; }
 }
 
-.menu .b, .menu .a, .chosen-activities-heading .a, .chosen-activities-heading .b {
+.menu .b, .menu .a {
   .READY { border-left-color: $turquoise; }
   .HELP { border-left-color: $turquoise; }
   .DOING { border-left-color: $fuschia; }
   .NOT-SUITABLE { border-left-color: $fuschia; }
+}
+
+.a.chosen-activities-heading, .b.chosen-activities-heading {
+  &.READY { border-left-color: $turquoise; }
+  &.HELP { border-left-color: $turquoise; }
+  &.DOING { border-left-color: $fuschia; }
+  &.NOT-SUITABLE { border-left-color: $fuschia; }
 }
 
 .chosen-activities-heading {
