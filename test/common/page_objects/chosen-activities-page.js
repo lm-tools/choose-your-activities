@@ -94,6 +94,15 @@ class ChosenActivitiesPage {
     return this.browser.click(`[data-test="group-link-${group}"]`);
   }
 
+  clickChangeLinkForActivityWithHeading(activityHeading) {
+    const headingDiv = Array.from(this.browser.querySelectorAll('.chosen-activities-heading'))
+      .find(heading => this.browser.text('h3', heading) === activityHeading);
+
+    const changeLink = this.browser.query('a', headingDiv);
+
+    return this.browser.clickLink(changeLink);
+  }
+
   browserPath() {
     return this.browser.location.pathname;
   }

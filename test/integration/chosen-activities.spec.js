@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const pageUnderTest = helper.chosenActivitiesPage;
+const categoriseActivityPage = helper.categoriseActivityPage;
 const { googleTagManagerHelper, allActivities } = helper;
 
 const { expect } = require('chai');
@@ -207,7 +208,7 @@ describe('chosen activities page', () => {
 
   describe('change button', () => {
     ['a', 'b'].forEach((version) => {
-      before((done) =>
+      beforeEach((done) =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
             sortActivityAtIndex(2, 'READY'),
@@ -225,12 +226,21 @@ describe('chosen activities page', () => {
         expect(changeLinks).to.have.length(5);
       });
 
-      it('on click should go to the categorisation page for activity', () => {});
+      it('on click should go to the categorisation page for activity', () =>
+        pageUnderTest
+          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .then(() =>
+            expect(categoriseActivityPage.heading())
+              .to.contain('Update your CV for jobs you\'re interested in')
+          )
+      );
 
-      it('categorisation page should redirect back to same category', () => {});
+      it('categorisation page should redirect back to same category', () => {
+      });
 
       it('categorisation page should redirect to default category if previous category is now ' +
-        'empty', () => {});
+        'empty', () => {
+      });
     });
   });
 
