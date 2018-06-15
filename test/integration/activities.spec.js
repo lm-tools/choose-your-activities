@@ -15,27 +15,23 @@ describe('Activities page', () => {
 
   ['a', 'b'].forEach(version => {
     describe(`page outline for version ${version}`, () => {
-      before(done =>
-        helper.cleanDb()
-          .then(() => activitiesPage.visit(version, accountId, group))
-          .then(done())
+      before(() =>
+        helper.cleanDb().then(() => activitiesPage.visit(version, accountId, group))
       );
 
       it('should have correct title', () =>
-        activitiesPage.visit(version, accountId, group)
-          .then(() => expect(activitiesPage.browser.text('title')).to
-            .equal('Choose your activities'))
+        expect(activitiesPage.browser.text('title')).to.equal('Choose your activities')
       );
 
       it('should contain valid google tag manager data', () =>
-        activitiesPage.visit(version, accountId, group)
-          .then(() => expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId))
+        expect(googleTagManagerHelper.getUserVariable()).to.equal(accountId)
       );
 
       it('should have back button', () =>
         expect(activitiesPage.backButtonDisplayed()).to.equal(true)
       );
     });
+
     describe(`activities list for version ${version}`, () => {
       before(() =>
         helper.cleanDb()
@@ -52,15 +48,11 @@ describe('Activities page', () => {
 
       describe('all activities are sorted', () => {
         before(() =>
-          helper.cleanDb()
-            .then(() => helper.addSortedActivities(accountId, [
-              sortActivityAtIndex(2, 'HELP'),
-              sortActivityAtIndex(6, 'READY'),
-              sortActivityAtIndex(7, 'HELP'),
-              sortActivityAtIndex(8, 'READY'),
-              sortActivityAtIndex(10, 'HELP'),
-            ]))
-            .then(() => activitiesPage.visit(version, accountId, group))
+          helper.addSortedActivities(accountId, [
+            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(7, 'HELP'),
+            sortActivityAtIndex(8, 'READY'),
+          ]).then(() => activitiesPage.visit(version, accountId, group))
         );
 
         it('should redirect to the chosen activities page if all activities are sorted', () =>
@@ -69,10 +61,10 @@ describe('Activities page', () => {
       });
 
       it('should display correct title for unsorted activities', () => {
-        const actvitiesList = activitiesPage.unCategorisedActivitiesList();
-        expect(actvitiesList[0].title).to.equal(helper.allActivities[8].title);
-        expect(actvitiesList[1].title).to.equal(helper.allActivities[7].title);
-        expect(actvitiesList[2].title).to.equal(helper.allActivities[2].title);
+        const activitiesList = activitiesPage.unCategorisedActivitiesList();
+        expect(activitiesList[0].title).to.equal(helper.allActivities[8].title);
+        expect(activitiesList[1].title).to.equal(helper.allActivities[7].title);
+        expect(activitiesList[2].title).to.equal(helper.allActivities[2].title);
       });
 
       it('should have correct url for activity', () =>
@@ -83,8 +75,8 @@ describe('Activities page', () => {
       );
 
       it('should display the correct number of activities remaining', () =>
-        expect(activitiesPage.unCategorisedActivitiesCount()).to
-          .contain('3 activities you can do')
+        expect(activitiesPage.unCategorisedActivitiesCount())
+          .to.contain('3 activities you can do')
       );
 
       it('should display all the categorised activities in smart answers section', () => {
