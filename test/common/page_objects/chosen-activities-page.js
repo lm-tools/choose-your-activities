@@ -96,6 +96,32 @@ class ChosenActivitiesPage {
   browserPath() {
     return this.browser.location.pathname;
   }
+
+  hasPreviousLink() {
+    return !!this.browser.query('[data-test="previous"]');
+  }
+
+  getPreviousLink() {
+    const query = this.browser.query('[data-test="previous"]');
+    return ({ title: query.innerHTML, href: query.href });
+  }
+
+  clickPrevious() {
+    return this.browser.click('[data-test="previous"]');
+  }
+
+  hasNextLink() {
+    return !!this.browser.query('[data-test="next"]');
+  }
+
+  getNextLink() {
+    const query = this.browser.query('[data-test="next"]');
+    return ({ title: query.innerHTML, href: query.href });
+  }
+
+  clickNext() {
+    return this.browser.click('[data-test="next"]');
+  }
 }
 
 module.exports = ChosenActivitiesPage;

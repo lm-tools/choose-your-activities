@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router({ mergeParams: true });
 const i18n = require('i18n');
 const ActivitiesModel = require('../models/activity-model');
-const ChosenActivitiesViewModel = require('./chosen-activities-view-model');
+const ChosenActivitiesViewModel = require('../view-models/chosen-activities-view-model');
 const CategoryView = require('../view-models/category-view-model');
 const ActivityGroupView = require('../view-models/activity-group-view-model');
 
