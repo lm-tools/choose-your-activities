@@ -71,11 +71,13 @@ router.get('', (req, res) => {
         .map(markCurrentCategory(currentCategory))
         .map(addActivities(activities, version));
 
-      res.render('chosen-activities',
-        Object.assign({ accountId, activityGroupTitle },
-          new ChosenActivitiesViewModel(categoriesWithChosenActivities),
-          new ActivityGroupView(version, group))
+      const model = Object.assign(
+        { accountId, activityGroupTitle, group },
+        new ChosenActivitiesViewModel(categoriesWithChosenActivities),
+        new ActivityGroupView(version, group)
       );
+
+      res.render('chosen-activities', model);
     });
 });
 

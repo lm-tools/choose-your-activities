@@ -18,42 +18,48 @@ function getActivityTitle(activityId) {
 }
 
 router.get('', validator.get, (req, res) => {
-  const accountId = req.params.accountId;
-  const activityId = req.params.activityId;
+  const { accountId, activityId } = req.params;
   const group = req.params.group ? req.params.group : 'GRP-1';
-  const version = res.locals.version;
-  const categoryView = new CategoryView(categoriesForVersion(version));
+  const { version } = res.locals;
+  const recategorise = req.query && req.query.recategorise || false;
 
+  const categoryView = new CategoryView(categoriesForVersion(version));
   const title = getActivityTitle(activityId);
   const groupTitle = resolveGroupTitle(version, group);
-  res.render(`categorise-activity-${version}`, Object.assign(
-    { accountId, activityId, group, title, groupTitle }, categoryView));
+  const model = Object.assign(
+    { accountId, activityId, group, title, groupTitle, recategorise },
+    categoryView
+  );
+
+  res.render(`categorise-activity-${version}`, model);
 });
 
 function renderGotoActivitiesPage(accountId, version, group, res) {
   ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group)
     .then((sortedActivities) => {
       const title = resolveGroupTitle(version, group);
-      res.render('go-to-activities', Object.assign({ accountId, group, title, version },
+      const model = Object.assign(
+        { accountId, group, title, version },
         new SmartAnswersViewModel(sortedActivities, version)
-      ));
+      );
+
+      res.render('go-to-activities', model);
     });
 }
 
 router.post('', validator.post, (req, res) => {
-  const accountId = req.params.accountId;
-  const activity = req.params.activityId;
-  const category = req.body.category;
-  const group = req.body.group;
-  const basePath = res.locals.basePath;
-  const version = res.locals.version;
+  const { accountId, activityId } = req.params;
+  const { category, group, recategorise } = req.body;
+  const { basePath, version } = res.locals;
 
-  ActivitiesModel.updateCategorisation(accountId, activity, category)
+  ActivitiesModel.updateCategorisation(accountId, activityId, category)
     .then(result => {
       if (groupsPrototypeVersion(version)) {
         ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group)
           .then(unsortedActivities => {
-            if (unsortedActivities.length > 0) {
+            if (recategorise) {
+              res.redirect(`${basePath}/${accountId}/groups/${group}/activities/chosen`);
+            } else if (unsortedActivities.length > 0) {
               res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
             } else {
               renderGotoActivitiesPage(accountId, version, group, res);
@@ -62,7 +68,7 @@ router.post('', validator.post, (req, res) => {
       } else if (result.status === 'UPDATED') {
         res.redirect(`${basePath}/${accountId}/activities/sorted/resort`);
       } else {
-        res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activity}`);
+        res.redirect(`${basePath}/${accountId}/activities/unsorted?sorted=${activityId}`);
       }
     });
 });

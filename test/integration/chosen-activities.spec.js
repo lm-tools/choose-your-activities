@@ -211,13 +211,13 @@ describe('chosen activities page', () => {
       beforeEach((done) =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(2, 'READY'),
-            sortActivityAtIndex(6, 'READY'),
-            sortActivityAtIndex(7, 'READY'),
-            sortActivityAtIndex(8, 'READY'),
-            sortActivityAtIndex(10, 'READY'),
+            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(6, 'HELP'),
+            sortActivityAtIndex(7, 'HELP'),
+            sortActivityAtIndex(8, 'HELP'),
+            sortActivityAtIndex(10, 'HELP'),
           ]))
-          .then(() => pageUnderTest.visit(version, accountId, 'GRP-1'))
+          .then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
           .then(() => done())
       );
 
@@ -235,12 +235,40 @@ describe('chosen activities page', () => {
           )
       );
 
-      it('categorisation page should redirect back to same category', () => {
-      });
+      it('categorisation page should redirect back to same category', () =>
+        pageUnderTest
+          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .then(() =>
+            categoriseActivityPage.selectCategory('It doesn\'t suit me').then(() => {
+              expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
+              const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
+              expect(currentCategory.text).to.contain('I\'d like help trying this');
+            })
+          )
+      );
 
-      it('categorisation page should redirect to default category if previous category is now ' +
-        'empty', () => {
-      });
+      it('categorisation page should redirect to default category if previous category ' +
+        'is now empty', () =>
+        helper.cleanDb().then(() =>
+          helper.addSortedActivities(accountId, [
+            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(6, 'DOING'),
+            sortActivityAtIndex(7, 'DOING'),
+            sortActivityAtIndex(8, 'DOING'),
+            sortActivityAtIndex(10, 'DOING'),
+          ])
+        ).then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
+          .then(() =>
+            pageUnderTest.clickChangeLinkForActivityWithHeading(
+              'Get advice from an expert in your industry').then(() =>
+              categoriseActivityPage.selectCategory('It doesn\'t suit me').then(() => {
+                expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
+                const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
+                expect(currentCategory.text).to.contain('I\'m already doing this');
+              })
+            )
+          )
+      );
     });
   });
 
