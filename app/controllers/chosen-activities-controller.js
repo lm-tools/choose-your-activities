@@ -22,36 +22,37 @@ const getCurrentCategory = (categoryView, chosenActivities, specifiedCategory) =
   return firstCategoryWithActivities(categoryView.categories, chosenActivities);
 };
 
-const markCurrentCategory = (currentCategory) => category =>
-  Object.assign(category, { isSelectedCategory: category.name === currentCategory });
+const markCurrentCategory = currentCategory =>
+  category => Object.assign(category, { isSelectedCategory: category.name === currentCategory });
 
-const addActivities = (chosenActivities, version) => category => {
-  const activitiesForCategory = chosenActivities[category.name];
+const addActivities = (chosenActivities, version) =>
+  category => {
+    const activitiesForCategory = chosenActivities[category.name];
 
-  if (!activitiesForCategory) {
+    if (!activitiesForCategory) {
+      return category;
+    }
+
+    activitiesForCategory.map(activity =>
+      Object.assign(activity, {
+        /* eslint-disable no-underscore-dangle */
+        title: i18n.__(`activity.${activity.activity}.title`),
+        details: i18n.__(`activity.${activity.activity}.details`),
+      })
+    );
+
+    activitiesForCategory[activitiesForCategory.length - 1].last = true;
+
+    Object.assign(category, {
+      hasActivities: true,
+      numActivities: activitiesForCategory.length,
+      moreThanOneActivity: activitiesForCategory.length > 1,
+      activities: activitiesForCategory,
+      version,
+    });
+
     return category;
-  }
-
-  activitiesForCategory.map(activity =>
-    Object.assign(activity, {
-      /* eslint-disable no-underscore-dangle */
-      title: i18n.__(`activity.${activity.activity}.title`),
-      details: i18n.__(`activity.${activity.activity}.details`),
-    })
-  );
-
-  activitiesForCategory[activitiesForCategory.length - 1].last = true;
-
-  Object.assign(category, {
-    hasActivities: true,
-    numActivities: activitiesForCategory.length,
-    moreThanOneActivity: activitiesForCategory.length > 1,
-    activities: activitiesForCategory,
-    version,
-  });
-
-  return category;
-};
+  };
 
 router.get('', (req, res) => {
   const accountId = req.params.accountId;
