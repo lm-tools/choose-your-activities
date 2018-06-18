@@ -239,7 +239,7 @@ describe('chosen activities page', () => {
         pageUnderTest
           .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
           .then(() =>
-            categoriseActivityPage.selectCategory('It doesn\'t suit me').then(() => {
+            categoriseActivityPage.selectCategory('I\'m ready to try this').then(() => {
               expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
               const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
               expect(currentCategory.text).to.contain('I\'d like help trying this');

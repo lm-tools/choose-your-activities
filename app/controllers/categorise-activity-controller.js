@@ -21,13 +21,13 @@ router.get('', validator.get, (req, res) => {
   const { accountId, activityId } = req.params;
   const group = req.params.group ? req.params.group : 'GRP-1';
   const { version } = res.locals;
-  const recategorise = req.query && req.query.recategorise || false;
+  const previousCategory = req.query && req.query.previousCat || '';
 
   const categoryView = new CategoryView(categoriesForVersion(version));
   const title = getActivityTitle(activityId);
   const groupTitle = resolveGroupTitle(version, group);
   const model = Object.assign(
-    { accountId, activityId, group, title, groupTitle, recategorise },
+    { accountId, activityId, group, title, groupTitle, previousCategory },
     categoryView
   );
 
@@ -49,7 +49,7 @@ function renderGotoActivitiesPage(accountId, version, group, res) {
 
 router.post('', validator.post, (req, res) => {
   const { accountId, activityId } = req.params;
-  const { category, group, recategorise } = req.body;
+  const { category, group, previousCategory } = req.body;
   const { basePath, version } = res.locals;
 
   ActivitiesModel.updateCategorisation(accountId, activityId, category)
@@ -57,8 +57,10 @@ router.post('', validator.post, (req, res) => {
       if (groupsPrototypeVersion(version)) {
         ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group)
           .then(unsortedActivities => {
-            if (recategorise) {
-              res.redirect(`${basePath}/${accountId}/groups/${group}/activities/chosen`);
+            if (previousCategory) {
+              res.redirect(
+                `${basePath}/${accountId}/groups/${group}/activities/chosen?cat=${previousCategory}`
+              );
             } else if (unsortedActivities.length > 0) {
               res.redirect(`${basePath}/${accountId}/groups/${group}/activities`);
             } else {

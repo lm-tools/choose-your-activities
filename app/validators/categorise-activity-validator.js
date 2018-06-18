@@ -21,7 +21,7 @@ module.exports = {
     body: Joi.object().keys({
       category: Joi.any().valid(categories).required(),
       group: Joi.string().optional(),
-      recategorise: Joi.boolean().optional(),
+      previousCategory: Joi.string().optional(),
     }),
   }),
 };

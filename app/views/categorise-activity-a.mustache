@@ -22,9 +22,9 @@
         <li class="menu-container-medium {{name}}">
           <input type="hidden" name="category" value="{{name}}">
           <input type="hidden" name="group" value="{{group}}">
-          {{#recategorise}}
-            <input type="hidden" name="recategorise" value="true">
-          {{/recategorise}}
+          {{#previousCategory}}
+            <input type="hidden" name="previousCategory" value="{{previousCategory}}">
+          {{/previousCategory}}
           <input class="menu-item-medium" data-test="menu-item" type="submit" value="{{title}}">
         </li>
       </form>
