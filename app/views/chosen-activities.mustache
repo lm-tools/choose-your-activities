@@ -65,14 +65,28 @@
           <hr class="rule-bold"/>{{/last}}
       {{/activities}}
     {{/currentCategory}}
+    <div class="grid-row">
+      <div class="column-half">
+        {{#previousCategory}}
+            <a data-test="previous" href="?cat={{name}}">
+              <div class="font-medium">&larr; Previous</div> {{title}}</a>
+        {{/previousCategory}}
+      </div>
+      <div class="column-half" style="text-align: right; float: right;">
+        {{#nextCategory}}
+            <a data-test="next" href="?cat={{name}}">
+              <div class="font-medium">Next &rarr;</div> {{title}}</a>
+        {{/nextCategory}}
+      </div>
+    </div>
   </div>
   <div class="column-one-third">
     <div class="more-links-container">
       <h3 class="heading-small">More types of activities</h3>
       {{#activityGroups}}
         <div>
-        <a data-test="group-link-{{name}}" class="font-xsmall"
-           href="{{basePath}}/{{accountId}}/groups/{{name}}/activities">{{title}}</a>
+          <a data-test="group-link-{{name}}" class="font-xsmall"
+             href="{{basePath}}/{{accountId}}/groups/{{name}}/activities">{{title}}</a>
         </div>
       {{/activityGroups}}
     </div>

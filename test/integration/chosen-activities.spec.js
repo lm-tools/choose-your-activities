@@ -200,4 +200,119 @@ describe('chosen activities page', () => {
         ))
     );
   });
+
+  describe('previous and next links', () => {
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          sortActivityAtIndex(12, 'READY'),
+          sortActivityAtIndex(13, 'HELP'),
+          sortActivityAtIndex(18, 'DOING'),
+          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+        ])));
+
+    it('should be able to navigate using next links', () =>
+      pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
+        expect(pageUnderTest.hasPreviousLink()).to.be.false)
+        .then(() => {
+          const next = pageUnderTest.getNextLink();
+          expect(next.title).to.contain('I\'d like help trying this');
+          expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=HELP');
+        })
+        .then(() =>
+          pageUnderTest.clickNext().then(() => {
+            const previous = pageUnderTest.getPreviousLink();
+            expect(previous.title).to.contain('I\'m ready to try this');
+            expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=READY');
+
+            const next = pageUnderTest.getNextLink();
+            expect(next.title).to.contain('I\'m already doing this');
+            expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=DOING');
+          }))
+        .then(() =>
+          pageUnderTest.clickNext().then(() => {
+            const previous = pageUnderTest.getPreviousLink();
+            expect(previous.title).to.contain('I\'d like help trying this');
+            expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=HELP');
+
+            const next = pageUnderTest.getNextLink();
+            expect(next.title).to.contain('It doesn\'t suit me');
+            expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=NOT-SUITABLE');
+          })
+        )
+        .then(() =>
+          pageUnderTest.clickNext().then(() => {
+            const previous = pageUnderTest.getPreviousLink();
+            expect(previous.title).to.contain('I\'m already doing this');
+            expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=DOING');
+          }).then(() =>
+            expect(pageUnderTest.hasNextLink()).to.be.false
+          )
+        )
+    );
+
+    it('should be able to navigate using previous links', () =>
+      pageUnderTest.visitWithCategory('a', accountId, 'GRP-3', 'NOT-SUITABLE').then(() => {
+        const previous = pageUnderTest.getPreviousLink();
+        expect(previous.title).to.contain('I\'m already doing this');
+        expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=DOING');
+      }).then(() =>
+        expect(pageUnderTest.hasNextLink()).to.be.false)
+        .then(() =>
+          pageUnderTest.clickPrevious().then(() => {
+            const previous = pageUnderTest.getPreviousLink();
+            expect(previous.title).to.contain('I\'d like help trying this');
+            expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=HELP');
+
+            const next = pageUnderTest.getNextLink();
+            expect(next.title).to.contain('It doesn\'t suit me');
+            expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=NOT-SUITABLE');
+          }))
+        .then(() =>
+          pageUnderTest.clickPrevious().then(() => {
+            const previous = pageUnderTest.getPreviousLink();
+            expect(previous.title).to.contain('I\'m ready to try this');
+            expect(previous.href).to.contain('groups/GRP-3/activities/chosen?cat=READY');
+
+            const next = pageUnderTest.getNextLink();
+            expect(next.title).to.contain('I\'m already doing this');
+            expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=DOING');
+          }))
+        .then(() =>
+          pageUnderTest.clickPrevious().then(() =>
+            expect(pageUnderTest.hasPreviousLink()).to.be.false)
+            .then(() => {
+              const next = pageUnderTest.getNextLink();
+              expect(next.title).to.contain('I\'d like help trying this');
+              expect(next.href).to.contain('groups/GRP-3/activities/chosen?cat=HELP');
+            })
+        )
+    );
+
+    it('should be able to skip a category if no activities assigned to it', () =>
+      helper.addSortedActivities(accountId, [
+        sortActivityAtIndex(6, 'READY'),
+        sortActivityAtIndex(10, 'READY'),
+        sortActivityAtIndex(8, 'DOING'),
+        sortActivityAtIndex(7, 'DOING'),
+        sortActivityAtIndex(2, 'DOING'),
+      ])
+        .then(() =>
+          pageUnderTest.visit('a', accountId, 'GRP-1').then(() =>
+            expect(pageUnderTest.hasPreviousLink()).to.be.false)
+            .then(() => {
+              const next = pageUnderTest.getNextLink();
+              expect(next.title).to.contain('I\'m already doing this');
+              expect(next.href).to.contain('groups/GRP-1/activities/chosen?cat=DOING');
+            })
+            .then(() => pageUnderTest.clickNext())
+            .then(() => {
+              const previous = pageUnderTest.getPreviousLink();
+              expect(previous.title).to.contain('I\'m ready to try this');
+              expect(previous.href).to.contain('groups/GRP-1/activities/chosen?cat=READY');
+            })
+            .then(() =>
+              expect(pageUnderTest.hasNextLink()).to.be.false
+            )));
+  });
 });
