@@ -195,3 +195,13 @@ button.link-button {
 .resort-button {
   margin-left: $gutter-half;
 }
+
+.small-title {
+  @extend .font-xsmall;
+  margin-bottom: 3px;
+}
+
+a.menu-item-small {
+  @extend .a;
+  color: black;
+}
