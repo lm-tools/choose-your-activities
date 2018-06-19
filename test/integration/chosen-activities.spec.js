@@ -40,10 +40,9 @@ describe('chosen activities page', () => {
   });
 
   describe('page sub heading', () => {
-    before((done) =>
+    before(() =>
       helper.cleanDb()
         .then(() => helper.saveAllActivitiesAsSorted(accountId))
-        .then(() => done())
     );
 
     [
@@ -72,14 +71,14 @@ describe('chosen activities page', () => {
   describe('categories contents', () => {
     const group = 'GRP-6';
 
-    beforeEach((done) =>
+    beforeEach(() =>
       helper.cleanDb().then(() =>
         helper.addSortedActivities(accountId, [
           sortActivityAtIndex(0, 'READY'),
           sortActivityAtIndex(1, 'HELP'),
           sortActivityAtIndex(2, 'DOING'),
           sortActivityAtIndex(3, 'NOT-SUITABLE'),
-        ]).then(() => done())
+        ])
       )
     );
 
@@ -152,15 +151,14 @@ describe('chosen activities page', () => {
   });
 
   describe('more types of activities section', () => {
-    beforeEach((done) =>
-      helper.cleanDb().then(() => helper.addSortedActivities(accountId, [
-        sortActivityAtIndex(12, 'READY'),
-        sortActivityAtIndex(13, 'HELP'),
-        sortActivityAtIndex(18, 'DOING'),
-        sortActivityAtIndex(5, 'NOT-SUITABLE'),
-      ])).then(() => done())
-    );
-
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          sortActivityAtIndex(12, 'READY'),
+          sortActivityAtIndex(13, 'HELP'),
+          sortActivityAtIndex(18, 'DOING'),
+          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+        ])));
     it('should list all groups except one for which chosen activities is being displayed', () =>
       pageUnderTest.visit('a', accountId, 'GRP-3').then(() => {
         const moreActivities = pageUnderTest.getMoreActivities();
@@ -204,14 +202,14 @@ describe('chosen activities page', () => {
   });
 
   describe('previous and next links', () => {
-    beforeEach((done) =>
-      helper.cleanDb().then(() => helper.addSortedActivities(accountId, [
-        sortActivityAtIndex(12, 'READY'),
-        sortActivityAtIndex(13, 'HELP'),
-        sortActivityAtIndex(18, 'DOING'),
-        sortActivityAtIndex(5, 'NOT-SUITABLE'),
-      ])).then(() => done())
-    );
+    beforeEach(() =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
+          sortActivityAtIndex(12, 'READY'),
+          sortActivityAtIndex(13, 'HELP'),
+          sortActivityAtIndex(18, 'DOING'),
+          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+        ])));
 
     it('should be able to navigate using next links', () =>
       pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
