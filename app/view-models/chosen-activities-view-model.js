@@ -6,15 +6,17 @@ module.exports = class ChosenActivitiesViewModel {
     const currentCategoryIndex = this.categories.indexOf(this.currentCategory);
     let nextCategoryIndex = currentCategoryIndex;
     while (++nextCategoryIndex <= this.categories.length) {
-      this.nextCategory = this.categories[nextCategoryIndex];
-      if (this.nextCategory && this.nextCategory.hasActivities) {
+      const nextCategoryCandidate = this.categories[nextCategoryIndex];
+      if (nextCategoryCandidate && nextCategoryCandidate.hasActivities) {
+        this.nextCategory = nextCategoryCandidate;
         break;
       }
     }
     let previousCategoryIndex = currentCategoryIndex;
     while (--previousCategoryIndex >= 0) {
-      this.previousCategory = this.categories[previousCategoryIndex];
-      if (this.previousCategory && this.previousCategory.hasActivities) {
+      const previousCategoryCandidate = this.categories[previousCategoryIndex];
+      if (previousCategoryCandidate && previousCategoryCandidate.hasActivities) {
+        this.previousCategory = previousCategoryCandidate;
         break;
       }
     }

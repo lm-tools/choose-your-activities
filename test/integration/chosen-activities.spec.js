@@ -363,8 +363,8 @@ describe('chosen activities page', () => {
 
     it('should be able to skip a category if no activities assigned to it', () =>
       helper.addSortedActivities(accountId, [
-        sortActivityAtIndex(6, 'READY'),
-        sortActivityAtIndex(10, 'READY'),
+        sortActivityAtIndex(6, 'HELP'),
+        sortActivityAtIndex(10, 'HELP'),
         sortActivityAtIndex(8, 'DOING'),
         sortActivityAtIndex(7, 'DOING'),
         sortActivityAtIndex(2, 'DOING'),
@@ -380,8 +380,8 @@ describe('chosen activities page', () => {
             .then(() => pageUnderTest.clickNext())
             .then(() => {
               const previous = pageUnderTest.getPreviousLink();
-              expect(previous.title).to.contain('I\'m ready to try this');
-              expect(previous.href).to.contain('groups/GRP-1/activities/chosen?cat=READY');
+              expect(previous.title).to.contain('I\'d like help trying this');
+              expect(previous.href).to.contain('groups/GRP-1/activities/chosen?cat=HELP');
             })
             .then(() =>
               expect(pageUnderTest.hasNextLink()).to.be.false
