@@ -15,7 +15,7 @@
   "activities-group": {
     "subheading": "Choose your activities",
     "heading": "What do you want to do?",
-    "backButton": "Back"
+    "backButton": "Home"
   },
   "unsorted-activities": {
     "pageTitle": "Choose your activities",
@@ -40,7 +40,7 @@
   },
   "chosen-activities": {
     "pageTitle": "Choose your activities",
-    "backButton": "Back",
+    "backButton": "Home",
     "heading": "Your chosen activities",
     "aria": {
       "contentsLabel": "Categories for this group"
@@ -239,7 +239,7 @@
     }
   },
   "go-to-activities": {
-    "backButton": "Back",
+    "backButton": "Home",
     "header": "You've chosen activities that can help you find work",
     "overview": "You can now:",
     "action-1": "read information about each activity",
