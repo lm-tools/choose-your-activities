@@ -17,8 +17,4 @@ const config = {
   ],
 };
 
-function getCategoriesForVersion(version) {
-  return config[version] || config.c;
-}
-
-module.exports = getCategoriesForVersion;
+module.exports = (version) => config[version] || config.c;

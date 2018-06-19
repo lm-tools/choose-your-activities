@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const pageUnderTest = helper.chosenActivitiesPage;
+const categoriseActivityPage = helper.categoriseActivityPage;
 const { googleTagManagerHelper, allActivities } = helper;
 
 const { expect } = require('chai');
@@ -16,7 +17,7 @@ describe('chosen activities page', () => {
       before((done) =>
         helper.cleanDb()
           .then(() => helper.saveAllActivitiesAsSorted(accountId))
-          .then(() => pageUnderTest.visit(version, accountId, 'GRP-3'))
+          .then(() => pageUnderTest.visit(version, accountId, 'GRP-6'))
           .then(() => done())
       );
 
@@ -40,9 +41,10 @@ describe('chosen activities page', () => {
   });
 
   describe('page sub heading', () => {
-    before(() =>
+    before((done) =>
       helper.cleanDb()
         .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => done())
     );
 
     [
@@ -71,15 +73,14 @@ describe('chosen activities page', () => {
   describe('categories contents', () => {
     const group = 'GRP-6';
 
-    beforeEach(() =>
-      helper.cleanDb().then(() =>
-        helper.addSortedActivities(accountId, [
+    beforeEach((done) =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
           sortActivityAtIndex(0, 'READY'),
           sortActivityAtIndex(1, 'HELP'),
           sortActivityAtIndex(2, 'DOING'),
           sortActivityAtIndex(3, 'NOT-SUITABLE'),
-        ])
-      )
+        ]).then(() => done()))
     );
 
     ['a', 'b'].forEach((version) => {
@@ -93,7 +94,7 @@ describe('chosen activities page', () => {
 
       it(`should include all categories in contents ${version}`, () =>
         pageUnderTest.visit(version, accountId, group).then(() =>
-          expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(4)
+          expect(pageUnderTest.getCategoryContents()).to.length(4)
         )
       );
 
@@ -106,14 +107,14 @@ describe('chosen activities page', () => {
           ])
         ).then(() =>
           pageUnderTest.visit(version, accountId, group).then(() =>
-            expect(pageUnderTest.getCategoryContentsTextAsList()).to.length(3)
+            expect(pageUnderTest.getCategoryContents()).to.length(3)
           )
         )
       );
 
       it('currently selected category should not be a link while all others should be', () =>
         pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
-          const categories = pageUnderTest.getCategoryContentsTextAsList();
+          const categories = pageUnderTest.getCategoryContents();
           const selectedCategory = categories.filter(x => !x.isLink);
           const linkedCategories = categories.filter(x => x.isLink);
 
@@ -124,19 +125,20 @@ describe('chosen activities page', () => {
       );
 
       it('number of activites should be correctly reported', () =>
-        helper.cleanDb().then(() =>
-          helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(0, 'READY'),
-            sortActivityAtIndex(1, 'HELP'),
-            sortActivityAtIndex(2, 'HELP'),
-            sortActivityAtIndex(3, 'DOING'),
-            sortActivityAtIndex(4, 'DOING'),
-            sortActivityAtIndex(5, 'DOING'),
-            sortActivityAtIndex(6, 'NOT-SUITABLE'),
-          ])
-        ).then(() =>
+        helper.cleanDb()
+          .then(() =>
+            helper.addSortedActivities(accountId, [
+              sortActivityAtIndex(0, 'READY'),
+              sortActivityAtIndex(1, 'HELP'),
+              sortActivityAtIndex(2, 'HELP'),
+              sortActivityAtIndex(3, 'DOING'),
+              sortActivityAtIndex(4, 'DOING'),
+              sortActivityAtIndex(5, 'DOING'),
+              sortActivityAtIndex(6, 'NOT-SUITABLE'),
+            ])
+          ).then(() =>
           pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
-            const categories = pageUnderTest.getCategoryContentsTextAsList();
+            const categories = pageUnderTest.getCategoryContents();
             const [help, ready, doing, notSuitable] = categories;
 
             expect(categories).to.length(4);
@@ -158,7 +160,9 @@ describe('chosen activities page', () => {
           sortActivityAtIndex(13, 'HELP'),
           sortActivityAtIndex(18, 'DOING'),
           sortActivityAtIndex(5, 'NOT-SUITABLE'),
-        ])));
+        ]))
+    );
+
     it('should list all groups except one for which chosen activities is being displayed', () =>
       pageUnderTest.visit('a', accountId, 'GRP-3').then(() => {
         const moreActivities = pageUnderTest.getMoreActivities();
@@ -172,6 +176,7 @@ describe('chosen activities page', () => {
         ]);
       })
     );
+
     it('link should redirect to the chosen activities page if all activities sorted', () =>
       helper.addSortedActivities(accountId, [
         sortActivityAtIndex(6, 'READY'),
@@ -186,6 +191,7 @@ describe('chosen activities page', () => {
               .contain(`/a/${accountId}/groups/GRP-1/activities/chosen`))
         ))
     );
+
     it('link should redirect to the list of activities page if all activities are not sorted', () =>
       helper.addSortedActivities(accountId, [
         sortActivityAtIndex(6, 'READY'),
@@ -199,6 +205,72 @@ describe('chosen activities page', () => {
               .contain(`/a/${accountId}/groups/GRP-1/activities`))
         ))
     );
+  });
+
+  describe('change button', () => {
+    ['a', 'b'].forEach((version) => {
+      beforeEach((done) =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(6, 'HELP'),
+            sortActivityAtIndex(7, 'HELP'),
+            sortActivityAtIndex(8, 'HELP'),
+            sortActivityAtIndex(10, 'HELP'),
+          ]))
+          .then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
+          .then(() => done())
+      );
+
+      it('should be present for each activity', () => {
+        const changeLinks = pageUnderTest.getChangeLinks();
+        expect(changeLinks).to.have.length(5);
+      });
+
+      it('on click should go to the categorisation page for activity', () =>
+        pageUnderTest
+          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .then(() =>
+            expect(categoriseActivityPage.heading())
+              .to.contain('Update your CV for jobs you\'re interested in')
+          )
+      );
+
+      it('categorisation page should redirect back to same category', () =>
+        pageUnderTest
+          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .then(() =>
+            categoriseActivityPage.selectCategory('I\'m ready to try this').then(() => {
+              expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
+              const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
+              expect(currentCategory.text).to.contain('I\'d like help trying this');
+            })
+          )
+      );
+
+      it('categorisation page should redirect to default category if previous category ' +
+        'is now empty', () =>
+        helper.cleanDb().then(() =>
+          helper.addSortedActivities(accountId, [
+            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(6, 'DOING'),
+            sortActivityAtIndex(7, 'DOING'),
+            sortActivityAtIndex(8, 'DOING'),
+            sortActivityAtIndex(10, 'DOING'),
+          ])
+        ).then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
+          .then(() =>
+            pageUnderTest.clickChangeLinkForActivityWithHeading(
+              'Get advice from an expert in your industry').then(() =>
+              categoriseActivityPage.selectCategory('It doesn\'t suit me').then(() => {
+                expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
+                const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
+                expect(currentCategory.text).to.contain('I\'m already doing this');
+              })
+            )
+          )
+      );
+    });
   });
 
   describe('previous and next links', () => {
