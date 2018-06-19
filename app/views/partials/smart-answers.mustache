@@ -9,9 +9,11 @@
             <li class="{{categoryName}} menu-container-small">
               <input type="hidden" name="category" value="{{name}}">
               <input type="hidden" name="group" value="{{group}}">
-              <a class="menu-item-small" data-test="{{activityName}}"
-                 href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activityName}}/categorise"
-              >{{activityTitle}}</a>
+              <div class="menu-item-small" data-test="title">{{activityTitle}}</div>
+              <div class="menu-item-small" data-test="link">
+                <a data-test="{{activityName}}"
+                   href="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activityName}}/categorise">Change</a>
+              </div>
             </li>
           {{/sortedActivities}}
         {{/categoryGroups}}

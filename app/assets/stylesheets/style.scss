@@ -158,10 +158,9 @@ hr.rule-bold {
   border-left: $gutter-one-quarter solid $govuk-blue;
   padding-left: 30px;
 
-  // This needs to be added back in when the change link work is done.
-  //h3 {
-  //  margin-bottom: 0.2em;
-  //}
+  h3 {
+    margin-bottom: 0.2em;
+  }
 }
 
 button.link-button {
@@ -200,9 +199,4 @@ button.link-button {
 .small-title {
   @extend .font-xsmall;
   margin-bottom: 3px;
-}
-
-a.menu-item-small {
-  @extend .a;
-  color: black;
 }

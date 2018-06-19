@@ -1,5 +1,5 @@
 const knexCleaner = require('knex-cleaner');
-const knex = require('../../../app/db').knex;
+const { knex } = require('../../../app/db');
 
 const SortedActivities = require('../../../app/models/activity-model');
 const allActivities = require('../../../app/models/activities');

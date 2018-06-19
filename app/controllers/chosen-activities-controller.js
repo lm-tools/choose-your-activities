@@ -9,23 +9,24 @@ const ActivityGroupView = require('../view-models/activity-group-view-model');
 const categoryMapping = require('./category-mapping');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
-function getCurrentCategory(categoryView, chosenActivities, selectedCategory) {
-  let currentCategory;
+const firstCategoryWithActivities = (categories, chosenActivities) =>
+  categories
+    .find(category => !!chosenActivities[category.name])
+    .name;
 
-  if (selectedCategory) {
-    currentCategory = selectedCategory;
-  } else {
-    const categoryToReturn = categoryView.categories.find(category =>
-      !!chosenActivities[category.name]
-    );
-    return categoryToReturn.name;
+const getCurrentCategory = (categoryView, chosenActivities, specifiedCategory) => {
+  if (specifiedCategory && chosenActivities[specifiedCategory]) {
+    return specifiedCategory;
   }
 
-  return currentCategory;
-}
+  return firstCategoryWithActivities(categoryView.categories, chosenActivities);
+};
 
-function assignActivities(categoryView, chosenActivities, version) {
-  return categoryView.categories.map(category => {
+const markCurrentCategory = currentCategory =>
+  category => Object.assign(category, { isSelectedCategory: category.name === currentCategory });
+
+const addActivities = (chosenActivities, version) =>
+  category => {
     const activitiesForCategory = chosenActivities[category.name];
 
     if (!activitiesForCategory) {
@@ -51,36 +52,32 @@ function assignActivities(categoryView, chosenActivities, version) {
     });
 
     return category;
-  });
-}
-
-function mapCategories(categoryView, currentCategory) {
-  return categoryView.categories.map(category =>
-    Object.assign(category, { isSelectedCategory: category.name === currentCategory })
-  );
-}
+  };
 
 router.get('', (req, res) => {
   const accountId = req.params.accountId;
   const group = req.params.group;
   const version = req.params.version;
-  const selectedCategory = req.query.cat;
+  const specifiedCategory = req.query.cat;
 
   const categoryView = new CategoryView(categoryMapping(version));
 
   const activityGroupTitle = resolveGroupTitle(version, group);
   ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group)
-    .then(activitiesSortedByAccountId => {
-      const currentCategory = getCurrentCategory(categoryView, activitiesSortedByAccountId,
-        selectedCategory);
-      const mappedCategories = mapCategories(categoryView, currentCategory,
-        activitiesSortedByAccountId, version);
-      assignActivities(categoryView, activitiesSortedByAccountId, version);
-      res.render('chosen-activities',
-        Object.assign({ accountId, activityGroupTitle },
-          new ChosenActivitiesViewModel(mappedCategories),
-          new ActivityGroupView(version, group))
+    .then(activities => {
+      const currentCategory = getCurrentCategory(categoryView, activities, specifiedCategory);
+
+      const categoriesWithChosenActivities = categoryView.categories
+        .map(markCurrentCategory(currentCategory))
+        .map(addActivities(activities, version));
+
+      const model = Object.assign(
+        { accountId, activityGroupTitle, group },
+        new ChosenActivitiesViewModel(categoriesWithChosenActivities),
+        new ActivityGroupView(version, group)
       );
+
+      res.render('chosen-activities', model);
     });
 });
 

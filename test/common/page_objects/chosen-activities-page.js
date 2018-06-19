@@ -48,11 +48,12 @@ class ChosenActivitiesPage {
     return text.replace(' ', '').trim();
   }
 
-  getNumberOfCategoryContentsThatAreLinks() {
-    return this.browser.querySelectorAll('a.app-c-contents-list__link').length;
+  getChangeLinks() {
+    return Array.from(this.browser.querySelectorAll('.chosen-activities-heading a'))
+      .filter(link => this.browser.text(link) === 'Change');
   }
 
-  getCategoryContentsTextAsList() {
+  getCategoryContents() {
     const contents = [];
 
     const currentCategoryText = this.browser.text('li.app-c-contents-list__list-item--active');
@@ -91,6 +92,15 @@ class ChosenActivitiesPage {
 
   clickLinkForGroup(group) {
     return this.browser.click(`[data-test="group-link-${group}"]`);
+  }
+
+  clickChangeLinkForActivityWithHeading(activityHeading) {
+    const headingDiv = Array.from(this.browser.querySelectorAll('.chosen-activities-heading'))
+      .find(heading => this.browser.text('h3', heading) === activityHeading);
+
+    const changeLink = this.browser.query('a', headingDiv);
+
+    return this.browser.clickLink(changeLink);
   }
 
   browserPath() {
