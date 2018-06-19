@@ -74,12 +74,8 @@ $category-list-gutter: 30px;
 }
 
 .category-list__bottom {
+  @include clearfix;
+
   background-color: $white;
   padding: 15px;
-
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
