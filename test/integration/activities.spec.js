@@ -12,9 +12,10 @@ describe('Activities page', () => {
   ['a', 'b']
     .forEach(version => {
       describe(`page outline for version ${version}`, () => {
-        before(() =>
+        before((done) =>
           helper.cleanDb()
             .then(() => activitiesPage.visit(version, accountId, group))
+            .then(() => done())
         );
 
         it('should have correct title', () =>
@@ -33,13 +34,14 @@ describe('Activities page', () => {
         );
       });
       describe(`activities list for version ${version}`, () => {
-        before(() =>
+        before((done) =>
           helper.cleanDb()
             .then(() => helper.addSortedActivities(accountId, [
               { activity: helper.allActivities[6].name, category: 'READY' },
               { activity: helper.allActivities[10].name, category: 'HELP' },
             ]))
             .then(() => activitiesPage.visit(version, accountId, group))
+            .then(() => done())
         );
 
         it('should display correct number of unsorted activities', () =>
@@ -47,7 +49,7 @@ describe('Activities page', () => {
         );
 
         describe('all activities are sorted', () => {
-          before(() =>
+          before((done) =>
             helper.cleanDb()
               .then(() => helper.addSortedActivities(accountId, [
                 { activity: helper.allActivities[2].name, category: 'HELP' },
@@ -57,6 +59,7 @@ describe('Activities page', () => {
                 { activity: helper.allActivities[10].name, category: 'HELP' },
               ]))
               .then(() => activitiesPage.visit(version, accountId, group))
+              .then(() => done())
           );
 
           it('should redirect to the chosen activities page if all activities are sorted', () =>
