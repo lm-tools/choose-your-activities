@@ -41,9 +41,10 @@ describe('chosen activities page', () => {
   });
 
   describe('page sub heading', () => {
-    before(() =>
+    before((done) =>
       helper.cleanDb()
         .then(() => helper.saveAllActivitiesAsSorted(accountId))
+        .then(() => done())
     );
 
     [
@@ -72,15 +73,14 @@ describe('chosen activities page', () => {
   describe('categories contents', () => {
     const group = 'GRP-6';
 
-    beforeEach(() =>
-      helper.cleanDb().then(() =>
-        helper.addSortedActivities(accountId, [
+    beforeEach((done) =>
+      helper.cleanDb()
+        .then(() => helper.addSortedActivities(accountId, [
           sortActivityAtIndex(0, 'READY'),
           sortActivityAtIndex(1, 'HELP'),
           sortActivityAtIndex(2, 'DOING'),
           sortActivityAtIndex(3, 'NOT-SUITABLE'),
-        ])
-      )
+        ]).then(() => done()))
     );
 
     ['a', 'b'].forEach((version) => {
@@ -125,17 +125,18 @@ describe('chosen activities page', () => {
       );
 
       it('number of activites should be correctly reported', () =>
-        helper.cleanDb().then(() =>
-          helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(0, 'READY'),
-            sortActivityAtIndex(1, 'HELP'),
-            sortActivityAtIndex(2, 'HELP'),
-            sortActivityAtIndex(3, 'DOING'),
-            sortActivityAtIndex(4, 'DOING'),
-            sortActivityAtIndex(5, 'DOING'),
-            sortActivityAtIndex(6, 'NOT-SUITABLE'),
-          ])
-        ).then(() =>
+        helper.cleanDb()
+          .then(() =>
+            helper.addSortedActivities(accountId, [
+              sortActivityAtIndex(0, 'READY'),
+              sortActivityAtIndex(1, 'HELP'),
+              sortActivityAtIndex(2, 'HELP'),
+              sortActivityAtIndex(3, 'DOING'),
+              sortActivityAtIndex(4, 'DOING'),
+              sortActivityAtIndex(5, 'DOING'),
+              sortActivityAtIndex(6, 'NOT-SUITABLE'),
+            ])
+          ).then(() =>
           pageUnderTest.visitWithCategory(version, accountId, group, 'HELP').then(() => {
             const categories = pageUnderTest.getCategoryContents();
             const [help, ready, doing, notSuitable] = categories;

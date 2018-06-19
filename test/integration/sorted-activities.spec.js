@@ -1,5 +1,5 @@
 const helper = require('./support/integrationSpecHelper');
-const allActivites = helper.allActivities;
+const allActivities = helper.allActivities;
 const sortedActivitiesPage = helper.sortedActivitiesPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 const expect = require('chai').expect;
@@ -50,16 +50,16 @@ describe('Sorted activities page', () => {
   describe('already sorted activities', () => {
     beforeEach(() =>
       helper.addSortedActivities(accountId, [
-        { activity: allActivites[0].name, category: 'READY' },
-        { activity: allActivites[1].name, category: 'READY' },
-        { activity: allActivites[2].name, category: 'DOING' },
-        { activity: allActivites[4].name, category: 'DOING' },
-        { activity: allActivites[3].name, category: 'HELP' },
-        { activity: allActivites[10].name, category: 'HELP' },
-        { activity: allActivites[11].name, category: 'HELP' },
-        { activity: allActivites[7].name, category: 'NOT-WORKED' },
-        { activity: allActivites[15].name, category: 'NO' },
-        { activity: allActivites[17].name, category: 'NO' },
+        { activity: allActivities[0].name, category: 'READY' },
+        { activity: allActivities[1].name, category: 'READY' },
+        { activity: allActivities[2].name, category: 'DOING' },
+        { activity: allActivities[4].name, category: 'DOING' },
+        { activity: allActivities[3].name, category: 'HELP' },
+        { activity: allActivities[10].name, category: 'HELP' },
+        { activity: allActivities[11].name, category: 'HELP' },
+        { activity: allActivities[7].name, category: 'NOT-WORKED' },
+        { activity: allActivities[15].name, category: 'NO' },
+        { activity: allActivities[17].name, category: 'NO' },
       ])
         .then(() => sortedActivitiesPage.visit('c', accountId))
     );
@@ -67,25 +67,25 @@ describe('Sorted activities page', () => {
     [
       {
         category: 'READY',
-        expectedActivitiesTitles: [allActivites[0].title, allActivites[1].title],
+        expectedActivitiesTitles: [allActivities[0].title, allActivities[1].title],
       },
       {
         category: 'DOING',
-        expectedActivitiesTitles: [allActivites[2].title, allActivites[4].title],
+        expectedActivitiesTitles: [allActivities[2].title, allActivities[4].title],
       },
       {
         category: 'HELP',
         expectedActivitiesTitles: [
-          allActivites[3].title, allActivites[10].title, allActivites[11].title,
+          allActivities[3].title, allActivities[10].title, allActivities[11].title,
         ],
       },
       {
         category: 'NOT-WORKED',
-        expectedActivitiesTitles: [allActivites[7].title],
+        expectedActivitiesTitles: [allActivities[7].title],
       },
       {
         category: 'NO',
-        expectedActivitiesTitles: [allActivites[15].title, allActivites[17].title],
+        expectedActivitiesTitles: [allActivities[15].title, allActivities[17].title],
       },
     ].forEach(s => {
       it(`should display list of activities in "${s.category}" category`, () =>
@@ -105,9 +105,9 @@ describe('Sorted activities page', () => {
     });
 
     it('should link to activity details', () =>
-      sortedActivitiesPage.clickDetailsButton(allActivites[0]).then(() =>
+      sortedActivitiesPage.clickDetailsButton(allActivities[0]).then(() =>
         expect(helper.activityDetailsPage.browserPath())
-          .to.contain(`c/${accountId}/activities/${allActivites[0].name}`)
+          .to.contain(`c/${accountId}/activities/${allActivities[0].name}`)
       )
     );
 
@@ -129,19 +129,19 @@ describe('Sorted activities page', () => {
 
     [
       {
-        category: 'READY', activity: allActivites[0],
+        category: 'READY', activity: allActivities[0],
       },
       {
-        category: 'DOING', activity: allActivites[2],
+        category: 'DOING', activity: allActivities[2],
       },
       {
-        category: 'HELP', activity: allActivites[10],
+        category: 'HELP', activity: allActivities[10],
       },
       {
-        category: 'NOT-WORKED', activity: allActivites[7],
+        category: 'NOT-WORKED', activity: allActivities[7],
       },
       {
-        category: 'NO', activity: allActivites[17],
+        category: 'NO', activity: allActivities[17],
       },
     ].forEach(s => {
       it(`should not display "Move" link for activity in category "${s.category}"`, () =>
