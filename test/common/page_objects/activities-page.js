@@ -14,9 +14,12 @@ const ActivityPage = function ActivityPage(browser, basePath) {
   this.unCategorisedActivitiesList = () => browser.queryAll('[data-test-activity]')
     .map(x => activityModel(x, '[class="menu-item-medium"]'));
   this.categorisedActivitiesList = () => browser.queryAll('[class~="menu-container-small"]')
-    .map(x => activityModel(x, '[class="menu-item-small"]'));
+    .map(x => ({
+      title: browser.query('[data-test="title"]', x).innerHTML,
+      href: browser.query('[data-test="link"] a', x).href,
+    }));
   this.isActivityUnderCategoryDisplayed = (category, activity) =>
-    !!this.browser.query(`[data-test="${category}"] + li > [data-test="${activity}"]`);
+    !!this.browser.query(`[data-test="${category}"] + li > div > [data-test="${activity}"]`);
   this.visit = (version, accountId, group) =>
     this.browser.visit(`${basePath}/${version}/${accountId}/groups/${group}/activities`);
   this.browserPath = () => browser.location.pathname;
