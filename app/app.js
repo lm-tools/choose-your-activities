@@ -89,7 +89,6 @@ app.use(helmet.noCache());
 
 app.use(`${basePath}/`, controllers.cookie);
 app.use(`${basePath}/`, controllers.introduction);
-app.use(`${basePath}/:version?/:accountId/introduction`, controllers.introduction);
 app.use(`${basePath}/:version?/:accountId/activities/unsorted`, controllers.unsortedActivities);
 app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
 app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,

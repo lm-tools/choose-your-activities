@@ -57,6 +57,15 @@ describe('Introduction page', () => {
             expect(pathParams[3]).to.equal('introduction');
           })
       );
+
+      it('should redirect /:version/:accountId/ to /:version/:accountId/introduction', () =>
+        introductionPage.visitBasePath(`${version}/${accountId}/`).then(() => {
+          const pathParams = introductionPage.pathParams();
+          expect(pathParams[1]).to.equal(version);
+          expect(pathParams[2]).to.equal(accountId);
+          expect(pathParams[3]).to.equal('introduction');
+        })
+      );
     });
   });
 });
