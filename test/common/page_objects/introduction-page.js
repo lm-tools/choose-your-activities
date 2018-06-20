@@ -2,7 +2,7 @@ const IntroductionPage = function IntroductionPage(browser, basePath) {
   this.browser = browser;
   this.basePath = basePath;
 
-  this.visitBasePath = (queryParam = '') => this.browser.visit(`${this.basePath}/${queryParam}`);
+  this.visitBasePath = (path = '') => this.browser.visit(`${this.basePath}/${path}`);
   this.visit = (version, accountId) =>
     this.browser.visit(`${this.basePath}/${version}/${accountId}/introduction`);
   this.clickContinue = () => this.browser.click('[data-test="continue"]');
