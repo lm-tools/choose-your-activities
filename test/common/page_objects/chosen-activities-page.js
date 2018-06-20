@@ -132,6 +132,11 @@ class ChosenActivitiesPage {
   clickNext() {
     return this.browser.click('[data-test="next"]');
   }
+
+  getAnchorLink() {
+    const anchor = this.browser.query('div.back-to-top a');
+    return { title: this.browser.text(anchor), href: anchor.getAttribute('href') };
+  }
 }
 
 module.exports = ChosenActivitiesPage;
