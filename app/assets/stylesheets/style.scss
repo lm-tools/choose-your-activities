@@ -84,10 +84,14 @@ hr.rule-bold {
   margin-bottom: $gutter-half;
   display: table;
   position: relative;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .menu .menu-item-small {
-  cursor: pointer;
   white-space: normal;
   display: table-cell;
   padding: 10px 20px;
@@ -110,6 +114,11 @@ hr.rule-bold {
   margin-bottom: $gutter-half;
   display: table;
   position: relative;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .menu .menu-item.not-selectable, .menu .menu-item-medium.not-selectable, .menu .menu-item-small.not-selectable {
