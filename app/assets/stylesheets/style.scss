@@ -8,6 +8,43 @@ hr.rule-bold {
   height: 2px;
 }
 
+.clearfix {
+  @include clearfix;
+}
+
+.margin-none {
+  margin: 0;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.link-style {
+  @include core-19;
+  padding: 0;
+  -webkit-appearance:none;
+  color: $link-colour;
+  background: none;
+  border: none;
+  text-decoration: underline;
+
+  &:hover {
+    color: $link-hover-colour;
+    cursor: pointer;
+  }
+}
+
+.start-again {
+  @media (min-width: 768px) {
+    margin-top: 3px;
+  }
+}
+
 .heading-medium-spacing {
   margin-top: em(25, 20);
   margin-bottom: em(10, 20);
