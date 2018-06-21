@@ -37,6 +37,12 @@ describe('chosen activities page', () => {
       it(`should have back button for version ${version}`, () =>
         expect(pageUnderTest.backButtonDisplayed()).to.equal(true)
       );
+
+      it(`should have anchor link for version ${version}`, () => {
+        const { title, href } = pageUnderTest.getAnchorLink();
+        expect(title).to.equal('Contents');
+        expect(href).to.equal('#contents');
+      });
     });
   });
 
