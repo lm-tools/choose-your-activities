@@ -24,6 +24,7 @@ const ActivityPage = function ActivityPage(browser, basePath) {
     this.browser.visit(`${basePath}/${version}/${accountId}/groups/${group}/activities`);
   this.browserPath = () => browser.location.pathname;
   this.backButtonDisplayed = () => !!this.browser.query('[class="link-back"]');
+  this.clickStartAgain = () => this.browser.pressButton('Start again');
 };
 
 module.exports = ActivityPage;

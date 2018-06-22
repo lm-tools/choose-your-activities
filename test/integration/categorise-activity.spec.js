@@ -200,7 +200,7 @@ describe('Categorise activity page', () => {
         helper.allActivities[5].name)
         .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
         .then(() => expect(activitiesPage.browser
-          .query('[class="heading-medium"]').innerHTML).to.equal('Your choices'))
+          .query('[class~="heading-medium"]').innerHTML).to.equal('Your choices'))
         .then(() => expect(activitiesPage.categorisedActivitiesList().length).to.equal(4))
     );
   });

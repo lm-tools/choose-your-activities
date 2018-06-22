@@ -78,6 +78,21 @@ describe('Activities page', () => {
         expect(activitiesPage.unCategorisedActivitiesCount())
           .to.contain('3 activities you can do')
       );
+    });
+
+    describe(`smart answers for version ${version}`, () => {
+      beforeEach(() =>
+        helper.cleanDb()
+          .then(() => helper.addSortedActivities(accountId, [
+            // for group GRP-1
+            sortActivityAtIndex(6, 'READY'),
+            sortActivityAtIndex(10, 'HELP'),
+            // for group GRP-2
+            sortActivityAtIndex(9, 'READY'),
+            sortActivityAtIndex(18, 'HELP'),
+          ]))
+          .then(() => activitiesPage.visit(version, accountId, group))
+      );
 
       it('should display all the categorised activities in smart answers section', () => {
         const categorisedActivitiesList = activitiesPage.categorisedActivitiesList();
@@ -107,6 +122,19 @@ describe('Activities page', () => {
             scenario.activityName)).to.be.true
         );
       });
+
+      it('clicking "Start again" should un-categorise all activities in the current group', () =>
+        activitiesPage.clickStartAgain().then(() => {
+          expect(activitiesPage.categorisedActivitiesList().length).to.equal(0);
+          expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(5);
+        })
+      );
+
+      it('clicking "Start again" should not affect categorisation in other groups', () =>
+        activitiesPage.visit(version, accountId, group)
+          .then(() => activitiesPage.clickStartAgain()
+            .then(() => activitiesPage.visit(version, accountId, 'GRP-2')
+              .then(() => expect(activitiesPage.categorisedActivitiesList().length).to.equal(2)))));
     });
   });
 });
