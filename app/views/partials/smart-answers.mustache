@@ -1,6 +1,11 @@
 <div class="column-one-third">
   {{#hasCategorisedActivities}}
-    <p class="heading-medium">Your choices</p>
+    <div class="clearfix heading-medium-spacing">
+      <h2 class="heading-medium float-left margin-none">Your choices</h2>
+      <form action="{{basePath}}/{{accountId}}/groups/{{group}}/activities" method="POST">
+        <input type="submit" class="float-right start-again link-style" value="Start again">
+      </form>
+    </div>
     <div class="menu">
       <ul class="{{version}}">
         {{#categoryGroups}}

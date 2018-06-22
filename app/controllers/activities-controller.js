@@ -28,4 +28,17 @@ router.get('/', (req, res, next) => {
   }).catch((err) => next(err));
 });
 
+router.post('/', (req, res) => {
+  const { accountId, group } = req.params;
+  const version = res.locals.version;
+  ActivitiesModel.clearCategorisationForGroup(accountId, version, group)
+    .then(() => ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group))
+    .then((unsortedActivities) =>
+      res.render('activities', Object.assign(
+        { accountId, group, version },
+        new SmartAnswersViewModel([], version),
+        new ActivitiesViewModel(unsortedActivities, false, '', version, group)
+      )));
+});
+
 module.exports = router;

@@ -69,5 +69,13 @@ module.exports = db.Model.extend(
             .then(() => ({ status: 'CREATED' }));
         });
     },
+
+    clearCategorisationForGroup(accountId, version, group) {
+      const activitiesToDelete = ActivityGroupMapper.getActivitiesForGroup(version, group);
+      return this.forge().query()
+        .where('accountId', accountId)
+        .whereIn('activity', activitiesToDelete)
+        .del();
+    },
   }
 );
