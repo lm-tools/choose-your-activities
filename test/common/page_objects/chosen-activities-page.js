@@ -85,6 +85,10 @@ class ChosenActivitiesPage {
     return !!this.browser.query('[class="link-back"]');
   }
 
+  printPageButtonDisplayed() {
+    return !!this.browser.query('[class~="print-link__link"]');
+  }
+
   getMoreActivities() {
     return this.browser.queryAll('[data-test|="group-link"]')
       .map(x => ({ title: x.innerHTML, href: x.href }));
