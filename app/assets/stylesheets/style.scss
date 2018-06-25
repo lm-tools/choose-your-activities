@@ -27,7 +27,7 @@ hr.rule-bold {
 .link-style {
   @include core-16;
   padding: 0;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
   color: $link-colour;
   background: none;
   border: none;
@@ -109,7 +109,7 @@ hr.rule-bold {
   text-align: left;
 }
 
-.menu .menu-container-medium  {
+.menu .menu-container-medium {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $three-quarters;
   font-weight: 400;
@@ -140,7 +140,7 @@ hr.rule-bold {
   font-size: 14px;
 }
 
-.menu .menu-container-small  {
+.menu .menu-container-small {
   border-left: $gutter-one-quarter solid $govuk-blue;
   font-weight: 400;
   text-transform: none;
@@ -162,7 +162,7 @@ hr.rule-bold {
   cursor: auto;
 }
 
-.menu .menu-container  {
+.menu .menu-container {
   border-left: $gutter-one-quarter solid $govuk-blue;
   width: $full-width;
   font-weight: 400;
@@ -219,7 +219,6 @@ button.link-button {
   font: inherit;
 }
 
-
 .panel-indent {
   border-left: 4px solid $grey-2;
   padding: $gutter-one-third 0 $gutter-one-third $gutter-half;
@@ -229,6 +228,7 @@ button.link-button {
 .category-heading {
   margin-top: 0;
 }
+
 .category-container {
   margin-bottom: 2em;
 }
@@ -252,4 +252,21 @@ button.link-button {
 
 .back-to-top__icon {
   margin-right: 10px;
+}
+
+.print-link__link {
+  @extend .link-back;
+  background: url(../images/icon-print.png) no-repeat 0 50%;
+  padding: 0.5em 0 0.5em 28px;
+  text-decoration: underline;
+  border-bottom: none;
+  position: inherit;
+  margin-top: 7px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 20 / 10), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .print-link__link {
+    background-image: url(../images/icon-print-2x.png);
+    background-size: 16px 18px;
+  }
 }

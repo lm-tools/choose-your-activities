@@ -3,11 +3,20 @@
 {{$applicationContent}}
 
 <div class="grid-row">
-  <div class="column-two-thirds">
-
+  <div class="column-half">
     <a href="{{basePath}}/{{accountId}}/groups" class="link-back">
       {{#__}}chosen-activities.backButton{{/__}}
     </a>
+  </div>
+
+  <div class="column-half">
+    <a href="javascript:window.print()" class="print-link__link float-right"
+       rel="alternate">Print page</a>
+  </div>
+</div>
+<div class="grid-row">
+  <div class="column-two-thirds">
+
 
     <h1 class="heading-xlarge">
       <span class="category heading-secondary">{{activityGroupTitle}}</span>
