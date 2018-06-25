@@ -1,9 +1,12 @@
 {{<govukTemplate}}
 
   {{$head}}
-    {{#layoutAssets.css}}
+    {{#layoutAssets.css.screen}}
       <link href="{{{.}}}" media="screen" rel="stylesheet" type="text/css"/>
-    {{/layoutAssets.css}}
+    {{/layoutAssets.css.screen}}
+    {{#layoutAssets.css.print}}
+      <link href="{{{.}}}" media="print" rel="stylesheet" type="text/css"/>
+    {{/layoutAssets.css.print}}
   {{/head}}
 
   {{$cookieMessage}}

@@ -43,6 +43,10 @@ describe('chosen activities page', () => {
         expect(title).to.equal('Contents');
         expect(href).to.equal('#contents');
       });
+
+      it(`should have print page button for version ${version}`, () =>
+        expect(pageUnderTest.printPageButtonDisplayed()).to.equal(true)
+      );
     });
   });
 

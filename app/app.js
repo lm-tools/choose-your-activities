@@ -83,6 +83,8 @@ app.use(assetPath, middleware.cacheHeaders);
 app.use(`${assetPath}vendor/v1`, express.static(path.join(__dirname, '..',
   'vendor', 'govuk_template_mustache_inheritance', 'assets')));
 
+app.use(`${assetPath}images`, express.static(path.join(__dirname, 'assets', 'images')));
+
 app.use(assetPath, express.static(path.join(__dirname, '..', 'dist', 'public')));
 
 app.use(helmet.noCache());
