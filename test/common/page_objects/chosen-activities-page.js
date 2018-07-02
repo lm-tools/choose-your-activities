@@ -30,8 +30,8 @@ class ChosenActivitiesPage {
   }
 
   getHeading() {
-    const headingText = this.browser.text('h1.heading-xlarge');
-    const subHeadingText = this.browser.text('h1 .heading-secondary');
+    const headingText = this.browser.text('div h1.heading-xlarge');
+    const subHeadingText = this.browser.text('div h2.heading-secondary');
     return { headingText: headingText.replace(subHeadingText, '').trim(), subHeadingText };
   }
 

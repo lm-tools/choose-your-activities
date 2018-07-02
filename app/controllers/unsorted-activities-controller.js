@@ -11,13 +11,14 @@ router.get('/', (req, res, next) => {
   const lastSortedActivityName = req.query.sorted || '';
   const basePath = res.locals.basePath;
 
+  if (groupsPrototypeVersion(version)) {
+    res.redirect(`${basePath}/${accountId}/groups`);
+  }
   Promise.all([
     ActivitiesModel.findUnsortedByAccountId(accountId),
     ActivitiesModel.getSortedByName(accountId, lastSortedActivityName),
   ]).then(([unsorted, lastSortedActivity]) => {
-    if (groupsPrototypeVersion(version)) {
-      res.redirect(`${basePath}/${accountId}/groups`);
-    } else if (unsorted.length > 0) {
+    if (unsorted.length > 0) {
       res.render('unsorted-activities', Object.assign({ accountId },
         new ActivitiesViewModel(unsorted, true, lastSortedActivity)));
     } else {
