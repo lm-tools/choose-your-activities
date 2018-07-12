@@ -2,7 +2,7 @@
 {{$pageTitle}}{{#__}}categorise-activity.pageTitle{{/__}}{{/pageTitle}}
 {{$applicationContent}}
 
-<a href="{{basePath}}/{{accountId}}/groups/{{group}}/activities" class="link-back">
+<a href="{{basePath}}/{{accountId}}/groups/{{group}}/activities{{#previousCategory}}?previousCat={{previousCategory}}{{/previousCategory}}" class="link-back">
   {{#__}}categorise-activity.backButton{{/__}}
 </a>
 
