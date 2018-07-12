@@ -13,6 +13,7 @@ const CategoriseActivityPage = function CategoriseActivityPage(browser, basePath
   this.browserQuery = () => browser.location.search;
   this.selectCategory = (category) => browser.pressButton(category);
   this.backButtonDisplayed = () => !!this.browser.query('[class="link-back"]');
+  this.pressBackButton = () => this.browser.clickLink('[class="link-back"]');
 };
 
 module.exports = CategoriseActivityPage;

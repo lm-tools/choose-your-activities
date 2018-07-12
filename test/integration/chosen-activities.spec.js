@@ -222,11 +222,11 @@ describe('chosen activities page', () => {
       beforeEach((done) =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(2, 'READY'),
             sortActivityAtIndex(6, 'HELP'),
             sortActivityAtIndex(7, 'HELP'),
-            sortActivityAtIndex(8, 'HELP'),
-            sortActivityAtIndex(10, 'HELP'),
+            sortActivityAtIndex(8, 'DOING'),
+            sortActivityAtIndex(10, 'NOT-SUITABLE'),
           ]))
           .then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
           .then(() => done())
@@ -234,23 +234,36 @@ describe('chosen activities page', () => {
 
       it('should be present for each activity', () => {
         const changeLinks = pageUnderTest.getChangeLinks();
-        expect(changeLinks).to.have.length(5);
+        expect(changeLinks).to.have.length(2);
       });
 
       it('on click should go to the categorisation page for activity', () =>
         pageUnderTest
-          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .clickChangeLinkForActivityWithHeading('Find out what makes a good job application')
           .then(() =>
             expect(categoriseActivityPage.heading())
-              .to.contain('Update your CV for jobs you\'re interested in')
+              .to.contain('Find out what makes a good job application')
           )
       );
 
       it('categorisation page should redirect back to same category', () =>
         pageUnderTest
-          .clickChangeLinkForActivityWithHeading('Update your CV for jobs you\'re interested in')
+          .clickChangeLinkForActivityWithHeading('Find out what makes a good job application')
           .then(() =>
             categoriseActivityPage.selectCategory('I\'m ready to try this').then(() => {
+              expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
+              const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
+              expect(currentCategory.text).to.contain('I\'d like help trying this');
+            })
+          )
+      );
+
+      const activityHeading = 'Write down what you learnt last time you applied for a job';
+      it('clicking back on categorisation page should redirect back to same category', () =>
+        pageUnderTest
+          .clickChangeLinkForActivityWithHeading(activityHeading)
+          .then(() =>
+            categoriseActivityPage.pressBackButton().then(() => {
               expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
               const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
               expect(currentCategory.text).to.contain('I\'d like help trying this');

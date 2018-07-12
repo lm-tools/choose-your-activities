@@ -7,17 +7,18 @@ const SmartAnswersViewModel = require('../view-models/smart-answers-view-model')
 
 
 router.get('/', (req, res, next) => {
-  const accountId = req.params.accountId;
-  const group = req.params.group;
-  const version = res.locals.version;
-  const basePath = res.locals.basePath;
+  const { accountId, group } = req.params;
+  const { version, basePath } = res.locals;
+  const previousCategory = req.query.previousCat;
 
   Promise.all([
     ActivitiesModel.findUnsortedByAccountIdVersionAndGroup(accountId, version, group),
     ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group),
   ]).then(([unsortedActivities, sortedActivities]) => {
     if (unsortedActivities.length === 0) {
-      return res.redirect(`${basePath}/${accountId}/groups/${group}/activities/chosen`);
+      const catQueryParam = previousCategory ? `?cat=${previousCategory}` : '';
+      return res
+        .redirect(`${basePath}/${accountId}/groups/${group}/activities/chosen${catQueryParam}`);
     }
 
     return res.render('activities', Object.assign(
