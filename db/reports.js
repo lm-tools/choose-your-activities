@@ -1,7 +1,7 @@
 const knex = require('../app/db').knex;
 
 module.exports = {
-  getTotalSortedActivities: function getTotalSortedActivities() {
+  getTotalSortedActivitiesCsv: function getTotalSortedActivities() {
     let output = 'interventionRef,totalSorted\n';
 
     return knex('sorted_activity')
@@ -15,4 +15,9 @@ module.exports = {
         return output;
       });
   },
+  getTotalSortedActivitiesJson: () =>
+    knex('sorted_activity')
+      .select('accountId as interventionRef')
+      .count('accountId as totalSorted')
+      .groupBy('accountId'),
 };

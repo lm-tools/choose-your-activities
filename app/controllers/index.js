@@ -10,7 +10,7 @@ const chosenActivities = require('./chosen-activities-controller');
 const categoriseActivity = require('./categorise-activity-controller');
 const sortedActivities = require('./sorted-activities-controller');
 const unsortedActivities = require('./unsorted-activities-controller');
-
+const metrics = require('./metrics-controller');
 
 module.exports = {
   introduction,
@@ -23,4 +23,5 @@ module.exports = {
   categoriseActivity,
   sortedActivities,
   unsortedActivities,
+  metrics,
 };
