@@ -89,19 +89,24 @@ app.use(assetPath, express.static(path.join(__dirname, '..', 'dist', 'public')))
 
 app.use(helmet.noCache());
 
-app.use(`${basePath}/`, controllers.cookie);
-app.use(`${basePath}/`, controllers.introduction);
-app.use(`${basePath}/:version?/:accountId/activities/unsorted`, controllers.unsortedActivities);
-app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
-app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
-  controllers.categoriseActivity);
-app.use(`${basePath}/:version?/:accountId/activities/:activityId`, controllers.activityDetails);
-app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);
-app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, controllers.activities);
-app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/categorise`,
-  controllers.categoriseActivity);
-app.use(`${basePath}/:version?/:accountId/groups/:group/activities/chosen`,
-  controllers.chosenActivities);
+if (process.env.MI === 'true' || process.env.MI === true) {
+  app.use(`${basePath}/metrics`, controllers.metrics);
+} else {
+  // revoke controller access to MI instance to avoid write attempts to replica db
+  app.use(`${basePath}/`, controllers.cookie);
+  app.use(`${basePath}/`, controllers.introduction);
+  app.use(`${basePath}/:version?/:accountId/activities/unsorted`, controllers.unsortedActivities);
+  app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
+  app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
+    controllers.categoriseActivity);
+  app.use(`${basePath}/:version?/:accountId/activities/:activityId`, controllers.activityDetails);
+  app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);
+  app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, controllers.activities);
+  app.use(`${basePath}/:version?/:accountId/groups/:group/activities/:activityId/categorise`,
+    controllers.categoriseActivity);
+  app.use(`${basePath}/:version?/:accountId/groups/:group/activities/chosen`,
+    controllers.chosenActivities);
+}
 
 // catch 404 and forward to error handler
 app.use(middleware.notFound);

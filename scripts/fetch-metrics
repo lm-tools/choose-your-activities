@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var report = require('../db/reports.js')
+const report = require('../db/reports.js');
 
-report.getTotalSortedActivities().then((result) => {
-  console.log(result)
-  process.exit();
-  });
+report.getTotalSortedActivitiesCsv().then(result => {
+  console.log(result);
+  process.exit(0);
+});

@@ -13,7 +13,7 @@ describe('Reports', function () {
     });
 
     it('should return total number of sorted activities per account', function (done) {
-      reports.getTotalSortedActivities(ACCOUNT_ID_FROM_SEED)
+      reports.getTotalSortedActivitiesCsv(ACCOUNT_ID_FROM_SEED)
         .then((result) => {
           expect(result).to.contain(`interventionRef,totalSorted\n${ACCOUNT_ID_FROM_SEED},19\n`);
           done();
@@ -21,4 +21,3 @@ describe('Reports', function () {
     });
   });
 });
-
