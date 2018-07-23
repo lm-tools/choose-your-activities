@@ -14,8 +14,8 @@ module.exports = class ActivityViewModel {
       DOING: this.activityStats(this.activities.filter(x => x.category === 'DOING')),
       READY: this.activityStats(this.activities.filter(x => x.category === 'READY')),
       HELP: this.activityStats(this.activities.filter(x => x.category === 'HELP')),
-      NOTWORKED: this.activityStats(this.activities.filter(x => x.category === 'NOT-WORKED')),
-      NO: this.activityStats(this.activities.filter(x => x.category === 'NO')),
+      'NOT-SUITABLE': this.activityStats(this.activities
+        .filter(x => x.category === 'NOT-SUITABLE')),
     };
     this.showNavigation = activities.length !== allActivitiesLength;
   }
