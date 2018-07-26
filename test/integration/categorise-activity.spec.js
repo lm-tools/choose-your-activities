@@ -4,7 +4,7 @@ const googleTagManagerHelper = helper.googleTagManagerHelper;
 const categoriseActivityPage = helper.categoriseActivityPage;
 const activitiesPage = helper.activitiesPage;
 
-const categories = require('../../app/controllers/category-mapping');
+const categories = require('../../app/models/categories');
 
 const uuid = require('uuid');
 const expect = require('chai').expect;
@@ -41,7 +41,7 @@ describe('Categorise activity page', () => {
         it('should have all of the categories to choose from', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
             .then(() => expect(categoriseActivityPage.countCategories())
-              .to.equal(categories(scenario.version).length)));
+              .to.equal(categories.length)));
 
         it('should have correct heading', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
