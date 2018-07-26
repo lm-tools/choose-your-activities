@@ -25,13 +25,13 @@ exports.seed = function (knex) {
           id: 103,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-4',
-          category: 'NOT-SUITABLE',
+          category: 'NOT-WORKED',
         },
         {
           id: 104,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-5',
-          category: 'NOT-SUITABLE',
+          category: 'NO',
         },
         {
           id: 105,
@@ -55,13 +55,13 @@ exports.seed = function (knex) {
           id: 108,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-9',
-          category: 'NOT-SUITABLE',
+          category: 'NOT-WORKED',
         },
         {
           id: 109,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-10',
-          category: 'NOT-SUITABLE',
+          category: 'NO',
         },
         {
           id: 110,
@@ -85,13 +85,13 @@ exports.seed = function (knex) {
           id: 113,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-14',
-          category: 'NOT-SUITABLE',
+          category: 'NOT-WORKED',
         },
         {
           id: 114,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-15',
-          category: 'NOT-SUITABLE',
+          category: 'NO',
         },
         {
           id: 115,
@@ -115,7 +115,7 @@ exports.seed = function (knex) {
           id: 118,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-19',
-          category: 'NOT-SUITABLE',
+          category: 'NOT-WORKED',
         },
       ]);
     });

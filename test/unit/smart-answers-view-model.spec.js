@@ -99,7 +99,7 @@ describe('smart answers view model', () => {
     },
   ].forEach((scenario) => {
     it(scenario.text, () => {
-      const smartAnswersViewModel = new SmartAnswersViewModel(scenario.entity);
+      const smartAnswersViewModel = new SmartAnswersViewModel(scenario.entity, 'a');
       expect(smartAnswersViewModel).to.eql(scenario.expectResult);
     });
   });

@@ -1,6 +1,8 @@
 module.exports = [
+  'DOING',
   'READY',
   'HELP',
-  'DOING',
+  'NOT-WORKED',
+  'NO',
   'NOT-SUITABLE',
 ];

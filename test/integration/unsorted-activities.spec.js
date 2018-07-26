@@ -26,7 +26,7 @@ describe('Unsorted activities page', () => {
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
           { activity: helper.allActivities[0].name, category: 'READY' },
-          { activity: helper.allActivities[17].name, category: 'NOT-SUITABLE' },
+          { activity: helper.allActivities[17].name, category: 'NO' },
         ]))
         .then(() => unsortedActivitiesPage.visit('c', accountId))
     );

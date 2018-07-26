@@ -180,7 +180,8 @@ hr.rule-bold {
   .DOING { border-left-color: $green; }
   .READY { border-left-color: $light-blue; }
   .HELP { border-left-color: $yellow; }
-  .NOT-SUITABLE { border-left-color: $mellow-red; }
+  .NOT-WORKED { border-left-color: $mellow-red; }
+  .NO { border-left-color: $black; }
   .DISABLED { border-left-color: $grey-2; }
 }
 

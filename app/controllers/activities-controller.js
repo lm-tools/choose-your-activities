@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 
     return res.render('activities', Object.assign(
       { accountId, group, version },
-      new SmartAnswersViewModel(sortedActivities),
+      new SmartAnswersViewModel(sortedActivities, version),
       new ActivitiesViewModel(unsortedActivities, false, '', version, group)
     ));
   }).catch((err) => next(err));
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
     .then((unsortedActivities) =>
       res.render('activities', Object.assign(
         { accountId, group, version },
-        new SmartAnswersViewModel(),
+        new SmartAnswersViewModel([], version),
         new ActivitiesViewModel(unsortedActivities, false, '', version, group)
       )));
 });

@@ -51,9 +51,9 @@ describe('Re-Sort activities page', () => {
         { activity: allActivites[3].name, category: 'HELP' },
         { activity: allActivites[10].name, category: 'HELP' },
         { activity: allActivites[11].name, category: 'HELP' },
-        { activity: allActivites[7].name, category: 'NOT-SUITABLE' },
-        { activity: allActivites[15].name, category: 'NOT-SUITABLE' },
-        { activity: allActivites[17].name, category: 'NOT-SUITABLE' },
+        { activity: allActivites[7].name, category: 'NOT-WORKED' },
+        { activity: allActivites[15].name, category: 'NO' },
+        { activity: allActivites[17].name, category: 'NO' },
       ])
         .then(() => reSortActivitiesPage.visit(accountId))
     );
@@ -74,10 +74,12 @@ describe('Re-Sort activities page', () => {
         ],
       },
       {
-        category: 'NOT-SUITABLE',
-        expectedActivitiesTitles: [
-          allActivites[7].title, allActivites[15].title, allActivites[17].title,
-        ],
+        category: 'NOT-WORKED',
+        expectedActivitiesTitles: [allActivites[7].title],
+      },
+      {
+        category: 'NO',
+        expectedActivitiesTitles: [allActivites[15].title, allActivites[17].title],
       },
     ].forEach(s => {
       it(`should display list of activities in "${s.category}" category`, () =>
@@ -101,7 +103,10 @@ describe('Re-Sort activities page', () => {
         category: 'HELP', activity: allActivites[10],
       },
       {
-        category: 'NOT-SUITABLE', activity: allActivites[7],
+        category: 'NOT-WORKED', activity: allActivites[7],
+      },
+      {
+        category: 'NO', activity: allActivites[15],
       },
     ].forEach(s => {
       it(`should link to categorise activity page for activity in "${s.category}"`, () =>
@@ -122,7 +127,7 @@ describe('Re-Sort activities page', () => {
       );
     });
 
-    ['DOING', 'NOT-SUITABLE'].forEach(s => {
+    ['DOING', 'NOT-WORKED', 'NO'].forEach(s => {
       it(`should expand category "${s}" by default`, () =>
         expect(reSortActivitiesPage.isCategoryExpanded(s)).to.equal(true)
       );

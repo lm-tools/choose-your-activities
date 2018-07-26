@@ -6,6 +6,7 @@ const ChosenActivitiesViewModel = require('../view-models/chosen-activities-view
 const CategoryView = require('../view-models/category-view-model');
 const ActivityGroupView = require('../view-models/activity-group-view-model');
 
+const categoryMapping = require('./category-mapping');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
 const firstCategoryWithActivities = (categories, chosenActivities) =>
@@ -59,7 +60,7 @@ router.get('', (req, res) => {
   const version = req.params.version;
   const specifiedCategory = req.query.cat;
 
-  const categoryView = new CategoryView();
+  const categoryView = new CategoryView(categoryMapping(version));
 
   const activityGroupTitle = resolveGroupTitle(version, group);
   ActivitiesModel.findSortedByAccountIdAndGroupByCategory(accountId, version, group)

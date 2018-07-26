@@ -6,6 +6,7 @@ const ActivitiesModel = require('../models/activity-model');
 const SmartAnswersViewModel = require('../view-models/smart-answers-view-model');
 
 const validator = require('../validators/categorise-activity-validator');
+const categoriesForVersion = require('./category-mapping');
 const groupsPrototypeVersion = require('./version-utils');
 const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 
@@ -22,7 +23,7 @@ router.get('', validator.get, (req, res) => {
   const { version } = res.locals;
   const previousCategory = req.query && req.query.previousCat || '';
 
-  const categoryView = new CategoryView();
+  const categoryView = new CategoryView(categoriesForVersion(version));
   const title = getActivityTitle(activityId);
   const groupTitle = resolveGroupTitle(version, group);
   const model = Object.assign(
@@ -39,7 +40,7 @@ function renderGotoActivitiesPage(accountId, version, group, res) {
       const title = resolveGroupTitle(version, group);
       const model = Object.assign(
         { accountId, group, title, version },
-        new SmartAnswersViewModel(sortedActivities)
+        new SmartAnswersViewModel(sortedActivities, version)
       );
 
       res.render('go-to-activities', model);

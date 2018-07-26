@@ -1,10 +1,9 @@
 const i18n = require('i18n');
-const categoriesModel = require('../models/categories');
 
 module.exports = class CategoryViewModel {
 
-  constructor() {
-    this.categories = this.categoryView(categoriesModel);
+  constructor(categories) {
+    this.categories = this.categoryView(categories);
   }
 
   categoryView(categories) {

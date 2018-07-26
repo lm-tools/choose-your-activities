@@ -1,9 +1,10 @@
 const CategoryView = require('./category-view-model');
+const categoriesForVersion = require('../controllers/category-mapping');
 const activityDecorator = require('../locales/activity-decorator');
 
 module.exports = class SmartAnswersViewModel {
-  constructor(groupedActivities = []) {
-    const categoryView = new CategoryView();
+  constructor(groupedActivities, version) {
+    const categoryView = new CategoryView(categoriesForVersion(version));
     this.categoryGroups = categoryView.categories
       .filter(category => !!groupedActivities[category.name])
       .map(category =>

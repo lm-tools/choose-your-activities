@@ -40,6 +40,7 @@ module.exports = {
     { name: 'READY', title: "I'm ready to try this", collapsed: false },
     { name: 'DOING', title: "I'm already doing this", collapsed: true },
     { name: 'HELP', title: "I'd like help trying this", collapsed: false },
-    { name: 'NOT-SUITABLE', title: "It doesn't suit me", collapsed: true },
+    { name: 'NOT-WORKED', title: "This hasn't worked", collapsed: true },
+    { name: 'NO', title: 'Not really for me', collapsed: true },
   ],
 };
