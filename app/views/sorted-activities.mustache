@@ -138,19 +138,19 @@
     {{/perCategory.DOING}}
   </section>
 
-  <section data-test="category-NOT-WORKED" id="category-NOT-WORKED" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-WORKED.title{{/__}}</h3>
-    {{^perCategory.NOTWORKED.hasActivities}}
+  <section data-test="category-NOT-SUITABLE" id="category-NOT-SUITABLE" class="category-container">
+    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-SUITABLE.title{{/__}}</h3>
+    {{^perCategory.NOT-SUITABLE.hasActivities}}
       <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
-    {{/perCategory.NOTWORKED.hasActivities}}
-    {{#perCategory.NOTWORKED}}
+    {{/perCategory.NOT-SUITABLE.hasActivities}}
+    {{#perCategory.NOT-SUITABLE}}
       {{#hasActivities}}
         <details {{#isExpanded}}open{{/isExpanded}}>
           <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
           <div class="panel panel-border-narrow">
             <ul>
               {{#activities}}
-                <li class="menu-container NOT-WORKED" data-test="activity-{{activity}}">
+                <li class="menu-container NOT-SUITABLE" data-test="activity-{{activity}}">
               <span class="menu-item not-selectable">
                 <p>{{title}}</p>
                 <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
@@ -171,45 +171,8 @@
           </div>
         </details>
       {{/hasActivities}}
-    {{/perCategory.NOTWORKED}}
+    {{/perCategory.NOT-SUITABLE}}
   </section>
-
-  <section data-test="category-NO" id="category-NO" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NO.title{{/__}}</h3>
-    {{^perCategory.NO.hasActivities}}
-      <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
-    {{/perCategory.NO.hasActivities}}
-    {{#perCategory.NO}}
-      {{#hasActivities}}
-        <details {{#isExpanded}}open{{/isExpanded}}>
-          <summary><span data-test="show-hide-text" class="summary">{{categoryIntroduction}}</span></summary>
-          <div class="panel panel-border-narrow">
-            <ul>
-              {{#activities}}
-                <li class="menu-container NO" data-test="activity-{{activity}}">
-              <span class="menu-item not-selectable">
-                <p>{{title}}</p>
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
-                   class="button-secondary"
-                   data-test="details-button">
-                  {{#__}}sorted-activities.button-details{{/__}}
-                </a>
-                {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
-                     data-test="activity-{{activity}}-move">
-                    Move
-                  </a>
-                {{/isResortMode}}
-              </span>
-                </li>
-              {{/activities}}
-            </ul>
-          </div>
-        </details>
-      {{/hasActivities}}
-    {{/perCategory.NO}}
-  </section>
-
 </div>
 
 {{/applicationContent}}

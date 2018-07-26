@@ -52,14 +52,12 @@ describe('Sorted activities page', () => {
       helper.addSortedActivities(accountId, [
         { activity: allActivities[0].name, category: 'READY' },
         { activity: allActivities[1].name, category: 'READY' },
-        { activity: allActivities[2].name, category: 'DOING' },
-        { activity: allActivities[4].name, category: 'DOING' },
+        { activity: allActivities[2].name, category: 'HELP' },
         { activity: allActivities[3].name, category: 'HELP' },
-        { activity: allActivities[10].name, category: 'HELP' },
-        { activity: allActivities[11].name, category: 'HELP' },
-        { activity: allActivities[7].name, category: 'NOT-WORKED' },
-        { activity: allActivities[15].name, category: 'NO' },
-        { activity: allActivities[17].name, category: 'NO' },
+        { activity: allActivities[4].name, category: 'DOING' },
+        { activity: allActivities[7].name, category: 'NOT-SUITABLE' },
+        { activity: allActivities[15].name, category: 'NOT-SUITABLE' },
+        { activity: allActivities[17].name, category: 'NOT-SUITABLE' },
       ])
         .then(() => sortedActivitiesPage.visit('c', accountId))
     );
@@ -70,22 +68,18 @@ describe('Sorted activities page', () => {
         expectedActivitiesTitles: [allActivities[0].title, allActivities[1].title],
       },
       {
-        category: 'DOING',
-        expectedActivitiesTitles: [allActivities[2].title, allActivities[4].title],
-      },
-      {
         category: 'HELP',
+        expectedActivitiesTitles: [allActivities[2].title, allActivities[3].title],
+      },
+      {
+        category: 'DOING',
+        expectedActivitiesTitles: [allActivities[4].title],
+      },
+      {
+        category: 'NOT-SUITABLE',
         expectedActivitiesTitles: [
-          allActivities[3].title, allActivities[10].title, allActivities[11].title,
+          allActivities[7].title, allActivities[15].title, allActivities[17].title,
         ],
-      },
-      {
-        category: 'NOT-WORKED',
-        expectedActivitiesTitles: [allActivities[7].title],
-      },
-      {
-        category: 'NO',
-        expectedActivitiesTitles: [allActivities[15].title, allActivities[17].title],
       },
     ].forEach(s => {
       it(`should display list of activities in "${s.category}" category`, () =>
@@ -98,7 +92,7 @@ describe('Sorted activities page', () => {
       );
     });
 
-    ['DOING', 'NO', 'NOT-WORKED'].forEach((category) => {
+    ['DOING', 'NOT-SUITABLE'].forEach((category) => {
       it(`should hide less relevant activities for category ${category}`, () =>
         expect(sortedActivitiesPage.getOpenCategory(category)).not.to.exist
       );
@@ -119,11 +113,11 @@ describe('Sorted activities page', () => {
     );
 
     it('should display the number of hidden activities when only one is hidden', () => {
-      expect(sortedActivitiesPage.getCategorySummary('NOT-WORKED')).to.equal('Show 1 activity');
+      expect(sortedActivitiesPage.getCategorySummary('DOING')).to.equal('Show 1 activity');
     });
 
     it('should display the number of hidden activities when there are many hidden', () => {
-      expect(sortedActivitiesPage.getCategorySummary('NO')).to.equal('Show 2 activities');
+      expect(sortedActivitiesPage.getCategorySummary('NOT-SUITABLE')).to.equal('Show 3 activities');
     });
 
 
@@ -132,16 +126,13 @@ describe('Sorted activities page', () => {
         category: 'READY', activity: allActivities[0],
       },
       {
-        category: 'DOING', activity: allActivities[2],
+        category: 'HELP', activity: allActivities[2],
       },
       {
-        category: 'HELP', activity: allActivities[10],
+        category: 'DOING', activity: allActivities[4],
       },
       {
-        category: 'NOT-WORKED', activity: allActivities[7],
-      },
-      {
-        category: 'NO', activity: allActivities[17],
+        category: 'NOT-SUITABLE', activity: allActivities[7],
       },
     ].forEach(s => {
       it(`should not display "Move" link for activity in category "${s.category}"`, () =>
@@ -155,7 +146,7 @@ describe('Sorted activities page', () => {
       );
     });
 
-    ['DOING', 'NOT-WORKED', 'NO'].forEach(s => {
+    ['DOING', 'NOT-SUITABLE'].forEach(s => {
       it(`should expand category "${s}" by default`, () =>
         expect(sortedActivitiesPage.isCategoryExpanded(s)).to.equal(false)
       );
