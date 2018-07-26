@@ -14,7 +14,7 @@
     "test": "NODE_ENV=test npm run test-mocha && NODE_ENV=test EXPRESS_BASE_PATH=/choose-your-activities npm run test-mocha && npm run html-lint",
     "db-migrate": "knex migrate:latest --knexfile db/knexfile.js",
     "db-migrate-rollback": "knex migrate:rollback --knexfile db/knexfile.js",
-    "heroku-postbuild": "npm run compile && npm run db-migrate",
+    "heroku-postbuild": "npm run compile",
     "create-migration": "knex migrate:make --knexfile db/knexfile.js $MIGRATION",
     "snyk-protect": "snyk protect",
     "check-content": "gulp check-content",
