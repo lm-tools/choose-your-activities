@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "git config core.hooksPath .githooks",
     "start": "node ./bin/www",
     "clean": "rm -rf ./dist",
     "compile": "npm run clean && gulp compile",
@@ -60,6 +61,7 @@
     "lmt-utils": "~0.1.4",
     "morgan": "^1.6.1",
     "node-uuid": "~1.4",
+    "npm-git-secrets": "^1.0.1",
     "pg": "^4.5.5",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
