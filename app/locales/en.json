@@ -35,7 +35,7 @@
   },
   "categorise-activity": {
     "pageTitle": "Sort this activity",
-    "overview": "How interested are you in this activity?",
+    "overview": "To sort this activity, you need to choose how interested you are in it.",
     "backButton": "Back"
   },
   "chosen-activities": {
@@ -226,7 +226,8 @@
     "500": "We're experiencing technical problems."
   },
   "activities": {
-    "overview": "Pick any activity from the list - you can then decide if you're interested in it or not.",
+    "overview1": "You need to pick and sort every activity in this list before you can get more information.",
+    "overview2": "Pick any to start. Continue until there are no activities left in the list.",
     "can-do": {
       "one": " activity you can do",
       "other": " activities you can do"
@@ -239,5 +240,8 @@
     "action-1": "read information about each activity",
     "action-2": "try them out",
     "button-label": "Go to my activities"
+  },
+  "smart-answers": {
+    "title": "Sorted activities"
   }
 }

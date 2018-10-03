@@ -73,11 +73,6 @@ describe('Activities page', () => {
             // eslint-disable-next-line max-len
             `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[8].name}/categorise`)
       );
-
-      it('should display the correct number of activities remaining', () =>
-        expect(activitiesPage.unCategorisedActivitiesCount())
-          .to.contain('3 activities you can do')
-      );
     });
 
     describe(`smart answers for version ${version}`, () => {
