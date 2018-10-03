@@ -1,15 +1,15 @@
 <div class="column-one-third">
   {{#hasCategorisedActivities}}
-    <div class="clearfix heading-medium-spacing">
-      <h2 class="heading-medium float-left margin-none">Your choices</h2>
+    <div class="clearfix gutter-half-bottom gutter-sixth-top">
+      <h2 class="heading-medium float-left margin-none">{{#__}}smart-answers.title{{/__}}</h2>
       <form action="{{basePath}}/{{accountId}}/groups/{{group}}/activities" method="POST">
         <input type="submit" class="float-right start-again link-style" value="Start again">
       </form>
     </div>
     <div class="menu">
-      <ul class="{{version}}">
-        {{#categoryGroups}}
-          <p data-test="{{categoryName}}" class="small-title">{{categoryTitle}}</p>
+      {{#categoryGroups}}
+        <h3 data-test="{{categoryName}}" class="small-title">{{categoryTitle}}</h3>
+        <ul class="{{version}}">
           {{#sortedActivities}}
             <li class="{{categoryName}} menu-container-small">
               <input type="hidden" name="category" value="{{name}}">
@@ -21,8 +21,8 @@
               </div>
             </li>
           {{/sortedActivities}}
-        {{/categoryGroups}}
-      </ul>
+        </ul>
+      {{/categoryGroups}}
     </div>
   {{/hasCategorisedActivities}}
 </div>

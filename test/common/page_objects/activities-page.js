@@ -19,7 +19,7 @@ const ActivityPage = function ActivityPage(browser, basePath) {
       href: browser.query('[data-test="link"] a', x).href,
     }));
   this.isActivityUnderCategoryDisplayed = (category, activity) =>
-    !!this.browser.query(`[data-test="${category}"] + li > div > [data-test="${activity}"]`);
+    !!this.browser.query(`[data-test="${category}"] + ul > li > div > [data-test="${activity}"]`);
   this.visit = (version, accountId, group) =>
     this.browser.visit(`${basePath}/${version}/${accountId}/groups/${group}/activities`);
   this.browserPath = () => browser.location.pathname;
