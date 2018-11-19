@@ -22,9 +22,13 @@ RUN npm install && \
 ENV NODE_ENV=production
 ENV PORT=80
 
+# setup secrets file
+ENV ENV_FILE='./empty.env'
+RUN touch empty.env
+
 EXPOSE 80
 
-CMD ["npm", "start"]
+CMD set -a && . $ENV_FILE && set +a && npm start
 
 ARG version
 RUN mkdir -p /srv/app/dist/public/version && \
