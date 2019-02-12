@@ -1,5 +1,10 @@
 {{<layout}}
-{{$pageTitle}}{{#__}}unsorted-activities.pageTitle{{/__}}{{/pageTitle}}
+{{$pageTitle}}
+  {{#categorisedActivity}}
+    {{#__}}unsorted-activities.activity-sorted{{/__}} &lsquo;{{title}}&rsquo; -
+  {{/categorisedActivity}}
+  {{#__}}unsorted-activities.pageTitle{{/__}}
+{{/pageTitle}}
 {{$applicationContent}}
 
   <h2 class="heading-xlarge">{{#__}}unsorted-activities.heading{{/__}}</h2>
@@ -7,11 +12,17 @@
   <p class="text">{{#__}}unsorted-activities.action-overview-1{{/__}}</p>
   <p class="text">{{#__}}unsorted-activities.action-overview-2{{/__}}</p>
 
+  {{#categorisedActivity}}
+    <div class="alert alert--success" role="alert">
+      {{#__}}unsorted-activities.activity-sorted{{/__}} &lsquo;{{title}}&rsquo;
+    </div>
+  {{/categorisedActivity}}
+
   <section class="more" data-test="navigation">
     <div class="nav-tabs">
       <ul class="tabs-nav" role="tablist">
         <li class="active">
-          <a href="#" class="option">
+          <a class="option">
             {{#__}}tabs.unsorted{{/__}}
           </a>
         </li>
@@ -30,33 +41,16 @@
 
   </section>
 
-  <div class="menu">
-    {{#categorisedActivity}}
-      <ul data-slide>
-        <li class="menu-container DISABLED" data-slide data-test-activity="{{activity}}">
-          <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
-        </li>
-      </ul>
-    {{/categorisedActivity}}
-    <ul>
+  <ul class="activity-list gutter-half-bottom">
     {{#activities}}
-      <li class="menu-container" data-test-activity="{{activity}}">
-        <a class="menu-item" href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise">{{title}}</a>
+      <li class="activity-list__item" data-test-activity="{{activity}}">
+        <a class="activity-list__link" href="{{basePath}}/{{accountId}}/activities/unsorted/{{activity}}/categorise">{{title}}</a>
       </li>
     {{/activities}}
-    </ul>
-    <h3 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h3>
-    <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
-  </div>
+  </ul>
 
-  <noscript>
-    <!-- hide sorted activity when javascript is disabled -->
-    <style>
-      [data-slide] {
-        display: none !important;
-      }
-    </style>
-  </noscript>
+  <h2 class="heading-medium">{{#__}}unsorted-activities.action-finish-heading{{/__}}</h2>
+  <p>{{#__}}unsorted-activities.action-finish-detail{{/__}}</p>
 
 {{/applicationContent}}
 {{/layout}}

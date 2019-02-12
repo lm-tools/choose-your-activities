@@ -1,0 +1,36 @@
+.activity-list__item {
+  position: relative;
+  display: table;
+  width: $full-width;
+  margin-bottom: $gutter-half;
+  padding: 0;
+  background: $grey-4;
+  border-bottom: 1px solid $grey-2;
+  border-left: $gutter-one-quarter solid $govuk-blue;
+  font-weight: 400;
+  list-style-type: none;
+  text-transform: none;
+}
+
+.activity-list__link {
+  display: table-cell;
+  width: $full-width;
+  padding: $gutter;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  text-decoration: none;
+  text-align: left;
+  white-space: normal;
+
+  &:link,
+  &:active,
+  &:visited {
+    color: $black;
+  }
+
+  &:hover {
+    color: $govuk-blue;
+  }
+}

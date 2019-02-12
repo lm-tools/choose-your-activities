@@ -98,7 +98,7 @@ if (process.env.MI === 'true' || process.env.MI === true) {
   app.use(`${basePath}/`, controllers.introduction);
   app.use(`${basePath}/:version?/:accountId/activities/unsorted`, controllers.unsortedActivities);
   app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
-  app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
+  app.use(`${basePath}/:version?/:accountId/activities/:sortType/:activityId/categorise`,
     controllers.categoriseActivity);
   app.use(`${basePath}/:version?/:accountId/activities/:activityId`, controllers.activityDetails);
   app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);

@@ -11,12 +11,12 @@
             <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                class="button-secondary"
                data-test="details-button">
-              {{#__}}sorted-activities.button-details{{/__}}
+              {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
             </a>
             {{#isResortMode}}
-              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/sorted/categorise" class="resort-button"
                  data-test="activity-{{activity}}-move">
-                Move
+                Move <span class="visually-hidden">{{title}}</span>
               </a>
             {{/isResortMode}}
           </div>
