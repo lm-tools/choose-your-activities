@@ -7,6 +7,7 @@ module.exports = {
   get: celebrate({
     params: Joi.object().keys({
       activityId: Joi.any().valid(activities).required(),
+      sortType: Joi.string().optional(),
       accountId: Joi.string().required(),
       version: Joi.string().required(),
       group: Joi.string().optional(),
@@ -15,8 +16,10 @@ module.exports = {
   post: celebrate({
     params: Joi.object().keys({
       activityId: Joi.any().valid(activities).required(),
+      sortType: Joi.string().optional(),
       accountId: Joi.string().required(),
       version: Joi.string().required(),
+      group: Joi.string().optional(),
     }),
     body: Joi.object().keys({
       category: Joi.any().valid(categories).required(),
@@ -25,4 +28,3 @@ module.exports = {
     }),
   }),
 };
-
