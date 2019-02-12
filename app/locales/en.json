@@ -3,7 +3,7 @@
     "header": "Choose your activities"
   },
   "introduction": {
-    "pageTitle": "Choose your activities",
+    "pageTitle": "Introduction - Choose your activities",
     "heading": "Choose your activities",
     "sub-heading": "Things you can do to help you find work",
     "action-overview-1": "Use this tool to:",
@@ -13,15 +13,16 @@
     "button-label": "Choose your activities"
   },
   "activities-group": {
-    "subheading": "Choose your activities",
+    "subheading": "What do you want to do? - Choose your activities",
     "heading": "What do you want to do?",
     "backButton": "Home"
   },
   "unsorted-activities": {
-    "pageTitle": "Choose your activities",
-    "heading": "Choose your activities",
+    "pageTitle": "Unsorted activities - Choose your activities",
+    "heading": "Unsorted activities",
     "unsorted-menu": "unsorted",
     "sorted-menu": "sorted",
+    "activity-sorted": "activity has been sorted",
     "action-overview-1": "Choose an activity from the list below, and decide whether it's right for you. You can put it into one of 4 categories.",
     "action-overview-2": "When you've finished sorting the activities into a list, you can find out more about them - they've all helped people get work or earn more.",
     "action-finish-heading": "When you finish",
@@ -34,12 +35,12 @@
     }
   },
   "categorise-activity": {
-    "pageTitle": "Sort this activity",
+    "pageTitle": "Sort this activity - Choose your activities",
     "overview": "To sort this activity, you need to choose how interested you are in it.",
     "backButton": "Back"
   },
   "chosen-activities": {
-    "pageTitle": "Choose your activities",
+    "pageTitle": "Your chosen activities - Choose your activities",
     "backButton": "Home",
     "heading": "Your chosen activities",
     "aria": {
@@ -198,7 +199,7 @@
     "sorted": "Your activity list"
   },
   "sorted-activities": {
-    "pageTitle": "Choose your activities",
+    "pageTitle": "Your activity list - Choose your activities",
     "heading": "Your activity list",
     "activities-heading": "Your activities",
     "activities-text-1": "Get more details about each of the activities - tips, advice and links to useful websites.",
@@ -212,13 +213,13 @@
     "button-move": "Move"
   },
   "activities-details": {
-    "pageTitle": "Choose your activities",
+    "pageTitle": "Activity details - Choose your activities",
     "backButton": "Back to your activities"
   },
   "cookie": {
     "pretext": "GOV.UK uses cookies to make the site simpler",
     "linktext": "Find out more about cookies",
-    "pagetitle": "Cookie"
+    "pagetitle": "Cookies - Choose your activities"
   },
   "error": {
     "400": "We're experiencing technical problems.",

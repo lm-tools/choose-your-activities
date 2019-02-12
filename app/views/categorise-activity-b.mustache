@@ -18,7 +18,7 @@
 <div class="menu">
   <ul class="b">
     {{#categories}}
-      <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
+      <form action="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activityId}}/categorise" method="POST">
         <li class="menu-container-medium {{name}}">
           <input type="hidden" name="category" value="{{name}}">
           <input type="hidden" name="group" value="{{group}}">

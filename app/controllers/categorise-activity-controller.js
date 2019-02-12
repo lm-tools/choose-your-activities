@@ -17,20 +17,32 @@ function getActivityTitle(activityId) {
 }
 
 router.get('', validator.get, (req, res) => {
-  const { accountId, activityId } = req.params;
+  const { accountId, activityId, sortType } = req.params;
   const group = req.params.group ? req.params.group : 'GRP-1';
   const { version } = res.locals;
   const previousCategory = req.query && req.query.previousCat || '';
 
-  const categoryView = new CategoryView();
   const title = getActivityTitle(activityId);
   const groupTitle = resolveGroupTitle(version, group);
-  const model = Object.assign(
-    { accountId, activityId, group, title, groupTitle, previousCategory },
-    categoryView
-  );
+  const backPath = sortType === 'sorted' ? '/activities/sorted/resort' : '/activities/unsorted';
 
-  res.render(`categorise-activity-${version}`, model);
+  ActivitiesModel.getSortedByName(accountId, activityId)
+  .then(result => {
+    let categoryView;
+
+    if (result) {
+      categoryView = new CategoryView(result.category);
+    } else {
+      categoryView = new CategoryView();
+    }
+
+    const model = Object.assign(
+      { accountId, activityId, backPath, sortType, group, title, groupTitle, previousCategory },
+      categoryView
+    );
+
+    res.render(`categorise-activity-${version}`, model);
+  });
 });
 
 function renderGotoActivitiesPage(accountId, version, group, res) {

@@ -1,0 +1,58 @@
+.alert {
+  @include box-sizing(border-box);
+  @extend %contain-floats;
+  clear: both;
+  border-left-style: solid;
+  padding: em(15, 19);
+  margin-bottom: em(30, 19);
+  border-left-width: 10px;
+  border-color: $light-blue;
+  background-color: mix(white, $light-blue, 90%);
+}
+
+.alert--warning {
+  border-color: $red;
+  background-color: mix(white, $mellow-red, 90%);
+}
+
+.alert--success {
+  border-color: $turquoise;
+  background-color: mix(white, $turquoise, 90%);
+}
+
+.alert--unicorn {
+  color: $white;
+  border-color: $govuk-blue;
+  background-color: $govuk-blue;
+
+  a, a:visited {
+    color: $white;
+  }
+
+  a:hover {
+    color: $grey-3;
+  }
+}
+
+.alert--top-spacing {
+  margin-top: $gutter / 2;
+}
+
+.alert-confirmation {
+  clear: both;
+  padding: 2em;
+  margin-bottom: 1em;
+  background-color: $turquoise;
+  color: $white;
+  text-align: center;
+
+  h2 {
+    @include bold-36;
+    margin-bottom: 1em;
+  }
+
+  p {
+    @include core-24;
+    margin: 0;
+  }
+}

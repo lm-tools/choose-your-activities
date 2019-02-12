@@ -7,14 +7,20 @@
 <div class="menu">
   <ul class="c">
     {{#categories}}
-      <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
-        <li class="menu-container {{name}}">
+      <li class="menu-container {{name}}">
+        <form action="{{basePath}}/{{accountId}}/activities/{{sortType}}/{{activityId}}/categorise" method="POST">
           <input type="hidden" name="category" value="{{name}}">
           <input class="menu-item" data-test="menu-item" type="submit" value="{{title}}">
-        </li>
-      </form>
+        </form>
+      </li>
     {{/categories}}
   </ul>
+
+  <p>
+    <a href="{{basePath}}/{{accountId}}{{backPath}}" class="link-back" data-test="backButton">
+      {{#__}}activities-details.backButton{{/__}}
+    </a>
+  </p>
 </div>
 
 {{/applicationContent}}

@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="#" class="option">
+          <a class="option">
             {{#__}}tabs.sorted{{/__}}
           </a>
         </li>
@@ -56,12 +56,12 @@
               <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
-                {{#__}}sorted-activities.button-details{{/__}}
+                {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
               </a>
               {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                <a href="{{basePath}}/{{accountId}}/activities/sorted/{{activity}}/categorise" class="resort-button"
                    data-test="activity-{{activity}}-move">
-                  Move
+                  {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                 </a>
               {{/isResortMode}}
             </span>
@@ -87,12 +87,12 @@
               <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
-                {{#__}}sorted-activities.button-details{{/__}}
+                {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
               </a>
               {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                <a href="{{basePath}}/{{accountId}}/activities/sorted/{{activity}}/categorise" class="resort-button"
                    data-test="activity-{{activity}}-move">
-                  {{#__}}sorted-activities.button-move{{/__}}
+                  {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                 </a>
               {{/isResortMode}}
             </span>
@@ -120,12 +120,12 @@
                 <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
-                  {{#__}}sorted-activities.button-details{{/__}}
+                  {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
                 </a>
                 {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                  <a href="{{basePath}}/{{accountId}}/activities/sorted/{{activity}}/categorise" class="resort-button"
                      data-test="activity-{{activity}}-move">
-                    Move
+                    {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                   </a>
                 {{/isResortMode}}
               </span>
@@ -156,12 +156,12 @@
                 <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                    class="button-secondary"
                    data-test="details-button">
-                  {{#__}}sorted-activities.button-details{{/__}}
+                  {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
                 </a>
                 {{#isResortMode}}
-                  <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                  <a href="{{basePath}}/{{accountId}}/activities/sorted/{{activity}}/categorise" class="resort-button"
                      data-test="activity-{{activity}}-move">
-                    Move
+                    {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                   </a>
                 {{/isResortMode}}
               </span>

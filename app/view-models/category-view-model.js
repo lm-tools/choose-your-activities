@@ -3,8 +3,14 @@ const categoriesModel = require('../models/categories');
 
 module.exports = class CategoryViewModel {
 
-  constructor() {
-    this.categories = this.categoryView(categoriesModel);
+  constructor(currentCategory) {
+    if (currentCategory) {
+      this.categories = this.categoryView(categoriesModel.filter(
+        category => category !== currentCategory
+      ));
+    } else {
+      this.categories = this.categoryView(categoriesModel);
+    }
   }
 
   categoryView(categories) {
