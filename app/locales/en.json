@@ -18,8 +18,8 @@
     "backButton": "Home"
   },
   "unsorted-activities": {
-    "pageTitle": "Pick any activity - Choose your activities",
-    "heading": "Pick any activity",
+    "pageTitle": "Pick and sort your activities - Choose your activities",
+    "heading": "Pick and sort your activities",
     "unsorted-menu": "unsorted",
     "sorted-menu": "sorted",
     "activity-sorted": "You've sorted",
@@ -28,6 +28,7 @@
     "action-finish-heading": "When you finish",
     "action-finish-detail": "You can find out more or rearrange the activities on the next page.",
     "all-sorted": {
+      "pageTitle": "You've sorted all of the activities - Choose your activities",
       "title": "You've sorted all of the activities",
       "message1": "You've put together your own list of things to try – you'll see it on the next page. You can use it to get more details about any activity. There are tips, advice and links to useful websites.",
       "message2": "You'll also be able to move the activities around if you've changed your mind about where they go.",
