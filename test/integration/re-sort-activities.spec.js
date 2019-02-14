@@ -16,7 +16,7 @@ describe('Re-Sort activities page', () => {
   describe('Re-Sort page outline', () => {
     it('should have correct title', () =>
       expect(reSortActivitiesPage.browser.text('title'))
-        .to.equal('Choose your activities')
+        .to.equal('Your activity list - Choose your activities')
     );
 
     it('should contain valid google tag manager data', () =>
@@ -107,7 +107,7 @@ describe('Re-Sort activities page', () => {
       it(`should link to categorise activity page for activity in "${s.category}"`, () =>
         reSortActivitiesPage.clickMoveButton(s.activity).then(() =>
           expect(helper.categoriseActivityPage.browserPath())
-            .to.contain(`${accountId}/activities/${s.activity.name}/categorise`)
+            .to.contain(`${accountId}/activities/${s.activity.name}/sorted/categorise`)
         )
       );
 
