@@ -70,7 +70,8 @@ describe('activity group', () => {
   ].forEach((scenario) => {
     it(`should have correct title for version ${scenario.version}`, () =>
       pageUnderTest.visit(scenario.version, accountId).then(() =>
-        expect(pageUnderTest.browser.text('title')).to.equal('Choose your activities')
+        expect(pageUnderTest.browser.text('title'))
+          .to.equal('Pick and sort your activities - Choose your activities')
       ));
 
     it(`should contain valid google tag manager data for version ${scenario.version}`, () =>

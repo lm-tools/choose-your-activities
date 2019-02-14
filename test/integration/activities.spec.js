@@ -20,7 +20,8 @@ describe('Activities page', () => {
       );
 
       it('should have correct title', () =>
-        expect(activitiesPage.browser.text('title')).to.equal('Choose your activities')
+        expect(activitiesPage.browser.text('title'))
+          .to.equal('Pick and sort your activities - Choose your activities')
       );
 
       it('should contain valid google tag manager data', () =>

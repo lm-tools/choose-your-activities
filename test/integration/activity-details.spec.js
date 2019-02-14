@@ -13,7 +13,7 @@ describe('Activity details', () => {
 
     it('should have correct title', () =>
       expect(pageUnderTest.browser.text('title'))
-        .to.equal('Choose your activities')
+        .to.equal('Activity details - Choose your activities')
     );
 
     it('should contain valid google tag manager data', () =>

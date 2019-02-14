@@ -22,7 +22,7 @@ describe('chosen activities page', () => {
       );
 
       it(`should have correct title for version ${version}`, () =>
-        expect(pageUnderTest.getTitle()).to.equal('Choose your activities')
+        expect(pageUnderTest.getTitle()).to.equal('Your chosen activities - Choose your activities')
       );
 
 

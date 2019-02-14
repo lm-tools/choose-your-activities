@@ -19,7 +19,7 @@
   <ul class="a">
     {{#categories}}
       <li class="menu-container-medium {{name}}">
-        <form action="{{basePath}}/{{accountId}}/groups/{{group}}/activities/{{activityId}}/categorise" method="POST">
+        <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
           <input type="hidden" name="category" value="{{name}}">
           <input type="hidden" name="group" value="{{group}}">
           {{#previousCategory}}
