@@ -34,14 +34,16 @@ describe('Categorise activity page', () => {
       redirectUri: 'activities/unsorted',
       redirectUriAfterReCategorisation: 'activities/sorted/resort',
       queryParam: `?sorted=${activity}`,
-      shouldHaveBackButton: false,
+      shouldHaveBackButton: true,
     }]
     .forEach(scenario =>
       describe(`version: ${scenario.version}`, () => {
         it('should have all of the categories to choose from', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
-            .then(() => expect(categoriseActivityPage.countCategories())
-              .to.equal(categories.length)));
+            .then(() => {
+              expect(categoriseActivityPage.countCategories())
+              .to.equal(categories.length);
+            }));
 
         it('should have correct heading', () =>
           categoriseActivityPage.visit(scenario.version, accountId, activity)
@@ -77,7 +79,8 @@ describe('Categorise activity page', () => {
         describe('categorise activity', () => {
           before(() =>
             helper.cleanDb()
-              .then(() => categoriseActivityPage.visit(scenario.version, accountId, activity))
+              .then(() => categoriseActivityPage.visit(
+                scenario.version, accountId, activity))
               .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
           );
 
@@ -155,14 +158,13 @@ describe('Categorise activity page', () => {
               .then(() => categoriseActivityPage.visit(scenario.version, accountId, activity))
           );
 
-          it('should maintain the fact an activity has only one category', () =>
-            categoriseActivityPage.selectCategory('I\'m ready to try this')
-              .then(() => helper.getSortedActivities(accountId))
-              .then((sortedActivities) => expect(sortedActivities.length).to.equal(1))
-          );
+          it('should not show the button for the category this activity already belongs to', () => {
+            expect(categoriseActivityPage.isCategoryRendered('READY'))
+              .to.equal(false);
+          });
 
           it('should redirect to re-sort activities after re-categorisation', () =>
-            categoriseActivityPage.selectCategory('I\'m ready to try this')
+            categoriseActivityPage.selectCategory('I\'m already doing this')
               .then(() => expect(categoriseActivityPage.browserPath()).to.equal(
                 // eslint-disable-next-line max-len
                 `${categoriseActivityPage.basePath}/${scenario.version}/${accountId}/${scenario.redirectUriAfterReCategorisation}`))
@@ -203,5 +205,9 @@ describe('Categorise activity page', () => {
           .query('[class~="heading-medium"]').innerHTML).to.equal('Sorted activities'))
         .then(() => expect(activitiesPage.categorisedActivitiesList().length).to.equal(4))
     );
+  });
+
+  afterEach(() => {
+    helper.cleanDb();
   });
 });

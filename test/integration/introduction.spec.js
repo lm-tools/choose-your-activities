@@ -13,7 +13,7 @@ describe('Introduction page', () => {
     it('should have correct title', () =>
       introductionPage.visit(version, accountId)
         .then(() => expect(introductionPage.browser.text('title'))
-          .to.equal('Choose your activities'))
+          .to.equal('Introduction - Choose your activities'))
     );
 
     it('should contain valid google tag manager data', () =>

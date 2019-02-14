@@ -12,7 +12,7 @@ describe('Unsorted activities page', () => {
     it('should have correct title', () =>
       unsortedActivitiesPage.visit('c', accountId)
         .then(() => expect(unsortedActivitiesPage.browser.text('title'))
-          .to.equal('Choose your activities'))
+          .to.equal('Unsorted activities - Choose your activities'))
     );
 
     it('should contain valid google tag manager data', () =>
@@ -44,8 +44,8 @@ describe('Unsorted activities page', () => {
     });
 
     it('should have correct url for activity', () =>
-      expect(unsortedActivitiesPage.activityList()[0].url)
-        .to.contain(`/c/${accountId}/activities/${helper.allActivities[1].name}/categorise`)
+      expect(unsortedActivitiesPage.activityList()[0].url).to.contain(
+        `/c/${accountId}/activities/${helper.allActivities[1].name}/unsorted/categorise`)
     );
   });
 
@@ -60,16 +60,9 @@ describe('Unsorted activities page', () => {
         .then(() => unsortedActivitiesPage.visit('c', accountId, activity))
     );
 
-    it('should slide out sorted activity', () =>
-      expect(unsortedActivitiesPage.isActivityMarkedToSlide(activity)).to.be.true
-    );
-
-    it('should not slide out unsorted activity', () =>
-      expect(unsortedActivitiesPage.isActivityMarkedToSlide(helper.allActivities[4])).to.be.false
-    );
-
-    it('sorted activity should keep order', () =>
-      expect(unsortedActivitiesPage.activityList()[0].title).to.equal(activity.title)
+    it('should display an alert notifying the user that the activity has been sorted', () =>
+      expect(unsortedActivitiesPage.alertMessage())
+        .to.equal('Find out about volunteering activity has been sorted')
     );
   });
 
@@ -102,7 +95,7 @@ describe('Unsorted activities page', () => {
           expect(unsortedActivitiesPage.browserPath())
             .to.contains(`/a/${accountId}/groups`);
           expect(unsortedActivitiesPage.browser.text('title')).to
-            .equal('Choose your activities');
+            .equal('Unsorted activities - Choose your activities');
         })
     );
 
@@ -112,8 +105,8 @@ describe('Unsorted activities page', () => {
           const activityList = unsortedActivitiesPage.activityList();
           for (let i = 0; i < activityList.length; ++i) {
             const activity = activityList[i];
-            expect(activity.url).to
-              .contains(`/c/${accountId}/activities/${helper.allActivities[i].name}/categorise`);
+            expect(activity.url).to.contains(
+              `/c/${accountId}/activities/${helper.allActivities[i].name}/unsorted/categorise`);
           }
         })
     );
@@ -124,8 +117,8 @@ describe('Unsorted activities page', () => {
           const activityList = unsortedActivitiesPage.activityList();
           for (let i = 0; i < activityList.length; ++i) {
             const activity = activityList[i];
-            expect(activity.url).to
-              .contains(`/c/${accountId}/activities/${helper.allActivities[i].name}/categorise`);
+            expect(activity.url).to.contains(
+              `/c/${accountId}/activities/${helper.allActivities[i].name}/unsorted/categorise`);
           }
         })
     );

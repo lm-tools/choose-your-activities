@@ -8,7 +8,7 @@
   <ul class="c">
     {{#categories}}
       <li class="menu-container {{name}}">
-        <form action="{{basePath}}/{{accountId}}/activities/{{sortType}}/{{activityId}}/categorise" method="POST">
+        <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/{{sortType}}/categorise" method="POST">
           <input type="hidden" name="category" value="{{name}}">
           <input class="menu-item" data-test="menu-item" type="submit" value="{{title}}">
         </form>
