@@ -1,4 +1,4 @@
-# Choose Your Activities
+# Choose Your Activities 
 
 [![Build status][build status image]][ci]
 
