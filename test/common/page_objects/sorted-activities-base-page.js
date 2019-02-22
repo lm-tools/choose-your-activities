@@ -35,7 +35,7 @@ class SortedActivitiesBasePage {
   }
 
   getOpenCategory(category) {
-    return this.browser.query(`[data-test="category-${category}"] details[open]`);
+    return this.browser.query(`[data-test="category-${category}"] .expand-help--is-expanded`);
   }
 
   clickDetailsButton(activity) {
@@ -48,7 +48,8 @@ class SortedActivitiesBasePage {
   }
 
   isCategoryExpanded(category) {
-    return this.browser.query(`[data-test="category-${category}"] details`).hasAttribute('open');
+    return this.browser.query(`[data-test="category-${category}"] .expand-help`)
+      .classList.contains('expand-help--is-expanded');
   }
 
   isNavigationDisplayed() {
