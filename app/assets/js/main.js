@@ -1,6 +1,8 @@
 require('./_hide-show');
 const Slider = require('./_slider');
 const ExpandHelp = require('./components/expand-help');
+require('@babel/polyfill');
+require('classlist-polyfill');
 
 $(document).ready(() => {
   // Use GOV.UK selection-buttons.js to set selected
