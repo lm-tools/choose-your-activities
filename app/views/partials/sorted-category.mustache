@@ -1,0 +1,46 @@
+{{#hasActivities}}
+  <section id="{{$field}}expandableHelp{{/field}}" aria-labelledby="expand-help__heading-{{$field}}expandableHelp{{/field}}" class="expand-help {{#isExpanded}}expand-help--is-expanded{{/isExpanded}}">
+    <h2 class="expand-help__heading" id="expand-help__heading-{{$field}}expandableHelp{{/field}}" data-test="show-hide-text">{{categoryIntroduction}}</h2>
+
+    <div class="expand-help__content panel panel-border-narrow" id="help-content-{{$field}}expandableHelp{{/field}}">
+      <ul>
+        {{#activities}}
+        <li class="menu-container {{$category}}{{/category}}" data-test="activity-{{activity}}">
+          <div class="menu-item not-selectable">
+            <p>{{title}}</p>
+            <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
+               class="button-secondary"
+               data-test="details-button">
+              {{#__}}sorted-activities.button-details{{/__}}
+            </a>
+            {{#isResortMode}}
+              <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                 data-test="activity-{{activity}}-move">
+                Move
+              </a>
+            {{/isResortMode}}
+          </div>
+        </li>
+        {{/activities}}
+      </ul>
+    </div>
+
+    {{$setDisclosure}}
+      <input type="hidden" class="expand-help__disclosure-input" name="{{$field}}expandableHelp{{/field}}" value="HIDDEN_HELP_SEEN">
+    {{/setDisclosure}}
+
+    <script type="text/x-template" class="expand-help__button-tpl">
+      <button type="button" name="expand-help-button" class="expand-help__button" aria-expanded="false" aria-controls="{contentId}">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" focusable="false" width="14" height="14" viewBox="0 0 10 10" class="expand-help__icon expand-help__icon--arrow-down">
+          <title></title>
+          <polygon points="0,0, 10,0 5,8.5"></polygon>
+        </svg>
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" focusable="false" width="14" height="14" viewBox="0 0 10 10" class="expand-help__icon expand-help__icon--arrow-right">
+          <title></title>
+          <polygon points="0,0, 0,10 8.5,5"></polygon>
+        </svg>
+      </button>
+    </script>
+  </section>
+{{/hasActivities}}

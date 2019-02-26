@@ -1,5 +1,8 @@
 require('./_hide-show');
 const Slider = require('./_slider');
+const ExpandHelp = require('./components/expand-help');
+require('@babel/polyfill');
+require('classlist-polyfill');
 
 $(document).ready(() => {
   // Use GOV.UK selection-buttons.js to set selected
@@ -12,4 +15,9 @@ $(document).ready(() => {
   if (slideElements) {
     new Slider(slideElements).slide();
   }
+
+  Array.from(document.querySelectorAll('.expand-help')).forEach((element) => {
+    // eslint-disable-next-line no-new
+    new ExpandHelp({}, element);
+  });
 });

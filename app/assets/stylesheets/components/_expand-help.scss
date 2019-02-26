@@ -1,0 +1,69 @@
+.expand-help {
+  margin-bottom: 30px;
+}
+
+.expand-help--nomargin {
+  margin-bottom: 0;
+}
+
+.expand-help__heading {
+  font-weight: bold;
+}
+
+.expand-help__button {
+  color: $link-colour;
+  -webkit-appearance:none;
+  background: none;
+  border: none;
+  @include core-19;
+  text-decoration: underline;
+  padding: 0;
+
+  &:hover {
+    color: $link-hover-colour;
+    cursor: pointer;
+  }
+}
+
+.expand-help__content {
+  @extend .form-hint;
+}
+
+.js-enabled .expand-help__content {
+  display: none;
+}
+
+.expand-help__content--nohint {
+  color: $black;
+}
+
+.expand-help__icon {
+  margin-right: 5px;
+  fill: $link-colour;
+}
+
+.expand-help__button:hover .expand-help__icon {
+  fill: $link-hover-colour;
+}
+
+.expand-help__icon--arrow-right {
+  display: inline-block;
+}
+
+.expand-help__icon--arrow-down {
+  display: none;
+}
+
+.expand-help--is-expanded {
+  .js-enabled & .expand-help__content {
+    display: block;
+  }
+
+  .expand-help__icon--arrow-right {
+    display: none;
+  }
+
+  .expand-help__icon--arrow-down {
+    display: inline-block;
+  }
+}
