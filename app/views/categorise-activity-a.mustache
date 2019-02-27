@@ -18,16 +18,16 @@
 <div class="menu">
   <ul class="a">
     {{#categories}}
-      <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
-        <li class="menu-container-medium {{name}}">
+      <li class="menu-container-medium {{name}}">
+        <form action="{{basePath}}/{{accountId}}/activities/{{activityId}}/categorise" method="POST">
           <input type="hidden" name="category" value="{{name}}">
           <input type="hidden" name="group" value="{{group}}">
           {{#previousCategory}}
             <input type="hidden" name="previousCategory" value="{{previousCategory}}">
           {{/previousCategory}}
           <input class="menu-item-medium" data-test="menu-item" type="submit" value="{{title}}">
-        </li>
-      </form>
+        </form>
+      </li>
     {{/categories}}
   </ul>
 </div>

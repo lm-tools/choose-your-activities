@@ -16,7 +16,7 @@ describe('Sorted activities page', () => {
   describe('page outline', () => {
     it('should have correct title', () =>
       expect(sortedActivitiesPage.browser.text('title'))
-        .to.equal('Choose your activities')
+        .to.equal('Your activity list - Choose your activities')
     );
 
     it('should contain valid google tag manager data', () =>

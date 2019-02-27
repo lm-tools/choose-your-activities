@@ -20,6 +20,10 @@ hr.rule-bold {
   margin-top: 5px;
 }
 
+.gutter-half-top {
+  margin-top: 15px;
+}
+
 .gutter-half-bottom {
   margin-bottom: 15px;
 }
@@ -30,6 +34,20 @@ hr.rule-bold {
 
 .float-right {
   float: right;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: auto;
+  bottom: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
 }
 
 .link-style {

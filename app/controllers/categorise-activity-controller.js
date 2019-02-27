@@ -13,24 +13,47 @@ const resolveGroupTitle = require('../locales/activity-group-title-resolver');
 const i18n = require('i18n');
 
 function getActivityTitle(activityId) {
+  return i18n.__('categorise-activity.pageTitle', i18n.__(`activity.${activityId}.title`));
+}
+
+function getActivityHeading(activityId) {
+  return i18n.__('categorise-activity.heading', i18n.__(`activity.${activityId}.title`));
+}
+
+function getActivityName(activityId) {
   return i18n.__(`activity.${activityId}.title`);
 }
 
 router.get('', validator.get, (req, res) => {
-  const { accountId, activityId } = req.params;
+  const { accountId, activityId, sortType } = req.params;
   const group = req.params.group ? req.params.group : 'GRP-1';
   const { version } = res.locals;
   const previousCategory = req.query && req.query.previousCat || '';
 
-  const categoryView = new CategoryView();
+  const activityName = getActivityName(activityId);
   const title = getActivityTitle(activityId);
+  const heading = getActivityHeading(activityId);
   const groupTitle = resolveGroupTitle(version, group);
-  const model = Object.assign(
-    { accountId, activityId, group, title, groupTitle, previousCategory },
-    categoryView
-  );
+  const backPath = sortType === 'sorted' ? '/activities/sorted/resort' : '/activities/unsorted';
 
-  res.render(`categorise-activity-${version}`, model);
+  ActivitiesModel.getSortedByName(accountId, activityId)
+  .then(result => {
+    let categoryView;
+
+    if (result) {
+      categoryView = new CategoryView(result.category);
+    } else {
+      categoryView = new CategoryView();
+    }
+
+    const model = Object.assign(
+      { accountId, activityId, backPath, sortType, group,
+        activityName, title, heading, groupTitle, previousCategory },
+      categoryView
+    );
+
+    res.render(`categorise-activity-${version}`, model);
+  });
 });
 
 function renderGotoActivitiesPage(accountId, version, group, res) {

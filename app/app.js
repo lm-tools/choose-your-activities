@@ -100,6 +100,8 @@ if (process.env.MI === 'true' || process.env.MI === true) {
   app.use(`${basePath}/:version?/:accountId/activities/sorted`, controllers.sortedActivities);
   app.use(`${basePath}/:version?/:accountId/activities/:activityId/categorise`,
     controllers.categoriseActivity);
+  app.use(`${basePath}/:version?/:accountId/activities/:activityId/:sortType/categorise`,
+    controllers.categoriseActivity);
   app.use(`${basePath}/:version?/:accountId/activities/:activityId`, controllers.activityDetails);
   app.use(`${basePath}/:version?/:accountId/groups`, controllers.activityGroup);
   app.use(`${basePath}/:version?/:accountId/groups/:group/activities`, controllers.activities);

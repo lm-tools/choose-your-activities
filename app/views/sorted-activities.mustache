@@ -2,7 +2,7 @@
 {{$pageTitle}}{{#__}}sorted-activities.pageTitle{{/__}}{{/pageTitle}}
 {{$applicationContent}}
 
-<h2 class="heading-xlarge">{{#__}}sorted-activities.heading{{/__}}</h2>
+<h1 class="heading-xlarge">{{#__}}sorted-activities.heading{{/__}}</h1>
 
 <p class="text">{{#__}}sorted-activities.activities-text-1{{/__}}</p>
 <p class="text">{{#__}}sorted-activities.activities-text-2{{/__}}</p>
@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="#" class="option">
+          <a class="option">
             {{#__}}tabs.sorted{{/__}}
           </a>
         </li>
@@ -41,7 +41,7 @@
 <div class="menu">
 
   <section data-test="category-READY" id="category-READY" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h3>
+    <h2 class="heading-small category-heading" data-test="category">{{#__}}category.READY.title{{/__}}</h2>
     <div data-test="details">
     {{^perCategory.READY.hasActivities}}
       <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
@@ -56,12 +56,12 @@
               <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
-                {{#__}}sorted-activities.button-details{{/__}}
+                {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
               </a>
               {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/sorted/categorise" class="resort-button"
                    data-test="activity-{{activity}}-move">
-                  Move
+                  {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                 </a>
               {{/isResortMode}}
             </div>
@@ -72,7 +72,7 @@
   </section>
 
   <section data-test="category-HELP" id="category-HELP" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h3>
+    <h2 class="heading-small category-heading" data-test="category">{{#__}}category.HELP.title{{/__}}</h2>
     <div data-test="details">
     {{^perCategory.HELP.hasActivities}}
       <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
@@ -87,12 +87,12 @@
               <a href="{{basePath}}/{{accountId}}/activities/{{activity}}?from={{action.mode}}"
                  class="button-secondary"
                  data-test="details-button">
-                {{#__}}sorted-activities.button-details{{/__}}
+                {{#__}}sorted-activities.button-details{{/__}} <span class="visually-hidden">for {{title}}</span>
               </a>
               {{#isResortMode}}
-                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/categorise" class="resort-button"
+                <a href="{{basePath}}/{{accountId}}/activities/{{activity}}/sorted/categorise" class="resort-button"
                    data-test="activity-{{activity}}-move">
-                  {{#__}}sorted-activities.button-move{{/__}}
+                  {{#__}}sorted-activities.button-move{{/__}} <span class="visually-hidden">{{title}}</span>
                 </a>
               {{/isResortMode}}
             </div>
@@ -103,7 +103,7 @@
   </section>
 
   <section data-test="category-DOING" id="category-DOING" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h3>
+    <h2 class="heading-small category-heading" data-test="category">{{#__}}category.DOING.title{{/__}}</h2>
     {{^perCategory.DOING.hasActivities}}
       <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.DOING.hasActivities}}
@@ -116,7 +116,7 @@
   </section>
 
   <section data-test="category-NOT-SUITABLE" id="category-NOT-SUITABLE" class="category-container">
-    <h3 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-SUITABLE.title{{/__}}</h3>
+    <h2 class="heading-small category-heading" data-test="category">{{#__}}category.NOT-SUITABLE.title{{/__}}</h2>
     {{^perCategory.NOT-SUITABLE.hasActivities}}
       <p data-test="empty-message">{{#__}}sorted-activities.category-empty{{/__}}</p>
     {{/perCategory.NOT-SUITABLE.hasActivities}}
