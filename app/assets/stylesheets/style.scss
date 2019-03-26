@@ -1,8 +1,12 @@
+$dark-blue: #073873;
+$true-black: #000;
+
 @import '_govuk-elements';
 @import 'font-awesome';
 @import 'tabs';
 @import 'mixins/index';
 @import 'components/index';
+@import '_overrides';
 
 hr.rule-bold {
   height: 2px;
@@ -121,6 +125,15 @@ hr.rule-bold {
   width: $full-width;
   text-align: left;
   font-size: 1.2em;
+
+  &:hover {
+    color: $govuk-blue;
+  }
+
+  &:focus {
+    background-color: $focus-colour;
+    color: $dark-blue;
+  }
 }
 
 .menu .menu-item-medium {
