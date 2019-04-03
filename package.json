@@ -70,7 +70,7 @@
     "request-promise-core": "^1.1.1",
     "run-sequence": "^2.2.1",
     "serve-favicon": "~2.3",
-    "snyk": "^1.21.2",
+    "snyk": "^1.76.0",
     "uuid": "^3.0.1",
     "vinyl-source-stream": "^1.1.0",
     "winston": "^2.2.0"
