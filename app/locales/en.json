@@ -215,7 +215,7 @@
     "button-move": "Move"
   },
   "activities-details": {
-    "pageTitle": "Activity details - Choose your activities",
+    "pageTitle": "%s - Choose your activities",
     "backButton": "Back to your activities"
   },
   "cookie": {
