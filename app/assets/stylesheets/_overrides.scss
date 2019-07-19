@@ -1,0 +1,30 @@
+/**
+  For improved accessibility we need to override certain rules coming from 3rd party stylesheets (govuk).
+ */
+
+.skiplink:focus {
+  margin: 12px 0 0 30px;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+#logo:focus {
+  outline-color: $focus-colour;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline-width: 3px;
+  outline-color: $black;
+}
+
+.button:focus {
+  outline-color: $true-black;
+}
+
+a:focus {
+  color: $dark-blue;
+}
