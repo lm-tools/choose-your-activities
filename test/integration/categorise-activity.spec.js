@@ -175,15 +175,15 @@ describe('Categorise activity page', () => {
     beforeEach(() => {
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
+          { activity: helper.allActivities[11].name, category: 'READY' },
           { activity: helper.allActivities[12].name, category: 'READY' },
-          { activity: helper.allActivities[13].name, category: 'READY' },
-          { activity: helper.allActivities[18].name, category: 'READY' },
+          { activity: helper.allActivities[17].name, category: 'READY' },
         ]));
     });
 
     it('when all activities in the group are sorted', () =>
       categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
-        helper.allActivities[5].name)
+        helper.allActivities[4].name)
         .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
         .then(() => expect(!!categoriseActivityPage.browser
           .query('[data-test="go-to-my-activities"]')).to.be.true)
@@ -191,7 +191,7 @@ describe('Categorise activity page', () => {
 
     it('when the user comes back second time after sorting all activities', () =>
       helper.addSortedActivities(accountId, [
-        { activity: helper.allActivities[5].name, category: 'READY' }])
+        { activity: helper.allActivities[4].name, category: 'READY' }])
         .then(() => activitiesPage.visit('a', accountId, 'GRP-3'))
         .then(() => expect(!!categoriseActivityPage.browser
           .query('[data-test="go-to-my-activities"]')).to.be.false)
@@ -199,7 +199,7 @@ describe('Categorise activity page', () => {
 
     it('should show smart answers', () =>
       categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
-        helper.allActivities[5].name)
+        helper.allActivities[4].name)
         .then(() => categoriseActivityPage.selectCategory('I\'m ready to try this'))
         .then(() => expect(activitiesPage.browser
           .query('[class~="heading-medium"]').innerHTML).to.equal('Sorted activities'))

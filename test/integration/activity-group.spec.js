@@ -13,7 +13,7 @@ describe('activity group', () => {
       version: 'a',
       expectedResult: [
         {
-          count: '5 activities',
+          count: '4 activities',
           title: 'Get better at my applications and interviews',
         },
         {
@@ -33,7 +33,7 @@ describe('activity group', () => {
           title: 'Give myself some confidence',
         },
         {
-          count: '17 activities',
+          count: '16 activities',
           title: 'I don\'t know where to start',
         },
       ],
@@ -42,7 +42,7 @@ describe('activity group', () => {
       version: 'b',
       expectedResult: [
         {
-          count: '5 things to do',
+          count: '4 things to do',
           title: 'Improve applications',
         },
         {
@@ -62,7 +62,7 @@ describe('activity group', () => {
           title: 'Get quick ideas',
         },
         {
-          count: '17 things to do',
+          count: '16 things to do',
           title: 'Everything',
         },
       ],

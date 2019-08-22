@@ -113,11 +113,10 @@ describe('chosen activities page', () => {
           helper.addSortedActivities(accountId, [
             sortActivityAtIndex(0, 'READY'),
             sortActivityAtIndex(1, 'HELP'),
-            sortActivityAtIndex(2, 'DOING'),
           ])
         ).then(() =>
           pageUnderTest.visit(version, accountId, group).then(() =>
-            expect(pageUnderTest.getCategoryContents()).to.length(3)
+            expect(pageUnderTest.getCategoryContents()).to.length(2)
           )
         )
       );
@@ -140,7 +139,6 @@ describe('chosen activities page', () => {
             helper.addSortedActivities(accountId, [
               sortActivityAtIndex(0, 'READY'),
               sortActivityAtIndex(1, 'HELP'),
-              sortActivityAtIndex(2, 'HELP'),
               sortActivityAtIndex(3, 'DOING'),
               sortActivityAtIndex(4, 'DOING'),
               sortActivityAtIndex(5, 'DOING'),
@@ -153,7 +151,7 @@ describe('chosen activities page', () => {
 
             expect(categories).to.length(4);
             expect(ready.activityCount).to.equal(1);
-            expect(help.activityCount).to.equal(2);
+            expect(help.activityCount).to.equal(1);
             expect(doing.activityCount).to.equal(3);
             expect(notSuitable.activityCount).to.equal(1);
           })
@@ -166,10 +164,10 @@ describe('chosen activities page', () => {
     beforeEach(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
-          sortActivityAtIndex(12, 'READY'),
-          sortActivityAtIndex(13, 'HELP'),
-          sortActivityAtIndex(18, 'DOING'),
-          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+          sortActivityAtIndex(11, 'READY'),
+          sortActivityAtIndex(12, 'HELP'),
+          sortActivityAtIndex(17, 'DOING'),
+          sortActivityAtIndex(4, 'NOT-SUITABLE'),
         ]))
     );
 
@@ -189,11 +187,10 @@ describe('chosen activities page', () => {
 
     it('link should redirect to the chosen activities page if all activities sorted', () =>
       helper.addSortedActivities(accountId, [
-        sortActivityAtIndex(6, 'READY'),
-        sortActivityAtIndex(10, 'HELP'),
-        sortActivityAtIndex(8, 'DOING'),
-        sortActivityAtIndex(7, 'NOT-SUITABLE'),
-        sortActivityAtIndex(2, 'NOT-SUITABLE'),
+        sortActivityAtIndex(5, 'READY'),
+        sortActivityAtIndex(9, 'HELP'),
+        sortActivityAtIndex(7, 'DOING'),
+        sortActivityAtIndex(6, 'NOT-SUITABLE'),
       ]).then(() =>
         pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
           pageUnderTest.clickLinkForGroup('GRP-1').then(() =>
@@ -204,10 +201,10 @@ describe('chosen activities page', () => {
 
     it('link should redirect to the list of activities page if all activities are not sorted', () =>
       helper.addSortedActivities(accountId, [
-        sortActivityAtIndex(6, 'READY'),
-        sortActivityAtIndex(10, 'HELP'),
-        sortActivityAtIndex(8, 'DOING'),
-        sortActivityAtIndex(7, 'NOT-SUITABLE'),
+        sortActivityAtIndex(5, 'READY'),
+        sortActivityAtIndex(9, 'HELP'),
+        sortActivityAtIndex(7, 'DOING'),
+        sortActivityAtIndex(6, 'NOT-SUITABLE'),
       ]).then(() =>
         pageUnderTest.visit('a', accountId, 'GRP-3').then(() =>
           pageUnderTest.clickLinkForGroup('GRP-1').then(() =>
@@ -222,11 +219,10 @@ describe('chosen activities page', () => {
       beforeEach((done) =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(2, 'READY'),
+            sortActivityAtIndex(5, 'HELP'),
             sortActivityAtIndex(6, 'HELP'),
-            sortActivityAtIndex(7, 'HELP'),
-            sortActivityAtIndex(8, 'DOING'),
-            sortActivityAtIndex(10, 'NOT-SUITABLE'),
+            sortActivityAtIndex(7, 'DOING'),
+            sortActivityAtIndex(9, 'NOT-SUITABLE'),
           ]))
           .then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
           .then(() => done())
@@ -275,16 +271,15 @@ describe('chosen activities page', () => {
         'is now empty', () =>
         helper.cleanDb().then(() =>
           helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(2, 'HELP'),
+            sortActivityAtIndex(5, 'HELP'),
             sortActivityAtIndex(6, 'DOING'),
             sortActivityAtIndex(7, 'DOING'),
-            sortActivityAtIndex(8, 'DOING'),
-            sortActivityAtIndex(10, 'DOING'),
+            sortActivityAtIndex(9, 'DOING'),
           ])
         ).then(() => pageUnderTest.visitWithCategory(version, accountId, 'GRP-1', 'HELP'))
           .then(() =>
             pageUnderTest.clickChangeLinkForActivityWithHeading(
-              'Get advice from an expert in your industry').then(() =>
+              'Find out what makes a good job application').then(() =>
               categoriseActivityPage.selectCategory('It doesn\'t suit me').then(() => {
                 expect(pageUnderTest.getHeading().headingText).to.eql('Your chosen activities');
                 const currentCategory = pageUnderTest.getCategoryContents().find(x => !x.isLink);
@@ -300,10 +295,10 @@ describe('chosen activities page', () => {
     beforeEach(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
-          sortActivityAtIndex(12, 'READY'),
-          sortActivityAtIndex(13, 'HELP'),
-          sortActivityAtIndex(18, 'DOING'),
-          sortActivityAtIndex(5, 'NOT-SUITABLE'),
+          sortActivityAtIndex(11, 'READY'),
+          sortActivityAtIndex(12, 'HELP'),
+          sortActivityAtIndex(17, 'DOING'),
+          sortActivityAtIndex(4, 'NOT-SUITABLE'),
         ])));
 
     it('should be able to navigate using next links', () =>
@@ -390,7 +385,6 @@ describe('chosen activities page', () => {
         sortActivityAtIndex(10, 'HELP'),
         sortActivityAtIndex(8, 'DOING'),
         sortActivityAtIndex(7, 'DOING'),
-        sortActivityAtIndex(2, 'DOING'),
       ])
         .then(() =>
           pageUnderTest.visit('a', accountId, 'GRP-1').then(() =>

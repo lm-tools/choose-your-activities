@@ -1,7 +1,6 @@
 module.exports = [
   'ACT-1',
   'ACT-2',
-  'ACT-3',
   'ACT-4',
   'ACT-5',
   'ACT-6',

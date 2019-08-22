@@ -17,7 +17,6 @@ describe('smart answers view model', () => {
           { accountId, activity: 'ACT-2', category: 'READY' },
         ],
         HELP: [
-          { accountId, activity: 'ACT-3', category: 'HELP' },
           { accountId, activity: 'ACT-4', category: 'HELP' },
         ],
         DOING: [
@@ -49,10 +48,6 @@ describe('smart answers view model', () => {
             categoryName: 'HELP',
             categoryTitle: 'I\'d like help trying this',
             sortedActivities: [
-              {
-                activityName: 'ACT-3',
-                activityTitle: 'Get advice from an expert in your industry',
-              },
               {
                 activityName: 'ACT-4',
                 activityTitle: 'Build a list of companies you want to work for',

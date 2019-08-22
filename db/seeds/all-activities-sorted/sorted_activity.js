@@ -16,12 +16,6 @@ exports.seed = function (knex) {
           category: 'READY',
         },
         {
-          id: 102,
-          accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
-          activity: 'ACT-3',
-          category: 'HELP',
-        },
-        {
           id: 103,
           accountId: 'b4be6ba8-fdb0-11e6-b9d4-539e556f06e1',
           activity: 'ACT-4',

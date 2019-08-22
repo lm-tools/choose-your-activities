@@ -11,7 +11,7 @@ const scenarios =
       version: 'a',
       expectedResult: [
         {
-          count: 5,
+          count: 4,
           name: 'GRP-1',
           title: 'Get better at my applications and interviews',
         },
@@ -36,7 +36,7 @@ const scenarios =
           title: 'Give myself some confidence',
         },
         {
-          count: 17,
+          count: 16,
           name: 'GRP-6',
           title: 'I don\'t know where to start',
         },
@@ -47,7 +47,7 @@ const scenarios =
       version: 'b',
       expectedResult: [
         {
-          count: 5,
+          count: 4,
           name: 'GRP-1',
           title: 'Improve applications',
         },
@@ -72,7 +72,7 @@ const scenarios =
           title: 'Get quick ideas',
         },
         {
-          count: 17,
+          count: 16,
           name: 'GRP-6',
           title: 'Everything',
         },
@@ -84,7 +84,7 @@ const scenarios =
       filterGroup: 'GRP-2',
       expectedResult: [
         {
-          count: 5,
+          count: 4,
           name: 'GRP-1',
           title: 'Improve applications',
         },
@@ -104,7 +104,7 @@ const scenarios =
           title: 'Get quick ideas',
         },
         {
-          count: 17,
+          count: 16,
           name: 'GRP-6',
           title: 'Everything',
         },

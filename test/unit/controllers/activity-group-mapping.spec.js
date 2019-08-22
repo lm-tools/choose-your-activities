@@ -4,7 +4,6 @@ const _ = require('lodash');
 const allActivities = [
   'ACT-1',
   'ACT-2',
-  'ACT-3',
   'ACT-4',
   'ACT-5',
   'ACT-6',
@@ -33,9 +32,8 @@ describe('activity group mapper', () => {
         'ACT-11',
         'ACT-9',
         'ACT-8',
-        'ACT-3',
       ],
-      expectedCount: 5,
+      expectedCount: 4,
     },
     {
       version: 'b',
@@ -45,9 +43,8 @@ describe('activity group mapper', () => {
         'ACT-11',
         'ACT-9',
         'ACT-8',
-        'ACT-3',
       ],
-      expectedCount: 5,
+      expectedCount: 4,
     },
     {
       version: 'a',
@@ -166,14 +163,13 @@ describe('activity group mapper', () => {
         'ACT-8',
         'ACT-9',
         'ACT-16',
-        'ACT-3',
         'ACT-1',
         'ACT-2',
         'ACT-5',
         'ACT-14',
         'ACT-6',
       ],
-      expectedCount: 17,
+      expectedCount: 16,
     },
     {
       version: 'b',
@@ -190,14 +186,13 @@ describe('activity group mapper', () => {
         'ACT-8',
         'ACT-9',
         'ACT-16',
-        'ACT-3',
         'ACT-1',
         'ACT-2',
         'ACT-5',
         'ACT-14',
         'ACT-6',
       ],
-      expectedCount: 17,
+      expectedCount: 16,
     },
   ].forEach(scenario => {
     it(`should get activities for version ${scenario.version} and group ${scenario.group}`, () => {
@@ -232,22 +227,22 @@ describe('activity group mapper', () => {
   ['GRP-1', 'GRP-2', 'GRP-3', 'GRP-4', 'GRP-5', 'GRP-6'].forEach(group => {
     it(`should get count of activities for version c and group ${group}`, () => {
       const count = underTest.getCountOfActivitiesForGroup('c', group);
-      expect(count).to.eql(19);
+      expect(count).to.eql(18);
     });
   });
   it('should get a filter activities for version a and group GRP-1', () => {
     const activitiesForGroup = underTest.getActivitiesForGroup('a', 'GRP-1', ['ACT-7']);
-    expect(activitiesForGroup).to.eql(['ACT-11', 'ACT-9', 'ACT-8', 'ACT-3']);
+    expect(activitiesForGroup).to.eql(['ACT-11', 'ACT-9', 'ACT-8']);
   });
   it('should not filter activities if no common entries found for version a and group GRP-1',
     () => {
       const activitiesForGroup = underTest.getActivitiesForGroup('a', 'GRP-1', ['ACT-1']);
-      expect(activitiesForGroup).to.eql(['ACT-7', 'ACT-11', 'ACT-9', 'ACT-8', 'ACT-3']);
+      expect(activitiesForGroup).to.eql(['ACT-7', 'ACT-11', 'ACT-9', 'ACT-8']);
     });
   it('should get activities as an empty array if all needs to be excluded for ' +
     'version a and group GRP-1', () => {
     const activitiesForGroup =
-      underTest.getActivitiesForGroup('a', 'GRP-1', ['ACT-7', 'ACT-11', 'ACT-9', 'ACT-8', 'ACT-3']);
+      underTest.getActivitiesForGroup('a', 'GRP-1', ['ACT-7', 'ACT-11', 'ACT-9', 'ACT-8']);
     expect(activitiesForGroup).to.eql([]);
   });
 });
