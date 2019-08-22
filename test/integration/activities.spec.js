@@ -37,22 +37,21 @@ describe('Activities page', () => {
       before(() =>
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(6, 'READY'),
-            sortActivityAtIndex(10, 'HELP'),
+            sortActivityAtIndex(5, 'READY'),
+            sortActivityAtIndex(9, 'HELP'),
           ]))
           .then(() => activitiesPage.visit(version, accountId, group))
       );
 
       it('should display correct number of unsorted activities', () =>
-        expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(3)
+        expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(2)
       );
 
       describe('all activities are sorted', () => {
         before(() =>
           helper.addSortedActivities(accountId, [
-            sortActivityAtIndex(2, 'HELP'),
             sortActivityAtIndex(7, 'HELP'),
-            sortActivityAtIndex(8, 'READY'),
+            sortActivityAtIndex(6, 'HELP'),
           ]).then(() => activitiesPage.visit(version, accountId, group))
         );
 
@@ -63,16 +62,15 @@ describe('Activities page', () => {
 
       it('should display correct title for unsorted activities', () => {
         const activitiesList = activitiesPage.unCategorisedActivitiesList();
-        expect(activitiesList[0].title).to.equal(helper.allActivities[8].title);
-        expect(activitiesList[1].title).to.equal(helper.allActivities[7].title);
-        expect(activitiesList[2].title).to.equal(helper.allActivities[2].title);
+        expect(activitiesList[0].title).to.equal(helper.allActivities[7].title);
+        expect(activitiesList[1].title).to.equal(helper.allActivities[6].title);
       });
 
       it('should have correct url for activity', () =>
         expect(activitiesPage.unCategorisedActivitiesList()[0].href).to
           .contain(
             // eslint-disable-next-line max-len
-            `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[8].name}/categorise`)
+            `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[7].name}/categorise`)
       );
     });
 
@@ -81,37 +79,30 @@ describe('Activities page', () => {
         helper.cleanDb()
           .then(() => helper.addSortedActivities(accountId, [
             // for group GRP-1
-            sortActivityAtIndex(6, 'READY'),
-            sortActivityAtIndex(10, 'HELP'),
+            sortActivityAtIndex(4, 'READY'),
+            sortActivityAtIndex(8, 'HELP'),
             // for group GRP-2
-            sortActivityAtIndex(9, 'READY'),
-            sortActivityAtIndex(18, 'HELP'),
+            sortActivityAtIndex(7, 'READY'),
+            sortActivityAtIndex(16, 'HELP'),
           ]))
           .then(() => activitiesPage.visit(version, accountId, group))
       );
 
       it('should display all the categorised activities in smart answers section', () => {
         const categorisedActivitiesList = activitiesPage.categorisedActivitiesList();
-        expect(categorisedActivitiesList.length).to.equal(2);
-        expect(categorisedActivitiesList[0].title).to.equal(helper.allActivities[6].title);
-        expect(categorisedActivitiesList[1].title).to.equal(helper.allActivities[10].title);
+        expect(categorisedActivitiesList.length).to.equal(1);
+        expect(categorisedActivitiesList[0].title).to.equal(helper.allActivities[7].title);
       });
 
       it('should have correct url for categorised activity', () => {
         expect(activitiesPage.categorisedActivitiesList()[0].href).to
           .contain(
             // eslint-disable-next-line max-len
-            `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[6].name}/categorise`);
-
-        expect(activitiesPage.categorisedActivitiesList()[1].href).to
-          .contain(
-            // eslint-disable-next-line max-len
-            `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[10].name}/categorise`);
+            `/${version}/${accountId}/groups/${group}/activities/${helper.allActivities[7].name}/categorise`);
       });
 
       [
-        { activityName: helper.allActivities[6].name, category: 'READY' },
-        { activityName: helper.allActivities[10].name, category: 'HELP' },
+        { helper, activityName: helper.allActivities[7].name, category: 'READY' },
       ].forEach((scenario) => {
         it(`should list ${scenario.activityName} under ${scenario.category} category`, () =>
           expect(activitiesPage.isActivityUnderCategoryDisplayed(scenario.category,
@@ -122,7 +113,7 @@ describe('Activities page', () => {
       it('clicking "Start again" should un-categorise all activities in the current group', () =>
         activitiesPage.clickStartAgain().then(() => {
           expect(activitiesPage.categorisedActivitiesList().length).to.equal(0);
-          expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(5);
+          expect(activitiesPage.unCategorisedActivitiesList().length).to.equal(4);
         })
       );
 

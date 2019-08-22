@@ -9,7 +9,7 @@ describe('Activity details', () => {
   const accountId = uuid.v4();
 
   describe('page outline', () => {
-    before(() => pageUnderTest.visit('c', accountId, helper.allActivities[10]));
+    before(() => pageUnderTest.visit('c', accountId, helper.allActivities[9]));
 
     it('should have correct title', () =>
       expect(pageUnderTest.browser.text('title'))

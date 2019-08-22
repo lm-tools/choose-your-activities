@@ -2,7 +2,6 @@ module.exports = {
   allActivities: [
     { name: 'ACT-1', title: 'Find out about volunteering' },
     { name: 'ACT-2', title: 'Ask about work experience' },
-    { name: 'ACT-3', title: 'Get advice from an expert in your industry' },
     { name: 'ACT-4', title: 'Build a list of companies you want to work for' },
     { name: 'ACT-5', title: 'Find the right recruitment agency for you' },
     {
@@ -26,12 +25,12 @@ module.exports = {
     {
       name: 'ACT-17',
       title: 'Make a list of a few jobs you’d like in a year from now ' +
-      'and the skills you need for them',
+        'and the skills you need for them',
     },
     {
       name: 'ACT-18',
       title: 'Find out about qualifications that could improve your ' +
-      'chances of getting jobs you want',
+        'chances of getting jobs you want',
     },
     { name: 'ACT-19', title: "Use a website to check what skills you've got" },
   ],

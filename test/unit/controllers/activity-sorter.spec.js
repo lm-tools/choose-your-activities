@@ -19,10 +19,8 @@ describe('activity sorter', () => {
       name: 'with double digits',
       toSort: [
         { activity: 'ACT-10' },
-        { activity: 'ACT-3' },
       ],
       expected: [
-        { activity: 'ACT-3' },
         { activity: 'ACT-10' },
       ],
     },

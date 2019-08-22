@@ -6,7 +6,6 @@ const commonMapping = {
     'ACT-11',
     'ACT-9',
     'ACT-8',
-    'ACT-3',
   ],
   'GRP-2': [
     'ACT-10',
@@ -51,7 +50,6 @@ const commonMapping = {
     'ACT-8',
     'ACT-9',
     'ACT-16',
-    'ACT-3',
     'ACT-1',
     'ACT-2',
     'ACT-5',
