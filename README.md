@@ -21,6 +21,14 @@ Make sure that [PostgreSQL] is running, and that your current user (`$ whoami`)
 has full access. Alternatively, custom database details can be provided by setting
 a `DATABASE_URL` environment variable to a valid [PostgreSQL connection string]
 
+Note : For Catalina with XCode installed, run the following commands
+
+```sh
+$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+$ export CXXFLAGS="-mmacosx-version-min=10.9"
+$ export LDFLAGS="-mmacosx-version-min=10.9" 
+```
+
 Setup the application:
 
 ```sh
