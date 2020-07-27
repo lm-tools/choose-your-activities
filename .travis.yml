@@ -10,7 +10,7 @@ before_script:
 env:
  - CXX=g++-4.8 DATABASE_URL=postgres://postgres@localhost/travis_ci_test
 addons:
-  postgresql: "11.1"
+  postgresql: "9.4"
   apt:
     sources:
      - ubuntu-toolchain-r-test
