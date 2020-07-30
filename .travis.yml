@@ -4,22 +4,12 @@ node_js:
 cache:
   directories:
    - node_modules
-before_install:
-  - sudo apt-get update
-  - sudo apt-get --yes remove postgresql\*
-  - sudo apt-get install -y postgresql-11 postgresql-client-11
-  - sudo cp /etc/postgresql/{9,11}/main/pg_hba.conf
-  - sudo service postgresql restart 11
 before_script:
-  - psql --version
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - npm run compile
-script:
-  - DATABASE_URL=postgres://postgres@localhost/travis_ci_test npm test
+ - npm run compile
+ - psql -c 'create database travis_ci_test;' -U postgres
 env:
  - CXX=g++-4.8 DATABASE_URL=postgres://postgres@localhost/travis_ci_test
 addons:
-  postgresql: "11.1"
   apt:
     sources:
      - ubuntu-toolchain-r-test
