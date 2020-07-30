@@ -1,0 +1,21 @@
+upgrade to node 12
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu Jul 30 16:33:29 2020 +0100
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .travis.yml
+#	modified:   Dockerfile
+#	modified:   README.md
+#	modified:   app/assets/js/_hide-show.js
+#	modified:   gulpfile.js
+#	modified:   package-lock.json
+#	modified:   package.json
+#	new file:   start-test-server.js
+#
