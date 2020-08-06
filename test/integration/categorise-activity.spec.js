@@ -158,10 +158,9 @@ describe('Categorise activity page', () => {
               .then(() => categoriseActivityPage.visit(scenario.version, accountId, activity))
           );
 
-          it('should not show the button for the category this activity already belongs to', () => {
+          it('should not show the button for the category this activity already belongs to', () =>
             expect(categoriseActivityPage.isCategoryRendered('READY'))
-              .to.equal(false);
-          });
+              .to.equal(false));
 
           it('should redirect to re-sort activities after re-categorisation', () =>
             categoriseActivityPage.selectCategory('I\'m already doing this')
@@ -172,14 +171,14 @@ describe('Categorise activity page', () => {
         });
       }));
   describe('go to my activities page', () => {
-    beforeEach(() => {
+    beforeEach(() =>
       helper.cleanDb()
         .then(() => helper.addSortedActivities(accountId, [
           { activity: helper.allActivities[11].name, category: 'READY' },
           { activity: helper.allActivities[12].name, category: 'READY' },
           { activity: helper.allActivities[17].name, category: 'READY' },
-        ]));
-    });
+        ]))
+    );
 
     it('when all activities in the group are sorted', () =>
       categoriseActivityPage.visitFromActivityGroupPage('a', accountId, 'GRP-3',
@@ -207,7 +206,7 @@ describe('Categorise activity page', () => {
     );
   });
 
-  afterEach(() => {
-    helper.cleanDb();
-  });
+  afterEach(() =>
+    helper.cleanDb()
+  );
 });
