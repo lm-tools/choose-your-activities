@@ -34,9 +34,8 @@ Setup the application:
 ```sh
 $ docker run --name cya-postgres -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres
 $ docker exec -it cya-postgres /bin/bash
-$ psql -U postgres
-$ psql -c "create database choose_your_activities;"
-$ psql -c "create database choose_your_activities_test;"
+$ psql -U postgres -c "create database choose_your_activities;"
+$ psql -U postgres -c "create database choose_your_activities_test;"
 $ export DATABASE_URL=postgres://postgres:password@localhost/choose_your_activities
 $ npm install
 $ npm run db-migrate

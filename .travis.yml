@@ -1,14 +1,18 @@
 language: node_js
+
 node_js:
   - 12.18.3
 cache:
   directories:
    - node_modules
+before_install:
+  - docker pull postgres:11.1
+  - docker run -d -p 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD=password --name postgres postgres:11.1
+  - docker exec -d postgres /bin/bash -c 'psql -U postgres -c "create database travis_ci_test;"'
 before_script:
  - npm run compile
- - psql -c 'create database travis_ci_test;' -U postgres
 env:
- - CXX=g++-4.8 DATABASE_URL=postgres://postgres@localhost/travis_ci_test
+ - CXX=g++-4.8 DATABASE_URL=postgres://postgres:password@localhost/travis_ci_test
 addons:
   apt:
     sources:
@@ -16,4 +20,4 @@ addons:
     packages:
      - g++-4.8
 services:
-  - postgresql
+  - docker
