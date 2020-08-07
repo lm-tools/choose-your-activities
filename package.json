@@ -62,7 +62,7 @@
     "joi": "^10.2.2",
     "jquery": "^3.5.1",
     "jquery-migrate": "^3.3.1",
-    "knex": "^0.19.5",
+    "knex": "^0.21.2",
     "lmt-utils": "~0.1.4",
     "morgan": "^1.6.1",
     "node-sass": "^4.12.0",
