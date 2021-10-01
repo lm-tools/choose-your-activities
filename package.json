@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.10.4",
     "ansi-colors": "4.1.1",
     "body-parser": "~1.18.2",
-    "bookshelf": "^0.10.0",
+    "bookshelf": "^0.14.0",
     "browserify": "^13.0.1",
     "celebrate": "^4.0.1",
     "cheerio": "^1.0.0-rc.2",
@@ -73,7 +73,7 @@
     "request-promise-core": "^1.1.1",
     "sass": "^1.22.10",
     "serve-favicon": "~2.4.5",
-    "snyk": "^1.369.3",
+    "snyk": "^1.685.0",
     "uuid": "^3.0.1",
     "vinyl-source-stream": "^2.0.0",
     "winston": "^2.2.0"
