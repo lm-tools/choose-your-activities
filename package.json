@@ -16,7 +16,7 @@
     "db-migrate-rollback": "knex migrate:rollback --knexfile db/knexfile.js",
     "heroku-postbuild": "npm run compile",
     "create-migration": "knex migrate:make --knexfile db/knexfile.js $MIGRATION",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "check-content": "gulp check-content",
     "prepublish": "npm run snyk-protect"
   },
@@ -73,10 +73,10 @@
     "request-promise-core": "^1.1.1",
     "sass": "^1.22.10",
     "serve-favicon": "~2.4.5",
-    "snyk": "^1.369.3",
     "uuid": "^3.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "chai": "^3.5.0",
