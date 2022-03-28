@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.22.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -154,3 +154,48 @@ patch:
         patched: '2020-08-05T17:16:00.785Z'
     - gulp > gulp-cli > matchdep > findup-sync > micromatch > extglob > expand-brackets > snapdragon > debug > ms:
         patched: '2020-08-05T17:16:00.785Z'
+  SNYK-JS-LODASH-567746:
+    - '@babel/core > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - bookshelf > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - cheerio > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - node-sass > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - gulp-sass > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - knex > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - request-promise-core > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/core > @babel/helper-module-transforms > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - node-sass > sass-graph > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - gulp-sass > node-sass > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - request-promise > request-promise-core > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/plugin-transform-classes > @babel/helper-define-map > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - lmt-utils > html-link-crawler > cheerio > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - lmt-utils > lint-target-blank > cheerio > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - node-sass > gaze > globule > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - gulp-sass > node-sass > sass-graph > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/plugin-transform-unicode-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - gulp-sass > node-sass > gaze > globule > lodash:
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-annotate-as-pure > @babel/types > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2022-03-28T16:04:39.767Z'
