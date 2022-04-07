@@ -76,7 +76,7 @@
     "snyk": "^1.369.3",
     "uuid": "^3.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "winston": "^2.2.0"
+    "winston": "^3.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
